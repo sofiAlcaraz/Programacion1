@@ -15,7 +15,7 @@ public class Calle {
 	public Calle(double altura, double ancho, double x, double y, double bajadaDePantalla) {
 		this.largo = altura;
 		this.ancho = ancho;
-		this.color = color.GREEN;
+		this.color = color.GRAY;
 		this.x = x;
 		this.y = y;
 		this.bajadaDePantalla = bajadaDePantalla;
@@ -32,5 +32,6 @@ public class Calle {
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarRectangulo(x, y, ancho, largo, 0, color);
 	}
+
 
 }
