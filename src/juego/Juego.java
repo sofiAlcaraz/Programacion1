@@ -8,6 +8,7 @@ public class Juego extends InterfaceJuego {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private Conejo conejo;
+	private Calle calle;
 
 	// FIXME
 	private Auto auto;
@@ -19,15 +20,16 @@ public class Juego extends InterfaceJuego {
 
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
-
+		
 		// Inicializar lo que haga falta para el juego
 		// ...
-		this.conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40);
-		this.auto = new Auto(60, 45, entorno.ancho(), entorno.alto() / 4, 5, true);
+		 velocidadDeBajadaDePantalla=0.5;
+		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40,velocidadDeBajadaDePantalla);
+		auto = new Auto(60, 45, entorno.ancho(), entorno.alto() / 4, 3, true,velocidadDeBajadaDePantalla);//pruebo con auto mas leno
 //		this.auto2 = new Auto(60, 45, 0, entorno.alto() / 2, 8);
-		
+		calle=new Calle(200,800,entorno.ancho()/2,entorno.alto()/10,velocidadDeBajadaDePantalla);
 		// Inicia el juego!
-		this.entorno.iniciar();
+		entorno.iniciar();
 	}
 
 	/**
@@ -39,6 +41,10 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 		// Procesamiento de un instante de tiempo
 		// ...
+		
+		//calle
+		calle.dibujar(entorno);
+		calle.mover();
 		// Conejo
 		
 		conejo.dibujar(entorno);
@@ -62,6 +68,10 @@ public class Juego extends InterfaceJuego {
 //		auto2.dibujar(entorno);
 		
 		auto.mover(entorno);
+		
+		//calle
+		
+		
 		
 //		auto2.mover("derecha", entorno);  // haciendo cagadas a full
 	}
