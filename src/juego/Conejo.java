@@ -5,56 +5,61 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Conejo {
+
+	// por el momento está bien, pero hay que corregirlo
 	private double altura;
 	private double ancho;
+	private Color color;
+		
 	private double x;
 	private double y;
-	private double velocidad;
-	private double direccion;
-	private Color color;
+	private double velocidadDeSalto;
+	private double bajadaDePantalla; // si se puede mejorar el nombre
+	private double direccion; // por ahí no lo necesitan
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad) {
 		this.altura = altura;
 		this.ancho = ancho;
 		this.x = x;
 		this.y = y;
-		this.velocidad = velocidad;
+		this.velocidadDeSalto = velocidad;
 		this.color = Color.WHITE;
 		this.direccion = -Math.PI/2;
+		// acá también va lo de bajadaDePantalla
 	}
 
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarRectangulo(x, y, altura, ancho, direccion, color);
 	}
 
-	public void caer () {
-		y += 0.5;
+	public void esperar () {
+		y += bajadaDePantalla;
 	}
 	
-	public void moverseAdelante() {
-		if (y-altura/2-velocidad <= 0) {
+	public void saltar() {
+		if (y-altura/2-velocidadDeSalto <= 0) {
 			y = altura/2;
 		}else {
-			y -= velocidad;
+			y -= velocidadDeSalto;
 		}
 	}
 
-	public void moverseIzquierda() {
+	public void saltarIzquierda() {
 		//falta agregar cambio de direccion
-		if (x-ancho/2-velocidad <= 0) {
+		if (x-ancho/2-velocidadDeSalto <= 0) {
 			x = ancho/2;
 		}else {
-			x -= velocidad;
+			x -= velocidadDeSalto;
 		}
 		
 	}
 
-	public void moverseDerecha(Entorno entorno) {
+	public void saltarDerecha(Entorno entorno) {
 		//falta agregar cambio de direccion	
-		if (x+ancho/2+velocidad >= entorno.ancho()) {
+		if (x+ancho/2+velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho/2;
 		}else {
-			x += velocidad;
+			x += velocidadDeSalto;
 		}
 	}
 }

@@ -7,22 +7,27 @@ public class Juego extends InterfaceJuego {
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
-	private Conejo rabbit;
+	private Conejo conejo;
+
+	// FIXME
 	private Auto auto;
 	private Auto auto2;
+	
+	private double velocidadDeBajadaDePantalla;
+
 	public Juego() {
 
 		// Inicializa el objeto entorno
-		this.entorno = new Entorno(this, "Prueba del Entorno",1200, 950);
-		
+		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
+
 		// Inicializar lo que haga falta para el juego
 		// ...
-		this.rabbit = new Conejo(50, 30 , entorno.ancho()/2, entorno.alto()*0.75, 40);
-		this.auto = new Auto(60, 45,entorno.ancho() , entorno.alto()/4, 5);
-		this.auto2 = new Auto(60, 45,0 , entorno.alto()/2, 8);
+		this.conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40);
+		this.auto = new Auto(60, 45, entorno.ancho(), entorno.alto() / 4, 5, true);
+//		this.auto2 = new Auto(60, 45, 0, entorno.alto() / 2, 8);
+		
 		// Inicia el juego!
 		this.entorno.iniciar();
-		
 	}
 
 	/**
@@ -34,27 +39,33 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 		// Procesamiento de un instante de tiempo
 		// ...
-	// Conejo
-		rabbit.dibujar(entorno);
-		rabbit.caer();
+		// Conejo
+		
+		conejo.dibujar(entorno);
+		conejo.esperar(); // el conejo no se cae, FIXME
+
 		
 		if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
-			rabbit.moverseAdelante();
+			conejo.saltar();
 		}
+		
 		if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
-			rabbit.moverseIzquierda();
+			conejo.saltarIzquierda();
 		}
+		
 		if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
-			rabbit.moverseDerecha(entorno);
+			conejo.saltarDerecha(entorno);
 		}
-	
-	// Auto
+
+		// Auto
 		auto.dibujar(entorno);
-		auto2.dibujar(entorno);
-		auto.moverse("izquierda",entorno);
-		auto2.moverse("derecha",entorno);
-	
-	}	
+//		auto2.dibujar(entorno);
+		
+		auto.mover(entorno);
+		
+//		auto2.mover("derecha", entorno);  // haciendo cagadas a full
+	}
+
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		Juego juego = new Juego();
