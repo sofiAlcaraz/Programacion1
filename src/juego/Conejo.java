@@ -1,6 +1,10 @@
 package juego;
 
 import java.awt.Color;
+import java.io.File;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import entorno.Entorno;
 
@@ -39,8 +43,10 @@ public class Conejo {
 	}
 	
 	public void saltar() {
+		sonidoSalto();
 		if (y-altura/2-velocidadDeSalto <= 0) {
 			y = altura/2;
+			
 		}else {
 			y -= velocidadDeSalto;
 		}
@@ -48,6 +54,7 @@ public class Conejo {
 
 	public void saltarIzquierda() {
 		//falta agregar cambio de direccion
+		sonidoSalto();
 		if (x-ancho/2-velocidadDeSalto <= 0) {
 			x = ancho/2;
 		}else {
@@ -58,6 +65,7 @@ public class Conejo {
 
 	public void saltarDerecha(Entorno entorno) {
 		//falta agregar cambio de direccion	
+		sonidoSalto();
 		if (x+ancho/2+velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho/2;
 		}else {
@@ -67,7 +75,18 @@ public class Conejo {
 	
 	
 	
-	
+	private void sonidoSalto() {
+		try {
+			Clip salto = AudioSystem.getClip();
+			salto.open(AudioSystem.getAudioInputStream(new File("jump.wav")));
+			salto.start();
+			while (salto.isRunning())
+                Thread.sleep(1000);
+		}catch  (Exception e){
+			System.out.println(""+e);
+			
+		}
+	}
 	
 	
 	
