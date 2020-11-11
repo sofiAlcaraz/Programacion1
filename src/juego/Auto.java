@@ -35,20 +35,41 @@ public class Auto {
 	public void mover(Entorno entorno) {
 		y += this.bajadaDePantalla;
 		if (sentido) {
-			
+			x -= velocidad;
+		}else {
+			x += velocidad;
 		}
-//      REVISAR 
-//		if (!sentido.equals("izquierda") || !sentido.equals("derecha")) {
-//			throw new RuntimeException("¡¡Sentido ingresado inválido!!");
-//		}
-//		if (sentido.equals("izquierda")) {
-//			if (x-altura-velocidad <=-500) {
-//				x = entorno.ancho() + altura/2;
-//			}else {
-//				x -= velocidad;
-//			}
-//		}else {
-		x -= velocidad;
-//		}
+	}
+
+	public double getAltura() {
+		return altura;
+	}
+
+	public double getAncho() {
+		return ancho;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public double getVelocidad() {
+		return velocidad;
+	}
+
+	public boolean isSentido() {
+		return sentido;
+	}
+
+	public double getBajadaDePantalla() {
+		return bajadaDePantalla;
+	}
+
+	public Color getColor() {
+		return color;
 	}
 }

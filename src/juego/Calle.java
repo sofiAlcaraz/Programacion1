@@ -10,7 +10,7 @@ public class Calle {
 	private Color color;
 	private double x;
 	private double y;
-	private double bajadaDePantalla;// podria ser deslizar
+	private double deslizarPantalla;
 	private Auto[] autos;
 
 	public Calle(double altura, double ancho, double x, double y, double bajadaDePantalla) {
@@ -19,12 +19,12 @@ public class Calle {
 		this.color = color.GRAY;
 		this.x = x;
 		this.y = y;
-		this.bajadaDePantalla = bajadaDePantalla;
+		this.deslizarPantalla = bajadaDePantalla;
 		this.autos = new Auto[6];
 	}
 
 	public void mover() {
-		y += bajadaDePantalla;
+		y += deslizarPantalla;
 		if (y - largo / 2 >= 600) {
 			y -= y + largo / 2;
 		}
@@ -40,12 +40,40 @@ public class Calle {
 		int cant = 0;
 		for (int i = 0; i < autos.length; i++) {
 			if (autos[i] == null) {
-				autos[i] = new Auto(60, 45, entorno.ancho(), alto, 3, true, bajadaDePantalla);
+				autos[i] = new Auto(60, 45, entorno.ancho(), alto, 3, true, deslizarPantalla);
 			}
 			if (cant == 3) {
 				alto++;
 			}
 		}
+	}
+
+	public double getLargo() {
+		return largo;
+	}
+
+	public double getAncho() {
+		return ancho;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public double getDeslizarPantalla() {
+		return deslizarPantalla;
+	}
+
+	public Auto[] getAutos() {
+		return autos;
 	}
 
 }
