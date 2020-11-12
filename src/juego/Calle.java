@@ -11,8 +11,7 @@ public class Calle {
 	private double x;
 	private double y;
 	private double deslizarPantalla;
-	//private Auto[] autosDer;
-	//private Auto[] autoIzq;
+	
 
 	public Calle(double altura, double ancho, double x, double y, double bajadaDePantalla) {
 		this.largo = altura;
@@ -20,8 +19,7 @@ public class Calle {
 		this.color = color.GRAY;
 		this.x = x;
 		this.y = y;
-		//this.deslizarPantalla = bajadaDePantalla;
-		//this.autosDer = new Auto[6];
+		
 	}
 
 	public void mover() {
@@ -36,8 +34,6 @@ public class Calle {
 		entorno.dibujarRectangulo(x, y, ancho, largo, 0, color);
 	}
 	
-	/*public void agregarAutos(Entorno entorno,Auto auto,boolean sentido) {
-	}*/
 
 	public double getLargo() {
 		return largo;

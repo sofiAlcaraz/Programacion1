@@ -17,10 +17,8 @@ public class Conejo {
 	private double x;
 	private double y;
 	private double velocidadDeSalto;
-	private double bajadaDePantalla; // si se puede mejorar el nombre
-	// private double direccion; // por ahí no lo necesitan
-	// private Rasengan rasengan; si son varios ransengan necesitamos una linked
-	// list :)
+	private double bajadaDePantalla; // si se puede mejorar el nombre 
+	
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 
@@ -30,9 +28,8 @@ public class Conejo {
 		this.y = y;
 		this.velocidadDeSalto = velocidad;
 		this.color = Color.WHITE;
-		// this.direccion = -Math.PI/2;
 		bajadaDePantalla = movAbajo;
-		// acá también va lo de bajadaDePantalla
+		
 	}
 
 	public boolean controlarColision(Juego juego) {
@@ -78,7 +75,7 @@ public class Conejo {
 	}
 
 	public void saltarIzquierda() {
-		// falta agregar cambio de direccion
+		
 		sonidoSalto();
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
@@ -89,7 +86,6 @@ public class Conejo {
 	}
 
 	public void saltarDerecha(Entorno entorno) {
-		// falta agregar cambio de direccion
 		sonidoSalto();
 		if (x + ancho / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho / 2;
@@ -118,12 +114,5 @@ public class Conejo {
 	public double getY() {
 		return y;
 	}
-
-	/*
-	 * public Rasengan disparar(Entorno entorno) { Rasengan r=new Rasengan(x,y);
-	 * r.dibujarRasengan(entorno);
-	 * 
-	 * }
-	 */
 
 }

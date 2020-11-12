@@ -16,7 +16,7 @@ public class Juego extends InterfaceJuego {
 	// FIXME
 	private Auto[] autosHaciaIzquierda;
 	private Auto[] autosHaciaDerecha;
-	private Rasengan r;
+
 	private boolean running = false;
 	private boolean pausado = false;
 	Menu menu = new Menu();
@@ -29,9 +29,6 @@ public class Juego extends InterfaceJuego {
 		// Inicializar lo que haga falta para el juego
 		// ...
 		velocidadDeBajadaDePantalla = 0.5;
-		
-		calle = new Calle(300, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla); 
-		calle2 = new Calle(300, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -6, velocidadDeBajadaDePantalla); 
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
 		int altoDelAuto = 35;
 		int distanciaEntreAuto = 10;
@@ -60,7 +57,9 @@ public class Juego extends InterfaceJuego {
 						velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaDerecha[i].getAncho() * 8;
 			}
+			
 		}
+		
 		// CREA AUTOS HACIA IZQUIERDA
 		autosHaciaIzquierda = new Auto[16];
 		posicionEnX = 0;
@@ -85,9 +84,11 @@ public class Juego extends InterfaceJuego {
 		}
 
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
-
-		r=new Rasengan(conejo);
-
+		
+		calle = new Calle(220, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla);
+		//calle2 = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * - 4, velocidadDeBajadaDePantalla);
+		
+		
 		// Inicia el juego!
 		entorno.iniciar();
 	}
@@ -101,15 +102,14 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 		// Procesamiento de un instante de tiempo
 		// ...
+		calle.dibujar(entorno);
+		calle.mover();
 		if (running && !pausado) {
-			calle.mover();
-			calle.dibujar(entorno);
-			calle2.mover();
-			calle2.dibujar(entorno);
-			if(entorno.estaPresionada(entorno.TECLA_ESPACIO)) {
-				r.dibujarRasengan(entorno);
-				
-			}
+			
+			
+			//calle2.mover();
+			//calle2.dibujar(entorno);
+
 			// Conejo
 			conejo.esperar();
 			conejo.dibujar(entorno);
@@ -127,35 +127,23 @@ public class Juego extends InterfaceJuego {
 				conejo.saltarDerecha(entorno);
 			}
 			for (int i = 0; i < autosHaciaDerecha.length; i++) {
-				// condcicion null
-				if(r.colicionAuto(autosHaciaDerecha[i])){
-					
-				}
 				autosHaciaDerecha[i].dibujar(entorno);
 				autosHaciaDerecha[i].mover(entorno);
 			}
 			for (int i = 0; i < autosHaciaIzquierda.length; i++) {
 				autosHaciaIzquierda[i].dibujar(entorno);
 				autosHaciaIzquierda[i].mover(entorno);
-			}
 
-		
-			
-		
-			
-			
-			
-			
-			if (conejo.controlarColision(this)) {
-				System.out.println("Está colisionando");
-			}
+				if (conejo.controlarColision(this)) {
+					System.out.println("Está colisionando");
+				}
 
-			if (entorno.sePresiono('p')) {
-				pausado = true;
-			}
+				if (entorno.sePresiono('p')) {
+					pausado = true;
+				}
 
-		}	
-		
+			}
+		}
 
 		else if (!running || pausado) {
 			menu.dibujarMenu(entorno, this);
