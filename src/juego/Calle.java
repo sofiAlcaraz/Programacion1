@@ -19,7 +19,7 @@ public class Calle {
 		this.color = color.GRAY;
 		this.x = x;
 		this.y = y;
-		
+		this.deslizarPantalla=bajadaDePantalla;
 	}
 
 	public void mover() {
@@ -42,8 +42,6 @@ public class Calle {
 	public double getAncho() {
 		return ancho;
 	}
-
-	
 
 	public double getX() {
 		return x;

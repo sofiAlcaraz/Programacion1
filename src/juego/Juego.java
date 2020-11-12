@@ -86,7 +86,7 @@ public class Juego extends InterfaceJuego {
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
 		
 		calle = new Calle(220, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla);
-		//calle2 = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * - 4, velocidadDeBajadaDePantalla);
+		calle2 = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * - 4, velocidadDeBajadaDePantalla);
 		
 		
 		// Inicia el juego!
@@ -102,13 +102,12 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 		// Procesamiento de un instante de tiempo
 		// ...
-		calle.dibujar(entorno);
-		calle.mover();
 		if (running && !pausado) {
 			
-			
-			//calle2.mover();
-			//calle2.dibujar(entorno);
+			calle.dibujar(entorno);
+			calle.mover();
+			calle2.mover();
+			calle2.dibujar(entorno);
 
 			// Conejo
 			conejo.esperar();
