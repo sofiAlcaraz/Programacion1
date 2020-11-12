@@ -22,7 +22,6 @@ public class Auto {
 		this.y = y;
 		this.velocidad = velocidad;
 		this.color = Color.WHITE;
-		// this.direccion = -Math.PI;
 		this.sentido = sentido;
 		this.bajadaDePantalla = movbajada;
 	}
@@ -34,8 +33,17 @@ public class Auto {
 	// FIXME
 	public void mover(Entorno entorno) {
 		y += this.bajadaDePantalla;
+		if (y - ancho / 2 >= 600) {
+			y -= y + ancho / 2;
+		}
 		if (sentido) {
-			x -= velocidad;
+			if (x-ancho-velocidad<=0) {
+				x = entorno.ancho();
+			}else {
+				x -= velocidad;
+			}
+		}else if (x+ancho+velocidad>=entorno.ancho()){
+			x = 0;
 		}else {
 			x += velocidad;
 		}
