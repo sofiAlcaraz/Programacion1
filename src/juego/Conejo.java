@@ -19,7 +19,8 @@ public class Conejo {
 	private double velocidadDeSalto;
 	private double bajadaDePantalla; // si se puede mejorar el nombre
 	// private double direccion; // por ahí no lo necesitan
-	private Rasengan rasengan;
+	// private Rasengan rasengan; si son varios ransengan necesitamos una linked
+	// list :)
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 
@@ -33,35 +34,30 @@ public class Conejo {
 		bajadaDePantalla = movAbajo;
 		// acá también va lo de bajadaDePantalla
 	}
-        
-        public boolean controlarColision(Juego juego)
-        {
-            // AUTOS a la derecha
-            for(int i = 0; i < juego.getAutosDerecha().length; i++)
-            {
-                if(x < juego.getAutosDerecha()[i].getX() + juego.getAutosDerecha()[i].getAncho() &&
-                   x + ancho > juego.getAutosDerecha()[i].getX() &&
-                   y < juego.getAutosDerecha()[i].getY() + juego.getAutosDerecha()[i].getAltura() &&
-                   y + altura > juego.getAutosDerecha()[i].getY())
-                {
-                    return true;
-                }
-            }
-            
-            // AUTOS a la izquierda
-            for(int i = 0; i < juego.getAutosIzquierda().length; i++)
-            {
-                if(x < juego.getAutosIzquierda()[i].getX() + juego.getAutosIzquierda()[i].getAncho() &&
-                   x + ancho > juego.getAutosIzquierda()[i].getX() &&
-                   y < juego.getAutosIzquierda()[i].getY() + juego.getAutosIzquierda()[i].getAltura() &&
-                   y + altura > juego.getAutosIzquierda()[i].getY())
-                {
-                    return true;
-                }
-            }
-            
-            return false;
-        }
+
+	public boolean controlarColision(Juego juego) {
+		// AUTOS a la derecha
+		for (int i = 0; i < juego.getAutosDerecha().length; i++) {
+			if (x < juego.getAutosDerecha()[i].getX() + juego.getAutosDerecha()[i].getAncho()
+					&& x + ancho > juego.getAutosDerecha()[i].getX()
+					&& y < juego.getAutosDerecha()[i].getY() + juego.getAutosDerecha()[i].getAltura()
+					&& y + altura > juego.getAutosDerecha()[i].getY()) {
+				return true;
+			}
+		}
+
+		// AUTOS a la izquierda
+		for (int i = 0; i < juego.getAutosIzquierda().length; i++) {
+			if (x < juego.getAutosIzquierda()[i].getX() + juego.getAutosIzquierda()[i].getAncho()
+					&& x + ancho > juego.getAutosIzquierda()[i].getX()
+					&& y < juego.getAutosIzquierda()[i].getY() + juego.getAutosIzquierda()[i].getAltura()
+					&& y + altura > juego.getAutosIzquierda()[i].getY()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarRectangulo(x, y, altura, ancho, -Math.PI / 2, color);
@@ -114,5 +110,20 @@ public class Conejo {
 
 		}
 	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	/*
+	 * public Rasengan disparar(Entorno entorno) { Rasengan r=new Rasengan(x,y);
+	 * r.dibujarRasengan(entorno);
+	 * 
+	 * }
+	 */
 
 }

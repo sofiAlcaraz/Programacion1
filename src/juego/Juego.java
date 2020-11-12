@@ -1,5 +1,7 @@
 package juego;
 
+import java.util.LinkedList;
+
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 
@@ -7,19 +9,17 @@ public class Juego extends InterfaceJuego {
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
+	private double velocidadDeBajadaDePantalla;
 	private Conejo conejo;
 	private Calle calle;
 	private Calle calle2;
 	// FIXME
 	private Auto[] autosHaciaIzquierda;
 	private Auto[] autosHaciaDerecha;
-	private double velocidadDeBajadaDePantalla;
-
+	private Rasengan r;
 	private boolean running = false;
 	private boolean pausado = false;
-	// Menu menu = new Menu();
-
-	public Rasengan r;
+	Menu menu = new Menu();
 
 	public Juego() {
 
@@ -28,15 +28,14 @@ public class Juego extends InterfaceJuego {
 
 		// Inicializar lo que haga falta para el juego
 		// ...
-		r = new Rasengan(200, 200);
+		velocidadDeBajadaDePantalla = 0.5;
+		
+		calle = new Calle(300, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla); 
+		calle2 = new Calle(300, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -6, velocidadDeBajadaDePantalla); 
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
 		int altoDelAuto = 35;
-		int anchoDeCalle = 220;
-		int posicionCalle = entorno.alto() / 10;
 		int distanciaEntreAuto = 10;
 		int posicionAuto = entorno.alto() / 10 + 220 / 2 - altoDelAuto / 2;
-		velocidadDeBajadaDePantalla = 0.5;
-
 		// QUIZAS UBICAR EN OTRO LADO
 
 		// CREA AUTOS HACIA DERECHA
@@ -87,8 +86,7 @@ public class Juego extends InterfaceJuego {
 
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
 
-		calle = new Calle(300, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla); // auto mas
-		calle2 = new Calle(300, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -6, velocidadDeBajadaDePantalla); // leno
+		r=new Rasengan(conejo);
 
 		// Inicia el juego!
 		entorno.iniciar();
@@ -103,59 +101,68 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 		// Procesamiento de un instante de tiempo
 		// ...
-		// if(running && !pausado)
-		// {
-		calle.mover();
-		calle.dibujar(entorno);
+		if (running && !pausado) {
+			calle.mover();
+			calle.dibujar(entorno);
+			calle2.mover();
+			calle2.dibujar(entorno);
+			if(entorno.estaPresionada(entorno.TECLA_ESPACIO)) {
+				r.dibujarRasengan(entorno);
+				
+			}
+			// Conejo
+			conejo.esperar();
+			conejo.dibujar(entorno);
 
-		calle2.mover();
-		calle2.dibujar(entorno);
+			if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
+				conejo.saltar();
 
-		// Conejo
-		conejo.esperar();
-		conejo.dibujar(entorno);
+			}
 
-		if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
-			conejo.saltar();
+			if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
+				conejo.saltarIzquierda();
+			}
 
+			if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
+				conejo.saltarDerecha(entorno);
+			}
+			for (int i = 0; i < autosHaciaDerecha.length; i++) {
+				// condcicion null
+				if(r.colicionAuto(autosHaciaDerecha[i])){
+					
+				}
+				autosHaciaDerecha[i].dibujar(entorno);
+				autosHaciaDerecha[i].mover(entorno);
+			}
+			for (int i = 0; i < autosHaciaIzquierda.length; i++) {
+				autosHaciaIzquierda[i].dibujar(entorno);
+				autosHaciaIzquierda[i].mover(entorno);
+			}
+
+		
+			
+		
+			
+			
+			
+			
+			if (conejo.controlarColision(this)) {
+				System.out.println("Está colisionando");
+			}
+
+			if (entorno.sePresiono('p')) {
+				pausado = true;
+			}
+
+		}	
+		
+
+		else if (!running || pausado) {
+			menu.dibujarMenu(entorno, this);
 		}
-
-		if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
-			conejo.saltarIzquierda();
-		}
-
-		if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
-			conejo.saltarDerecha(entorno);
-		}
-
-		for (int i = 0; i < autosHaciaDerecha.length; i++) {
-			autosHaciaDerecha[i].dibujar(entorno);
-			autosHaciaDerecha[i].mover(entorno);
-		}
-		for (int i = 0; i < autosHaciaIzquierda.length; i++) {
-			autosHaciaIzquierda[i].dibujar(entorno);
-			autosHaciaIzquierda[i].mover(entorno);
-		}
-
-		if (conejo.controlarColision(this)) {
-			System.out.println("Está colisionando");
-		}
-
-		if (entorno.estaPresionada(entorno.TECLA_ESPACIO)) {
-			r.dibujarRasengan(entorno);
-			r.mover();
-		}
-
-		/*
-		 * if(entorno.sePresiono('p')) { pausado = true; }
-		 */
-		// }
-		/*
-		 * else if(!running || pausado) { menu.dibujarMenu(entorno, this); }
-		 */
 
 		// imprime la accion actual
-		// System.out.println(menu.getAccion());
+		System.out.println(menu.getAccion());
 
 	}
 
