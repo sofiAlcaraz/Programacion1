@@ -2,6 +2,8 @@ package juego;
 
 import java.awt.Color;
 
+import entorno.Entorno;
+
 public class Rasengan {
 		private double y;
 		private double x;
@@ -20,6 +22,27 @@ public class Rasengan {
 			this.color = Color.YELLOW;
 			this.diametro = 2;
 		}
+		
+		public void dibujarRasengan(Entorno entorno) {
+			entorno.dibujarCirculo(x, y, diametro, color);
+		}
+		public void mover() {
+			y-=deslizamiento;
+			y+=velosidad;
+			//FIXMI
+		}
+		public void moverDerecha() {
+			y-=deslizamiento;
+			x+=velosidad;
+		}
+		public void moverIzquierda() {
+			y-=deslizamiento;
+			x-=velosidad;
+		}
+		
+		
+		
+		
 		
 		
 }
