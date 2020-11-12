@@ -19,7 +19,7 @@ public class Juego extends InterfaceJuego {
         private boolean running = false;
         private boolean pausado = false;
         
-        Menu menu = new Menu();
+        //Menu menu = new Menu();
 
 	public Juego() {
 
@@ -38,10 +38,9 @@ public class Juego extends InterfaceJuego {
 		velocidadDeBajadaDePantalla = 0.5;
 
 		// QUIZAS UBICAR EN OTRO LADO
+		
 		// CREA AUTOS HACIA DERECHA
 		autosHaciaDerecha = new Auto[16];
-		
-
 		double posicionEnX = entorno.ancho();
 		for (int i = 0; i < autosHaciaDerecha.length; i++) {
 			if (i < 4) {
@@ -83,8 +82,9 @@ public class Juego extends InterfaceJuego {
 		}
 
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
-		calle = new Calle(220, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla); // auto mas
-		calle2 = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4, velocidadDeBajadaDePantalla); // leno
+		
+		calle = new Calle(300, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla); // auto mas
+		calle2 = new Calle(300, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -6, velocidadDeBajadaDePantalla); // leno
                 
 		// Inicia el juego!
 		entorno.iniciar();
@@ -99,8 +99,8 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 		// Procesamiento de un instante de tiempo
 		// ...
-                if(running && !pausado)
-                {
+              //  if(running && !pausado)
+                //{
                     calle.mover();
                     calle.dibujar(entorno);
                     
@@ -137,28 +137,20 @@ public class Juego extends InterfaceJuego {
                         System.out.println("Está colisionando");
                     }
                     
-                    if(entorno.sePresiono('p'))
+                    /*if(entorno.sePresiono('p'))
                     {
                         pausado = true;
-                    }
-                }
-                else if(!running || pausado)
+                    }*/
+                //}
+                /*else if(!running || pausado)
                 {
                     menu.dibujarMenu(entorno, this);
-                }
+                }*/
                 
                 // imprime la accion actual
                 //System.out.println(menu.getAccion());
-                
-		// Auto
-//		auto.dibujar(entorno);
-////		auto2.dibujar(entorno);
-//
-//		auto.mover(entorno);
+              
 
-		// calle
-
-//		auto2.mover("derecha", entorno);  // haciendo cagadas a full
 	}
         
         public void setRunning(boolean value)
