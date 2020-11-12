@@ -15,6 +15,11 @@ public class Juego extends InterfaceJuego {
 	private Auto[] autosHaciaDerecha;
 
 	private double velocidadDeBajadaDePantalla;
+        
+        private boolean running = false;
+        private boolean pausado = false;
+        
+        Menu menu = new Menu();
 
 	public Juego() {
 
@@ -80,7 +85,7 @@ public class Juego extends InterfaceJuego {
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
 		calle = new Calle(220, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla); // auto mas
 		calle2 = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4, velocidadDeBajadaDePantalla); // leno
-
+                
 		// Inicia el juego!
 		entorno.iniciar();
 	}
@@ -94,37 +99,57 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 		// Procesamiento de un instante de tiempo
 		// ...
+                if(running && !pausado)
+                {
+                    calle.mover();
+                    calle.dibujar(entorno);
+                    
+                    calle2.mover();
+                    calle2.dibujar(entorno);
+                    
+                    // Conejo
+                    conejo.esperar();
+                    conejo.dibujar(entorno);
 
-		calle.dibujar(entorno);
-		calle.mover();
-		calle2.dibujar(entorno);
-		calle2.mover();
+                    if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
+                            conejo.saltar();
+                    }
 
-		// Conejo
-		conejo.dibujar(entorno);
-		conejo.esperar();
+                    if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
+                            conejo.saltarIzquierda();
+                    }
 
-		if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
-			conejo.saltar();
-		}
+                    if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
+                            conejo.saltarDerecha(entorno);
+                    }
 
-		if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
-			conejo.saltarIzquierda();
-		}
-
-		if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
-			conejo.saltarDerecha(entorno);
-		}
-
-		for (int i = 0; i < autosHaciaDerecha.length; i++) {
-			autosHaciaDerecha[i].dibujar(entorno);
-			autosHaciaDerecha[i].mover(entorno);
-		}
-		for (int i = 0; i < autosHaciaIzquierda.length; i++) {
-			autosHaciaIzquierda[i].dibujar(entorno);
-			autosHaciaIzquierda[i].mover(entorno);
-		}
-
+                    for (int i = 0; i < autosHaciaDerecha.length; i++) {
+                            autosHaciaDerecha[i].dibujar(entorno);
+                            autosHaciaDerecha[i].mover(entorno);
+                    }
+                    for (int i = 0; i < autosHaciaIzquierda.length; i++) {
+                            autosHaciaIzquierda[i].dibujar(entorno);
+                            autosHaciaIzquierda[i].mover(entorno);
+                    }
+                    
+                    if(conejo.controlarColision(this))
+                    {
+                        System.out.println("Está colisionando");
+                    }
+                    
+                    if(entorno.sePresiono('p'))
+                    {
+                        pausado = true;
+                    }
+                }
+                else if(!running || pausado)
+                {
+                    menu.dibujarMenu(entorno, this);
+                }
+                
+                // imprime la accion actual
+                //System.out.println(menu.getAccion());
+                
 		// Auto
 //		auto.dibujar(entorno);
 ////		auto2.dibujar(entorno);
@@ -135,6 +160,26 @@ public class Juego extends InterfaceJuego {
 
 //		auto2.mover("derecha", entorno);  // haciendo cagadas a full
 	}
+        
+        public void setRunning(boolean value)
+        {
+            this.running = value;
+        }
+        
+        public void setPausado(boolean value)
+        {
+            this.pausado = value;
+        }
+        
+        public Auto[] getAutosDerecha()
+        {
+            return this.autosHaciaDerecha;
+        }
+        
+        public Auto[] getAutosIzquierda()
+        {
+            return this.autosHaciaIzquierda;
+        }
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

@@ -33,6 +33,35 @@ public class Conejo {
 		bajadaDePantalla = movAbajo;
 		// acá también va lo de bajadaDePantalla
 	}
+        
+        public boolean controlarColision(Juego juego)
+        {
+            // AUTOS a la derecha
+            for(int i = 0; i < juego.getAutosDerecha().length; i++)
+            {
+                if(x < juego.getAutosDerecha()[i].getX() + juego.getAutosDerecha()[i].getAncho() &&
+                   x + ancho > juego.getAutosDerecha()[i].getX() &&
+                   y < juego.getAutosDerecha()[i].getY() + juego.getAutosDerecha()[i].getAltura() &&
+                   y + altura > juego.getAutosDerecha()[i].getY())
+                {
+                    return true;
+                }
+            }
+            
+            // AUTOS a la izquierda
+            for(int i = 0; i < juego.getAutosIzquierda().length; i++)
+            {
+                if(x < juego.getAutosIzquierda()[i].getX() + juego.getAutosIzquierda()[i].getAncho() &&
+                   x + ancho > juego.getAutosIzquierda()[i].getX() &&
+                   y < juego.getAutosIzquierda()[i].getY() + juego.getAutosIzquierda()[i].getAltura() &&
+                   y + altura > juego.getAutosIzquierda()[i].getY())
+                {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
 
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarRectangulo(x, y, altura, ancho, -Math.PI / 2, color);
