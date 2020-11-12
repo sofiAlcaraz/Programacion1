@@ -11,7 +11,8 @@ public class Calle {
 	private double x;
 	private double y;
 	private double deslizarPantalla;
-	private Auto[] autos;
+	//private Auto[] autosDer;
+	//private Auto[] autoIzq;
 
 	public Calle(double altura, double ancho, double x, double y, double bajadaDePantalla) {
 		this.largo = altura;
@@ -19,8 +20,8 @@ public class Calle {
 		this.color = color.GRAY;
 		this.x = x;
 		this.y = y;
-		this.deslizarPantalla = bajadaDePantalla;
-		this.autos = new Auto[6];
+		//this.deslizarPantalla = bajadaDePantalla;
+		//this.autosDer = new Auto[6];
 	}
 
 	public void mover() {
@@ -34,19 +35,9 @@ public class Calle {
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarRectangulo(x, y, ancho, largo, 0, color);
 	}
-
-	public void agregarAutos(Entorno entorno) {
-		double alto = entorno.alto() / 4;
-		int cant = 0;
-		for (int i = 0; i < autos.length; i++) {
-			if (autos[i] == null) {
-				autos[i] = new Auto(60, 45, entorno.ancho(), alto, 3, true, deslizarPantalla);
-			}
-			if (cant == 3) {
-				alto++;
-			}
-		}
-	}
+	
+	/*public void agregarAutos(Entorno entorno,Auto auto,boolean sentido) {
+	}*/
 
 	public double getLargo() {
 		return largo;
@@ -56,9 +47,7 @@ public class Calle {
 		return ancho;
 	}
 
-	public Color getColor() {
-		return color;
-	}
+	
 
 	public double getX() {
 		return x;
@@ -68,12 +57,8 @@ public class Calle {
 		return y;
 	}
 
-	public double getDeslizarPantalla() {
-		return deslizarPantalla;
-	}
-
-	public Auto[] getAutos() {
-		return autos;
-	}
+	
+	
+	
 
 }

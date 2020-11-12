@@ -14,12 +14,12 @@ public class Conejo {
 	private double altura;
 	private double ancho;
 	private Color color;
-
 	private double x;
 	private double y;
 	private double velocidadDeSalto;
 	private double bajadaDePantalla; // si se puede mejorar el nombre
 	// private double direccion; // por ahí no lo necesitan
+	private Rasengan rasengan;
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 

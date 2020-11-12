@@ -65,19 +65,5 @@ public class Auto {
 		return y;
 	}
 
-	public double getVelocidad() {
-		return velocidad;
-	}
-
-	public boolean isSentido() {
-		return sentido;
-	}
-
-	public double getBajadaDePantalla() {
-		return bajadaDePantalla;
-	}
-
-	public Color getColor() {
-		return color;
-	}
+	
 }
