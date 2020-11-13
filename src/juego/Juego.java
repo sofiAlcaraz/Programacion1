@@ -9,7 +9,7 @@ import entorno.InterfaceJuego;
 public class Juego extends InterfaceJuego {
 
 	private int reloj; // tiempo, reloj
-	
+
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private double velocidadDeBajadaDePantalla;
@@ -21,8 +21,9 @@ public class Juego extends InterfaceJuego {
 	Menu menu = new Menu();
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
-	
-public Juego() {
+	private LinkedList<Rasengan> rasengans;
+
+	public Juego() {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
 		// Inicializar lo necesario para el juego
@@ -33,7 +34,6 @@ public Juego() {
 		int altoDelAuto = 35;
 		int distanciaEntreAuto = 10;
 		int posicionAuto = entorno.alto() / 10 + 220 / 2 - altoDelAuto / 2;
-		
 
 		// CREA AUTOS HACIA DERECHA
 		autosHaciaDerecha = new Auto[16];
@@ -57,9 +57,9 @@ public Juego() {
 						velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaDerecha[i].getAncho() * 8;
 			}
-			
+
 		}
-		
+
 		// CREA AUTOS HACIA IZQUIERDA
 		autosHaciaIzquierda = new Auto[16];
 		posicionEnX = 0;
@@ -84,11 +84,11 @@ public Juego() {
 		}
 
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
-		
+
 		callePrimaria = new Calle(220, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla);
-		calleSecundaria = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * - 4, velocidadDeBajadaDePantalla);
-		
-		
+		calleSecundaria = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
+				velocidadDeBajadaDePantalla);
+
 		// Inicia el juego!
 		entorno.iniciar();
 	}
@@ -105,85 +105,73 @@ public Juego() {
 		System.out.println(reloj);
 
 		// if (estaIniciado && !estáPausado) {
-	
-		//if (running && !pausado) {
-			
-			callePrimaria.dibujar(entorno);
 
-			callePrimaria.deslizarHaciaAbajo(); // buscarle un nombre
-			calleSecundaria.deslizarHaciaAbajo();
+		// if (running && !pausado) {
 
-			calleSecundaria.dibujar(entorno);
+		callePrimaria.dibujar(entorno);
 
-			// Conejo
-			conejo.esperar();
-			conejo.dibujar(entorno);
+		callePrimaria.deslizarHaciaAbajo();
+		calleSecundaria.deslizarHaciaAbajo();
 
-			if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
-				conejo.saltar();
-				
-			}
+		calleSecundaria.dibujar(entorno);
 
-			if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
-				conejo.saltarIzquierda();
-			}
+		// Conejo
+		conejo.esperar();
+		conejo.dibujar(entorno);
 
-			if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
-				conejo.saltarDerecha(entorno);
-			}
+		if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
+			conejo.saltar();
 
-			/*
-			for (int i = 0; i < autosHaciaDerecha.length; i++) {
-				autosHaciaDerecha[i].dibujar(entorno);
-				autosHaciaDerecha[i].mover(entorno);
-			}
-			*/
+		}
 
-			for (Auto a : autosHaciaDerecha) {
-				if (a != null) {
-					a.dibujar(entorno);
-					a.mover(entorno);
-				}
-			}
+		if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
+			conejo.saltarIzquierda();
+		}
 
-			for (Auto a : autosHaciaIzquierda) {
+		if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
+			conejo.saltarDerecha(entorno);
+		}
+
+		for (Auto a : autosHaciaDerecha) {
+			if (a != null) {
 				a.dibujar(entorno);
 				a.mover(entorno);
-
-				//if (conejo.teChocoAlgunAuto(autosHaciaIzquierda)) {
-					//conejo.morir();
-
-					System.out.println();
-				}
-
-				if (entorno.sePresiono('p')) {
-					partidaPausada = true;
-				}
-
-			
-			
-			for (int i = 0; i < autosHaciaIzquierda.length; i++) {
-				autosHaciaIzquierda[i].dibujar(entorno);
-				autosHaciaIzquierda[i].mover(entorno);
-
-				//if (conejo.controlarColision(this)) {
-					//conejo.pierdeIntento();
-					//System.out.println();
-				//}
-
-				if (entorno.sePresiono('p')) {
-					partidaPausada = true;
-				}
-
 			}
-		//}
+		}
 
-		 if (!partidaCorriendo || partidaPausada) {
+		for (Auto a : autosHaciaIzquierda) {
+			if (a != null) {
+				a.dibujar(entorno);
+				a.mover(entorno);
+			}
+		}
+		// agregar intentos :)
+		if (conejo.chocasteAlgunAuto(autosHaciaIzquierda) || conejo.chocasteAlgunAuto(autosHaciaDerecha)) {
+			conejo = null;// FIXME
+			System.out.println("CONEJO CHOCO CON AUTO");
+		}
+		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
+			rasengans.add(conejo.disparar());
+			// pasado cierto tiempo o llegada cierta x ..matarlo
+			// con un for each y matarlos o..un metodo,pero con este no se me ocurre como
+		}
+
+		if (entorno.sePresiono('p')) {
+			partidaPausada = true;
+		}
+
+		if (entorno.sePresiono('p')) {
+			partidaPausada = true;
+		}
+
+		// }
+
+		if (!partidaCorriendo || partidaPausada) {
 			menu.dibujarMenu(entorno, this);
 		}
 
 		// imprime la accion actual
-		//System.out.println(menu.getAccion());
+		// System.out.println(menu.getAccion());
 
 	}
 
