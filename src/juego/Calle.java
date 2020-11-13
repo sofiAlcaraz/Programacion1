@@ -18,7 +18,7 @@ public class Calle {
 		this.x = x;
 		this.y = y;
 		this.factorDeDesplazamiento = factorDeDesplazamiento;
-		this.color = color.grey;
+		this.color = color.GRAY;
 	}
 
 	public void dibujar(Entorno entorno) {

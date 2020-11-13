@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 
 public class Conejo {
 	// por el momento está bien, pero hay que corregirlo
@@ -17,7 +18,7 @@ public class Conejo {
 	private double velocidadDeSalto;
 	private double bajadaDePantalla; // si se puede mejorar el nombre
 	private Color pelaje;
-
+	//private Clip sonido;
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 		this.altura = altura;
 		this.ancho = ancho;
@@ -26,6 +27,8 @@ public class Conejo {
 		this.velocidadDeSalto = velocidad;
 		this.pelaje = Color.WHITE;
 		bajadaDePantalla = movAbajo;
+		//sonido=new Clip("jump..");??
+		
 	}
 
 	public void dibujar(Entorno entorno) {
@@ -37,7 +40,7 @@ public class Conejo {
 	}
 
 	public void saltar() {
-		sonidoSalto();
+		//sonidoSalto();
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura / 2;
 		} else {
@@ -46,7 +49,7 @@ public class Conejo {
 	}
 
 	public void saltarIzquierda() {
-		sonidoSalto();
+		//sonidoSalto();
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
 		} else {
@@ -56,7 +59,7 @@ public class Conejo {
 	}
 
 	public void saltarDerecha(Entorno entorno) {
-		sonidoSalto();
+		//sonidoSalto();
 		if (x + ancho / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho / 2;
 		} else {
@@ -69,43 +72,37 @@ public class Conejo {
 	}
 
 	// DELETE
-	private void sonidoSalto() {
-		try {
-			Clip salto = AudioSystem.getClip();
-			salto.open(AudioSystem.getAudioInputStream(new File("jump.wav")));
-			salto.start();
-			while (salto.isRunning())
-				Thread.sleep(1000);
-		} catch (Exception e) {
-			System.out.println("" + e);
+//	private void sonidoSalto(Herramientas her) {
+//		//Herramientas.cargarSonido("jump")
+//		try {
+//			Clip salto = AudioSystem.getClip();
+//			salto.open(AudioSystem.getAudioInputStream(new File("jump.wav")));
+//			salto.start();
+//			while (salto.isRunning())
+//				Thread.sleep(1000);
+//		} catch (Exception e) {
+//			System.out.println("" + e);
+//
+//		}
+//	}
 
-		}
-	}
-
-	// guarda!
+	
 	// 1. el nombre
 	// 2. el conejo no puede saber nada del juego
-	public boolean colicionoAuto(Auto[] autos) {
+	public boolean chocasteAlgunAuto(Auto[] autos) {
 		// AUTOS a la derecha
-
-		for (int i = 0; i < juego.getAutosDerecha().length; i++) {
-			if (x < juego.getAutosDerecha()[i].getX() + juego.getAutosDerecha()[i].getAncho()
-					&& x + ancho > juego.getAutosDerecha()[i].getX()
-					&& y < juego.getAutosDerecha()[i].getY() + juego.getAutosDerecha()[i].getAltura()
-					&& y + altura > juego.getAutosDerecha()[i].getY()) {
+		for (int i = 0; i < autos.length; i++) {
+			if (x < autos[i].getX() + autos[i].getAncho() && x + ancho > autos[i].getX() && y < autos[i].getY() + autos[i].getAltura()
+					&& y + altura > autos[i].getY()) {
 				return true;
 			}
 		}
-		// AUTOS a la izquierda
-		for (int i = 0; i < juego.getAutosIzquierda().length; i++) {
-			if (x < juego.getAutosIzquierda()[i].getX() + juego.getAutosIzquierda()[i].getAncho()
-					&& x + ancho > juego.getAutosIzquierda()[i].getX()
-					&& y < juego.getAutosIzquierda()[i].getY() + juego.getAutosIzquierda()[i].getAltura()
-					&& y + altura > juego.getAutosIzquierda()[i].getY()) {
-				return true;
-			}
+		if (x < juego.getAutosIzquierda()[i].getX() + juego.getAutosIzquierda()[i].getAncho()
+				&& x + ancho > juego.getAutosIzquierda()[i].getX()
+				&& y < juego.getAutosIzquierda()[i].getY() + juego.getAutosIzquierda()[i].getAltura()
+				&& y + altura > juego.getAutosIzquierda()[i].getY()) {
+			return true;
 		}
-
 		return false;
 	}
 

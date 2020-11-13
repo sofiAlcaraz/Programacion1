@@ -18,19 +18,16 @@ public class Rasengan {
 		this.color = Color.YELLOW;
 		this.diametro = 20;
 	}
-
-	// rasengan.dibujar();
-	//
+	
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarCirculo(x, y, diametro, color);
 	}
-
+	
 	public void mover() {
 		y -= velocidad;
 	}
 
-	// destruisteAuto(auto)
-	public boolean colicionAuto(Auto auto) {
+	public boolean destruisteAuto(Auto auto) {
 		if (y > auto.getY() - auto.getAltura() / 2 && y < auto.getY() + auto.getAltura() / 2) {
 			if ((auto.getX() - auto.getAncho() / 2) <= x + diametro
 					|| (auto.getX() + auto.getAncho() / 2 <= x + diametro)) {
