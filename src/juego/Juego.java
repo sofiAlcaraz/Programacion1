@@ -8,17 +8,12 @@ import entorno.InterfaceJuego;
 public class Juego extends InterfaceJuego {
 
 	private int n; // tiempo, reloj
-
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private double velocidadDeBajadaDePantalla;
 	private Conejo conejo;
-
 	private Calle calle; // calleAngosta
 	private Calle calle2; // calleSuperior, calleAncha
-	// private Calle[] calles;
-
-	// FIXME
 	private Auto[] autosHaciaIzquierda;
 	private Auto[] autosHaciaDerecha;
 

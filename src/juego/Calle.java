@@ -8,10 +8,7 @@ public class Calle {
 
 	private double x;
 	private double y;
-
-	private double deslizarPantalla; //deslizamientoDePantalla
-	// factorDeDesplazamiento
-
+	private double factorDeDesplazamiento; 
 	private double largo;
 	private double ancho;
 	private Color color;
@@ -22,41 +19,19 @@ public class Calle {
 		this.color = color.GRAY;
 		this.x = x;
 		this.y = y;
-		this.deslizarPantalla=bajadaDePantalla;
+		this.factorDeDesplazamiento=bajadaDePantalla;
 	}
-
-	public void mover() {
-		y += deslizarPantalla;
-		if (y - largo / 2 >= 600) {
-			y -= y + largo / 2;
-		}
-
-	}
-//PRUEBA DE COMMIT
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarRectangulo(x, y, ancho, largo, 0, color);
 	}
 	
-	// fijense si son necesarios
-
-	public double getLargo() {
-		return largo;
+	public void mover() {
+		y += factorDeDesplazamiento;
+		if (y - largo / 2 >= 600) {
+			y -= y + largo / 2;
+		}
 	}
-
-	public double getAncho() {
-		return ancho;
-	}
-
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
 	
-	
-	
+		
 
 }

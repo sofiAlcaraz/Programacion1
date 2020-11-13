@@ -7,9 +7,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 import entorno.Entorno;
-
 public class Conejo {
-
 	// por el momento está bien, pero hay que corregirlo
 	private double altura;
 	private double ancho;
@@ -46,7 +44,6 @@ public class Conejo {
 				return true;
 			}
 		}
-
 		// AUTOS a la izquierda
 		for (int i = 0; i < juego.getAutosIzquierda().length; i++) {
 			if (x < juego.getAutosIzquierda()[i].getX() + juego.getAutosIzquierda()[i].getAncho()

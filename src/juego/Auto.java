@@ -5,15 +5,15 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Auto {
-
-	private double altura;
-	private double ancho;
 	private double x;
 	private double y;
+	private double bajadaDePantalla;
 	private double velocidad;
 	private boolean sentido;
-	private double bajadaDePantalla;
+	private double altura;
+	private double ancho;
 	private Color color;
+	
 
 	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido, double movbajada) {
 		this.altura = altura;
