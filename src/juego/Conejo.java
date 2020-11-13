@@ -16,9 +16,9 @@ public class Conejo {
 	private double x;
 	private double y;
 	private double velocidadDeSalto;
-	private double bajadaDePantalla; // si se puede mejorar el nombre
+	private double deslizarHaciaAbajo;
 	private Color pelaje;
-	//private Clip sonido;
+
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 		this.altura = altura;
 		this.ancho = ancho;
@@ -26,9 +26,7 @@ public class Conejo {
 		this.y = y;
 		this.velocidadDeSalto = velocidad;
 		this.pelaje = Color.WHITE;
-		bajadaDePantalla = movAbajo;
-		//sonido=new Clip("jump..");??
-		
+		deslizarHaciaAbajo = movAbajo;
 	}
 
 	public void dibujar(Entorno entorno) {
@@ -36,11 +34,11 @@ public class Conejo {
 	}
 
 	public void esperar() {
-		y += bajadaDePantalla;
+		y += deslizarHaciaAbajo;
 	}
 
 	public void saltar() {
-		//sonidoSalto();
+		// sonidoSalto();
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura / 2;
 		} else {
@@ -49,7 +47,7 @@ public class Conejo {
 	}
 
 	public void saltarIzquierda() {
-		//sonidoSalto();
+		// sonidoSalto();
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
 		} else {
@@ -59,7 +57,7 @@ public class Conejo {
 	}
 
 	public void saltarDerecha(Entorno entorno) {
-		//sonidoSalto();
+		// sonidoSalto();
 		if (x + ancho / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho / 2;
 		} else {
@@ -86,22 +84,16 @@ public class Conejo {
 //		}
 //	}
 
-	
-	// 1. el nombre
-	// 2. el conejo no puede saber nada del juego
 	public boolean chocasteAlgunAuto(Auto[] autos) {
-		// AUTOS a la derecha
 		for (int i = 0; i < autos.length; i++) {
-			if (x < autos[i].getX() + autos[i].getAncho() && x + ancho > autos[i].getX() && y < autos[i].getY() + autos[i].getAltura()
-					&& y + altura > autos[i].getY()) {
+			if (x < autos[i].getX() + autos[i].getAncho() && x + ancho > autos[i].getX()
+					&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
 				return true;
 			}
-		}
-		if (x < juego.getAutosIzquierda()[i].getX() + juego.getAutosIzquierda()[i].getAncho()
-				&& x + ancho > juego.getAutosIzquierda()[i].getX()
-				&& y < juego.getAutosIzquierda()[i].getY() + juego.getAutosIzquierda()[i].getAltura()
-				&& y + altura > juego.getAutosIzquierda()[i].getY()) {
-			return true;
+			if (x < autos[i].getX() + autos[i].getAncho() && x + ancho > autos[i].getX()
+					&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
+				return true;
+			}
 		}
 		return false;
 	}

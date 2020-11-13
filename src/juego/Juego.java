@@ -8,7 +8,7 @@ import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
 
-	private int n; // tiempo, reloj
+	private int reloj; // tiempo, reloj
 	
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
@@ -19,23 +19,21 @@ public class Juego extends InterfaceJuego {
 	private Auto[] autosHaciaIzquierda;
 	private Auto[] autosHaciaDerecha;
 	Menu menu = new Menu();
-	private boolean running;
-	private boolean pausado;
-	public Juego() {
-
+	private boolean partidaCorriendo;
+	private boolean partidaPausada;
+	
+public Juego() {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
-		
-		running = false;
-		pausado = false;
-		// Inicializar lo que haga falta para el juego
-		// ...
+		// Inicializar lo necesario para el juego
+		partidaCorriendo = false;
+		partidaPausada = false;
 		velocidadDeBajadaDePantalla = 0.5;
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
 		int altoDelAuto = 35;
 		int distanciaEntreAuto = 10;
 		int posicionAuto = entorno.alto() / 10 + 220 / 2 - altoDelAuto / 2;
-		// QUIZAS UBICAR EN OTRO LADO
+		
 
 		// CREA AUTOS HACIA DERECHA
 		autosHaciaDerecha = new Auto[16];
@@ -102,20 +100,18 @@ public class Juego extends InterfaceJuego {
 	 * del TP para mayor detalle).
 	 */
 	public void tick() {
-
-		n++; // fijense esto
-		System.out.println(n);
-
 		// Procesamiento de un instante de tiempo
-		// ...
+		reloj++; // fijense esto
+		System.out.println(reloj);
+
 		// if (estaIniciado && !estáPausado) {
-		//
+	
 		//if (running && !pausado) {
 			
 			callePrimaria.dibujar(entorno);
 
-			callePrimaria.mover(); // buscarle un nombre
-			calleSecundaria.mover();
+			callePrimaria.deslizarHaciaAbajo(); // buscarle un nombre
+			calleSecundaria.deslizarHaciaAbajo();
 
 			calleSecundaria.dibujar(entorno);
 
@@ -125,7 +121,7 @@ public class Juego extends InterfaceJuego {
 
 			if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
 				conejo.saltar();
-
+				
 			}
 
 			if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
@@ -161,7 +157,7 @@ public class Juego extends InterfaceJuego {
 				}
 
 				if (entorno.sePresiono('p')) {
-					pausado = true;
+					partidaPausada = true;
 				}
 
 			
@@ -176,13 +172,13 @@ public class Juego extends InterfaceJuego {
 				//}
 
 				if (entorno.sePresiono('p')) {
-					pausado = true;
+					partidaPausada = true;
 				}
 
 			}
 		//}
 
-		 if (!running || pausado) {
+		 if (!partidaCorriendo || partidaPausada) {
 			menu.dibujarMenu(entorno, this);
 		}
 

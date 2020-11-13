@@ -25,7 +25,7 @@ public class Calle {
 		entorno.dibujarRectangulo(x, y, ancho, largo, 0, color);
 	}
 
-	public void mover() {
+	public void deslizarHaciaAbajo() {
 		y += factorDeDesplazamiento;
 		if (y - largo / 2 >= 600) {
 			y -= y + largo / 2;
