@@ -5,30 +5,28 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Rasengan {
-
-	private double y;
 	private double x;
-
-	private double lanza;
+	private double y;
+	private double velocidad;
 	private Color color;
 	private int diametro;
 
-	public Rasengan(Conejo conejo) {
-		this.y = conejo.getY();
-		this.x = conejo.getX();
-		this.lanza = 20;
+	public Rasengan(double x, double y) {
+		this.x = x;
+		this.y = y;
+		this.velocidad = 20;
 		this.color = Color.YELLOW;
 		this.diametro = 20;
 	}
 
 	// rasengan.dibujar();
 	//
-	public void dibujarRasengan(Entorno entorno) {
+	public void dibujar(Entorno entorno) {
 		entorno.dibujarCirculo(x, y, diametro, color);
 	}
 
 	public void mover() {
-		y -= lanza;
+		y -= velocidad;
 	}
 
 	// destruisteAuto(auto)

@@ -5,25 +5,25 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Auto {
-	private double x;
-	private double y;
-	private double bajadaDePantalla;
-	private double velocidad;
-	private boolean sentido;
 	private double altura;
 	private double ancho;
+	private double x;
+	private double y;
+	private double velocidad;
+	private boolean sentido;
+	private double bajadaDePantalla;
 	private Color color;
-	
 
-	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido, double movbajada) {
+	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido,
+			double bajadaDePantalla) {
 		this.altura = altura;
 		this.ancho = ancho;
 		this.x = x;
 		this.y = y;
 		this.velocidad = velocidad;
-		this.color = Color.WHITE;
 		this.sentido = sentido;
-		this.bajadaDePantalla = movbajada;
+		this.bajadaDePantalla = bajadaDePantalla;
+		this.color = color.RED;
 	}
 
 	public void dibujar(Entorno entorno) {
@@ -33,20 +33,18 @@ public class Auto {
 	// FIXME
 	public void mover(Entorno entorno) {
 		y += this.bajadaDePantalla;
-
 		if (y - ancho / 2 >= 600) {
 			y -= y + ancho / 2;
 		}
-
 		if (sentido) {
-			if (x-ancho-velocidad<=0) {
+			if (x - ancho - velocidad <= 0) {
 				x = entorno.ancho();
-			}else {
+			} else {
 				x -= velocidad;
 			}
-		}else if (x+ancho+velocidad>=entorno.ancho()){
+		} else if (x + ancho + velocidad >= entorno.ancho()) {
 			x = 0;
-		}else {
+		} else {
 			x += velocidad;
 		}
 	}
@@ -67,5 +65,4 @@ public class Auto {
 		return y;
 	}
 
-	
 }

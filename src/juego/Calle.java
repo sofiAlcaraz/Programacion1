@@ -5,33 +5,31 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Calle {
-
-	private double x;
-	private double y;
-	private double factorDeDesplazamiento; 
 	private double largo;
 	private double ancho;
+	private double x;
+	private double y;
+	private double factorDeDesplazamiento;
 	private Color color;
 
-	public Calle(double altura, double ancho, double x, double y, double bajadaDePantalla) {
-		this.largo = altura;
+	public Calle(double largo, double ancho, double x, double y, double factorDeDesplazamiento) {
+		this.largo = largo;
 		this.ancho = ancho;
-		this.color = color.GRAY;
 		this.x = x;
 		this.y = y;
-		this.factorDeDesplazamiento=bajadaDePantalla;
+		this.factorDeDesplazamiento = factorDeDesplazamiento;
+		this.color = color.grey;
 	}
+
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarRectangulo(x, y, ancho, largo, 0, color);
 	}
-	
+
 	public void mover() {
 		y += factorDeDesplazamiento;
 		if (y - largo / 2 >= 600) {
 			y -= y + largo / 2;
 		}
 	}
-	
-		
 
 }

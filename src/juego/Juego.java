@@ -1,5 +1,6 @@
 package juego;
 
+import java.awt.Color;
 import java.util.LinkedList;
 
 import entorno.Entorno;
@@ -8,25 +9,25 @@ import entorno.InterfaceJuego;
 public class Juego extends InterfaceJuego {
 
 	private int n; // tiempo, reloj
+	
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private double velocidadDeBajadaDePantalla;
 	private Conejo conejo;
-	private Calle calle; // calleAngosta
-	private Calle calle2; // calleSuperior, calleAncha
+	private Calle callePrimaria; // calleAngosta
+	private Calle calleSecundaria; // calleSuperior,
 	private Auto[] autosHaciaIzquierda;
 	private Auto[] autosHaciaDerecha;
-
-	// se inicializan las cosas en el constructor
-	private boolean running = false;
-	private boolean pausado = false;
 	Menu menu = new Menu();
-
+	private boolean running;
+	private boolean pausado;
 	public Juego() {
 
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
-
+		
+		running = false;
+		pausado = false;
 		// Inicializar lo que haga falta para el juego
 		// ...
 		velocidadDeBajadaDePantalla = 0.5;
@@ -86,8 +87,8 @@ public class Juego extends InterfaceJuego {
 
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
 		
-		calle = new Calle(220, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla);
-		calle2 = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * - 4, velocidadDeBajadaDePantalla);
+		callePrimaria = new Calle(220, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla);
+		calleSecundaria = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * - 4, velocidadDeBajadaDePantalla);
 		
 		
 		// Inicia el juego!
@@ -109,14 +110,14 @@ public class Juego extends InterfaceJuego {
 		// ...
 		// if (estaIniciado && !estáPausado) {
 		//
-		if (running && !pausado) {
+		//if (running && !pausado) {
 			
-			calle.dibujar(entorno);
+			callePrimaria.dibujar(entorno);
 
-			calle.mover(); // buscarle un nombre
-			calle2.mover();
+			callePrimaria.mover(); // buscarle un nombre
+			calleSecundaria.mover();
 
-			calle2.dibujar(entorno);
+			calleSecundaria.dibujar(entorno);
 
 			// Conejo
 			conejo.esperar();
@@ -153,8 +154,8 @@ public class Juego extends InterfaceJuego {
 				a.dibujar(entorno);
 				a.mover(entorno);
 
-				if (conejo.teChocoAlgunAuto(autosHaciaIzquierda)) {
-					conejo.morir();
+				//if (conejo.teChocoAlgunAuto(autosHaciaIzquierda)) {
+					//conejo.morir();
 
 					System.out.println();
 				}
@@ -163,50 +164,41 @@ public class Juego extends InterfaceJuego {
 					pausado = true;
 				}
 
-			}
-
+			
+			
 			for (int i = 0; i < autosHaciaIzquierda.length; i++) {
 				autosHaciaIzquierda[i].dibujar(entorno);
 				autosHaciaIzquierda[i].mover(entorno);
 
-				if (conejo.controlarColision(this)) {
-					conejo.pierdeIntento();
-					System.out.println();
-				}
+				//if (conejo.controlarColision(this)) {
+					//conejo.pierdeIntento();
+					//System.out.println();
+				//}
 
 				if (entorno.sePresiono('p')) {
 					pausado = true;
 				}
 
 			}
-		}
+		//}
 
-		else if (!running || pausado) {
+		 if (!running || pausado) {
 			menu.dibujarMenu(entorno, this);
 		}
 
 		// imprime la accion actual
-		System.out.println(menu.getAccion());
+		//System.out.println(menu.getAccion());
 
 	}
 
 	// si hay algún setter en el código, va a reentrega
-	public void setRunning(boolean value) {
-		this.running = value;
-	}
-
-	public void setPausado(boolean value) {
-		this.pausado = value;
-	}
-
-	// realmente se necesitan los getters?
-	public Auto[] getAutosDerecha() {
-		return this.autosHaciaDerecha;
-	}
-
-	public Auto[] getAutosIzquierda() {
-		return this.autosHaciaIzquierda;
-	}
+//	public void setRunning(boolean value) {
+//		this.running = value;
+//	}
+//
+//	public void setPausado(boolean value) {
+//		this.pausado = value;
+//	}
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
