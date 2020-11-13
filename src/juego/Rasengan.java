@@ -5,8 +5,10 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Rasengan {
+
 	private double y;
 	private double x;
+
 	private double lanza;
 	private Color color;
 	private int diametro;
@@ -19,6 +21,8 @@ public class Rasengan {
 		this.diametro = 20;
 	}
 
+	// rasengan.dibujar();
+	//
 	public void dibujarRasengan(Entorno entorno) {
 		entorno.dibujarCirculo(x, y, diametro, color);
 	}
@@ -27,6 +31,7 @@ public class Rasengan {
 		y -= lanza;
 	}
 
+	// destruisteAuto(auto)
 	public boolean colicionAuto(Auto auto) {
 		if (y > auto.getY() - auto.getAltura() / 2 && y < auto.getY() + auto.getAltura() / 2) {
 			if ((auto.getX() - auto.getAncho() / 2) <= x + diametro

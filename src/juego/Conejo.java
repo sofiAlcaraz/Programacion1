@@ -18,7 +18,7 @@ public class Conejo {
 	private double y;
 	private double velocidadDeSalto;
 	private double bajadaDePantalla; // si se puede mejorar el nombre 
-	private int intento;
+	private int intento; // vidas
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 
@@ -33,6 +33,9 @@ public class Conejo {
 		
 	}
 
+	// guarda!
+	// 1. el nombre
+	// 2. el conejo no puede saber nada del juego
 	public boolean controlarColision(Juego juego) {
 		// AUTOS a la derecha
 		for (int i = 0; i < juego.getAutosDerecha().length; i++) {
@@ -75,6 +78,11 @@ public class Conejo {
 		}
 	}
 
+	// excelente!!!
+	public Rasengan disparar() {
+		return new Rasengan(x, y);
+	}
+
 	public void saltarIzquierda() {
 		
 		sonidoSalto();
@@ -95,6 +103,7 @@ public class Conejo {
 		}
 	}
 
+	// DELETE
 	private void sonidoSalto() {
 		try {
 			Clip salto = AudioSystem.getClip();
@@ -108,6 +117,7 @@ public class Conejo {
 		}
 	}
 
+	// hacen falta estos getters?
 	public double getX() {
 		return x;
 	}
@@ -116,6 +126,7 @@ public class Conejo {
 		return y;
 	}
 	
+	// FIXME
 	public void pierdeIntento() {
 		intento -= 1;
 	}

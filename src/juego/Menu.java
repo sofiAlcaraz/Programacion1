@@ -6,7 +6,10 @@ import java.awt.Color;
 public class Menu 
 {
     // para boton jugar
-    private double jugarBotonPosX = 800/2;
+	// si son constantes
+    private final double POSICION_DEL_BOTON_JUGAR_X = 800/2;
+    private final double POSICION_DEL_BOTON_JUGAR_Y = 800/2;
+
     private double jugarBotonPosY = 600/2 - 50;
     // para boton salir
     private double salirBotonPosX = 800/2;
@@ -18,8 +21,14 @@ public class Menu
     // accion actual del menu principal
     private String accion = "jugar";
     
+	// Menu menu = new Menu();
+	// 
+	// menu.dibujarMenu();
+	//
     public void dibujarMenu(Entorno entorno, Juego juego)
     {
+		// si son variables van acá
+		accion = "jugar"; // va en el constructor
         botonJugar(entorno);
         botonSalir(entorno);
         mostrarSeleccionado(entorno);
@@ -29,12 +38,12 @@ public class Menu
     
     private void actualizarSeleccion(Entorno entorno)
     {
-        if(entorno.sePresiono(entorno.TECLA_ABAJO))
+        if (entorno.sePresiono(entorno.TECLA_ABAJO))
         {
             seleccionadoY = salirBotonPosY;
             accion = "salir";
         }
-        if(entorno.sePresiono(entorno.TECLA_ARRIBA))
+        if (entorno.sePresiono(entorno.TECLA_ARRIBA))
         {
             seleccionadoY = jugarBotonPosY;
             accion = "jugar";
@@ -76,4 +85,5 @@ public class Menu
     {
         return this.accion;
     }
+
 }

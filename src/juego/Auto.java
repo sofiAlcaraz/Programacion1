@@ -33,9 +33,11 @@ public class Auto {
 	// FIXME
 	public void mover(Entorno entorno) {
 		y += this.bajadaDePantalla;
+
 		if (y - ancho / 2 >= 600) {
 			y -= y + ancho / 2;
 		}
+
 		if (sentido) {
 			if (x-ancho-velocidad<=0) {
 				x = entorno.ancho();

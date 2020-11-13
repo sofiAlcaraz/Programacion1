@@ -5,13 +5,16 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Calle {
+
+	private double x;
+	private double y;
+
+	private double deslizarPantalla; //deslizamientoDePantalla
+	// factorDeDesplazamiento
+
 	private double largo;
 	private double ancho;
 	private Color color;
-	private double x;
-	private double y;
-	private double deslizarPantalla;
-	
 
 	public Calle(double altura, double ancho, double x, double y, double bajadaDePantalla) {
 		this.largo = altura;
@@ -34,6 +37,7 @@ public class Calle {
 		entorno.dibujarRectangulo(x, y, ancho, largo, 0, color);
 	}
 	
+	// fijense si son necesarios
 
 	public double getLargo() {
 		return largo;

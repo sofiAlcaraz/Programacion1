@@ -7,16 +7,22 @@ import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
 
+	private int n; // tiempo, reloj
+
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private double velocidadDeBajadaDePantalla;
 	private Conejo conejo;
-	private Calle calle;
-	private Calle calle2;
+
+	private Calle calle; // calleAngosta
+	private Calle calle2; // calleSuperior, calleAncha
+	// private Calle[] calles;
+
 	// FIXME
 	private Auto[] autosHaciaIzquierda;
 	private Auto[] autosHaciaDerecha;
 
+	// se inicializan las cosas en el constructor
 	private boolean running = false;
 	private boolean pausado = false;
 	Menu menu = new Menu();
@@ -100,13 +106,21 @@ public class Juego extends InterfaceJuego {
 	 * del TP para mayor detalle).
 	 */
 	public void tick() {
+
+		n++; // fijense esto
+		System.out.println(n);
+
 		// Procesamiento de un instante de tiempo
 		// ...
+		// if (estaIniciado && !estáPausado) {
+		//
 		if (running && !pausado) {
 			
 			calle.dibujar(entorno);
-			calle.mover();
+
+			calle.mover(); // buscarle un nombre
 			calle2.mover();
+
 			calle2.dibujar(entorno);
 
 			// Conejo
@@ -125,17 +139,44 @@ public class Juego extends InterfaceJuego {
 			if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
 				conejo.saltarDerecha(entorno);
 			}
+
+			/*
 			for (int i = 0; i < autosHaciaDerecha.length; i++) {
 				autosHaciaDerecha[i].dibujar(entorno);
 				autosHaciaDerecha[i].mover(entorno);
 			}
+			*/
+
+			for (Auto a : autosHaciaDerecha) {
+				if (a != null) {
+					a.dibujar(entorno);
+					a.mover(entorno);
+				}
+			}
+
+			for (Auto a : autosHaciaIzquierda) {
+				a.dibujar(entorno);
+				a.mover(entorno);
+
+				if (conejo.teChocoAlgunAuto(autosHaciaIzquierda)) {
+					conejo.morir();
+
+					System.out.println();
+				}
+
+				if (entorno.sePresiono('p')) {
+					pausado = true;
+				}
+
+			}
+
 			for (int i = 0; i < autosHaciaIzquierda.length; i++) {
 				autosHaciaIzquierda[i].dibujar(entorno);
 				autosHaciaIzquierda[i].mover(entorno);
 
 				if (conejo.controlarColision(this)) {
 					conejo.pierdeIntento();
-					System.out.println()
+					System.out.println();
 				}
 
 				if (entorno.sePresiono('p')) {
@@ -154,6 +195,7 @@ public class Juego extends InterfaceJuego {
 
 	}
 
+	// si hay algún setter en el código, va a reentrega
 	public void setRunning(boolean value) {
 		this.running = value;
 	}
@@ -162,6 +204,7 @@ public class Juego extends InterfaceJuego {
 		this.pausado = value;
 	}
 
+	// realmente se necesitan los getters?
 	public Auto[] getAutosDerecha() {
 		return this.autosHaciaDerecha;
 	}
