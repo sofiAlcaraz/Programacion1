@@ -18,7 +18,7 @@ public class Conejo {
 	private double y;
 	private double velocidadDeSalto;
 	private double bajadaDePantalla; // si se puede mejorar el nombre 
-	
+	private int intento;
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 
@@ -29,6 +29,7 @@ public class Conejo {
 		this.velocidadDeSalto = velocidad;
 		this.color = Color.WHITE;
 		bajadaDePantalla = movAbajo;
+		this.intento = 3;
 		
 	}
 
@@ -114,5 +115,8 @@ public class Conejo {
 	public double getY() {
 		return y;
 	}
-
+	
+	public void pierdeIntento() {
+		intento -= 1;
+	}
 }

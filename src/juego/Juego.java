@@ -134,7 +134,8 @@ public class Juego extends InterfaceJuego {
 				autosHaciaIzquierda[i].mover(entorno);
 
 				if (conejo.controlarColision(this)) {
-					System.out.println("Está colisionando");
+					conejo.pierdeIntento();
+					System.out.println()
 				}
 
 				if (entorno.sePresiono('p')) {
