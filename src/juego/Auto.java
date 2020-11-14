@@ -32,14 +32,8 @@ public class Auto {
 
 	public void mover(Entorno entorno, Calle calle) {
 		y += this.bajadaDePantalla;
-<<<<<<< HEAD
-
-		if (y - ancho / 2 > 600) { //saque =
-			y =-200;
-=======
 		if (y - ancho / 2 > 600) {
 			y = -200;
->>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
 		}
 		if (sentido) {
 			if (x - ancho - velocidad < 20) {

@@ -36,18 +36,7 @@ public class Juego extends InterfaceJuego {
 		velocidadDeBajadaDePantalla = 0.5;
 
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
-<<<<<<< HEAD
 
-		int altoDelAuto = 35;
-		int distanciaEntreAuto = 10;
-		int posicionAuto = entorno.alto() / 10 + 220 / 2 - altoDelAuto / 2;
-		
-		// CREA AUTOS HACIA DERECHA
-		autosHaciaDerecha = new Auto[16];
-		double posicionEnX = entorno.ancho();
-		for (int i = 0; i < autosHaciaDerecha.length; i++) {
-=======
->>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
 		int altoDelAuto = 42;
 		int altoDeLaCalle = 220;
 		int extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
@@ -65,23 +54,13 @@ public class Juego extends InterfaceJuego {
 		double posicionEnXAutosHaciaDerecha = 0;
 		double posicionEnXAutosHaciaIzquierda = entorno.ancho();
 
-<<<<<<< HEAD
 
-=======
 		for (int i = 0; i < autosCallePrimaria.length; i++) {
->>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
 			if (i < 4) {
-				autosCallePrimaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaDerecha,
-						posicionPrimerAutoCallePrimaria, 2, false, velocidadDeBajadaDePantalla);
+				autosCallePrimaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaDerecha,posicionPrimerAutoCallePrimaria, 2, false, velocidadDeBajadaDePantalla);
 				posicionEnXAutosHaciaDerecha += autosCallePrimaria[i].getAncho() * 3;
 
 			} else if (i < 8) {
-<<<<<<< HEAD
-
-				autosHaciaDerecha[i] = new Auto(35, 50, posicionEnX,			posicionAuto - (altoDelAuto * 2) - distanciaEntreAuto * 5, 3, true,
-=======
-=======
->>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
 				autosCallePrimaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaIzquierda,
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto, 1, true,
 						velocidadDeBajadaDePantalla);

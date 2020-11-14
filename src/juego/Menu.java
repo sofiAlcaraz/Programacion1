@@ -49,53 +49,9 @@
 //            accion = "jugar";
 //        }
 //    }
-<<<<<<< HEAD
-    
-    private void actualizarSeleccion(Entorno entorno)
-    {
-        if (entorno.sePresiono(entorno.TECLA_ABAJO))
-        {
-            seleccionadoY = salirBotonPosY;
-            accion = "salir";
-        }
-        if (entorno.sePresiono(entorno.TECLA_ARRIBA))
-        {
-            seleccionadoY = jugarBotonPosY;
-            accion = "jugar";
-        }
-    }
-    
 
-=======
-//    
-//<<<<<<< HEAD
->>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
-//    private void ejecutarAccion(Entorno entorno, Juego juego)
-//    {
-//        if(entorno.sePresiono('x'))
-//        {
-//            if(accion == "jugar")
-//            {
-//            	
-//               // juego.setRunning(true);
-//               // juego.setPausado(false);
-//            }
-//            if(accion == "salir")
-//            {
-//               System.exit(0);
-//            }
-//        }
-//    }
-<<<<<<< HEAD
+  
 
-    
-    private void mostrarSeleccionado(Entorno entorno)
-    {
-        entorno.dibujarTriangulo(seleccionadoX, seleccionadoY, 20, 50, 0, Color.BLUE);
-    }
-    
-
-=======
 //=======
 ////    private void ejecutarAccion(Entorno entorno, Juego juego)
 ////    {
@@ -120,7 +76,7 @@
 //    }
 //    
 //<<<<<<< HEAD
->>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
+
 //    private void botonJugar(Entorno entorno)
 //    {//FIXME
 //        entorno.dibujarRectangulo(POSICION_DEL_BOTON_JUGAR_X, jugarBotonPosY, 150, 50, 0, Color.GREEN);
@@ -140,22 +96,7 @@
 //    public String getAccion()
 //    {
 //        return this.accion;
-//    }
-<<<<<<< HEAD
 
-    
-    private void botonSalir(Entorno entorno)
-    {
-        entorno.dibujarRectangulo(salirBotonPosX, salirBotonPosY, 150, 50, 0, Color.RED);
-    }
-    
-    public String getAccion()
-    {
-        return this.accion;
-    }
-
-}
-=======
 //
 //}
->>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
+
