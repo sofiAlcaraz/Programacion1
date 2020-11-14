@@ -56,8 +56,9 @@ public class Menu
         {
             if(accion == "jugar")
             {
-                juego.setRunning(true);
-                juego.setPausado(false);
+            	
+               // juego.setRunning(true);
+               // juego.setPausado(false);
             }
             if(accion == "salir")
             {
@@ -72,8 +73,8 @@ public class Menu
     }
     
     private void botonJugar(Entorno entorno)
-    {
-        entorno.dibujarRectangulo(jugarBotonPosX, jugarBotonPosY, 150, 50, 0, Color.GREEN);
+    {//FIXME
+        entorno.dibujarRectangulo(POSICION_DEL_BOTON_JUGAR_X, jugarBotonPosY, 150, 50, 0, Color.GREEN);
     }
     
     private void botonSalir(Entorno entorno)

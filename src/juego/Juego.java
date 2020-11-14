@@ -34,7 +34,7 @@ public class Juego extends InterfaceJuego {
 		int altoDelAuto = 35;
 		int distanciaEntreAuto = 10;
 		int posicionAuto = entorno.alto() / 10 + 220 / 2 - altoDelAuto / 2;
-
+		
 		// CREA AUTOS HACIA DERECHA
 		autosHaciaDerecha = new Auto[16];
 		double posicionEnX = entorno.ancho();
@@ -44,8 +44,7 @@ public class Juego extends InterfaceJuego {
 						velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaDerecha[i].getAncho() * 5;
 			} else if (i < 8) {
-				autosHaciaDerecha[i] = new Auto(35, 50, posicionEnX,
-						posicionAuto - (altoDelAuto * 2) - distanciaEntreAuto * 5, 3, true,
+				autosHaciaDerecha[i] = new Auto(35, 50, posicionEnX,			posicionAuto - (altoDelAuto * 2) - distanciaEntreAuto * 5, 3, true,
 						velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaDerecha[i].getAncho() * 4;
 			} else if (i < 12) {
@@ -135,26 +134,26 @@ public class Juego extends InterfaceJuego {
 		for (Auto a : autosHaciaDerecha) {
 			if (a != null) {
 				a.dibujar(entorno);
-				a.mover(entorno);
+				a.mover(entorno,callePrimaria);
 			}
 		}
 
 		for (Auto a : autosHaciaIzquierda) {
 			if (a != null) {
 				a.dibujar(entorno);
-				a.mover(entorno);
+				a.mover(entorno,calleSecundaria);
 			}
 		}
 		// agregar intentos :)
-		if (conejo.chocasteAlgunAuto(autosHaciaIzquierda) || conejo.chocasteAlgunAuto(autosHaciaDerecha)) {
-			conejo = null;// FIXME
-			System.out.println("CONEJO CHOCO CON AUTO");
-		}
-		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
-			rasengans.add(conejo.disparar());
+//		if (conejo.chocasteAlgunAuto(autosHaciaIzquierda) || conejo.chocasteAlgunAuto(autosHaciaDerecha)) {
+//			conejo = null;// FIXME
+//			System.out.println("CONEJO CHOCO CON AUTO");
+//		}
+//		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
+			//rasengans.add(conejo.disparar());
 			// pasado cierto tiempo o llegada cierta x ..matarlo
 			// con un for each y matarlos o..un metodo,pero con este no se me ocurre como
-		}
+		//}
 
 		if (entorno.sePresiono('p')) {
 			partidaPausada = true;
