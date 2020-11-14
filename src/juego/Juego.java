@@ -3,7 +3,10 @@ package juego;
 import java.awt.Color;
 import java.util.LinkedList;
 
+import javax.sound.sampled.Clip;
+
 import entorno.Entorno;
+import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
@@ -22,7 +25,8 @@ public class Juego extends InterfaceJuego {
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
 	private LinkedList<Rasengan> rasengans;
-
+	private Clip jump;
+	
 	public Juego() {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
@@ -35,6 +39,9 @@ public class Juego extends InterfaceJuego {
 		int distanciaEntreAuto = 10;
 		int posicionAuto = entorno.alto() / 10 + 220 / 2 - altoDelAuto / 2;
 
+		//AUDIOS
+		jump = Herramientas.cargarSonido("jump.wav");
+		
 		// CREA AUTOS HACIA DERECHA
 		autosHaciaDerecha = new Auto[16];
 		double posicionEnX = entorno.ancho();
@@ -132,6 +139,13 @@ public class Juego extends InterfaceJuego {
 			conejo.saltarDerecha(entorno);
 		}
 
+		
+		//SONIDOS EN EL JUEGO
+		if (entorno.sePresiono('a') || entorno.sePresiono('s') || entorno.sePresiono('d') || entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ABAJO) || entorno.sePresiono(entorno.TECLA_ARRIBA) || entorno.sePresiono(entorno.TECLA_DERECHA) || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
+			jump.start();
+		}
+		
+		
 		for (Auto a : autosHaciaDerecha) {
 			if (a != null) {
 				a.dibujar(entorno);
@@ -145,6 +159,8 @@ public class Juego extends InterfaceJuego {
 				a.mover(entorno);
 			}
 		}
+		
+		
 		// agregar intentos :)
 		if (conejo.chocasteAlgunAuto(autosHaciaIzquierda) || conejo.chocasteAlgunAuto(autosHaciaDerecha)) {
 			conejo = null;// FIXME

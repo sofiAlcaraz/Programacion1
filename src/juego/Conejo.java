@@ -38,7 +38,7 @@ public class Conejo {
 	}
 
 	public void saltar() {
-		// sonidoSalto();
+		
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura / 2;
 		} else {
@@ -47,7 +47,7 @@ public class Conejo {
 	}
 
 	public void saltarIzquierda() {
-		// sonidoSalto();
+		
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
 		} else {
@@ -57,7 +57,7 @@ public class Conejo {
 	}
 
 	public void saltarDerecha(Entorno entorno) {
-		// sonidoSalto();
+		
 		if (x + ancho / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho / 2;
 		} else {
@@ -68,21 +68,6 @@ public class Conejo {
 	public Rasengan disparar() {
 		return new Rasengan(x, y);
 	}
-
-	// DELETE
-//	private void sonidoSalto(Herramientas her) {
-//		//Herramientas.cargarSonido("jump")
-//		try {
-//			Clip salto = AudioSystem.getClip();
-//			salto.open(AudioSystem.getAudioInputStream(new File("jump.wav")));
-//			salto.start();
-//			while (salto.isRunning())
-//				Thread.sleep(1000);
-//		} catch (Exception e) {
-//			System.out.println("" + e);
-//
-//		}
-//	}
 
 	public boolean chocasteAlgunAuto(Auto[] autos) {
 		for (int i = 0; i < autos.length; i++) {
