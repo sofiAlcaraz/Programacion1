@@ -5,7 +5,7 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Auto {
-	private double altura;
+	private double alto;
 	private double ancho;
 	private double x;
 	private double y;
@@ -16,7 +16,7 @@ public class Auto {
 
 	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido,
 			double bajadaDePantalla) {
-		this.altura = altura;
+		this.alto = altura;
 		this.ancho = ancho;
 		this.x = x;
 		this.y = y;
@@ -27,15 +27,19 @@ public class Auto {
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarRectangulo(x, y, ancho, altura, 0, color);// cambie direccion por cero ya que no lo vamos a usar
+		entorno.dibujarRectangulo(x, y, ancho, alto, 0, color);// cambie direccion por cero ya que no lo vamos a usar
 	}
 
-	// FIXME
-	public void mover(Entorno entorno,Calle calle) {
+	public void mover(Entorno entorno, Calle calle) {
 		y += this.bajadaDePantalla;
+<<<<<<< HEAD
 
 		if (y - ancho / 2 > 600) { //saque =
 			y =-200;
+=======
+		if (y - ancho / 2 > 600) {
+			y = -200;
+>>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
 		}
 		if (sentido) {
 			if (x - ancho - velocidad < 20) {
@@ -43,7 +47,7 @@ public class Auto {
 			} else {
 				x -= velocidad;
 			}
-		} else if (x + ancho + velocidad > entorno.ancho()+20) {
+		} else if (x + ancho + velocidad > entorno.ancho() + 20) {
 			x = 0;
 		} else {
 			x += velocidad;
@@ -51,7 +55,7 @@ public class Auto {
 	}
 
 	public double getAltura() {
-		return altura;
+		return alto;
 	}
 
 	public double getAncho() {

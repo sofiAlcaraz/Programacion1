@@ -21,7 +21,7 @@ public class Juego extends InterfaceJuego {
 	private Calle calleSecundaria; // calleSuperior,
 	private Auto[] autosCalleSecundaria;
 	private Auto[] autosCallePrimaria;
-	Menu menu = new Menu();
+//	Menu menu = new Menu();
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
 	private LinkedList<Rasengan> rasengans;
@@ -36,6 +36,7 @@ public class Juego extends InterfaceJuego {
 		velocidadDeBajadaDePantalla = 0.5;
 
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
+<<<<<<< HEAD
 
 		int altoDelAuto = 35;
 		int distanciaEntreAuto = 10;
@@ -45,6 +46,8 @@ public class Juego extends InterfaceJuego {
 		autosHaciaDerecha = new Auto[16];
 		double posicionEnX = entorno.ancho();
 		for (int i = 0; i < autosHaciaDerecha.length; i++) {
+=======
+>>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
 		int altoDelAuto = 42;
 		int altoDeLaCalle = 220;
 		int extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
@@ -53,6 +56,7 @@ public class Juego extends InterfaceJuego {
 		int posicionPrimerAutoCallePrimaria = extremoInferiorCallePrimaria - espacioEntreAutos - altoDelAuto / 2;
 		int posicionDelSiguienteAuto = espacioEntreAutos + altoDelAuto;
 		int posicionDelPrimerAutoCalleSecundaria = extremoInferiorCalleSecundaria - espacioEntreAutos - altoDelAuto / 2;
+
 		// AUDIOS
 		jump = Herramientas.cargarSonido("jump.wav");
 
@@ -60,21 +64,26 @@ public class Juego extends InterfaceJuego {
 		autosCallePrimaria = new Auto[16];
 		double posicionEnXAutosHaciaDerecha = 0;
 		double posicionEnXAutosHaciaIzquierda = entorno.ancho();
+
+<<<<<<< HEAD
+
+=======
 		for (int i = 0; i < autosCallePrimaria.length; i++) {
-
-
+>>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
 			if (i < 4) {
 				autosCallePrimaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaDerecha,
 						posicionPrimerAutoCallePrimaria, 2, false, velocidadDeBajadaDePantalla);
 				posicionEnXAutosHaciaDerecha += autosCallePrimaria[i].getAncho() * 3;
 
 			} else if (i < 8) {
+<<<<<<< HEAD
 
 				autosHaciaDerecha[i] = new Auto(35, 50, posicionEnX,			posicionAuto - (altoDelAuto * 2) - distanciaEntreAuto * 5, 3, true,
 =======
+=======
+>>>>>>> 31eeb6a236e42b37e485e3122fe0444b1600670d
 				autosCallePrimaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaIzquierda,
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto, 1, true,
->>>>>>> 5a72322aeae2fa58715e0c85d77c4382d283d985
 						velocidadDeBajadaDePantalla);
 				posicionEnXAutosHaciaIzquierda += autosCallePrimaria[i].getAncho() * 3;
 			}
@@ -97,7 +106,7 @@ public class Juego extends InterfaceJuego {
 		autosCalleSecundaria = new Auto[16];
 		posicionEnXAutosHaciaDerecha = 0;
 		posicionEnXAutosHaciaIzquierda = entorno.ancho();
-		
+
 		for (int i = 0; i < autosCalleSecundaria.length; i++) {
 			if (i < 4) {
 				autosCalleSecundaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaIzquierda,
@@ -105,7 +114,8 @@ public class Juego extends InterfaceJuego {
 				posicionEnXAutosHaciaIzquierda += autosCalleSecundaria[i].getAncho() * 5;
 			} else if (i < 8) {
 				autosCalleSecundaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaDerecha,
-						posicionDelPrimerAutoCalleSecundaria - posicionDelSiguienteAuto, 1, false, velocidadDeBajadaDePantalla);
+						posicionDelPrimerAutoCalleSecundaria - posicionDelSiguienteAuto, 1, false,
+						velocidadDeBajadaDePantalla);
 				posicionEnXAutosHaciaDerecha += autosCalleSecundaria[i].getAncho() * 5;
 			} else if (i < 12) {
 				autosCalleSecundaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaIzquierda,
@@ -186,27 +196,17 @@ public class Juego extends InterfaceJuego {
 		for (Auto a : autosCallePrimaria) {
 			if (a != null) {
 				a.dibujar(entorno);
-				a.mover(entorno,callePrimaria);
+				a.mover(entorno, callePrimaria);
 			}
 		}
 
 		for (Auto a : autosCalleSecundaria) {
 			if (a != null) {
 				a.dibujar(entorno);
-				a.mover(entorno,calleSecundaria);
+				a.mover(entorno, calleSecundaria);
 			}
 		}
 
-		// agregar intentos :)
-<<<<<<< HEAD
-//		if (conejo.chocasteAlgunAuto(autosHaciaIzquierda) || conejo.chocasteAlgunAuto(autosHaciaDerecha)) {
-//			conejo = null;// FIXME
-//			System.out.println("CONEJO CHOCO CON AUTO");
-//		}
-//		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
-			//rasengans.add(conejo.disparar());
-			// pasado cierto tiempo o llegada cierta x ..matarlo
-=======
 		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)) {
 			conejo = null;// FIXME
 			System.out.println("CONEJO CHOCO CON AUTO");
@@ -214,15 +214,14 @@ public class Juego extends InterfaceJuego {
 		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 			rasengans.add(conejo.disparar());
 			// pasado cierto tiempo o llegada cierta y ..matarlo
->>>>>>> 5a72322aeae2fa58715e0c85d77c4382d283d985
 			// con un for each y matarlos o..un metodo,pero con este no se me ocurre como
-		//}
+			// }
 
-		if (entorno.sePresiono('p')) {
-			partidaPausada = true;
+			if (entorno.sePresiono('p')) {
+				partidaPausada = true;
+			}
+
 		}
-
-		// }
 
 //		if (!partidaCorriendo || partidaPausada) {
 //			menu.dibujarMenu(entorno, this);
