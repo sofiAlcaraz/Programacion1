@@ -26,43 +26,55 @@ public class Juego extends InterfaceJuego {
 	private boolean partidaPausada;
 	private LinkedList<Rasengan> rasengans;
 	private Clip jump;
-	
+
 	public Juego() {
 		// Inicializa el objeto entorno
-		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
+		this.entorno = new Entorno(this, "Conejo Ninja", 800, 600);
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
 		velocidadDeBajadaDePantalla = 0.5;
-		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
-		int altoDelAuto = 35;
-		int distanciaEntreAuto = 10;
-		int posicionAuto = entorno.alto() / 10 + 220 / 2 - altoDelAuto / 2;
-
-		//AUDIOS
-		jump = Herramientas.cargarSonido("jump.wav");
 		
+		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
+		int altoDelAuto = 42;
+		int altoDeLaCalle = 220;
+		int extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
+		int extremoInferiorCalleSecundaria = entorno.alto() / 10 *-4 + altoDeLaCalle/2;
+		int espacioEntreAutos = (altoDeLaCalle - (altoDelAuto * 4)) / 5;
+		int posicionPrimerAutoCallePrimaria = extremoInferiorCallePrimaria - espacioEntreAutos - altoDelAuto / 2;
+		int posicionDelSiguienteAuto = espacioEntreAutos + altoDelAuto;
+		int posicionDelAutoAnteriorCallePrimaria = 0;
+		int posicionDelAutoAnteriorCalleSecundaria = 0;
+		int posicionDelPrimerAutoCalleSecundaria = extremoInferiorCalleSecundaria - espacioEntreAutos - altoDelAuto / 2;
+		// AUDIOS
+		jump = Herramientas.cargarSonido("jump.wav");
+
 		// CREA AUTOS HACIA DERECHA
 		autosHaciaDerecha = new Auto[16];
 		double posicionEnX = entorno.ancho();
 		for (int i = 0; i < autosHaciaDerecha.length; i++) {
+			
+			//CALLE PRIMARIA
 			if (i < 4) {
-				autosHaciaDerecha[i] = new Auto(35, 50, posicionEnX, posicionAuto - distanciaEntreAuto, 2, true,
+				autosHaciaDerecha[i] = new Auto(altoDelAuto, 50, posicionEnX, posicionPrimerAutoCallePrimaria , 2, false,
 						velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaDerecha[i].getAncho() * 5;
+				
 			} else if (i < 8) {
-				autosHaciaDerecha[i] = new Auto(35, 50, posicionEnX,
-						posicionAuto - (altoDelAuto * 2) - distanciaEntreAuto * 5, 3, true,
-						velocidadDeBajadaDePantalla);
+				autosHaciaDerecha[i] = new Auto(altoDelAuto, 50, posicionEnX,posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto*2, 3, false,	velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaDerecha[i].getAncho() * 4;
-			} else if (i < 12) {
-				autosHaciaDerecha[i] = new Auto(35, 50, posicionEnX, (entorno.alto() / 10) * -4 + 70, 2, true,
+				posicionDelAutoAnteriorCallePrimaria = posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto;
+			} 
+			//CALLE SECUNDARIA
+			else if (i < 12) {
+				autosHaciaDerecha[i] = new Auto(altoDelAuto, 50, posicionEnX, posicionDelPrimerAutoCalleSecundaria, 2, false,
 						velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaDerecha[i].getAncho() * 3;
 			} else {
-				autosHaciaDerecha[i] = new Auto(35, 50, posicionEnX, (entorno.alto() / 10) * -4 - 70, 3, true,
+				autosHaciaDerecha[i] = new Auto(altoDelAuto, 50, posicionEnX, posicionDelPrimerAutoCalleSecundaria - posicionDelSiguienteAuto*2, 3, false,
 						velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaDerecha[i].getAncho() * 8;
+				posicionDelAutoAnteriorCalleSecundaria = posicionDelPrimerAutoCalleSecundaria - posicionDelSiguienteAuto;
 			}
 
 		}
@@ -71,20 +83,26 @@ public class Juego extends InterfaceJuego {
 		autosHaciaIzquierda = new Auto[16];
 		posicionEnX = 0;
 		for (int i = 0; i < autosHaciaIzquierda.length; i++) {
+			
+			//CALLE PRIMARIA
 			if (i < 4) {
-				autosHaciaIzquierda[i] = new Auto(35, 50, posicionEnX, posicionAuto - distanciaEntreAuto - altoDelAuto,
-						2, false, velocidadDeBajadaDePantalla);
+				autosHaciaIzquierda[i] = new Auto(altoDelAuto, 50, posicionEnX, posicionDelAutoAnteriorCallePrimaria - espacioEntreAutos,
+						2, true, velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaIzquierda[i].getAncho() * 5;
+				posicionDelAutoAnteriorCallePrimaria = posicionDelAutoAnteriorCallePrimaria - espacioEntreAutos;
 			} else if (i < 8) {
-				autosHaciaIzquierda[i] = new Auto(35, 50, posicionEnX,
-						posicionAuto - distanciaEntreAuto - altoDelAuto * 2, 1, false, velocidadDeBajadaDePantalla);
+				autosHaciaIzquierda[i] = new Auto(altoDelAuto, 50, posicionEnX,posicionDelAutoAnteriorCallePrimaria - espacioEntreAutos*2, 1, true, velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaIzquierda[i].getAncho() * 5;
-			} else if (i < 12) {
-				autosHaciaIzquierda[i] = new Auto(35, 50, posicionEnX, (entorno.alto() / 10) * -4 + 70, 2, false,
+			}
+			
+			//CALLE SECUNDARIA
+			else if (i < 12) {
+				autosHaciaIzquierda[i] = new Auto(altoDelAuto, 50, posicionEnX,posicionDelAutoAnteriorCalleSecundaria - espacioEntreAutos, 2, true,
 						velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaIzquierda[i].getAncho() * 5;
+				posicionDelAutoAnteriorCalleSecundaria = posicionDelAutoAnteriorCalleSecundaria - espacioEntreAutos;
 			} else {
-				autosHaciaIzquierda[i] = new Auto(35, 50, posicionEnX, (entorno.alto() / 10) * -4 - 70, 1, false,
+				autosHaciaIzquierda[i] = new Auto(altoDelAuto, 50, posicionEnX,posicionDelAutoAnteriorCalleSecundaria - espacioEntreAutos*2, 1, true,
 						velocidadDeBajadaDePantalla);
 				posicionEnX += autosHaciaIzquierda[i].getAncho() * 5;
 			}
@@ -92,8 +110,8 @@ public class Juego extends InterfaceJuego {
 
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
 
-		callePrimaria = new Calle(220, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla);
-		calleSecundaria = new Calle(220, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
+		callePrimaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, entorno.alto() / 10, velocidadDeBajadaDePantalla);
+		calleSecundaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
 				velocidadDeBajadaDePantalla);
 
 		// Inicia el juego!
@@ -108,11 +126,10 @@ public class Juego extends InterfaceJuego {
 	 */
 	public void tick() {
 		// Procesamiento de un instante de tiempo
-		reloj ++; // fijense esto
-		if (reloj/100 != (reloj+1)/100) {
-			System.out.println(reloj/100);
+		reloj++; // fijense esto
+		if (reloj / 100 != (reloj + 1) / 100) {
+			System.out.println(reloj / 100);
 		}
-		
 
 		// if (estaIniciado && !estáPausado) {
 
@@ -131,24 +148,28 @@ public class Juego extends InterfaceJuego {
 
 		if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
 			conejo.saltar();
-
+			jump.start();
 		}
 
 		if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
 			conejo.saltarIzquierda();
+			jump.start();
 		}
 
 		if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
 			conejo.saltarDerecha(entorno);
+			jump.start();
+
 		}
 
-		
-		//SONIDOS EN EL JUEGO
-		if (entorno.sePresiono('a') || entorno.sePresiono('s') || entorno.sePresiono('d') || entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ABAJO) || entorno.sePresiono(entorno.TECLA_ARRIBA) || entorno.sePresiono(entorno.TECLA_DERECHA) || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
+		// SONIDOS EN EL JUEGO
+		if (entorno.sePresiono('a') || entorno.sePresiono('s') || entorno.sePresiono('d') || entorno.sePresiono('w')
+				|| entorno.sePresiono(entorno.TECLA_ABAJO) || entorno.sePresiono(entorno.TECLA_ARRIBA)
+				|| entorno.sePresiono(entorno.TECLA_DERECHA) || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
 			jump.start();
+
 		}
-		
-		
+
 		for (Auto a : autosHaciaDerecha) {
 			if (a != null) {
 				a.dibujar(entorno);
@@ -162,8 +183,7 @@ public class Juego extends InterfaceJuego {
 				a.mover(entorno);
 			}
 		}
-		
-		
+
 		// agregar intentos :)
 		if (conejo.chocasteAlgunAuto(autosHaciaIzquierda) || conejo.chocasteAlgunAuto(autosHaciaDerecha)) {
 			conejo = null;// FIXME
