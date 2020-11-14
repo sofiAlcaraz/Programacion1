@@ -50,24 +50,7 @@ public class Menu
         }
     }
     
-<<<<<<< HEAD
-    private void ejecutarAccion(Entorno entorno, Juego juego)
-    {
-        if(entorno.sePresiono('x'))
-        {
-            if(accion == "jugar")
-            {
-            	
-               // juego.setRunning(true);
-               // juego.setPausado(false);
-            }
-            if(accion == "salir")
-            {
-               System.exit(0);
-            }
-        }
-    }
-=======
+
 //    private void ejecutarAccion(Entorno entorno, Juego juego)
 //    {
 //        if(entorno.sePresiono('x'))
@@ -83,24 +66,19 @@ public class Menu
 //            }
 //        }
 //    }
->>>>>>> 5a72322aeae2fa58715e0c85d77c4382d283d985
+
     
     private void mostrarSeleccionado(Entorno entorno)
     {
         entorno.dibujarTriangulo(seleccionadoX, seleccionadoY, 20, 50, 0, Color.BLUE);
     }
     
-<<<<<<< HEAD
-    private void botonJugar(Entorno entorno)
-    {//FIXME
-        entorno.dibujarRectangulo(POSICION_DEL_BOTON_JUGAR_X, jugarBotonPosY, 150, 50, 0, Color.GREEN);
-    }
-=======
+
 //    private void botonJugar(Entorno entorno)
 //    {
 //        entorno.dibujarRectangulo(jugarBotonPosX, jugarBotonPosY, 150, 50, 0, Color.GREEN);
 //    }
->>>>>>> 5a72322aeae2fa58715e0c85d77c4382d283d985
+
     
     private void botonSalir(Entorno entorno)
     {

@@ -33,14 +33,9 @@ public class Auto {
 	// FIXME
 	public void mover(Entorno entorno,Calle calle) {
 		y += this.bajadaDePantalla;
-<<<<<<< HEAD
+
 		if (y - ancho / 2 > 600) { //saque =
 			y =-200;
-			
-=======
-		if (y - ancho / 2 > 620) {
-			y -= y + ancho / 2;
->>>>>>> 5a72322aeae2fa58715e0c85d77c4382d283d985
 		}
 		if (sentido) {
 			if (x - ancho - velocidad < 20) {
