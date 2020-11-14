@@ -108,8 +108,11 @@ public class Juego extends InterfaceJuego {
 	 */
 	public void tick() {
 		// Procesamiento de un instante de tiempo
-		reloj++; // fijense esto
-		System.out.println(reloj);
+		reloj ++; // fijense esto
+		if (reloj/100 != (reloj+1)/100) {
+			System.out.println(reloj/100);
+		}
+		
 
 		// if (estaIniciado && !estáPausado) {
 
@@ -168,12 +171,8 @@ public class Juego extends InterfaceJuego {
 		}
 		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 			rasengans.add(conejo.disparar());
-			// pasado cierto tiempo o llegada cierta x ..matarlo
+			// pasado cierto tiempo o llegada cierta y ..matarlo
 			// con un for each y matarlos o..un metodo,pero con este no se me ocurre como
-		}
-
-		if (entorno.sePresiono('p')) {
-			partidaPausada = true;
 		}
 
 		if (entorno.sePresiono('p')) {
@@ -182,9 +181,9 @@ public class Juego extends InterfaceJuego {
 
 		// }
 
-		if (!partidaCorriendo || partidaPausada) {
-			menu.dibujarMenu(entorno, this);
-		}
+//		if (!partidaCorriendo || partidaPausada) {
+//			menu.dibujarMenu(entorno, this);
+//		}
 
 		// imprime la accion actual
 		// System.out.println(menu.getAccion());
