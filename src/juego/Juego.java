@@ -33,7 +33,7 @@ public class Juego extends InterfaceJuego {
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
-		velocidadDeBajadaDePantalla = 0.5;
+		velocidadDeBajadaDePantalla = 8;//0.5
 
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
 
@@ -175,19 +175,19 @@ public class Juego extends InterfaceJuego {
 		for (Auto a : autosCallePrimaria) {
 			if (a != null) {
 				a.dibujar(entorno);
-				a.mover(entorno, callePrimaria);
+				a.mover(entorno);
 			}
 		}
 
 		for (Auto a : autosCalleSecundaria) {
 			if (a != null) {
 				a.dibujar(entorno);
-				a.mover(entorno, calleSecundaria);
+				a.mover(entorno);
 			}
 		}
 
 		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)) {
-			conejo = null;// FIXME
+			//conejo = null;// FIXME
 			System.out.println("CONEJO CHOCO CON AUTO");
 		}
 		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
