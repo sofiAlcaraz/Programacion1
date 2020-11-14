@@ -18,11 +18,11 @@ public class Rasengan {
 		this.color = Color.YELLOW;
 		this.diametro = 20;
 	}
-	
+
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarCirculo(x, y, diametro, color);
 	}
-	
+
 	public void mover() {
 		y -= velocidad;
 	}

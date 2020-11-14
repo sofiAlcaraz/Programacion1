@@ -35,6 +35,5 @@ public class Calle {
 	public double getLargo() {
 		return largo;
 	}
-	
 
 }
