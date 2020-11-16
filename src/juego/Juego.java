@@ -8,7 +8,7 @@ import javax.sound.sampled.Clip;
 import entorno.Entorno;
 import entorno.Herramientas;
 import entorno.InterfaceJuego;
-import ungs.Estudiante;
+
 
 public class Juego extends InterfaceJuego {
 
@@ -202,13 +202,13 @@ public class Juego extends InterfaceJuego {
 	   }
 		if(rasengans.size()!=0) {
 			for(Rasengan r: rasengans ) {
+				if (!r.destruisteAuto(autosCallePrimaria) || !r.destruisteAuto(autosCalleSecundaria)) {
 					r.dibujar(entorno);
 					r.mover();
-					if (r.destruisteAuto(auto)) {
-						
+				}	
 			}
-			}	
-		}
+		}	
+		
 			
 	
 		

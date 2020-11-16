@@ -10,7 +10,6 @@ public class Rasengan {
 	private double velocidad;
 	private Color color;
 	private int diametro;
-	
 
 	public Rasengan(double x, double y) {
 		this.x = x;
@@ -22,27 +21,34 @@ public class Rasengan {
 	}
 
 	public void dibujar(Entorno entorno) {
-			entorno.dibujarCirculo(x, y, diametro, color);	
-		}
+		entorno.dibujarCirculo(x, y, diametro, color);
+	}
 
 	public void mover() {
 		y -= velocidad;
 	}
 
-	public boolean destruisteAuto(Auto auto) {
-		if (y > auto.getY() - auto.getAltura() / 2 && y < auto.getY() + auto.getAltura() / 2) {
-			if ((auto.getX() - auto.getAncho() / 2) <= x + diametro
-					|| (auto.getX() + auto.getAncho() / 2 <= x + diametro)) {
-				System.out.println("coliciona con auto de costado");
+	public boolean destruisteAuto(Auto[] autos) {  //FIXME
+		for (int i = 0; i < autos.length; i++) {
+			if(autos[i]!=null) {
+			if (y > autos[i].getY() - autos[i].getAltura() / 2 && y < autos[i].getY() + autos[i].getAltura() / 2) {
+				if ((autos[i].getX() - autos[i].getAncho() / 2) <= x + diametro
+						|| (autos[i].getX() + autos[i].getAncho() / 2 <= x + diametro)) {
+					System.out.println("coliciona con auto de costado");
+					autos[i]=null;
+					return true;
+				}
+			}
+			if (y == (autos[i].getY() + autos[i].getAltura() / 2) && x == autos[i].getX()) {
+				System.out.println("coliciona con auto de frente");
+				autos[i]=null;
 				return true;
 			}
 		}
-		if (y == (auto.getY() + auto.getAltura() / 2) && x == auto.getX()) {
-			System.out.println("coliciona con auto de frente");
-			return true;
 		}
 		return false;
 	}
+
 	public double getY() {
 		return y;
 	}

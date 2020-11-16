@@ -68,16 +68,24 @@ public class Conejo {
 	public Rasengan disparar() {
 		return new Rasengan(x, y);
 	}
+	public boolean seFueDePantalla() {
+		if (y+altura/2>600) {
+			return true;
+		}
+		return true;
+	}
 
-	public boolean chocasteAlgunAuto(Auto[] autos) {
+	public boolean chocasteAlgunAuto(Auto[] autos) {  //agregue null para disparar
 		for (int i = 0; i < autos.length; i++) {
-			if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
-					&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
-				return true;
-			}
-			if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
-					&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
-				return true;
+			if (autos[i] != null) {
+				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
+						&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
+					return true;
+				}
+				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
+						&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
+					return true;
+				}
 			}
 		}
 		return false;
