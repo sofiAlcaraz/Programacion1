@@ -10,6 +10,7 @@ public class Rasengan {
 	private double velocidad;
 	private Color color;
 	private int diametro;
+	
 
 	public Rasengan(double x, double y) {
 		this.x = x;
@@ -17,11 +18,12 @@ public class Rasengan {
 		this.velocidad = 20;
 		this.color = Color.YELLOW;
 		this.diametro = 20;
+
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarCirculo(x, y, diametro, color);
-	}
+			entorno.dibujarCirculo(x, y, diametro, color);	
+		}
 
 	public void mover() {
 		y -= velocidad;
@@ -41,5 +43,7 @@ public class Rasengan {
 		}
 		return false;
 	}
-
+	public double getY() {
+		return y;
+	}
 }

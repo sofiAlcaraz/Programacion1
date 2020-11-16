@@ -40,7 +40,7 @@ public class Conejo {
 	public void saltar() {
 
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
-			y = altura / 2;
+			y = altura;
 		} else {
 			y -= velocidadDeSalto;
 		}
