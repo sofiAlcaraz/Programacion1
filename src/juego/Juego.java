@@ -33,7 +33,7 @@ public class Juego extends InterfaceJuego {
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
-		velocidadDeBajadaDePantalla = 8;//0.5
+		velocidadDeBajadaDePantalla = 4;//0.5
 
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
 
@@ -111,9 +111,9 @@ public class Juego extends InterfaceJuego {
 
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
 
-		callePrimaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, entorno.alto() / 10,
+		callePrimaria = new Calle(altoDeLaCalle, 800,entorno.ancho() / 2, entorno.alto() / 10,
 				velocidadDeBajadaDePantalla);
-		calleSecundaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
+		calleSecundaria = new Calle(altoDeLaCalle, 800,entorno.ancho() / 2, (entorno.alto() / 10) * -4,
 				velocidadDeBajadaDePantalla);
 
 		// Inicia el juego!
@@ -139,8 +139,8 @@ public class Juego extends InterfaceJuego {
 
 		callePrimaria.dibujar(entorno);
 
-		callePrimaria.deslizarHaciaAbajo();
-		calleSecundaria.deslizarHaciaAbajo();
+		callePrimaria.deslizarHaciaAbajo(entorno);
+		calleSecundaria.deslizarHaciaAbajo(entorno);
 
 		calleSecundaria.dibujar(entorno);
 

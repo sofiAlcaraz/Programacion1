@@ -13,6 +13,7 @@ public class Auto {
 	private boolean sentido;
 	private double bajadaDePantalla;
 	private Color color;
+	
 
 	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido,
 			double bajadaDePantalla) {
@@ -33,15 +34,15 @@ public class Auto {
 	public void mover(Entorno entorno) {
 		y += this.bajadaDePantalla;
 		if (y - ancho / 2 > 600) {
-			y=-190;
+			y-=entorno.alto()*2;
 		}
 		if (sentido) {
-			if (x - ancho/2 - velocidad <= 0) {//ancho/2 y le sa	que el 20
+			if (x - ancho/2 - velocidad < 0) {//ancho/2 y le sa	que el 20
 				x = entorno.ancho();
 			} else {
 				x -= velocidad;
 			}
-		} else if (x + ancho/2 + velocidad >= entorno.ancho()) {
+		} else if (x + ancho/2 + velocidad > entorno.ancho()) {
 			x = 0;
 		} else {
 			x += velocidad;
