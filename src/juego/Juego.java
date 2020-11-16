@@ -33,7 +33,7 @@ public class Juego extends InterfaceJuego {
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
-		velocidadDeBajadaDePantalla = 4;//0.5
+		velocidadDeBajadaDePantalla = 3;//0.5
 
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
 

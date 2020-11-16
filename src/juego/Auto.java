@@ -37,7 +37,7 @@ public class Auto {
 			y-=entorno.alto()*2;
 		}
 		if (sentido) {
-			if (x - ancho/2 - velocidad < 0) {//ancho/2 y le sa	que el 20
+			if (x - ancho/2 - velocidad < 0) {
 				x = entorno.ancho();
 			} else {
 				x -= velocidad;
