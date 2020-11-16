@@ -33,7 +33,7 @@ public class Juego extends InterfaceJuego {
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
-		velocidadDeBajadaDePantalla = 3;//0.5
+		velocidadDeBajadaDePantalla = 1;
 
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
 
@@ -54,10 +54,10 @@ public class Juego extends InterfaceJuego {
 		double posicionEnXAutosHaciaDerecha = 0;
 		double posicionEnXAutosHaciaIzquierda = entorno.ancho();
 
-
 		for (int i = 0; i < autosCallePrimaria.length; i++) {
 			if (i < 4) {
-				autosCallePrimaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaDerecha,posicionPrimerAutoCallePrimaria, 2, false, velocidadDeBajadaDePantalla);
+				autosCallePrimaria[i] = new Auto(altoDelAuto, 50, posicionEnXAutosHaciaDerecha,
+						posicionPrimerAutoCallePrimaria, 2, false, velocidadDeBajadaDePantalla);
 				posicionEnXAutosHaciaDerecha += autosCallePrimaria[i].getAncho() * 3;
 
 			} else if (i < 8) {
@@ -111,9 +111,9 @@ public class Juego extends InterfaceJuego {
 
 		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
 
-		callePrimaria = new Calle(altoDeLaCalle, 800,entorno.ancho() / 2, entorno.alto() / 10,
+		callePrimaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, entorno.alto() / 10,
 				velocidadDeBajadaDePantalla);
-		calleSecundaria = new Calle(altoDeLaCalle, 800,entorno.ancho() / 2, (entorno.alto() / 10) * -4,
+		calleSecundaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
 				velocidadDeBajadaDePantalla);
 
 		// Inicia el juego!
@@ -187,7 +187,7 @@ public class Juego extends InterfaceJuego {
 		}
 
 		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)) {
-			//conejo = null;// FIXME
+			// conejo = null;// FIXME
 			System.out.println("CONEJO CHOCO CON AUTO");
 		}
 		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {

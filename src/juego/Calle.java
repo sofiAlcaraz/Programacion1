@@ -28,7 +28,7 @@ public class Calle {
 	public void deslizarHaciaAbajo(Entorno entorno) {
 		y += factorDeDesplazamiento;
 		if (y - largo / 2 > 600) {
-			y-=entorno.alto()*2;
+			y -= entorno.alto() * 2;
 		}
 	}
 
