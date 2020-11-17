@@ -51,7 +51,7 @@ public class Juego extends InterfaceJuego {
 
 		// AUDIOS
 		jump = Herramientas.cargarSonido("jump.wav");
-
+		
 		// CREA AUTOS EN LA CALLE PRIMARIA
 		autosCallePrimaria = new Auto[16];
 		double posicionEnXAutosHaciaDerecha = 0;
