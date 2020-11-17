@@ -139,7 +139,7 @@ public class Juego extends InterfaceJuego {
 		if (reloj / 100 != (reloj + 1) / 100) {
 			System.out.println(reloj / 100);
 		}
-
+		rasengans.clear();
 		// if (estaIniciado && !estáPausado) {
 
 		// if (running && !pausado) {
@@ -211,12 +211,10 @@ public class Juego extends InterfaceJuego {
 		}
 		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 			rasengans.add(conejo.disparar());
-
 		}
 		if (rasengans.size() != 0) {
 			for (Rasengan r : rasengans) {
 				if (r.destruisteAuto(autosCallePrimaria) || r.destruisteAuto(autosCalleSecundaria)) {
-
 					rasengans.remove(0);
 					puntaje += 5;
 				} else {

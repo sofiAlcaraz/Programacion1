@@ -31,7 +31,7 @@ public class Rasengan {
 	public boolean destruisteAuto(Auto[] autos) {  //FIXME
 		for (int i = 0; i < autos.length; i++) {
 			if(autos[i]!=null) {
-			if (y > autos[i].getY() - autos[i].getAltura() / 2 && y < autos[i].getY() + autos[i].getAltura() / 2) {
+			if (y <= autos[i].getY() + autos[i].getAltura() / 2) {
 				if ((autos[i].getX() - autos[i].getAncho() / 2) <= x + diametro
 						|| (autos[i].getX() + autos[i].getAncho() / 2 <= x + diametro)) {
 					System.out.println("coliciona con auto de costado");
