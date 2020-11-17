@@ -26,7 +26,7 @@ public class Juego extends InterfaceJuego {
 	private boolean partidaPausada;
 	private LinkedList<Rasengan> rasengans;
 	private Clip jump;
-
+	
 	public Juego() {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Conejo Ninja", 800, 600);
@@ -47,7 +47,7 @@ public class Juego extends InterfaceJuego {
 
 		// AUDIOS
 		jump = Herramientas.cargarSonido("jump.wav");
-
+		
 		// CREA AUTOS EN LA CALLE PRIMARIA
 		autosCallePrimaria = new Auto[16];
 		double posicionEnXAutosHaciaDerecha = 0;
