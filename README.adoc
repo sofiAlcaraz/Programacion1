@@ -7,21 +7,21 @@ v1, {docdate}. Docentes Hernan Rondelli ; Veronica Moyano (COM-01)
 :tabsize: 4
 
 == Introducción
-El Concejo Org´anico Normativo y ´Etico para la Juventud Organizada (CONEJO),
- en el marco de su campan˜a de seguridad vial, nos solicit´o el desarrollo de 
+El Consejo Organico Normativo y Etico para la Juventud Organizada (CONEJO),
+ en el marco de su campan˜a de seguridad vial, nos solicito el desarrollo de 
  un video juego para ayudar a que nin˜os y nin˜as tomen conciencia acerca de la 
- seguridad vial y del respeto a las normas de tr´ansito. Para ello, nos
- encargaron un video juego similar al cl´asico Frogger, pero con algunas
- diferencias que mencionamos a continuaci´on.
+ seguridad vial y del respeto a las normas de transito. Para ello, nos
+ encargaron un video juego similar al clasico Frogger, pero con algunas
+ diferencias que mencionaremos a continuacioón.
 
-El conejo Boss Rabbit que vive en la luna, baj´o al planeta tierra, por
- este motivo no sabe cu´ales son las normas de tr´ansito, y por ende, no 
- sabe cruzar la calle.
+El conejo Boss Rabbit vivia en la luna y bajó al planeta tierra, por
+este motivo no sabe cúales son las normas de transito, y por ende, no 
+sabe cruzar la calle.
 El objetivo del juego es hacer que el conejito pueda cruzar las calles
- sin que lo atropelle ningu´n veh´iculo (ver Figura 1). Si un veh´iculo 
+sin que lo atropelle ningun vehiculo. Si un vehiculo 
 atropella al conejito, perdemos el juego.
-Cabe aclarar, que en nuestro juego los veh´iculos y las calles se desplazan 
-constantemente hacia abajo de la pantalla, creando la ilusi´on de “avance” del 
+Cabe aclarar, que en nuestro juego los vehiculos y las calles se desplazan 
+constantemente hacia abajo de la pantalla, creando la ilusión de “avance” del 
 juego. Es decir, el conejo debe saltar hacia adelante para que no desaparezca 
 por el borde inferior de la pantalla (cuando esto u´ltimo sucede se pierde el 
 juego).
