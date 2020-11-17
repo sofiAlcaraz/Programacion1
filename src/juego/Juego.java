@@ -9,7 +9,6 @@ import entorno.Entorno;
 import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
-
 public class Juego extends InterfaceJuego {
 
 	private int reloj; // tiempo, reloj
@@ -111,16 +110,17 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
-		conejo = new Conejo(30, 30, entorno.ancho() / 2,posicionPrimerAutoCallePrimaria+420, 40, velocidadDeBajadaDePantalla);
+		conejo = new Conejo(30, 30, entorno.ancho() / 2, posicionPrimerAutoCallePrimaria + 420, 40,
+				velocidadDeBajadaDePantalla);
 
 		callePrimaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, entorno.alto() / 10,
 				velocidadDeBajadaDePantalla);
 		calleSecundaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
 				velocidadDeBajadaDePantalla);
 
-		intentos=1;
+		intentos = 1;
 		rasengans = new LinkedList<Rasengan>();
-		
+
 		// Inicia el juego!
 		entorno.iniciar();
 	}
@@ -141,7 +141,7 @@ public class Juego extends InterfaceJuego {
 		// if (estaIniciado && !estáPausado) {
 
 		// if (running && !pausado) {
-		//if(intentos!=0) {
+		// if(intentos!=0) {
 
 		callePrimaria.dibujar(entorno);
 
@@ -192,30 +192,26 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
-		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)) {
+		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
+				|| conejo.seFueDePantalla()) {
 			intentos--;
 		}
-		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {		
+		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 			rasengans.add(conejo.disparar());
-			
-			
-	   }
-		if(rasengans.size()!=0) {
-			for(Rasengan r: rasengans ) {
+
+		}
+		if (rasengans.size() != 0) {
+			for (Rasengan r : rasengans) {
 				if (!r.destruisteAuto(autosCallePrimaria) || !r.destruisteAuto(autosCalleSecundaria)) {
 					r.dibujar(entorno);
 					r.mover();
-				}	
+				}
 			}
-		}	
-		
-			
-	
-		
-		
-			if (entorno.sePresiono('p')) {
-				partidaPausada = true;
-			}
+		}
+
+		if (entorno.sePresiono('p')) {
+			partidaPausada = true;
+		}
 
 //		if (!partidaCorriendo || partidaPausada) {
 //			menu.dibujarMenu(entorno, this);
@@ -223,7 +219,7 @@ public class Juego extends InterfaceJuego {
 
 		// imprime la accion actual
 		// System.out.println(menu.getAccion());
-		
+
 	}
 
 	// si hay algún setter en el código, va a reentrega
