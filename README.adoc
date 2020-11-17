@@ -30,6 +30,69 @@ juego).
 
 == Descripción
 
+Crear el conejo ,darle movimiento,dibujarlo  y salto no fue una dificultad.
+Crear la calle y que esta se mueva tampoco, lo mismo con los autos ,no fue 
+complicado,los problemas comenzaron cuando unimos estos dos ,ya que los autos 
+se iban fuera de la calle ,para solucionarlo probamos diferentes valors en y ,
+que funcionaban pero luego  notammos los autos acumulaban un valor y subian 
+hasta salirse de la calle. Nos dimos cuenta de que la reaparición de la calle
+estaba mal ya que lo que haciamos era al "y" restarle el "y" y sumarle la mitad
+de la pantalla ,lo que hacia que  la calle aparezca nuevamente pero no donde
+se habia creado inicialmente, para solucionar este problema a la reaparicion 
+de auto y calle le pasamos el entorno y al "y" de calle lo restamos por
+entono.alto*2(600*2) y  a auto a su "y" lo restamos por entorno.alto*2(600*2),
+de esta forma ambos aparecen en la posicion que inicialmente se les habia asignado.
+
+Otro problema que tuvimos fue en la colicion del conejo al cual 
+le pasamos por parametro el juego para ver la colicion,
+a esto lo arreglamos pasandole el array de coches y modificando el 
+codigo, cambiando los codigos de juego por los del array de autos.
+
+Tambien agregamos el metodo vidas en conejo lo cual estaba mal ya que el conejo
+no sabe de sus vidas por ende en juego agregamos la variable intengtos y eliminams la 
+idea anterior.
+
+Como el largo del conejo colicionaba con los autos por mas que este en medio de un
+carril disminuimos su tamaño.
+
+Para hacer los rasengas primero los creamos en juego como prueba y como no seguia a 
+conejo  se lo pasamos al conejo en el constructor (gran error!!). 
+Luego probamos creando  un metodo en conejo y le pasamos su x e y al rasengan,creamos el rasengan
+e hicimos que se mueva dentro de este metodo lo cual no sirvio,
+ya que cada vez que se apretaba espacio se mostraba una vez( por mas que se usó "esta precionada"),
+esto era por el tick, por lo que decidimos dejar el metodo, pero hacer que este devuelva un
+rasengan(con las pociones x e y del conejo).
+Y luego los fuimos agregandolo a una lista y en un for decirles que se dibujen y se muevan,pero 
+a listas lo cambiamos por arrays,para manejarlos mejor.
+
+Tuvimos problemas con la colicion de los rasengans y autos, estos se destuian pero de a muchos,luego de revisar el
+codigo nos dimos cuenta de que las condiciones de la colicion en su respectiv metodo estaban mal,las arreglamos y 
+funciono perfectamente.En cuanto al if de juego no funcionaba bien 
+por lo tanto luego de cambiar de lugares las condiciones y lo que debia hacer cuando pase cierta cosa
+el juego funciono bien, el rasengan se elimino,se movio y dibujo bien
+tambien eliminamos un if de colicion(rasengan y autos) de frente y atras del auto ya que nos parecia de mas.
+
+Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos 
+por parameros a todos los objetos que debian 
+deslizarse una mismo variable llamada:velocidadDeBajadaDePantallade.
+
+Otro problema que tuvimos fue en el codigo de los autos(poder crearlos en cierta posicion),
+para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante
+(los cuales hicmos para una sola calle), uno de los problemas que tuvimos fue hacer 
+dos for uno de mano "izquierda" y otro de mano "derecha" ,pero estos tenian carriles de la primera 
+y segunda calle lo cual nos dificulto mucho sincronizarlos, por lo que decidimos cambiar
+estos for por un for por calle y cada uno de estos con cuatro carriles y dos manos cada uno.
+Luego pudimos hacer que estos se muevan en sincronia,unque habian algunos "camiones".
+
+Otro problema bastante facil de resolver fue hacer que reaparezcan los autos por los costados,
+estos desaparecian antes de llegar al borde ,lo cual ocurria por un +20 de mas.
+
+
+
+
+Decidimos poner las variables en el sig orden:anchura y altura, x e y, variables propias de 
+cada clase,bajadaDePantalla y color.
+Tambien decidimos crear solo dos calles y 4 carriles (8 carriles en total).
 
 
 En esta sección pueden incluirse las dificultades que tuvieron, las
