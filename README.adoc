@@ -30,27 +30,22 @@ juego).
 
 == Descripción
 
-Crear el conejo ,darle movimiento,dibujarlo  y salto no fue una dificultad.
+Crear el conejo,darle movimiento, dibujarlo y salto no fue una dificultad.
 Crear la calle y que esta se mueva tampoco, lo mismo con los autos ,no fue 
-complicado,los problemas comenzaron cuando unimos estos dos ,ya que los autos 
-se iban fuera de la calle ,para solucionarlo probamos diferentes valors en y ,
-que funcionaban pero luego  notammos los autos acumulaban un valor y subian 
+complicado, los problemas comenzaron cuando unimos estos dos (autos y calles),ya que los autos 
+se iban fuera de la calle, para solucionarlo probamos diferentes valores en y ,
+que funcionaban pero luego  notamos que los autos acumulaban un valor y subian 
 hasta salirse de la calle. Nos dimos cuenta de que la reaparición de la calle
 estaba mal ya que lo que haciamos era al "y" restarle el "y" y sumarle la mitad
-de la pantalla ,lo que hacia que  la calle aparezca nuevamente pero no donde
+de la pantalla, lo que hacia que  la calle aparezca nuevamente pero no donde
 se habia creado inicialmente, para solucionar este problema a la reaparicion 
 de auto y calle le pasamos el entorno y al "y" de calle lo restamos por
 entono.alto*2(600*2) y  a auto a su "y" lo restamos por entorno.alto*2(600*2),
 de esta forma ambos aparecen en la posicion que inicialmente se les habia asignado.
 
-Otro problema que tuvimos fue en la colicion del conejo al cual 
-le pasamos por parametro el juego para ver la colicion,
-a esto lo arreglamos pasandole el array de coches y modificando el 
-codigo, cambiando los codigos de juego por los del array de autos.
-
-Tambien agregamos el metodo vidas en conejo lo cual estaba mal ya que el conejo
-no sabe de sus vidas por ende en juego agregamos la variable intengtos y eliminams la 
-idea anterior.
+Tambien agregamos la varible vidas en conejo lo cual estaba mal ya que el conejo
+no sabe de sus vidas por ende en juego agregamos la variable intentos y eliminamos la 
+idea anterior.[..]
 
 Como el largo del conejo colicionaba con los autos por mas que este en medio de un
 carril disminuimos su tamaño.
@@ -65,11 +60,11 @@ rasengan(con las pociones x e y del conejo).
 Y luego los fuimos agregandolo a una lista y en un for decirles que se dibujen y se muevan,pero 
 a listas lo cambiamos por arrays,para manejarlos mejor.
 
-Tuvimos problemas con la colicion de los rasengans y autos, estos se destuian pero de a muchos,luego de revisar el
-codigo nos dimos cuenta de que las condiciones de la colicion en su respectiv metodo estaban mal,las arreglamos y 
-funciono perfectamente.En cuanto al if de juego no funcionaba bien 
+Tuvimos problemas con la colicion de los rasengans y autos, estos se destruian pero de a muchos,luego de revisar el
+codigo nos dimos cuenta de que las condiciones de la colicion en su respectivo metodo estaban mal,las arreglamos y 
+funciono perfectamente. En cuanto al if de juego no funcionaba bien 
 por lo tanto luego de cambiar de lugares las condiciones y lo que debia hacer cuando pase cierta cosa
-el juego funciono bien, el rasengan se elimino,se movio y dibujo bien
+el juego funcionó bien, el rasengan se elimino,se movio y dibujo bien
 tambien eliminamos un if de colicion(rasengan y autos) de frente y atras del auto ya que nos parecia de mas.
 
 Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos 
