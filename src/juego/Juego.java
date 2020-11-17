@@ -13,8 +13,6 @@ public class Juego extends InterfaceJuego {
 
 	private int reloj; // tiempo, reloj
 
-	
-
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private double velocidadDeBajadaDePantalla;
@@ -29,7 +27,8 @@ public class Juego extends InterfaceJuego {
 	private LinkedList<Rasengan> rasengans;
 	private Clip jump;
 	private int intentos;
-	
+	private int puntaje;
+	private int saltos;
 
 	public Juego() {
 		// Inicializa el objeto entorno
@@ -49,7 +48,7 @@ public class Juego extends InterfaceJuego {
 		int posicionPrimerAutoCallePrimaria = extremoInferiorCallePrimaria - espacioEntreAutos - altoDelAuto / 2;
 		int posicionDelSiguienteAuto = espacioEntreAutos + altoDelAuto;
 		int posicionDelPrimerAutoCalleSecundaria = extremoInferiorCalleSecundaria - espacioEntreAutos - altoDelAuto / 2;
-		
+
 		// AUDIOS
 		jump = Herramientas.cargarSonido("jump.wav");
 
@@ -123,7 +122,6 @@ public class Juego extends InterfaceJuego {
 
 		intentos = 1;
 		rasengans = new LinkedList<Rasengan>();
-		
 
 		// Inicia el juego!
 		entorno.iniciar();
@@ -141,7 +139,6 @@ public class Juego extends InterfaceJuego {
 		if (reloj / 100 != (reloj + 1) / 100) {
 			System.out.println(reloj / 100);
 		}
-		
 
 		// if (estaIniciado && !estáPausado) {
 
@@ -155,7 +152,15 @@ public class Juego extends InterfaceJuego {
 
 		calleSecundaria.dibujar(entorno);
 		entorno.cambiarFont(Integer.toString(reloj), 30, Color.MAGENTA);
-		entorno.escribirTexto(Integer.toString(reloj/100),30 , 30);
+		entorno.escribirTexto(Integer.toString(reloj / 100), 30, 30);
+		entorno.cambiarFont("", 30, Color.PINK);
+		entorno.escribirTexto("saltos:", entorno.ancho() /2-100, 30);
+		entorno.cambiarFont(Integer.toString(saltos), 30, Color.PINK);
+		entorno.escribirTexto(Integer.toString(saltos), entorno.ancho() / 2, 30);
+		entorno.cambiarFont("", 30, Color.PINK);
+		entorno.escribirTexto("Puntos:", 550, 30);
+		entorno.cambiarFont(Integer.toString(puntaje), 30, Color.PINK);
+		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
 
 		// Conejo
 		conejo.esperar();
@@ -163,6 +168,7 @@ public class Juego extends InterfaceJuego {
 
 		if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
 			conejo.saltar();
+			saltos++;
 			jump.start();
 		}
 
@@ -212,7 +218,9 @@ public class Juego extends InterfaceJuego {
 				if (!r.destruisteAuto(autosCallePrimaria) || !r.destruisteAuto(autosCalleSecundaria)) {
 					r.dibujar(entorno);
 					r.mover();
+
 				}
+				puntaje += 5;
 			}
 		}
 
