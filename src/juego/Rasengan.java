@@ -70,10 +70,7 @@ public class Rasengan {
 		return false;
 	}
 
-	public double getY() {
-		return y;
-	}
-
+//	
 //	public boolean destruisteAuto(Auto[] autos) {  //FIXME
 //		for (int i = 0; i < autos.length; i++) {
 //			if(autos[i]!=null) {
