@@ -9,31 +9,29 @@ import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
+	// Constantes
+	private final String SONIDO_SALTO = "jump.wav";
 
-	private int reloj; // tiempo, reloj
+	private final int altoDelAuto = 42;
+	private final int altoDeLaCalle = 220;
+	private final int anchoDeAuto = 50;
+	private final double velocidadDeBajadaDePantalla = 1;
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
-	private double velocidadDeBajadaDePantalla;
 	private Conejo conejo;
-	private Calle callePrimaria; // calleAngosta
-	private Calle calleSecundaria; // calleSuperior,
+	private Calle callePrimaria;
+	private Calle calleSecundaria;
 	private Auto[] autosCalleSecundaria;
 	private Auto[] autosCallePrimaria;
-	private Rasengan[] rasengans; // lista mutable de los Rasengans
+	private Rasengan[] rasengans;
 //	Menu menu = new Menu();
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
-
-//	private Clip jump;
-	private final String SONIDO_SALTO = "jump.wav";
-
-	private int intentos;
+	private int reloj;
+	// private int intentos;
 	private int puntaje;
 	private int saltos;
-
-	private int altoDelAuto;
-	private int altoDeLaCalle;
 	private int extremoInferiorCallePrimaria;
 	private int extremoInferiorCalleSecundaria;
 	private int espacioEntreAutos;
@@ -42,8 +40,6 @@ public class Juego extends InterfaceJuego {
 	private int posicionDelPrimerAutoCalleSecundaria;
 	private double posicionInicialHorizontalDeAutosSentidoDerecho; // Okay
 	private double posicionEnXAutosHaciaIzquierda;
-	private int posRasengan;
-	private int anchoDeAuto;
 
 	public Juego() {
 		// Inicializa el objeto entorno
@@ -51,11 +47,9 @@ public class Juego extends InterfaceJuego {
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
-		velocidadDeBajadaDePantalla = 1;
-		anchoDeAuto = 50;
+
 		// buscar simetria entre autos
-		altoDelAuto = 42;
-		altoDeLaCalle = 220;
+
 		extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
 		extremoInferiorCalleSecundaria = entorno.alto() / 10 * -9 + altoDeLaCalle / 2;
 		espacioEntreAutos = (altoDeLaCalle - (altoDelAuto * 4)) / 5;
@@ -135,7 +129,7 @@ public class Juego extends InterfaceJuego {
 		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
 
-		intentos = 1;
+		// intentos = 1;
 		rasengans = new Rasengan[200];
 		// Inicia el juego!
 		entorno.iniciar();
@@ -175,7 +169,7 @@ public class Juego extends InterfaceJuego {
 
 		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
 				|| conejo.seFueDePantalla()) {
-			intentos--;
+			// intentos--;
 		}
 
 		callePrimaria.deslizarHaciaAbajo(entorno);
@@ -243,36 +237,66 @@ public class Juego extends InterfaceJuego {
 
 	}
 
+//	private void reaparecerAutosEliminados(Auto[] autos) {
+//
+//		for (int l = 0; l < autos.length; l++) { // FIXME
+//			if (autos[l] == null && l < 4) {
+//				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho+reloj,
+//						posicionPrimerAutoCallePrimaria + (callePrimaria.posicionVertical() - posicionDelSiguienteAuto - espacioEntreAutos),
+//						2, false, velocidadDeBajadaDePantalla, Color.CYAN);
+//				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
+//				reloj=0;
+//			}
+//			if (autos[l] == null && l >= 4 && l < 8) {
+//				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
+//						posicionPrimerAutoCallePrimaria + (callePrimaria.posicionVertical() - posicionDelSiguienteAuto - 
+//								 espacioEntreAutos - anchoDeAuto),
+//						1, true, velocidadDeBajadaDePantalla, Color.MAGENTA);
+//				posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
+//			}
+//			if (autos[l] == null && l >= 8 && l < 12) {
+//				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
+//						posicionPrimerAutoCallePrimaria + (callePrimaria.posicionVertical() - posicionDelSiguienteAuto * 2
+//								  - espacioEntreAutos - anchoDeAuto),
+//						2, false, velocidadDeBajadaDePantalla, Color.GREEN);
+//				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
+//			} else if (autos[l] == null && l >= 12 && l < 16) {
+//				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
+//						posicionPrimerAutoCallePrimaria +(callePrimaria.posicionVertical() - posicionDelSiguienteAuto * 3
+//								  - espacioEntreAutos - anchoDeAuto),
+//						1, true, velocidadDeBajadaDePantalla, Color.YELLOW);
+//				posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
+//			}
+//		}
+//	}
 	private void reaparecerAutosEliminados(Auto[] autos) {
-
-		for (int l = 0; l < autos.length; l++) { // FIXME
+		System.out.println(reloj);
+		for (int l = 0; l < autos.length; l++) {
 			if (autos[l] == null && l < 4) {
-//				if (reloj < 500) {
-//					System.out.println(reloj);
-//					reloj = 0; // piensenlon
-//				}
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
-						posicionPrimerAutoCallePrimaria + (callePrimaria.posicionVertical() - posicionDelSiguienteAuto - espacioEntreAutos),
+						posicionPrimerAutoCallePrimaria + callePrimaria.posicionVertical() - espacioEntreAutos
+								- anchoDeAuto,
 						2, false, velocidadDeBajadaDePantalla, Color.CYAN);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
+				reloj = 0;
 			}
 			if (autos[l] == null && l >= 4 && l < 8) {
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
-						posicionPrimerAutoCallePrimaria + (callePrimaria.posicionVertical() - posicionDelSiguienteAuto - 
-								 espacioEntreAutos - anchoDeAuto),
+						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto + callePrimaria.posicionVertical()
+								- espacioEntreAutos - anchoDeAuto,
 						1, true, velocidadDeBajadaDePantalla, Color.MAGENTA);
 				posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
 			}
 			if (autos[l] == null && l >= 8 && l < 12) {
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
-						posicionPrimerAutoCallePrimaria + (callePrimaria.posicionVertical() - posicionDelSiguienteAuto * 2
-								  - espacioEntreAutos - anchoDeAuto),
+						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 2
+								+ callePrimaria.posicionVertical() - espacioEntreAutos - anchoDeAuto,
 						2, false, velocidadDeBajadaDePantalla, Color.GREEN);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
 			} else if (autos[l] == null && l >= 12 && l < 16) {
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
-						posicionPrimerAutoCallePrimaria +(callePrimaria.posicionVertical() - posicionDelSiguienteAuto * 3
-								  - espacioEntreAutos - anchoDeAuto),
+						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 3
+								+ callePrimaria.posicionVertical() - espacioEntreAutos - anchoDeAuto,
 						1, true, velocidadDeBajadaDePantalla, Color.YELLOW);
 				posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
 			}
