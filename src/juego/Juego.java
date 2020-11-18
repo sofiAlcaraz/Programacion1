@@ -1,10 +1,6 @@
 package juego;
 
 import java.awt.Color;
-import java.awt.Image;
-
-import javax.sound.sampled.Clip;
-
 import entorno.Entorno;
 import entorno.Herramientas;
 import entorno.InterfaceJuego;
@@ -16,7 +12,7 @@ public class Juego extends InterfaceJuego {
 	private final int altoDelAuto = 42;
 	private final int altoDeLaCalle = 220;
 	private final int anchoDeAuto = 50;
-	private final double velocidadDeBajadaDePantalla = 2;
+	private final double velocidadDeBajadaDePantalla = 1;
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
@@ -132,8 +128,9 @@ public class Juego extends InterfaceJuego {
 				velocidadDeBajadaDePantalla);
 		
 		
-		// intentos = 1;ñññññññññññ
+		// intentos = 1;
 		// Inicia el juego!
+		entorno.iniciar();
 		
 	}
 
@@ -145,7 +142,6 @@ public class Juego extends InterfaceJuego {
 	 */
 	public void tick() {
 		// Procesamiento de un instante de tiempo
-		
 		temporizadorAutos++;
 		reloj++;
 
