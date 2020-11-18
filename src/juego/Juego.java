@@ -27,6 +27,8 @@ public class Juego extends InterfaceJuego {
 	private LinkedList<Rasengan> rasengans;
 	private Clip jump;
 	private int intentos;
+	private int puntaje;
+	private int saltos;
 
 	public Juego() {
 		// Inicializa el objeto entorno
@@ -149,6 +151,16 @@ public class Juego extends InterfaceJuego {
 		calleSecundaria.deslizarHaciaAbajo(entorno);
 
 		calleSecundaria.dibujar(entorno);
+		entorno.cambiarFont(Integer.toString(reloj), 30, Color.MAGENTA);
+		entorno.escribirTexto(Integer.toString(reloj / 100), 30, 30);
+		entorno.cambiarFont("", 30, Color.PINK);
+		entorno.escribirTexto("saltos:", entorno.ancho() /2-100, 30);
+		entorno.cambiarFont(Integer.toString(saltos), 30, Color.PINK);
+		entorno.escribirTexto(Integer.toString(saltos), entorno.ancho() / 2, 30);
+		entorno.cambiarFont("", 30, Color.PINK);
+		entorno.escribirTexto("Puntos:", 550, 30);
+		entorno.cambiarFont(Integer.toString(puntaje), 30, Color.PINK);
+		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
 
 		// Conejo
 		conejo.esperar();
@@ -156,6 +168,7 @@ public class Juego extends InterfaceJuego {
 
 		if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
 			conejo.saltar();
+			saltos++;
 			jump.start();
 		}
 
@@ -205,7 +218,9 @@ public class Juego extends InterfaceJuego {
 				if (!r.destruisteAuto(autosCallePrimaria) || !r.destruisteAuto(autosCalleSecundaria)) {
 					r.dibujar(entorno);
 					r.mover();
+
 				}
+				puntaje += 5;
 			}
 		}
 
