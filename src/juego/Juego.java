@@ -1,6 +1,7 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
 
 import javax.sound.sampled.Clip;
 
@@ -41,6 +42,7 @@ public class Juego extends InterfaceJuego {
 	private int posicionDelPrimerAutoCalleSecundaria;
 	private double posicionInicialHorizontalDeAutosSentidoDerecho; // Okay
 	private double posicionEnXAutosHaciaIzquierda;
+
 
 	public Juego() {
 		// Inicializa el objeto entorno
@@ -128,10 +130,11 @@ public class Juego extends InterfaceJuego {
 				velocidadDeBajadaDePantalla);
 		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
-
+		
+		
 		// intentos = 1;ñññññññññññ
 		// Inicia el juego!
-		entorno.iniciar();
+		
 	}
 
 	/**
@@ -142,6 +145,7 @@ public class Juego extends InterfaceJuego {
 	 */
 	public void tick() {
 		// Procesamiento de un instante de tiempo
+		
 		temporizadorAutos++;
 		reloj++;
 
