@@ -28,17 +28,12 @@ public class Rasengan {
 	}
 
 	public boolean saleDePantalla() {
-		if (this.y + this.diametro < 0)
+		if (y + diametro < 0)
 			return true;
 
 		return false;
 	}
-	
-	
-	/*
-	 * EL METODO DEVUELVE UN ENTERO PARA CONTROLAR LA DESTRUCCION DE UN AUTO. USA EL
-	 * METODO INTERNO "COLISIONASTE", PARA COMPROBAR CON QUE AUTO COLISIONO
-	 */
+
 	public boolean destruirAuto(Auto[] autos) {
 		for (int i = 0; i < autos.length; i++) {
 
@@ -50,43 +45,38 @@ public class Rasengan {
 		return false;
 	}
 
-      
+	/*
+	 * El metodo "colicionaste" gestiona la colision "RECTANGULO-CIRCULO" para
+	 * controlar si el rasengan colisiono con algun auto.
+	 */
+	private boolean colisionaste(Auto auto) { // fijense si pueden pensar algun otro nombre
+		// el auto es un rectangulo
+		double x1 = this.x;
+		double y1 = this.y;
 
+		if (this.x < auto.getX()) {
+			x1 = auto.getX(); // lado izquierdo
+		} else if (this.x > auto.getX() + auto.getAncho()) {
+			x1 = auto.getX() + auto.getAncho(); // lado derecho
+		}
+		if (this.y < auto.getY()) {
+			y1 = auto.getY(); // lado superior
+		} else if (this.y > auto.getY() + auto.getAltura()) {
+			y1 = auto.getY() + auto.getAltura(); // lado inferior
+		}
+		double distX = this.x - x1;
+		double distY = this.y - y1;
+		double distance = Math.sqrt((distX * distX) + (distY * distY));
 
-        /*
-        EL METODO "COLISIONASTE" GESTIONA LA COLISION "RECTANGULO-CIRCULO"
-        PARA CONTROLAR CUANDO EL RASENGAN COLISIONO CON UN AUTO
-        */
-        private boolean colisionaste(Auto auto) // fijense si pueden pensar algun otro nombre
-        {
-            // el auto es un rectangulo
-            double x1 = this.x;
-            double y1 = this.y;
-            
-            if(this.x < auto.getX())
-                x1 = auto.getX(); // lado izquierdo
-            else if(this.x > auto.getX()+auto.getAncho())
-                x1 = auto.getX()+auto.getAncho(); // lado derecho
-            
-            if(this.y < auto.getY())
-                y1 = auto.getY(); // lado superior
-            else if(this.y > auto.getY()+auto.getAltura())
-                y1 = auto.getY()+auto.getAltura(); // lado inferior
-            
-            double distX = this.x-x1;
-            double distY = this.y-y1;
-            double distance = Math.sqrt((distX*distX)+(distY*distY));
-            
-            if(distance <= this.diametro)
-                return true;
-            
-            return false;
-        }
+		if (distance <= this.diametro) {
+			return true;
+		}
+		return false;
+	}
 
-	public double getY()    {
+	public double getY() {
 
 		return y;
 	}
-
 
 }
