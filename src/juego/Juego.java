@@ -26,16 +26,18 @@ public class Juego extends InterfaceJuego {
 	private boolean partidaPausada;
 	private LinkedList<Rasengan> rasengans;
 	private Clip jump;
-	
+	private int intentos;
+
 	public Juego() {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Conejo Ninja", 800, 600);
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
-		velocidadDeBajadaDePantalla = 0.5;
+		velocidadDeBajadaDePantalla = 1;
 
 		// BUSCAR SIMETRIA ENTRE DISTANCIA DE AUTOS
+
 		int altoDelAuto = 42;
 		int altoDeLaCalle = 220;
 		int extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
@@ -108,12 +110,16 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
-		conejo = new Conejo(50, 30, entorno.ancho() / 2, entorno.alto() * 0.75, 40, velocidadDeBajadaDePantalla);
+		conejo = new Conejo(30, 30, entorno.ancho() / 2, posicionPrimerAutoCallePrimaria + 420, 40,
+				velocidadDeBajadaDePantalla);
 
 		callePrimaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, entorno.alto() / 10,
 				velocidadDeBajadaDePantalla);
 		calleSecundaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
 				velocidadDeBajadaDePantalla);
+
+		intentos = 1;
+		rasengans = new LinkedList<Rasengan>();
 
 		// Inicia el juego!
 		entorno.iniciar();
@@ -135,11 +141,12 @@ public class Juego extends InterfaceJuego {
 		// if (estaIniciado && !estáPausado) {
 
 		// if (running && !pausado) {
+		// if(intentos!=0) {
 
 		callePrimaria.dibujar(entorno);
 
-		callePrimaria.deslizarHaciaAbajo();
-		calleSecundaria.deslizarHaciaAbajo();
+		callePrimaria.deslizarHaciaAbajo(entorno);
+		calleSecundaria.deslizarHaciaAbajo(entorno);
 
 		calleSecundaria.dibujar(entorno);
 
@@ -174,31 +181,36 @@ public class Juego extends InterfaceJuego {
 		for (Auto a : autosCallePrimaria) {
 			if (a != null) {
 				a.dibujar(entorno);
-				a.mover(entorno, callePrimaria);
+				a.mover(entorno);
 			}
 		}
 
 		for (Auto a : autosCalleSecundaria) {
 			if (a != null) {
 				a.dibujar(entorno);
-				a.mover(entorno, calleSecundaria);
+				a.mover(entorno);
 			}
 		}
 
-		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)) {
-			conejo = null;// FIXME
-			System.out.println("CONEJO CHOCO CON AUTO");
+		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
+				|| conejo.seFueDePantalla()) {
+			intentos--;
 		}
 		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 			rasengans.add(conejo.disparar());
-			// pasado cierto tiempo o llegada cierta y ..matarlo
-			// con un for each y matarlos o..un metodo,pero con este no se me ocurre como
-			// }
 
-			if (entorno.sePresiono('p')) {
-				partidaPausada = true;
+		}
+		if (rasengans.size() != 0) {
+			for (Rasengan r : rasengans) {
+				if (!r.destruisteAuto(autosCallePrimaria) || !r.destruisteAuto(autosCalleSecundaria)) {
+					r.dibujar(entorno);
+					r.mover();
+				}
 			}
+		}
 
+		if (entorno.sePresiono('p')) {
+			partidaPausada = true;
 		}
 
 //		if (!partidaCorriendo || partidaPausada) {

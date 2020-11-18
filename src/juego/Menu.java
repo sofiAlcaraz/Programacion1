@@ -49,24 +49,9 @@
 //            accion = "jugar";
 //        }
 //    }
-//    
-//<<<<<<< HEAD
-//    private void ejecutarAccion(Entorno entorno, Juego juego)
-//    {
-//        if(entorno.sePresiono('x'))
-//        {
-//            if(accion == "jugar")
-//            {
-//            	
-//               // juego.setRunning(true);
-//               // juego.setPausado(false);
-//            }
-//            if(accion == "salir")
-//            {
-//               System.exit(0);
-//            }
-//        }
-//    }
+
+  
+
 //=======
 ////    private void ejecutarAccion(Entorno entorno, Juego juego)
 ////    {
@@ -91,6 +76,7 @@
 //    }
 //    
 //<<<<<<< HEAD
+
 //    private void botonJugar(Entorno entorno)
 //    {//FIXME
 //        entorno.dibujarRectangulo(POSICION_DEL_BOTON_JUGAR_X, jugarBotonPosY, 150, 50, 0, Color.GREEN);
@@ -110,6 +96,7 @@
 //    public String getAccion()
 //    {
 //        return this.accion;
-//    }
+
 //
 //}
+

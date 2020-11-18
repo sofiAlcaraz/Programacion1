@@ -30,18 +30,18 @@ public class Auto {
 		entorno.dibujarRectangulo(x, y, ancho, alto, 0, color);// cambie direccion por cero ya que no lo vamos a usar
 	}
 
-	public void mover(Entorno entorno, Calle calle) {
+	public void mover(Entorno entorno) {
 		y += this.bajadaDePantalla;
 		if (y - ancho / 2 > 600) {
-			y = -200;
+			y -= entorno.alto() * 2;
 		}
 		if (sentido) {
-			if (x - ancho - velocidad < 20) {
+			if (x - ancho / 2 - velocidad < 0) {
 				x = entorno.ancho();
 			} else {
 				x -= velocidad;
 			}
-		} else if (x + ancho + velocidad > entorno.ancho() + 20) {
+		} else if (x + ancho / 2 + velocidad > entorno.ancho()) {
 			x = 0;
 		} else {
 			x += velocidad;

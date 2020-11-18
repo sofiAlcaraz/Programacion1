@@ -40,7 +40,7 @@ public class Conejo {
 	public void saltar() {
 
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
-			y = altura / 2;
+			y = altura;
 		} else {
 			y -= velocidadDeSalto;
 		}
@@ -69,15 +69,24 @@ public class Conejo {
 		return new Rasengan(x, y);
 	}
 
-	public boolean chocasteAlgunAuto(Auto[] autos) {
+	public boolean seFueDePantalla() {
+		if (y + altura / 2 > 600) {
+			return true;
+		}
+		return true;
+	}
+
+	public boolean chocasteAlgunAuto(Auto[] autos) { // agregue null para disparar
 		for (int i = 0; i < autos.length; i++) {
-			if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
-					&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
-				return true;
-			}
-			if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
-					&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
-				return true;
+			if (autos[i] != null) {
+				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
+						&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
+					return true;
+				}
+				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
+						&& y < autos[i].getY() + autos[i].getAltura() && y + altura > autos[i].getY()) {
+					return true;
+				}
 			}
 		}
 		return false;
