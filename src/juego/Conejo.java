@@ -30,7 +30,7 @@ public class Conejo {
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarRectangulo(x, y, altura, ancho, -Math.PI / 2, pelaje);
+		entorno.dibujarRectangulo(x, y, altura, ancho,0, pelaje);// -Math.PI / 2
 	}
 	
 	public void hacerSonidoDeSalto() {
@@ -80,7 +80,7 @@ public class Conejo {
 		return true;
 	}
 
-	public boolean chocasteAlgunAuto(Auto[] autos) { // agregue null para disparar
+	public boolean chocasteAlgunAuto(Auto[] autos) {
 		for (int i = 0; i < autos.length; i++) {
 			if (autos[i] != null) {
 				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
