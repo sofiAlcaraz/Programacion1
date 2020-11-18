@@ -28,23 +28,16 @@ public class Rasengan {
 		y -= velocidad;
 	}
 
-	public boolean destruisteAuto(Auto[] autos) {  //FIXME
+	public boolean destruisteAuto(Auto[] autos) { // FIXME
 		for (int i = 0; i < autos.length; i++) {
-			if(autos[i]!=null) {
-			if (y > autos[i].getY() - autos[i].getAltura() / 2 && y < autos[i].getY() + autos[i].getAltura() / 2) {
-				if ((autos[i].getX() - autos[i].getAncho() / 2) <= x + diametro
-						|| (autos[i].getX() + autos[i].getAncho() / 2 <= x + diametro)) {
+			if (autos[i] != null && y + diametro <= autos[i].getY() + autos[i].getAltura() / 2
+					&& x + diametro >= autos[i].getX() - autos[i].getAncho() / 2
+					&& x + diametro <= autos[i].getX() + autos[i].getAncho() / 2) {
+				{
 					System.out.println("coliciona con auto de costado");
-					
 					return true;
 				}
 			}
-			if (y == (autos[i].getY() + autos[i].getAltura() / 2) && x == autos[i].getX()) {
-				System.out.println("coliciona con auto de frente");
-				autos[i]=null;
-				return true;
-			}
-		}
 		}
 		return false;
 	}
@@ -53,5 +46,25 @@ public class Rasengan {
 		return y;
 	}
 
-	
+//	public boolean destruisteAuto(Auto[] autos) {  //FIXME
+//		for (int i = 0; i < autos.length; i++) {
+//			if(autos[i]!=null) {
+//			if (y > autos[i].getY() - autos[i].getAltura() / 2 && y < autos[i].getY() + autos[i].getAltura() / 2) {
+//				if ((autos[i].getX() - autos[i].getAncho() / 2) <= x + diametro
+//						|| (autos[i].getX() + autos[i].getAncho() / 2 <= x + diametro)) {
+//					System.out.println("coliciona con auto de costado");
+//					
+//					return true;
+//				}
+//			}
+//			if (y == (autos[i].getY() + autos[i].getAltura() / 2) && x == autos[i].getX()) {
+//				System.out.println("coliciona con auto de frente");
+//				autos[i]=null;
+//				return true;
+//			}
+//		}
+//		}
+//		return false;
+//	}
+
 }
