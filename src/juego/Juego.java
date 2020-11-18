@@ -56,7 +56,7 @@ public class Juego extends InterfaceJuego {
 		altoDelAuto = 42;
 		altoDeLaCalle = 220;
 		extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
-		extremoInferiorCalleSecundaria = entorno.alto() / 10 * -4 + altoDeLaCalle / 2;
+		extremoInferiorCalleSecundaria = entorno.alto() / 10 * -9 + altoDeLaCalle / 2;
 		espacioEntreAutos = (altoDeLaCalle - (altoDelAuto * 4)) / 5;
 		posicionPrimerAutoCallePrimaria = extremoInferiorCallePrimaria - espacioEntreAutos - altoDelAuto / 2;
 		posicionDelSiguienteAuto = espacioEntreAutos + altoDelAuto;
@@ -127,7 +127,7 @@ public class Juego extends InterfaceJuego {
 
 		callePrimaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, entorno.alto() / 10,
 				velocidadDeBajadaDePantalla);
-		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
+		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
 
 		intentos = 1;
