@@ -14,7 +14,7 @@ public class Rasengan {
 	public Rasengan(double x, double y) {
 		this.x = x;
 		this.y = y;
-		this.velocidad = 20;
+		this.velocidad = 5;
 		this.color = Color.YELLOW;
 		this.diametro = 20;
 
@@ -30,10 +30,11 @@ public class Rasengan {
 
 	public boolean destruisteAuto(Auto[] autos) { // FIXME
 		for (int i = 0; i < autos.length; i++) {
-			if (autos[i] != null && y + diametro >= autos[i].getY() - autos[i].getAltura() / 2 && y + diametro <= autos[i].getY() + autos[i].getAltura() / 2
-					&& x + diametro >= autos[i].getX() - autos[i].getAncho() / 2
-					&& x + diametro <= autos[i].getX() + autos[i].getAncho() / 2) {
+			if (autos[i] != null && y >= autos[i].getY() - autos[i].getAltura() / 2 && y <= autos[i].getY() + autos[i].getAltura() / 2
+					&& x  >= autos[i].getX() - autos[i].getAncho() / 2
+					&& x  <= autos[i].getX() + autos[i].getAncho() / 2) {
 				{
+					autos[i] = null;
 					System.out.println("coliciona con auto de costado");
 					return true;
 				}
