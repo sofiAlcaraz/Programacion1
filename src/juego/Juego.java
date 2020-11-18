@@ -216,7 +216,7 @@ public class Juego extends InterfaceJuego {
 		if (rasengans.size() != 0) {
 			for (Rasengan r : rasengans) {
 				if (r.destruisteAuto(autosCallePrimaria) || r.destruisteAuto(autosCalleSecundaria)) {
-
+					
 					rasengans.remove(0);
 					puntaje += 5;
 				} else {
