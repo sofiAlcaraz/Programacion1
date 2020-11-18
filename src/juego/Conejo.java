@@ -30,9 +30,9 @@ public class Conejo {
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarRectangulo(x, y, altura, ancho,0, pelaje);// -Math.PI / 2
+		entorno.dibujarRectangulo(x, y, altura, ancho, 0, pelaje);// -Math.PI / 2
 	}
-	
+
 	public void hacerSonidoDeSalto() {
 		Herramientas.cargarSonido("jump.wav").start();
 	}
@@ -70,7 +70,7 @@ public class Conejo {
 	}
 
 	public Rasengan disparar() {
-            return new Rasengan(x, y);
+		return new Rasengan(x, y);
 	}
 
 	public boolean seFueDePantalla() {
