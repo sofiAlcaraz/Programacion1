@@ -34,50 +34,34 @@ public class Rasengan {
 		return false;
 	}
 
-	public boolean destruirAuto(Auto autos) {
-		 if (autos != null && this.colisionaste(autos)) {
-				return true;
-			
-		}
-		return false;
-	}
-	
-//	public boolean destruirAuto(Auto[] autos) {
-//		for (int i = 0; i < autos.length; i++) {
-//
-//			if (autos[i] != null && this.colisionaste(autos[i])) {
-//				autos[i] = null;
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-
 	/*
 	 * El metodo "colicionaste" gestiona la colision "RECTANGULO-CIRCULO" para
 	 * controlar si el rasengan colisiono con algun auto.
 	 */
-	private boolean colisionaste(Auto auto) { // fijense si pueden pensar algun otro nombre
-		// el auto es un rectangulo
-		double x1 = this.x;
-		double y1 = this.y;
+	public boolean colisionasteConAuto(Auto auto) {
 
-		if (this.x < auto.getX()) {
-			x1 = auto.getX(); // lado izquierdo
-		} else if (this.x > auto.getX() + auto.getAncho()) {
-			x1 = auto.getX() + auto.getAncho(); // lado derecho
-		}
-		if (this.y < auto.getY()) {
-			y1 = auto.getY(); // lado superior
-		} else if (this.y > auto.getY() + auto.getAltura()) {
-			y1 = auto.getY() + auto.getAltura(); // lado inferior
-		}
-		double distX = this.x - x1;
-		double distY = this.y - y1;
-		double distance = Math.sqrt((distX * distX) + (distY * distY));
+		if (auto != null) {
+			// el auto es un rectangulo
+			double x1 = x;
+			double y1 = y;
 
-		if (distance <= this.diametro) {
-			return true;
+			if (this.x < auto.getX()) {
+				x1 = auto.getX(); // lado izquierdo
+			} else if (this.x > auto.getX() + auto.getAncho()) {
+				x1 = auto.getX() + auto.getAncho(); // lado derecho
+			}
+			if (this.y < auto.getY()) {
+				y1 = auto.getY(); // lado superior
+			} else if (this.y > auto.getY() + auto.getAltura()) {
+				y1 = auto.getY() + auto.getAltura(); // lado inferior
+			}
+			double distX = this.x - x1;
+			double distY = this.y - y1;
+			double distance = Math.sqrt((distX * distX) + (distY * distY));
+
+			if (distance <= this.diametro) {
+				return true;
+			}
 		}
 		return false;
 	}

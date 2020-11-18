@@ -129,7 +129,7 @@ public class Juego extends InterfaceJuego {
 		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
 
-		// intentos = 1;
+		// intentos = 1;ñññññññññññ
 		// Inicia el juego!
 		entorno.iniciar();
 	}
@@ -197,15 +197,15 @@ public class Juego extends InterfaceJuego {
 		}
 
 		if (rasengan != null && rasengan.saleDePantalla()) {
-			rasengan= null;
+			rasengan = null;
 		}
-		if (rasengan!= null) {
+		if (rasengan != null) {
 			rasengan.dibujar(entorno);
 			rasengan.mover();
 		}
 
 		for (int k = 0; k < autosCallePrimaria.length; k++) {
-			if (rasengan != null && rasengan.destruirAuto(autosCallePrimaria[k])
+			if (rasengan != null && rasengan.colisionasteConAuto(autosCallePrimaria[k])
 					&& autosCallePrimaria[k].getSentido() == true) {
 
 				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX() - entorno.ancho(),
@@ -213,10 +213,10 @@ public class Juego extends InterfaceJuego {
 						autosCallePrimaria[k].getSentido(), autosCallePrimaria[k].getBajadaDePantalla(),
 						autosCallePrimaria[k].getColor());
 				autosCallePrimaria[k] = autoRegenerado;
-				rasengan= null;
+				rasengan = null;
 				puntaje += 5;
 
-			} else if (rasengan != null && rasengan.destruirAuto(autosCallePrimaria[k])
+			} else if (rasengan != null && rasengan.colisionasteConAuto(autosCallePrimaria[k])
 					&& autosCallePrimaria[k].getSentido() == false) {
 
 				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX() + entorno.ancho(),
@@ -232,7 +232,7 @@ public class Juego extends InterfaceJuego {
 		}
 
 		for (int m = 0; m < autosCalleSecundaria.length; m++) {
-			if (rasengan != null && rasengan.destruirAuto(autosCalleSecundaria[m])
+			if (rasengan != null && rasengan.colisionasteConAuto(autosCalleSecundaria[m])
 					&& autosCalleSecundaria[m].getSentido() == true) {
 
 				Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
@@ -243,7 +243,7 @@ public class Juego extends InterfaceJuego {
 				rasengan = null;
 				puntaje += 5;
 
-			} else if (rasengan != null && rasengan.destruirAuto(autosCalleSecundaria[m])
+			} else if (rasengan != null && rasengan.colisionasteConAuto(autosCalleSecundaria[m])
 					&& autosCalleSecundaria[m].getSentido() == false) {
 
 				Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
@@ -283,7 +283,6 @@ public class Juego extends InterfaceJuego {
 // System.out.println(menu.getAccion());
 
 //	}
-
 
 //	private void reaparecerAutosEliminados(Auto[] autos) {
 //		if (temporizadorAutos >= 200) {
