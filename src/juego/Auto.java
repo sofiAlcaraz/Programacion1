@@ -50,12 +50,12 @@ public class Auto {
 		}
 		if (sentido) { 
 			if (x + ancho < 0) {
-				x = entorno.ancho();
+				x += entorno.ancho()*2;
 			} else {
 				x -= velocidad;
 			}
 		} else if (x > entorno.ancho() + ancho) {
-			x = 0;
+			x -= x*2;
 		} else {
 			x += velocidad;
 		}
