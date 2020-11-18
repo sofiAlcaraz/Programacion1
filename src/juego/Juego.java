@@ -230,7 +230,7 @@ public class Juego extends InterfaceJuego {
 		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
 
 		reaparecerAutosEliminados(autosCallePrimaria);
-
+		
 		if (entorno.sePresiono('p')) {
 			partidaPausada = true;
 		}
