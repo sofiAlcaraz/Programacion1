@@ -52,7 +52,7 @@ public class Juego extends InterfaceJuego {
 		partidaCorriendo = false;
 		partidaPausada = false;
 		velocidadDeBajadaDePantalla = 0.5;
-		anchoDeAuto=50;
+		anchoDeAuto = 50;
 		// buscar simetria entre autos
 		altoDelAuto = 42;
 		altoDeLaCalle = 220;
@@ -70,19 +70,21 @@ public class Juego extends InterfaceJuego {
 
 		for (int i = 0; i < autosCallePrimaria.length; i++) {
 			if (i < 4) {
-				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
-						posicionPrimerAutoCallePrimaria, 2, false, velocidadDeBajadaDePantalla);
+				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto,
+						posicionInicialHorizontalDeAutosSentidoDerecho, posicionPrimerAutoCallePrimaria, 2, false,
+						velocidadDeBajadaDePantalla);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autosCallePrimaria[i].getAncho() * 3;
 
 			} else if (i < 8) {
-				autosCallePrimaria[i] = new Auto(altoDelAuto,anchoDeAuto , posicionEnXAutosHaciaIzquierda,
+				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto, 1, true,
 						velocidadDeBajadaDePantalla);
 				posicionEnXAutosHaciaIzquierda += autosCallePrimaria[i].getAncho() * 3;
 			}
 
 			else if (i < 12) {
-				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
+				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto,
+						posicionInicialHorizontalDeAutosSentidoDerecho,
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 2, 2, false,
 						velocidadDeBajadaDePantalla);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autosCallePrimaria[i].getAncho() * 3;
@@ -106,7 +108,8 @@ public class Juego extends InterfaceJuego {
 						posicionDelPrimerAutoCalleSecundaria, 2, true, velocidadDeBajadaDePantalla);
 				posicionEnXAutosHaciaIzquierda += autosCalleSecundaria[i].getAncho() * 5;
 			} else if (i < 8) {
-				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
+				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto,
+						posicionInicialHorizontalDeAutosSentidoDerecho,
 						posicionDelPrimerAutoCalleSecundaria - posicionDelSiguienteAuto, 1, false,
 						velocidadDeBajadaDePantalla);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autosCalleSecundaria[i].getAncho() * 5;
@@ -116,7 +119,8 @@ public class Juego extends InterfaceJuego {
 						velocidadDeBajadaDePantalla);
 				posicionEnXAutosHaciaIzquierda += autosCalleSecundaria[i].getAncho() * 5;
 			} else {
-				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
+				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto,
+						posicionInicialHorizontalDeAutosSentidoDerecho,
 						posicionDelPrimerAutoCalleSecundaria - posicionDelSiguienteAuto * 3, 1, false,
 						velocidadDeBajadaDePantalla);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autosCalleSecundaria[i].getAncho() * 5;
@@ -258,9 +262,9 @@ public class Juego extends InterfaceJuego {
 				posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
 			}
 			if (autos[l] == null && l >= 8 && l < 12) {
-				autos[l] = new Auto(
-						altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho, posicionPrimerAutoCallePrimaria
-								- posicionDelSiguienteAuto * 2 + callePrimaria.posicionVertical(),
+				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
+						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 2
+								+ callePrimaria.posicionVertical(),
 						2, false, velocidadDeBajadaDePantalla, Color.GREEN);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
 			} else if (autos[l] == null && l >= 12 && l < 16) {
