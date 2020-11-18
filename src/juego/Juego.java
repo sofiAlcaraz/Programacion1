@@ -25,11 +25,13 @@ public class Juego extends InterfaceJuego {
 //	Menu menu = new Menu();
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
+	//otros
 	private int temporizadorAutos;
 	private int reloj;
-	// private int intentos;
+	 private int intentos;
 	private int puntaje;
 	private int saltos;
+	//para autos
 	private int extremoInferiorCallePrimaria;
 	private int extremoInferiorCalleSecundaria;
 	private int espacioEntreAutos;
