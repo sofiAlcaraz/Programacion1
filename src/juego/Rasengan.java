@@ -35,7 +35,7 @@ public class Rasengan {
 				if ((autos[i].getX() - autos[i].getAncho() / 2) <= x + diametro
 						|| (autos[i].getX() + autos[i].getAncho() / 2 <= x + diametro)) {
 					System.out.println("coliciona con auto de costado");
-					autos[i]=null;
+					
 					return true;
 				}
 			}
@@ -52,4 +52,6 @@ public class Rasengan {
 	public double getY() {
 		return y;
 	}
+
+	
 }

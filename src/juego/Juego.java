@@ -51,7 +51,7 @@ public class Juego extends InterfaceJuego {
 
 		// AUDIOS
 		jump = Herramientas.cargarSonido("jump.wav");
-		
+
 		// CREA AUTOS EN LA CALLE PRIMARIA
 		autosCallePrimaria = new Auto[16];
 		double posicionEnXAutosHaciaDerecha = 0;
@@ -154,7 +154,7 @@ public class Juego extends InterfaceJuego {
 		entorno.cambiarFont(Integer.toString(reloj), 30, Color.MAGENTA);
 		entorno.escribirTexto(Integer.toString(reloj / 100), 30, 30);
 		entorno.cambiarFont("", 30, Color.PINK);
-		entorno.escribirTexto("saltos:", entorno.ancho() /2-100, 30);
+		entorno.escribirTexto("saltos:", entorno.ancho() / 2 - 100, 30);
 		entorno.cambiarFont(Integer.toString(saltos), 30, Color.PINK);
 		entorno.escribirTexto(Integer.toString(saltos), entorno.ancho() / 2, 30);
 		entorno.cambiarFont("", 30, Color.PINK);
@@ -215,13 +215,16 @@ public class Juego extends InterfaceJuego {
 		}
 		if (rasengans.size() != 0) {
 			for (Rasengan r : rasengans) {
-				if (!r.destruisteAuto(autosCallePrimaria) || !r.destruisteAuto(autosCalleSecundaria)) {
+				if (r.destruisteAuto(autosCallePrimaria) || r.destruisteAuto(autosCalleSecundaria)) {
+
+					rasengans.remove(0);
+					puntaje += 5;
+				} else {
 					r.dibujar(entorno);
 					r.mover();
-
 				}
-				puntaje += 5;
 			}
+
 		}
 
 		if (entorno.sePresiono('p')) {

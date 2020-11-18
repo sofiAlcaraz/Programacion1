@@ -47,6 +47,8 @@ public class Auto {
 			x += velocidad;
 		}
 	}
+	
+	
 
 	public double getAltura() {
 		return alto;
