@@ -48,7 +48,7 @@ public class Auto {
 		if (y - ancho / 2 > 600) {
 			y -= entorno.alto() * 2;
 		}
-		if (sentido) { // •
+		if (sentido) { 
 			if (x + ancho < 0) {
 				x = entorno.ancho();
 			} else {

@@ -51,7 +51,7 @@ public class Juego extends InterfaceJuego {
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
-		velocidadDeBajadaDePantalla = 0.5;
+		velocidadDeBajadaDePantalla = 1;
 		anchoDeAuto = 50;
 		// buscar simetria entre autos
 		altoDelAuto = 42;
@@ -244,6 +244,7 @@ public class Juego extends InterfaceJuego {
 	}
 
 	private void reaparecerAutosEliminados(Auto[] autos) {
+
 		for (int l = 0; l < autos.length; l++) { // FIXME
 			if (autos[l] == null && l < 4) {
 //				if (reloj < 500) {
@@ -251,26 +252,26 @@ public class Juego extends InterfaceJuego {
 //					reloj = 0; // piensenlon
 //				}
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
-						posicionPrimerAutoCallePrimaria + callePrimaria.posicionVertical(), 2, false,
+						posicionPrimerAutoCallePrimaria + callePrimaria.posicionVertical()-espacioEntreAutos-anchoDeAuto, 2, false,
 						velocidadDeBajadaDePantalla, Color.CYAN);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
 			}
 			if (autos[l] == null && l >= 4 && l < 8) {
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
-						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto + callePrimaria.posicionVertical(),
+						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto + callePrimaria.posicionVertical()-espacioEntreAutos-anchoDeAuto,
 						1, true, velocidadDeBajadaDePantalla, Color.MAGENTA);
 				posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
 			}
 			if (autos[l] == null && l >= 8 && l < 12) {
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 2
-								+ callePrimaria.posicionVertical(),
+								+ callePrimaria.posicionVertical()-espacioEntreAutos-anchoDeAuto,
 						2, false, velocidadDeBajadaDePantalla, Color.GREEN);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
 			} else if (autos[l] == null && l >= 12 && l < 16) {
 				autos[l] = new Auto(
 						altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda, posicionPrimerAutoCallePrimaria
-								- posicionDelSiguienteAuto * 3 + callePrimaria.posicionVertical(),
+								- posicionDelSiguienteAuto * 3 + callePrimaria.posicionVertical()-espacioEntreAutos-anchoDeAuto,
 						1, true, velocidadDeBajadaDePantalla, Color.YELLOW);
 				posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
 			}
