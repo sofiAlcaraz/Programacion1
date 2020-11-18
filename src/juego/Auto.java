@@ -26,7 +26,7 @@ public class Auto {
 		this.bajadaDePantalla = bajadaDePantalla;
 		this.color = Color.RED;
 	}
-	
+
 	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido,
 			double bajadaDePantalla, Color color) {
 		this.alto = altura;
@@ -40,10 +40,10 @@ public class Auto {
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarRectangulo(x, y, ancho, alto, 0, color);// cambie direccion por cero ya que no lo vamos a usar
+		entorno.dibujarRectangulo(x, y, ancho, alto, 0, color);
 	}
 
-	public void mover(Entorno entorno) {
+	public void avanzar(Entorno entorno) {
 		y += bajadaDePantalla;
 		if (y - ancho / 2 > 600) {
 			y -= entorno.alto() * 2;
@@ -54,7 +54,7 @@ public class Auto {
 			} else {
 				x -= velocidad;
 			}
-		} else if (x > entorno.ancho() + ancho) { // ♥
+		} else if (x > entorno.ancho() + ancho) {
 			x = 0;
 		} else {
 			x += velocidad;

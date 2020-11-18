@@ -183,14 +183,14 @@ public class Juego extends InterfaceJuego {
 		// Autos
 		for (Auto a : autosCallePrimaria) {
 			if (a != null) {
-				a.mover(entorno);
+				a.avanzar(entorno);
 				a.dibujar(entorno);
 			}
 		}
 
 		for (Auto a : autosCalleSecundaria) {
 			if (a != null) {
-				a.mover(entorno);
+				a.avanzar(entorno);
 				a.dibujar(entorno);
 			}
 		}
