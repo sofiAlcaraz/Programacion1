@@ -45,7 +45,6 @@ public class Auto {
 				x -= velocidad;
 			}
 		} else if (x > entorno.ancho() + ancho) {
-			// x = 0;
 			x -= entorno.ancho() * 2;
 		} else {
 			x += velocidad;
