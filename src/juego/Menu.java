@@ -1,7 +1,10 @@
 package juego;
 
 import entorno.Entorno;
+import entorno.Herramientas;
+
 import java.awt.Color;
+import java.awt.Image;
 
 public class Menu {
 	// para boton jugar
@@ -14,6 +17,7 @@ public class Menu {
 	// marcador de seleccion
 	private double posicionDelCursorX;
 	private double posicionDelCursorY;
+	Image fondo;
 
 	public Menu() {
 		posicionDelBotonJugarX = 800 / 2;
@@ -24,11 +28,12 @@ public class Menu {
 		// marcador de seleccion
 		posicionDelCursorX = 800 / 2 - 150 / 2 - 30;
 		posicionDelCursorY = posicionDelBotonJugarY;
+		fondo=Herramientas.cargarImagen("fondo.jpg");
 
 	}
 
 	public void dibujarMenu(Entorno entorno) {
-
+		entorno.dibujarImagen(fondo, entorno.ancho()/2, entorno.alto()/2,0, 1);
 		botonJugar(entorno);
 		botonSalir(entorno);
 		mostrarSeleccionado(entorno);
@@ -53,20 +58,9 @@ public class Menu {
 		}
 		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonJugarY) {
 			return "jugar";
-		} return "";
+		}
+		return "";
 	}
-
-//	private void ejecutarAccion(Entorno entorno, boolean corriendo, boolean pausado) {
-//		if (entorno.sePresiono('x')) {
-//			if (accion == "jugar") {
-//				corriendo=true;
-//				pausado=false;
-//			}
-//			if (accion == "salir") {
-//				System.exit(0);
-//			}
-//		}
-//	}
 
 	private void mostrarSeleccionado(Entorno entorno) {
 		entorno.dibujarTriangulo(posicionDelCursorX, posicionDelCursorY, 20, 50, 0, Color.BLUE);

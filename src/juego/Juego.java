@@ -25,10 +25,11 @@ public class Juego extends InterfaceJuego {
 	private Auto[] autosCalleSecundaria;
 	private Auto[] autosCallePrimaria;
 	private Rasengan rasengan;
+	private Menu menu;
+	// booleanos
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
 	// otros
-	private Menu menu;
 	private int reloj;
 	private int puntaje;
 	private int saltos;
@@ -42,7 +43,9 @@ public class Juego extends InterfaceJuego {
 	private int posicionDelPrimerAutoCalleSecundaria;
 	private double posicionInicialHorizontalDeAutosSentidoDerecho; // Okay
 	private double posicionEnXAutosHaciaIzquierda;
+	// imagenes
 	private Image imagenFondo;
+	private Image imagenPerdioJuego;
 
 	public Juego() {
 		// Inicializa el objeto entorno
@@ -52,7 +55,7 @@ public class Juego extends InterfaceJuego {
 		partidaCorriendo = false;
 		partidaPausada = false;
 		imagenFondo = Herramientas.cargarImagen("fondoCesped.jpg");
-
+		imagenPerdioJuego = Herramientas.cargarImagen("perdio.jpg");
 		// buscar simetria entre autos
 		extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
 		extremoInferiorCalleSecundaria = entorno.alto() / 10 * -9 + altoDeLaCalle / 2;
@@ -103,7 +106,8 @@ public class Juego extends InterfaceJuego {
 		for (int i = 0; i < autosCalleSecundaria.length; i++) {
 			if (i < 4) {
 				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
-						posicionDelPrimerAutoCalleSecundaria, 2, true, velocidadDeBajadaDePantalla, "autoSentidoIzquierdo.png");
+						posicionDelPrimerAutoCalleSecundaria, 2, true, velocidadDeBajadaDePantalla,
+						"autoSentidoIzquierdo.png");
 				posicionEnXAutosHaciaIzquierda += autosCalleSecundaria[i].getAncho() * 3;
 			} else if (i < 8) {
 				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto,
@@ -132,7 +136,7 @@ public class Juego extends InterfaceJuego {
 				velocidadDeBajadaDePantalla);
 		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
-		
+
 		// Inicia el juego!
 
 		entorno.iniciar();
@@ -146,15 +150,21 @@ public class Juego extends InterfaceJuego {
 	 * del TP para mayor detalle).
 	 */
 	public void tick() {
-		
-		if (partidaCorriendo==true && partidaPausada==false) {
+
+		if (partidaCorriendo == true && partidaPausada == false) {
 			reloj++;
-			// if(intentos!=0) {
 			entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
 
 			if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
 					|| conejo.seFueDePantalla()) {
-				partidaPausada=true;
+				int i = 5;
+				while (i <= 5) {
+					entorno.dibujarImagen(imagenPerdioJuego, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
+					entorno.cambiarFont("", 30, Color.RED);
+					entorno.escribirTexto("GAME OVER", entorno.alto() / 2, entorno.ancho() / 2);
+					i++;
+				}
+				System.exit(0);
 			}
 
 			callePrimaria.deslizarHaciaAbajo(entorno);
@@ -163,10 +173,6 @@ public class Juego extends InterfaceJuego {
 			calleSecundaria.dibujar(entorno);
 			// Conejo
 			conejo.esperar();
-
-			// Autos
-//		if (!entorno.sePresiono('w') || !entorno.sePresiono('a') || !entorno.sePresiono('d')) {
-//			conejo.dibujar(entorno);
 
 			if (entorno.sePresiono('w')) {
 				conejo.saltar(entorno);
@@ -264,10 +270,14 @@ public class Juego extends InterfaceJuego {
 				}
 
 			}
-			
-			
-			if (puntaje == 50) {velocidadDeBajadaDePantalla = 1.5;}
-			if (puntaje == 100) {velocidadDeBajadaDePantalla = 2;}
+
+			// nivel 2 y 3
+			if (puntaje == 50) {
+				velocidadDeBajadaDePantalla = 1.5;
+			}
+			if (puntaje == 100) {
+				velocidadDeBajadaDePantalla = 2;
+			}
 
 			// texto en pantallam ,tamaño de letra=20
 			entorno.cambiarFont(Integer.toString(reloj), 20, Color.PINK);
@@ -283,29 +293,21 @@ public class Juego extends InterfaceJuego {
 
 			if (entorno.sePresiono('p')) {
 				partidaPausada = true;
-			}}else if(partidaPausada=true){
-				menu.dibujarMenu(entorno);
-//				System.out.println(menu.confirmarSeleccionado(entorno));
-				if (menu.confirmarSeleccionado(entorno) == "jugar") {
-//					System.out.println("juegar");
-					partidaCorriendo=true;
-					partidaPausada=false;
-				}
-				if (menu.confirmarSeleccionado(entorno) == "salir") {
-//					System.out.println("salir");
-					System.exit(0);
-				}}
-			
-			
-			
-//			if (partidaCorriendo==false && partidaPausada==true) {
-//				menu.dibujarMenu(entorno, partidaCorriendo, partidaPausada);
-			
-//		}
-	
-}
+			}
+		} else if (partidaPausada = true) {
+			menu.dibujarMenu(entorno);
+			if (menu.confirmarSeleccionado(entorno) == "jugar") {
 
-	
+				partidaCorriendo = true;
+				partidaPausada = false;
+			}
+			if (menu.confirmarSeleccionado(entorno) == "salir") {
+
+				System.exit(0);
+			}
+		}
+
+	}
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
