@@ -38,11 +38,17 @@ seFueDePantalla y chocasteAlgunAuto,hacerSonidoDeSalto.
 
 Decidimos poner las variables de las clases en el siguiente orden:anchura y altura, x e y, variables propias de 
 cada clase,bajadaDePantalla y imagen.
-Tambien decidimos crear solo dos calles y 4 carriles (8 carriles en total) y un rasengan por "pantalla".
 
-Crear al conejo, darle movimiento, dibujarlo y salto no fue una dificultad.
+Tambien decidimos crear solo dos calles y 4 carriles (8 carriles en total) y un rasengan por "pantalla".
+Solo se puede jugar con las teclas :w,a,d y espacio.
+El juego cuanta con un menu que da la opcion de jugar o salir.Tambien en cualquier momento de la partida el juego
+puede pausarse con la tecla p.
+
+Además el juego al  realizarse cierta cantidad de puntos aumenta su velocidad.
+
+Crear al conejo, darle movimiento, enselñarle a dibujarse y a saltar no fue una dificultad.
 Crear la calle y que esta se mueva tampoco, lo mismo con los autos ,no fue 
-complicado, los problemas comenzaron cuando unimos estos dos (autos y calles),ya que los autos 
+complicado(crear uno), los problemas comenzaron cuando unimos estos dos (autos y calles),ya que los autos 
 se iban fuera de la calle, para solucionarlo probamos diferentes valores en y ,
 que funcionaban pero luego  notamos que los autos acumulaban un valor y subian 
 hasta salirse de la calle. Nos dimos cuenta de que la reaparicion de la calle
@@ -53,9 +59,16 @@ de auto y calle le pasamos el entorno y al "y" de calle lo restamos por
 entono.alto*2(600*2) y  a auto a su "y" lo restamos por entorno.alto*2(600*2),
 de esta forma ambos aparecen en la posicion que inicialmente se les habia asignado.
 
-Tambien agregamos la variable vidas en conejo lo cual estaba mal ya que el conejo
-no sabe de sus vidas por ende en juego agregamos la variable intentos y eliminamos la 
-idea anterior.
+Otro problema que tuvimos fue en el codigo de los autos(poder crearlos en cierta posicion,a todos los autos),
+para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante,al tener dos for
+uno  de mano "izquierda" y otro de mano "derecha" se nos dificultó sincronizarlos ,por lo que lo cambiamos
+por un for por cada calle y cada uno de estos con cuatro carriles y dos manos cada uno.
+Luego pudimos hacer que estos se muevan en sincronia.
+.Planificacion posicion de autos.
+
+.Imagen planificacion en de reaparicion de autos de callePrimaria
+image::este Equipo/Documentos
+crearAutos.jpg[]
 
 Como el largo del conejo colicionaba con los autos por mas  que este en medio de un
 carril disminuimos su tamaño.
@@ -64,39 +77,22 @@ Para hacer los rasengans primero creamos la clase probamos su correcto funcionam
 y luego creamos un metodo en conejo el cual devuelve un nuevo rasengan con la x e y  del Conejo
 luego en la clase Juego hicimos un if  (que pregunta la tecla presionada y si rasengan es null
 para no spamear la pantalla) para agregar el rasengan al rasengan de juego
-,un if que analiza si este se fue de la  pantalla (si es asi lo vueve null) un if   que analiza si el rasengan es distinto de null
+,un if que analiza si este se fue de la  pantalla (si es asi lo vueve null), un if   que analiza si el rasengan es distinto de null
 y de serlo el rasengan se debe dibujar y mover.
-Para analizar la colicion con cada auto creamos dos for (uno por calle) y si el auto no es null coliciono y es de cierto sentido
-[.......]
-Si el rasengan coliciono con algun auto este se elimina ,el rasengan tambien y el puntaje sube.
+Para analizar la colision con cada auto creamos dos for (uno por cada "calle con autos") son un if cada uno que pregunta
+ si el auto en cierta posicion  no es null, colisiono con rasengan y de que sentido es.
+si colisiono entonces se crea un nuevo auto en[....]
+Si el rasengan colisiono con algun auto este se elimina ,el rasengan tambien y el puntaje sube.
 sino..[..]
 
+Luego de hacer esto,los autos que reapareciann se seguian superponiendo y nos dimos cuenta que el metodo avanzar de la
+clase Auto estaba mal ,ya que al llegar a un extremo los regeneraba en el extremo opuesto ,no es su posion por defecto,
+Para que esto funcione correctamente cambiamos el metodo avanzar,utilizando el el ancho del entorno lo que hicimos fue 
+enseñale al Auto que al llegar al extremo tiene que reaparecer en su posicion por defecto.
 
 Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos  por parameros a todos los objetos que debian 
 deslizarse una misma Constante llamada: velocidadDeBajadaDePantalla(que se encuentra en la clase Juego)
 
-Otro problema que tuvimos fue en el codigo de los autos(poder crearlos en cierta posicion),
-para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante,al tener dos for
-uno  de mano "izquierda" y otro de mano "derecha" se nos dificulto sincronizarlos ,por lo que lo cambiamos
-por un for por cada calle y cada uno de estos con cuatro carriles y dos manos cada uno.
-Luego pudimos hacer que estos se muevan en sincronia.
-.Planificacion posicion de autos.
-
-image::crearAutos.jpg[]
-
-Otro problema que nos surgió a la hora de crear los autos que reaparecian  luego de ser destruidos por los rasengans
-fue que estos no se superpongan ,para esto cambiamos el metodo avanzar de autos donde la reaparicion estaba mal,ya que no aparecian
-en su posicion por defecto sino que en 0 o en entorno.ancho() segun su sentido(mano izquierda o derecha).
-Y luego a los autos que reaparecian los creamos en  la posicion por defecto + o - ancho() + ancho/2,es decir,los enviasmos al fondo,
-de esta forma los autos nunca colicionarian ya que al llegar al borde de pantalla vuelven a su posicion por defecto y al reaparecer
-producto de una colicon con rasengan aparecen en la posision por defecto +/- anchoPantalla()+ anchoPantalla/2 . Además la reaparicon se 
-realiza cuando el reloj llega a 200 y luego se resetea a 0(por lo que fue necesario utilizar dos relojes uno para mostrar por pantallay el otro
-para los autos,llamado:temporizadorAutos). 
-Todo esto lo realizamos  en un metodo  reaparecerAutosEliminados ,para poder reutilizarlo para las dos array de autos,este for es pareceido
-al del constructor  pero con diferentes condicionnes dentro de los if, como el igual a null o los menores 
-y mayores iguales para que los autos se creen donde deben.Como se creaban mas arriba de lo que debian sumamos el largo de la calle
-y luego le restamos el espacio entre autos y el largo de el auto.
-Para poder reutilizar este metodo ,lo que hicimos fue parasarle por parametro los calculos propios de array de autos y el array de autos en si.
 
 
 
