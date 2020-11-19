@@ -1,7 +1,6 @@
 package juego;
 
 import java.awt.Color;
-import java.util.LinkedList;
 
 import javax.sound.sampled.Clip;
 
@@ -21,10 +20,10 @@ public class Juego extends InterfaceJuego {
 	private Calle calleSecundaria; // calleSuperior,
 	private Auto[] autosCalleSecundaria;
 	private Auto[] autosCallePrimaria;
+        private Rasengan[] rasengans; // lista mutable de los Rasengans
 //	Menu menu = new Menu();
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
-	private LinkedList<Rasengan> rasengans;
 	private Clip jump;
 	private int intentos;
 	private int puntaje;
@@ -115,13 +114,12 @@ public class Juego extends InterfaceJuego {
 		conejo = new Conejo(30, 30, entorno.ancho() / 2, posicionPrimerAutoCallePrimaria + 420, 40,
 				velocidadDeBajadaDePantalla);
 
-		callePrimaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, entorno.alto() / 10,
+		callePrimaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, entorno.alto() / 10,
 				velocidadDeBajadaDePantalla);
-		calleSecundaria = new Calle(altoDeLaCalle, 800, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
+		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -4,
 				velocidadDeBajadaDePantalla);
 
 		intentos = 1;
-		rasengans = new LinkedList<Rasengan>();
 
 		// Inicia el juego!
 		entorno.iniciar();
@@ -139,32 +137,11 @@ public class Juego extends InterfaceJuego {
 		if (reloj / 100 != (reloj + 1) / 100) {
 			System.out.println(reloj / 100);
 		}
-		rasengans.clear();
+		//rasengans.clear();
 		// if (estaIniciado && !estáPausado) {
 
 		// if (running && !pausado) {
 		// if(intentos!=0) {
-
-		callePrimaria.dibujar(entorno);
-
-		callePrimaria.deslizarHaciaAbajo(entorno);
-		calleSecundaria.deslizarHaciaAbajo(entorno);
-
-		calleSecundaria.dibujar(entorno);
-		entorno.cambiarFont(Integer.toString(reloj), 30, Color.MAGENTA);
-		entorno.escribirTexto(Integer.toString(reloj / 100), 30, 30);
-		entorno.cambiarFont("", 30, Color.PINK);
-		entorno.escribirTexto("saltos:", entorno.ancho() / 2 - 100, 30);
-		entorno.cambiarFont(Integer.toString(saltos), 30, Color.PINK);
-		entorno.escribirTexto(Integer.toString(saltos), entorno.ancho() / 2, 30);
-		entorno.cambiarFont("", 30, Color.PINK);
-		entorno.escribirTexto("Puntos:", 550, 30);
-		entorno.cambiarFont(Integer.toString(puntaje), 30, Color.PINK);
-		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
-
-		// Conejo
-		conejo.esperar();
-		conejo.dibujar(entorno);
 
 		if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
 			conejo.saltar();
@@ -191,48 +168,110 @@ public class Juego extends InterfaceJuego {
 
 		}
 
-		for (Auto a : autosCallePrimaria) {
-			if (a != null) {
-				a.dibujar(entorno);
-				a.mover(entorno);
-			}
-		}
-
-		for (Auto a : autosCalleSecundaria) {
-			if (a != null) {
-				a.dibujar(entorno);
-				a.mover(entorno);
-			}
-		}
+		
 
 		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
 				|| conejo.seFueDePantalla()) {
 			intentos--;
 		}
-		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
-			rasengans.add(conejo.disparar());
+		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) 
+                {
+                    // mutar lista
+                    if(rasengans != null)
+                    {
+                        Rasengan[] r = new Rasengan[rasengans.length+1];
+                        for(int i=0; i < rasengans.length; i++)
+                        {
+                            r[i] = rasengans[i];
+                        }
+                        r[r.length-1] = conejo.disparar();
+                        rasengans = r;
+                    }
+                    else
+                    {
+                        Rasengan[] r = new Rasengan[1];
+                        r[0] = conejo.disparar();
+                        rasengans = r;
+                    }
 		}
-		if (rasengans.size() != 0) {
-			for (Rasengan r : rasengans) {
-				if (r.destruisteAuto(autosCallePrimaria) || r.destruisteAuto(autosCalleSecundaria)) {
-<<<<<<< HEAD
-=======
-					
->>>>>>> b6fee159f36b64dea587cbc3095a3eb9f75ce0e0
-					rasengans.remove(0);
-					puntaje += 5;
-				} else {
-					r.dibujar(entorno);
-					r.mover();
-				}
-			}
-
-		}
+		
+                // dibujar rasengans y controlar sus colisiones
 
 		if (entorno.sePresiono('p')) {
-			partidaPausada = true;
+                    partidaPausada = true;
+		}
+                
+                callePrimaria.deslizarHaciaAbajo(entorno);
+                callePrimaria.dibujar(entorno);
+
+		calleSecundaria.deslizarHaciaAbajo(entorno);
+                calleSecundaria.dibujar(entorno);
+                
+                // Conejo
+		conejo.esperar();
+		conejo.dibujar(entorno);
+                
+                for (Auto a : autosCallePrimaria) {
+			if (a != null) {
+                            a.mover(entorno);
+                            a.dibujar(entorno);
+			}
 		}
 
+		for (Auto a : autosCalleSecundaria) {
+			if (a != null) {
+                            a.mover(entorno);
+                            a.dibujar(entorno);
+			}
+		}
+                
+                // control de rasengans
+                if(rasengans != null)
+                {
+                    for(int i=0; i < rasengans.length; i++)
+                    {
+                        if(rasengans[i].destruisteAuto(autosCallePrimaria) || rasengans[i].destruisteAuto(autosCalleSecundaria) || rasengans[i].saleDePantalla())
+                        {
+                            // para rasengan
+                            Rasengan[] r = new Rasengan[rasengans.length-1];
+                            int controlador = 0;
+                            if(r != null)
+                            {
+                                for(int j=0; j<rasengans.length; j++)
+                                {
+                                    if(j != i)
+                                    {
+                                        r[controlador] = rasengans[j];
+                                        controlador++;
+                                    }
+                                }
+                                rasengans = r;
+                            }
+                            
+                            // para destruir y generar un auto
+                            
+                        }else
+                        {
+                            rasengans[i].mover();
+                            rasengans[i].dibujar(entorno);
+                        }
+                    }
+                }
+
+		
+		entorno.cambiarFont(Integer.toString(reloj), 30, Color.MAGENTA);
+		entorno.escribirTexto("Tiempo: "+Integer.toString(reloj / 100), 30, 30);
+		entorno.cambiarFont("", 30, Color.PINK);
+		entorno.escribirTexto("saltos:", entorno.ancho() / 2 - 100, 30);
+		entorno.cambiarFont(Integer.toString(saltos), 30, Color.PINK);
+		entorno.escribirTexto(Integer.toString(saltos), entorno.ancho() / 2, 30);
+		entorno.cambiarFont("", 30, Color.PINK);
+		entorno.escribirTexto("Puntos:", 550, 30);
+		entorno.cambiarFont(Integer.toString(puntaje), 30, Color.PINK);
+		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
+
+                //System.out.println(rasengans.size());
+                
 //		if (!partidaCorriendo || partidaPausada) {
 //			menu.dibujarMenu(entorno, this);
 //		}

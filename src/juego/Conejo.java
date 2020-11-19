@@ -66,7 +66,7 @@ public class Conejo {
 	}
 
 	public Rasengan disparar() {
-		return new Rasengan(x, y);
+            return new Rasengan(x, y);
 	}
 
 	public boolean seFueDePantalla() {
