@@ -1,4 +1,4 @@
-= Introducci�n a la Programaci�n: Trabajo Pr�ctico 1
+= Introducción a la Programación: Trabajo Práctico 1
 Pablo Pagano<cfk@gmail.com>; Jose_Luis Villacorta <nestor@gmail.com>;Alcaraz Sofia <sofiialcaraz16@gmail.com>
 v1, {docdate}. Docentes Hernan Rondelli ; Veronica Moyano (COM-01)
 :title-page:
@@ -7,35 +7,38 @@ v1, {docdate}. Docentes Hernan Rondelli ; Veronica Moyano (COM-01)
 :tabsize: 4
 
 == Introducción
-
 El Consejo Organico Normativo y Etico para la Juventud Organizada (CONEJO),
 en el marco de su campaña de seguridad vial, nos solicito el desarrollo de 
 un video juego para ayudar a que niños y niñas tomen conciencia acerca de la 
 seguridad vial y del respeto a las normas de transito. Para ello, nos
 encargaron un video juego similar al clasico Frogger, pero con algunas
-diferencias que mencionaremos a continuacio�n.
+diferencias que mencionaremos a continuación.
 
-El conejo Boss Rabbit vivia en la luna y baj� al planeta tierra, por
-este motivo no sabe c�ales son las normas de transito, y por ende, no 
+El conejo Boss Rabbit vivia en la luna y bajó al planeta tierra, por
+este motivo no sabe cúales son las normas de transito, y por ende, no 
 sabe cruzar la calle.
 El objetivo del juego es hacer que el conejito pueda cruzar las calles
 sin que lo atropelle ningun vehiculo. Si un vehiculo 
 atropella al conejito, perdemos el juego.
 Cabe aclarar, que en nuestro juego los vehiculos y las calles se desplazan 
-constantemente hacia abajo de la pantalla, creando la ilusi�n de �avance� del 
+constantemente hacia abajo de la pantalla, creando la ilusión de "avance" del 
 juego. Es decir, el conejo debe saltar hacia adelante para que no desaparezca 
-por el borde inferior de la pantalla (cuando esto u�ltimo sucede se pierde el 
+por el borde inferior de la pantalla (cuando esto último sucede se pierde el 
 juego).
 
-== Descripci�n
+== Descripción
 
 Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
 Las primeras 4 clases tienen en comun los metodos Dibujar,Mover.
-Clase Calle: Esta cuenta con su metodo dibujar, deslizar hacia abajo y un getLargo(que es usado en juego)
-La Clase Auto cuenta con su metodo dibujar,mover y los get se x e y altura y ancho.
-La Clase Rasengan cuenta con su metodo dibujar ,mover ,sale de pantalla, destruisteAuto,controlarColisiones
-La Clase Conejo cuanta con metodo dibujar,esperar, saltar, saltarIzquierda, saltarDerecha, dispara,
-seFueDePantalla y chocasteAlgunAuto.
+-Clase Calle: Ésta cuenta con su método dibujar, deslizarHaciaAbajo,posicionVertical(get y) y un getLargo.
+-Clase Auto: Cuenta con su método dibujar,avanzar(mover) y los get de x , y ,altura , ancho y velocidad.
+-Clase Rasengan: Cuenta con su método dibujar ,mover ,saleDepantalla,colisionasteConAuto.
+-Clase Conejo: Cuenta con los métodos dibujar,esperar, saltar, saltarIzquierda, saltarDerecha, disparar,
+seFueDePantalla y chocasteAlgunAuto,hacerSonidoDeSalto.
+
+Decidimos poner las variables de las clases en el siguiente orden:anchura y altura, x e y, variables propias de 
+cada clase,bajadaDePantalla y imagen.
+Tambien decidimos crear solo dos calles y 4 carriles (8 carriles en total) y un rasengan por "pantalla".
 
 Crear al conejo, darle movimiento, dibujarlo y salto no fue una dificultad.
 Crear la calle y que esta se mueva tampoco, lo mismo con los autos ,no fue 
@@ -52,46 +55,55 @@ de esta forma ambos aparecen en la posicion que inicialmente se les habia asigna
 
 Tambien agregamos la variable vidas en conejo lo cual estaba mal ya que el conejo
 no sabe de sus vidas por ende en juego agregamos la variable intentos y eliminamos la 
-idea anterior.[..]
+idea anterior.
 
 Como el largo del conejo colicionaba con los autos por mas  que este en medio de un
-carril disminuimos su tama�o.
+carril disminuimos su tamaño.
 
-Para hacer los rasengans primero los creamos en juego como prueba y como no seguia a 
-conejo  se lo pasamos al conejo  en el constructor (gran error!!). 
-Luego probamos creando  un metodo en conejo y le pasamos su x e y al rasengan,creamos el rasengan
-e hicimos que se mueva dentro de este metodo lo cual no sirvio,
-ya que cada vez que se apretaba espacio se mostraba una vez( por mas que se us� "esta precionada"),
-esto era por el tick, por lo que decidimos dejar el metodo, pero hacer que este devuelva un
-rasengan(con las pociones x e y del conejo).
-Y luego en la clase Juego los fuimos agregando a una lista y en un for le dijimos que se dibujen y se muevan,pero 
-a listas lo cambiamos por arrays, para manejarlos mejor.
+Para hacer los rasengans primero creamos la clase probamos su correcto funcionamiento en juego
+y luego creamos un metodo en conejo el cual devuelve un nuevo rasengan con la x e y  del Conejo
+luego en la clase Juego hicimos un if  (que pregunta la tecla presionada y si rasengan es null
+para no spamear la pantalla) para agregar el rasengan al rasengan de juego
+,un if que analiza si este se fue de la  pantalla (si es asi lo vueve null) un if   que analiza si el rasengan es distinto de null
+y de serlo el rasengan se debe dibujar y mover.
+Para analizar la colicion con cada auto creamos dos for (uno por calle) y si el auto no es null coliciono y es de cierto sentido
+[.......]
+Si el rasengan coliciono con algun auto este se elimina ,el rasengan tambien y el puntaje sube.
+sino..[..]
 
-Tuvimos problemas con la colision de los rasengans y autos, estos se destruian pero de a muchos,luego de revisar el
-codigo nos dimos cuenta de que las condiciones de la colicion en su respectivo metodo estaban mal,las arreglamos y 
-funciono perfectamente. En cuanto al if de juego no funcionaba bien 
-por lo tanto luego de cambiar de lugares las condiciones y lo que debia hacer cuando pase cierta cosa
-el juego funcion� bien, el rasengan se elimino,se movio y dibujo bien
-tambien eliminamos un if de colision(rasengan y autos) de frente y atras del auto ya que nos parecia de mas.
 
-Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos 
-por parameros a todos los objetos que debian 
-deslizarse una mismo variable llamada:velocidadDeBajadaDePantalla(que se encuentra en la clase Juego)
+Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos  por parameros a todos los objetos que debian 
+deslizarse una misma Constante llamada: velocidadDeBajadaDePantalla(que se encuentra en la clase Juego)
 
 Otro problema que tuvimos fue en el codigo de los autos(poder crearlos en cierta posicion),
-para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante
-(los cuales hicmos para una sola calle), uno de los problemas que tuvimos fue hacer 
-dos for uno de mano "izquierda" y otro de mano "derecha" ,pero estos tenian carriles de la primera 
-y segunda calle lo cual nos dificulto mucho sincronizarlos, por lo que decidimos cambiar
-estos for por un for por calle y cada uno de estos con cuatro carriles y dos manos cada uno.
-Luego pudimos hacer que estos se muevan en sincronia,unque habian algunos "camiones".
+para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante,al tener dos for
+uno  de mano "izquierda" y otro de mano "derecha" se nos dificulto sincronizarlos ,por lo que lo cambiamos
+por un for por cada calle y cada uno de estos con cuatro carriles y dos manos cada uno.
+Luego pudimos hacer que estos se muevan en sincronia.
+.Planificacion posicion de autos.
 
-Otro problema bastante facil de resolver fue hacer que reaparezcan los autos por los costados,
-estos desaparecian antes de llegar al borde ,lo cual ocurria por un +20 de mas.
+image::crearAutos.jpg[]
 
-Decidimos poner las variables de las clases en el siguiente orden:anchura y altura, x e y, variables propias de 
-cada clase,bajadaDePantalla y color.
-Tambien decidimos crear solo dos calles y 4 carriles (8 carriles en total).
+Otro problema que nos surgió a la hora de crear los autos que reaparecian  luego de ser destruidos por los rasengans
+fue que estos no se superpongan ,para esto cambiamos el metodo avanzar de autos donde la reaparicion estaba mal,ya que no aparecian
+en su posicion por defecto sino que en 0 o en entorno.ancho() segun su sentido(mano izquierda o derecha).
+Y luego a los autos que reaparecian los creamos en  la posicion por defecto + o - ancho() + ancho/2,es decir,los enviasmos al fondo,
+de esta forma los autos nunca colicionarian ya que al llegar al borde de pantalla vuelven a su posicion por defecto y al reaparecer
+producto de una colicon con rasengan aparecen en la posision por defecto +/- anchoPantalla()+ anchoPantalla/2 . Además la reaparicon se 
+realiza cuando el reloj llega a 200 y luego se resetea a 0(por lo que fue necesario utilizar dos relojes uno para mostrar por pantallay el otro
+para los autos,llamado:temporizadorAutos). 
+Todo esto lo realizamos  en un metodo  reaparecerAutosEliminados ,para poder reutilizarlo para las dos array de autos,este for es pareceido
+al del constructor  pero con diferentes condicionnes dentro de los if, como el igual a null o los menores 
+y mayores iguales para que los autos se creen donde deben.Como se creaban mas arriba de lo que debian sumamos el largo de la calle
+y luego le restamos el espacio entre autos y el largo de el auto.
+Para poder reutilizar este metodo ,lo que hicimos fue parasarle por parametro los calculos propios de array de autos y el array de autos en si.
+
+
+
+Para poder mostrar texto por pantalla lo que tuvimos que utilizar fue Integer.toString(algunInt) para transformar los enteros en
+string ya que el metodo:entorno.cambiarFont y entorno.escribirTexto lo requerian así.
+
+
 
 
 En esta secci�n pueden incluirse las dificultades que tuvieron, las
@@ -103,10 +115,15 @@ importantes.
 Tambi�n, se puede incluir una descripci�n general del programa�c�mo
 funciona.
 
-== Implementaci�n
+== Implementación
+En esta sección se incluye el código fuente.
+.Clase Conejo
+[source,java]
+----
+include::Conejo.java[]
+----
 
-En esta secci�n se incluye el c�digo fuente correctamente formateado�y
-comentado, si corresponde.
+ 
 
 Adem�s, por cada fragmento de c�digo
 relevante�i.e. funci�n, m�todo, procedimiento�se debe dar una

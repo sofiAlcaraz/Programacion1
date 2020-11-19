@@ -25,7 +25,7 @@ public class Auto {
 		this.velocidad = velocidad;
 		this.sentido = sentido;
 		this.bajadaDePantalla = bajadaDePantalla;
-		this.imagenAuto= Herramientas.cargarImagen(string);
+		this.imagenAuto = Herramientas.cargarImagen(string);
 	}
 
 	public void dibujar(Entorno entorno) {
@@ -37,16 +37,16 @@ public class Auto {
 		if (y - ancho / 2 > 600) {
 			y -= entorno.alto() * 2;
 		}
-		if (sentido) { 
+		if (sentido) {
 			if (x + ancho < 0) {
-				//x = entorno.ancho();
-				x+=entorno.ancho()*2;
+				// x = entorno.ancho();
+				x += entorno.ancho() * 2;
 			} else {
 				x -= velocidad;
 			}
 		} else if (x > entorno.ancho() + ancho) {
-			//x = 0;
-			x-=entorno.ancho()*2;
+			// x = 0;
+			x -= entorno.ancho() * 2;
 		} else {
 			x += velocidad;
 		}
@@ -55,22 +55,10 @@ public class Auto {
 	public boolean getSentido() {
 		return sentido;
 	}
-	
-	
-
-
-	public double getAlto() {
-		return alto;
-	}
 
 	public double getVelocidad() {
 		return velocidad;
 	}
-
-	public double getBajadaDePantalla() {
-		return bajadaDePantalla;
-	}
-
 
 	public double getAltura() {
 		return alto;
@@ -87,8 +75,5 @@ public class Auto {
 	public double getY() {
 		return y;
 	}
-	
-	
-	}
 
-
+}

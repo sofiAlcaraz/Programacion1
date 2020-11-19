@@ -14,7 +14,6 @@ public class Conejo {
 	private double y;
 	private double velocidadDeSalto;
 	private double deslizarHaciaAbajo;
-	private Image imagenConejoSaltando;
 	private Image imagenConejoEsperando;
 	private Image imagenConejoIzquierda;
 	private Image imagenConejoDerecha;
@@ -27,7 +26,6 @@ public class Conejo {
 		this.y = y;
 		this.velocidadDeSalto = velocidad;
 		this.ultimoMovimiento = "";
-		imagenConejoSaltando = Herramientas.cargarImagen("conejoSaltando.png");
 		imagenConejoEsperando = Herramientas.cargarImagen("conejoEsperando.png");
 		imagenConejoIzquierda = Herramientas.cargarImagen("conejoIzquierda.png");
 		imagenConejoDerecha = Herramientas.cargarImagen("conejoDerecha.png");

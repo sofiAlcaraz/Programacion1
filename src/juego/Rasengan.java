@@ -37,10 +37,6 @@ public class Rasengan {
 		return false;
 	}
 
-	/*
-	 * El metodo "colicionaste" gestiona la colision "RECTANGULO-CIRCULO" para
-	 * controlar si el rasengan colisiono con algun auto.
-	 */
 	public boolean colisionasteConAuto(Auto auto) {
 
 		if (auto != null) {
@@ -67,11 +63,6 @@ public class Rasengan {
 			}
 		}
 		return false;
-	}
-
-	public double getY() {
-
-		return y;
 	}
 
 }
