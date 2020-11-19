@@ -131,24 +131,24 @@ Conejo.java[]
 La Clase Conejo tiene como estados:private double altura,double ancho,double x, double y,double velocidadDeSalto(movimiento vertical y
 horizontal),double deslizarHaciaAbajo(deslizamiento hacia abajo),Image imagenConejoEsperando,Image imagenConejoIzquierda,
 Image imagenConejoDerecha,String ultimoMovimiento.
-El conejo se sabe:dibujar,hacerSonidoDeSalto,saltar,esperar,saltarIzquierda,saltarDerecha,disparar,seFueDePantalla, chocasteAlgunAuto.
-El metodo dibujar es peculiar[]
-El metodo hacerSonidoDeSalto es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
-El metodo saltar es de tipo void, toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
+-El conejo se sabe:dibujar,hacerSonidoDeSalto,saltar,esperar,saltarIzquierda,saltarDerecha,disparar,seFueDePantalla, chocasteAlgunAuto.
+-El metodo dibujar es peculiar[]
+-El metodo hacerSonidoDeSalto es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
+-El metodo saltar es de tipo void, toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
 y la velocidadDeSalto,pero si " y - altura / 2 - velocidadDeSalto <= 0" ,es decir, que el conejo se encuentra arriba de todo ,no pueda 
 avanzar al menos que la pantalla avanze.
-El metodo saltarDerecha es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto 
+-El metodo saltarDerecha es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto 
 hacia la derecha  sumandole a la "x" la velocidadDeSalto, pero si "x + ancho / 2 + velocidadDeSalto >= entorno.ancho()" ,es decir,
 el conejo esta a la derecha de todo ,para que el conejo no pueda salirse de la pantalla  el x sera "x = entorno.ancho() - ancho / 2".
-El metodo saltarIzquierda es de tipo void ,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto
+-El metodo saltarIzquierda es de tipo void ,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto
 hacia la izquierda restandole a la "x" la velocidadDeSalto, pero si "x - ancho / 2 - velocidadDeSalto <= 0" ,es decir , que le conejo 
 esta a la izquierda del todo ,para que no pueda salirse de pantalla el x sera "x = ancho / 2".
-El metodo  esperar  es de tipo void y lo que hace es sumarle a y la deslizarHaciaAbajo,de esta forma si el conejo esta quieto se deslizara 
+-El metodo  esperar  es de tipo void y lo que hace es sumarle a y la deslizarHaciaAbajo,de esta forma si el conejo esta quieto se deslizara 
 hacia abajo.
-El metodo disparar es de tipo Rasengan y lo que hace es devolver un Rasengan con su "x" e "y"(posicion actual del conejo,a la hora de disparar).
-El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
+-El metodo disparar es de tipo Rasengan y lo que hace es devolver un Rasengan con su "x" e "y"(posicion actual del conejo,a la hora de disparar).
+-El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
 si su "y + altura / 2 < 600"  entonces el metodo devuelve true, caso contrario,false.
-El metodo chocasteAlgunAuto es de tipo boolean y toma por parametro un array de autos ,si el conejo coliciona con alguno de estos autos,devuelve true
+-El metodo chocasteAlgunAuto es de tipo boolean y toma por parametro un array de autos ,si el conejo coliciona con alguno de estos autos,devuelve true
 sino false.
  
 
@@ -163,12 +163,12 @@ boolean sentido(true es derecha-izquierda y false de izquierda-derecha),double b
 Image imagenAuto.
 El auto sabe dibujarse y avanzar,tambien cuenta con los getters de todos sus estados que son utiizados para crear los autos luego de que 
 destruidos por algun rasengan.
-El metodo avanzar, de tipo void, lo que hace es que el auto avance para cierto lado segun su sentido,sumando a su x la velocidad o restando segun cual 
+-El metodo avanzar, de tipo void, lo que hace es que el auto avance para cierto lado segun su sentido,sumando a su x la velocidad o restando segun cual 
 sea el caso, tambien esta constantemente aumentando su "y" sumandole la bajadaDePantalla(que es la velocidad con la que se desliza
- hacia abajo el auto).Si su "y" es mayor a 600 entonces el auto reaparece en su posicion por defecto en la pantalla de arriba(la pantalla
- que no se ve) y su su x es mayor o menor a cierto extremo segun su sentido el x  se resetea a su posicion por defecto en la pantalla
- del costado(la pantalla que no se ve).[....]
- [revisar que hay cambios]
+hacia abajo el auto).Si su "y" es mayor a 600 entonces el auto reaparece en su posicion por defecto en la pantalla de arriba(la pantalla
+que no se ve) y su su x es mayor o menor a cierto extremo segun su sentido el x  se resetea a su posicion por defecto en la pantalla
+del costado(la pantalla que no se ve).[....]
+[revisar que hay cambios]
 
 
 .Clase Calle
@@ -179,7 +179,7 @@ Calle.java[]
 ----
 La Clase Calle tiene como estados:un  doble largo, double x,double y,double factorDeDesplazamiento y una Image imagen(que es "calle.png").
 La Calle sabe dibujarse y deslizarseHaciaAbajo,tambien cuenta con dos getters: getLargo y getPosicionVertica.
-El metodo deslizarseHaciaAbajo es de tipo void,toma por parametro a un entorno de tipo Entorno,es de tipo void y lo que hace 
+-El metodo deslizarseHaciaAbajo es de tipo void,toma por parametro a un entorno de tipo Entorno,es de tipo void y lo que hace 
 es sumar al y el factorDeDesplazamiento(que es la rapidez con la que se desliza la pantalla) y si su "y - largo / 2 > 600" entonces 
 la calle reaparece en la posicion por defecto ,en la pantalla de arriba(la que no se ve).
 
@@ -191,11 +191,56 @@ Rasengan.java[]
 ----
 La Clase Rasengan tiene como estados:double x,double y,double velocidad,int diametro,Image imagen;
 Esta clase se sabe:dibujar,mover,saleDePantalla y  colisionasteConAuto.
-El metodo mover es de tipo void y lo que hace es restarle al "y" la velocidad(creando el efecto de que se mueve hacia arriba).
-El metodo saleDePantalla es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de 
+-El metodo mover es de tipo void y lo que hace es restarle al "y" la velocidad(creando el efecto de que se mueve hacia arriba).
+-El metodo saleDePantalla es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de 
 la pantalla.
-El metodo colisionasteConAuto es de tipo boolean y revisa y el rasengan colisiono con algun lado del auto pasado por parametro,Si colisiono
+-El metodo colisionasteConAuto es de tipo boolean y revisa y el rasengan colisiono con algun lado del auto pasado por parametro,Si colisiono
 entonces devuelve true,caso contraio develve false.
+
+.Clase Menu
+[source,java]
+----
+include::src/juego/
+Menu.java[]
+----
+
+
+.Clase Juego
+[source,java]
+----
+include::src/juego/
+Juego.java[]
+----
+La 
+La Clase Juego tiene como parametros agregados:
+*Constantes: 
+*Sonidos:* sonidoSalto = "jump.wav", String sonidoRasengan = "rasengan.wav";
+*Para creacion de autos:*final int altoDelAuto = 42,final int altoDeLaCalle = 220,int anchoDeAuto = 50,double velocidadDeBajadaDePantalla = 1;
+*Objetos:
+Conejo conejo;Calle callePrimaria,Calle calleSecundaria,Auto[] autosCalleSecundaria,Auto[] autosCallePrimaria;rasengan, Menu menu;
+*booleanos
+boolean partidaCorriendo, boolean partidaPausada.
+ *otros
+int reloj,int puntaje,int saltos.
+*para  creacion de autos*
+int extremoInferiorCallePrimaria,int extremoInferiorCalleSecundaria,int espacioEntreAutos,int posicionPrimerAutoCallePrimaria,
+int posicionDelSiguienteAuto,int posicionDelPrimerAutoCalleSecundaria,double posicionInicialHorizontalDeAutosSentidoDerecho,
+double posicionEnXAutosHaciaIzquierda.
+*imagenes
+Image imagenFondo,Image imagenPerdioJuego.
+
+En el el constructor inicializamos los objetos,para los autos de cada calle hicimos dos for diferentes.
+Cada array de callecon autos(callePrimaria o calleSecundaria) tiene un length ==16, en el for se recorre el array y agrega autos en cada posicion,
+este for cuenta con tres if y un else. El primer if agrega 4 autos en el carril inferior  que van de izquierda-derecha ,el segundo agrega 
+cuatro autos que van de derecha-izquierda ,el tercer if agrega cuatro autos que van de izquierda-derecha y el else agrega ,y el else 
+agrega cuatro autos que van de  derecha-izquierda.
+El segundo for es parecido,aunque decidimos que las manos empiecen de forma diferente.
+Para la las posicion en x  segun su mano ,empiezan en cierta posicion ,ya sea 0 o el entorno.ancho().
+Para la posicion en y hicimos varias cuentas matematicas teniendo en cuenta la calle y la posicion del primer auto(adjuntamos un dibujo en 
+descripcion).
+
+En el tick
+
 
 == Conclusiones
 
