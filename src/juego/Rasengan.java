@@ -21,8 +21,6 @@ public class Rasengan {
 	}
 
 	public void dibujar(Entorno entorno) {
-//		entorno.dibujarCirculo(x, y, diametro, color);
-//		entorno.dibujarImagen(imagen, x, y, 0 );
 		entorno.dibujarImagen(imagen, x, y, 0, 0.050);
 	}
 

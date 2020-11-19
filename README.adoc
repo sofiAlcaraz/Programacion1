@@ -140,7 +140,7 @@ boolean sentido(true es derecha-izquierda y false de izquierda-derecha),double b
 Image imagenAuto.
 El auto sabe dibujarse y avanzar,tambien cuenta con los getters de todos sus estados que son utiizados para crear los autos luego de que 
 destruidos por algun rasengan.
-El metodo avanzar lo que hace es que el auto avance para cierto lado segun su sentido,sumando a su x la velocidad o restando segun cual 
+El metodo avanzar, de tipo void, lo que hace es que el auto avance para cierto lado segun su sentido,sumando a su x la velocidad o restando segun cual 
 sea el caso, tambien esta constantemente aumentando su "y" sumandole la bajadaDePantalla(que es la velocidad con la que se desliza
  hacia abajo el auto).Si su "y" es mayor a 600 entonces el auto reaparece en su posicion por defecto en la pantalla de arriba(la pantalla
  que no se ve) y su su x es mayor o menor a cierto extremo segun su sentido el x  se resetea a su posicion por defecto en la pantalla
@@ -167,7 +167,12 @@ include::src/juego/
 Rasengan.java[]
 ----
 La Clase Rasengan tiene como estados:double x,double y,double velocidad,int diametro,Image imagen;
-Esta clase sabe:
+Esta clase se sabe:dibujar,mover,saleDePantalla y  colisionasteConAuto.
+El metodo mover es de tipo void y lo que hace es restarle al "y" la velocidad(creando el efecto de que se mueve hacia arriba).
+El metodo saleDePantalla es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de 
+la pantalla.
+El metodo colisionasteConAuto es de tipo boolean y revisa y el rasengan colisiono con algun lado del auto pasado por parametro,Si colisiono
+entonces devuelve true,caso contraio develve false.
 
 == Conclusiones
 
