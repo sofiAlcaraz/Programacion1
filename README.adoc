@@ -1,4 +1,4 @@
-= Introducción a la Programación: Trabajo Práctico 1
+= Programación 1: Trabajo Práctico 
 Pablo Pagano<cfk@gmail.com>; Jose_Luis Villacorta <nestor@gmail.com>;Alcaraz Sofia <sofiialcaraz16@gmail.com>
 v1, {docdate}. Docentes Hernan Rondelli ; Veronica Moyano (COM-01)
 :title-page:
@@ -14,7 +14,7 @@ seguridad vial y del respeto a las normas de transito. Para ello, nos
 encargaron un video juego similar al clasico Frogger, pero con algunas
 diferencias que mencionaremos a continuación.
 
-El conejo Boss Rabbit vivia en la luna y bajó al planeta tierra, por
+El conejo ninja vivia en la luna y bajó al planeta tierra para conocerlo, por
 este motivo no sabe cúales son las normas de transito, y por ende, no 
 sabe cruzar la calle.
 El objetivo del juego es hacer que el conejito pueda cruzar las calles
@@ -29,30 +29,43 @@ juego).
 == Descripción
 *Aspectos generales*
 Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
-Las primeras 4 clases tienen en comun los metodos Dibujar,Mover.
+Las primeras 4 clases tienen en comun los metodos Dibujar, Mover(en en caso de Auto es avanzar).
 -Clase Calle: Ésta cuenta con su método dibujar, deslizarHaciaAbajo,posicionVertical(get y) y un getLargo.
--Clase Auto: Cuenta con su método dibujar,avanzar(mover) y los get de x , y ,altura , ancho y velocidad.
--Clase Rasengan: Cuenta con su método dibujar ,mover ,saleDepantalla,colisionasteConAuto.
+-Clase Auto: Cuenta con su método dibujar,avanzar(mover) y los get de x , y ,altura , ancho y velocidad[..].
+-Clase Rasengan: Cuenta con su método dibujar, mover, saleDepantalla, colisionasteConAuto.
 -Clase Conejo: Cuenta con los métodos dibujar,esperar, saltar, saltarIzquierda, saltarDerecha, disparar,
 seFueDePantalla y chocasteAlgunAuto,hacerSonidoDeSalto.
 
-Decidimos poner las variables de las clases en el siguiente orden:anchura y altura, x e y, variables propias de 
-cada clase,bajadaDePantalla y imagen.
+Decidimos poner las variables de las clases en el siguiente orden: anchura y altura, x e y, variables propias de 
+cada clase,bajadaDePantalla e imagen.
 
-Tambien decidimos crear solo dos calles y 4 carriles (8 carriles en total) y un rasengan por "pantalla".
-Solo se puede jugar con las teclas :w,a,d y espacio.
+Tambien decidimos crear solo dos calles con 4 carriles cada una  (8 carriles en total) y un rasengan por "pantalla".
+Solo se puede jugar con las teclas :w,a,d y espacio.[..]
 El juego cuanta con un menu que da la opcion de jugar o salir.Tambien en cualquier momento de la partida el juego
 puede pausarse con la tecla p.
 
 Además el juego al  realizarse cierta cantidad de puntos aumenta su velocidad.
+
 *Conejo*
-Crear al conejo, darle movimiento, enselñarle a dibujarse y a saltar no fue una dificultad.
+Crear al conejo, darle movimiento, enseñarle a dibujarse y a saltar no fue una dificultad.
+
+*Calle*
+la cremos le enseñamos a que se dibuje y deslice.
+
+*Auto*
+Otro problema que tuvimos fue en el codigo de los autos(poder crearlos en cierta posicion,a todos los autos),
+para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante, ya que al tener dos for
+uno  de mano "izquierda" y otro de mano "derecha" se nos dificultaba sincronizarlos ,por lo que lo cambiamos
+por un for por cada calle y cada uno de estos con cuatro carriles y dos manos.
+Luego pudimos hacer que estos se muevan en sincronia.
+.Planificacion posicion de autos.
+.Imagen planificacion en de reaparicion de autos de callePrimaria
+image::este Equipo/Documentos/crearAutos.jpg[]
 
 *Autos y Calles*
-Crear la calle y que esta se mueva tampoco, lo mismo con los autos ,no fue 
-complicado(crear uno), los problemas comenzaron cuando unimos estos dos (autos y calles),ya que los autos 
+Unir a los autos y las calles en el juego fue complicado,ya que los autos 
 se iban fuera de la calle, para solucionarlo probamos diferentes valores en y ,
-que funcionaban pero luego  notamos que los autos acumulaban un valor y subian 
+que funcionaban pero luego notamos que los autos acumulaban un valor y subian 
 hasta salirse de la calle. Nos dimos cuenta de que la reaparicion de la calle
 estaba mal ya que lo que haciamos era al "y" restarle el "y" y sumarle la mitad
 de la pantalla, lo que hacia que  la calle aparezca nuevamente pero no donde
@@ -61,46 +74,31 @@ de auto y calle le pasamos el entorno y al "y" de calle lo restamos por
 entono.alto*2(600*2) y  a auto a su "y" lo restamos por entorno.alto*2(600*2),
 de esta forma ambos aparecen en la posicion que inicialmente se les habia asignado.
 
-*Auto*
-Otro problema que tuvimos fue en el codigo de los autos(poder crearlos en cierta posicion,a todos los autos),
-para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante,al tener dos for
-uno  de mano "izquierda" y otro de mano "derecha" se nos dificultó sincronizarlos ,por lo que lo cambiamos
-por un for por cada calle y cada uno de estos con cuatro carriles y dos manos cada uno.
-Luego pudimos hacer que estos se muevan en sincronia.
-.Planificacion posicion de autos.
-
-.Imagen planificacion en de reaparicion de autos de callePrimaria
-image::este Equipo/Documentos/
-crearAutos.jpg[]
-
-
-
 *Rasengan y colision Autos*
-Para hacer los rasengans primero creamos la clase probamos su correcto funcionamiento en juego
+Para hacer al rasengan primero creamos la clase probamos su correcto funcionamiento en juego
 y luego creamos un metodo en conejo el cual devuelve un nuevo rasengan con la x e y  del Conejo
 luego en la clase Juego hicimos un if  (que pregunta la tecla presionada y si rasengan es null
 para no spamear la pantalla) para agregar el rasengan al rasengan de juego
-,un if que analiza si este se fue de la  pantalla (si es asi lo vueve null), un if   que analiza si el rasengan es distinto de null
+,un if que analiza si este se fue de la  pantalla (si es asi lo vuelve null), un if que analiza si el rasengan es distinto de null
 y de serlo el rasengan se debe dibujar y mover.
-Para analizar la colision con cada auto creamos dos for (uno por cada "calle con autos") son un if cada uno que pregunta
+Para analizar la colision con cada auto creamos dos for (uno por cada "calle con autos") con un if cada uno que pregunta
  si el auto en cierta posicion  no es null, colisiono con rasengan y de que sentido es.
-si colisiono entonces se crea un nuevo auto en[....]
+si colisiono entonces se crea un nuevo auto e[..]
 Si el rasengan colisiono con algun auto este se elimina ,el rasengan tambien y el puntaje sube.
 sino..[..]
 
 *Reaparicion vertical Auto*
 Luego de hacer esto,los autos que reapareciann se seguian superponiendo y nos dimos cuenta que el metodo avanzar de la
-clase Auto estaba mal ,ya que al llegar a un extremo los regeneraba en el extremo opuesto ,no es su posion por defecto,
-Para que esto funcione correctamente cambiamos el metodo avanzar,utilizando el el ancho del entorno lo que hicimos fue 
+Clase Auto estaba mal ,ya que al llegar a un extremo los regeneraba en el extremo opuesto ,no es su posion por defecto,
+Para que esto funcione correctamente cambiamos el metodo avanzar,utilizando  el ancho del entorno lo que hicimos fue 
 enseñale al Auto que al llegar al extremo tiene que reaparecer en su posicion por defecto en la pantalla de arriba(la que no se ve).
 
 *Reaparicion horizontal Autos y Calles*
 Para que estos  reaparezcan sin dificultades los metodos avanzar (en Clase Auto) y deslizarHaciaAbajo(En Clase Calle),que toman por 
 parametro el entorno luego de llegar que la parte de arriba es decir su "y - largo / 2" en Calle y "y - ancho / 2" en Auto
-vuelven a su posicion por defecto en la pantalla de arriba(la que no se ve).
+vuelven a su posicion por defecto en la pantalla de arriba(la que no se ve),esto esta explicado con mas detalle en "Autos y Calles".
 
-
-Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos  por parameros a todos los objetos que debian 
+Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos  por parametros a todos los objetos que debian 
 deslizarse una misma Constante llamada: velocidadDeBajadaDePantalla(que se encuentra en la clase Juego)
 
 Para poder mostrar texto por pantalla lo que tuvimos que utilizar fue Integer.toString(algunInt) para transformar los enteros en
@@ -117,22 +115,20 @@ funciona.
 
 == Implementación
 En esta sección se incluye el código fuente,Y una breve descripcion, qué hace, y los parémetros que
-toma la funcién/método/procedimiento, junto con los valores que devuelve o modifica.No incluye 
-código de librerías/frameworks utiizadas a no ser que sea absolutamente necesario.
-En general el metodo dibujarse de cada clase que lo requiera toma por parametro a un entorno de tipo Entorno,es void y 
-solo dibuja la imagen que se indique en el constructor.
+toma cada funcién/método/procedimiento, junto con los valores que devuelve o modifica
+En general el metodo dibujarse toma por parametro a un entorno de tipo Entorno,es void y 
+solo dibuja la imagen que se indique en el constructor(a excepción del caso del conejo).
 
 .Clase Conejo
 [source,java]
 ----
-include::src/juego/
-Conejo.java[]
+include::src/juego/Conejo.java[]
 ----
 La Clase Conejo tiene como estados:private double altura,double ancho,double x, double y,double velocidadDeSalto(movimiento vertical y
 horizontal),double deslizarHaciaAbajo(deslizamiento hacia abajo),Image imagenConejoEsperando,Image imagenConejoIzquierda,
 Image imagenConejoDerecha,String ultimoMovimiento.
 -El conejo se sabe:dibujar,hacerSonidoDeSalto,saltar,esperar,saltarIzquierda,saltarDerecha,disparar,seFueDePantalla, chocasteAlgunAuto.
--El metodo dibujar es peculiar[]
+-El metodo dibujar es peculiar ya que dibuja la imagen segun que movimiento hizo anteriormente [..]
 -El metodo hacerSonidoDeSalto es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
 -El metodo saltar es de tipo void, toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
 y la velocidadDeSalto,pero si " y - altura / 2 - velocidadDeSalto <= 0" ,es decir, que el conejo se encuentra arriba de todo ,no pueda 
@@ -148,68 +144,64 @@ hacia abajo.
 -El metodo disparar es de tipo Rasengan y lo que hace es devolver un Rasengan con su "x" e "y"(posicion actual del conejo,a la hora de disparar).
 -El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
 si su "y + altura / 2 < 600"  entonces el metodo devuelve true, caso contrario,false.
--El metodo chocasteAlgunAuto es de tipo boolean y toma por parametro un array de autos ,si el conejo coliciona con alguno de estos autos,devuelve true
-sino false.
+-El metodo chocasteAlgunAuto es de tipo boolean y toma por parametro un array de autos ,si el conejo colisiona con alguno de estos autos,
+devuelve true, sino false.
  
 
 .Clase Auto
 [source,java]
 ----
-include::src/juego/
-Auto.java[]
+include::src/juego/Auto.java[]
 ----
 La Clase Auto tiene como estados:double alto,double ancho,double x,double y, double velocidad(mov horizontal),
 boolean sentido(true es derecha-izquierda y false de izquierda-derecha),double bajadaDePantalla(mov vertical),
 Image imagenAuto.
 El auto sabe dibujarse y avanzar,tambien cuenta con los getters de todos sus estados que son utiizados para crear los autos luego de que 
-destruidos por algun rasengan.
--El metodo avanzar, de tipo void, lo que hace es que el auto avance para cierto lado segun su sentido,sumando a su x la velocidad o restando segun cual 
-sea el caso, tambien esta constantemente aumentando su "y" sumandole la bajadaDePantalla(que es la velocidad con la que se desliza
-hacia abajo el auto).Si su "y" es mayor a 600 entonces el auto reaparece en su posicion por defecto en la pantalla de arriba(la pantalla
-que no se ve) y su su x es mayor o menor a cierto extremo segun su sentido el x  se resetea a su posicion por defecto en la pantalla
-del costado(la pantalla que no se ve).[....]
+destruidos por algún rasengan.
+-El metodo avanzar, de tipo void, hace que el auto avance para cierto lado segun su sentido,sumando a su x la velocidad o restando según cual 
+sea el el sentido, tambien esta constantemente aumentando su "y" sumandole la bajadaDePantalla(que es la velocidad con la que se desliza
+hacia abajo el auto).Si su "y" es mayor a 600 entonces el auto reaparece en su posición por defecto en la pantalla de arriba(la pantalla
+que no se ve) y su su x es mayor o menor a cierto extremo segun su sentido el x  se resetea a su posición por defecto en la pantalla
+del costado(la pantalla que no se ve).
+
 [revisar que hay cambios]
 
 
 .Clase Calle
 [source,java]
 ----
-include::src/juego/
-Calle.java[]
+include::src/juego/Calle.java[]
 ----
 La Clase Calle tiene como estados:un  doble largo, double x,double y,double factorDeDesplazamiento y una Image imagen(que es "calle.png").
 La Calle sabe dibujarse y deslizarseHaciaAbajo,tambien cuenta con dos getters: getLargo y getPosicionVertica.
--El metodo deslizarseHaciaAbajo es de tipo void,toma por parametro a un entorno de tipo Entorno,es de tipo void y lo que hace 
-es sumar al y el factorDeDesplazamiento(que es la rapidez con la que se desliza la pantalla) y si su "y - largo / 2 > 600" entonces 
-la calle reaparece en la posicion por defecto ,en la pantalla de arriba(la que no se ve).
+-El metodo deslizarseHaciaAbajo es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace 
+es sumar al "y" el "factorDeDesplazamiento"(que es la rapidez con la que se desliza la pantalla) y si su "y - largo / 2 > 600" entonces 
+la calle reaparece en la posición por defecto ,en la pantalla de arriba(la que no se ve).
 
 .Clase Rasengan
 [source,java]
 ----
-include::src/juego/
-Rasengan.java[]
+include::src/juego/Rasengan.java[]
 ----
 La Clase Rasengan tiene como estados:double x,double y,double velocidad,int diametro,Image imagen;
 Esta clase se sabe:dibujar,mover,saleDePantalla y  colisionasteConAuto.
 -El metodo mover es de tipo void y lo que hace es restarle al "y" la velocidad(creando el efecto de que se mueve hacia arriba).
 -El metodo saleDePantalla es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de 
 la pantalla.
--El metodo colisionasteConAuto es de tipo boolean y revisa y el rasengan colisiono con algun lado del auto pasado por parametro,Si colisiono
-entonces devuelve true,caso contraio develve false.
+-El metodo colisionasteConAuto es de tipo boolean y revisa y el rasengan colisiono con algún lado del auto pasado por parametro,si colisiono
+entonces devuelve true,caso contrario devuelve false.
 
 .Clase Menu
 [source,java]
 ----
-include::src/juego/
-Menu.java[]
+include::src/juego/Menu.java[]
 ----
 
 
 .Clase Juego
 [source,java]
 ----
-include::src/juego/
-Juego.java[]
+include::src/juego/Juego.java[]
 ----
 La 
 La Clase Juego tiene como parametros agregados:
@@ -230,7 +222,7 @@ double posicionEnXAutosHaciaIzquierda.
 Image imagenFondo,Image imagenPerdioJuego.
 
 En el el constructor inicializamos los objetos,para los autos de cada calle hicimos dos for diferentes.
-Cada array de callecon autos(callePrimaria o calleSecundaria) tiene un length ==16, en el for se recorre el array y agrega autos en cada posicion,
+Cada array de calle con autos(callePrimaria o calleSecundaria) tiene un length ==16, en el for se recorre el array y agrega autos en cada posicion,
 este for cuenta con tres if y un else. El primer if agrega 4 autos en el carril inferior  que van de izquierda-derecha ,el segundo agrega 
 cuatro autos que van de derecha-izquierda ,el tercer if agrega cuatro autos que van de izquierda-derecha y el else agrega ,y el else 
 agrega cuatro autos que van de  derecha-izquierda.
@@ -240,6 +232,7 @@ Para la posicion en y hicimos varias cuentas matematicas teniendo en cuenta la c
 descripcion).
 
 En el tick
+
 
 
 == Conclusiones
