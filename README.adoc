@@ -116,23 +116,33 @@ Tambi�n, se puede incluir una descripci�n general del programa�c�mo
 funciona.
 
 == Implementación
-En esta sección se incluye el código fuente.
+En esta sección se incluye el código fuente,Y una breve descripcion, qué hace, y los parémetros que
+toma la funcién/método/procedimiento, junto con los valores que devuelve o modifica.No incluye 
+código de librerías/frameworks utiizadas a no ser que sea absolutamente necesario.
+
 .Clase Conejo
 [source,java]
 ----
 include::Conejo.java[]
 ----
 
- 
+.Clase Auto
+[source,java]
+----
+include::Auto.java[]
+----
 
-Adem�s, por cada fragmento de c�digo
-relevante�i.e. funci�n, m�todo, procedimiento�se debe dar una
-breve descripci�n, decir qu� hace, y especificar los par�metros que
-toma la funci�n/m�todo/procedimiento, junto con los valores que devuelve
-� modifica.
+.Clase Calle
+[source,java]
+----
+include::Calle.java[]
+----
 
-_No deber�a incluirse el c�digo de librer�as/frameworks que se
-utilicen�a no ser que sea absolutamente necesario._
+.Clase Rasengan
+[source,java]
+----
+include::Rasengan.java[]
+----
 
 == Conclusiones
 
