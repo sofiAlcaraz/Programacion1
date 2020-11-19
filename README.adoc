@@ -149,7 +149,7 @@ El metodo disparar es de tipo Rasengan y lo que hace es devolver un Rasengan con
 El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
 si su "y + altura / 2 < 600"  entonces el metodo devuelve true, caso contrario,false.
 El metodo chocasteAlgunAuto es de tipo boolean y toma por parametro un array de autos ,si el conejo coliciona con alguno de estos autos,devuelve true
-sino false;
+sino false.
  
 
 .Clase Auto
