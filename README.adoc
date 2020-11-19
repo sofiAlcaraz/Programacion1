@@ -128,6 +128,29 @@ solo dibuja la imagen que se indique en el constructor.
 include::src/juego/
 Conejo.java[]
 ----
+La Clase Conejo tiene como estados:private double altura,double ancho,double x, double y,double velocidadDeSalto(movimiento vertical y
+horizontal),double deslizarHaciaAbajo(deslizamiento hacia abajo),Image imagenConejoEsperando,Image imagenConejoIzquierda,
+Image imagenConejoDerecha,String ultimoMovimiento.
+El conejo se sabe:dibujar,hacerSonidoDeSalto,saltar,esperar,saltarIzquierda,saltarDerecha,disparar,seFueDePantalla, chocasteAlgunAuto.
+El metodo dibujar es peculiar[]
+El metodo hacerSonidoDeSalto es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
+El metodo saltar es de tipo void, toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
+y la velocidadDeSalto,pero si " y - altura / 2 - velocidadDeSalto <= 0" ,es decir, que el conejo se encuentra arriba de todo ,no pueda 
+avanzar al menos que la pantalla avanze.
+El metodo saltarDerecha es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto 
+hacia la derecha  sumandole a la "x" la velocidadDeSalto, pero si "x + ancho / 2 + velocidadDeSalto >= entorno.ancho()" ,es decir,
+el conejo esta a la derecha de todo ,para que el conejo no pueda salirse de la pantalla  el x sera "x = entorno.ancho() - ancho / 2".
+El metodo saltarIzquierda es de tipo void ,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto
+hacia la izquierda restandole a la "x" la velocidadDeSalto, pero si "x - ancho / 2 - velocidadDeSalto <= 0" ,es decir , que le conejo 
+esta a la izquierda del todo ,para que no pueda salirse de pantalla el x sera "x = ancho / 2".
+El metodo  esperar  es de tipo void y lo que hace es sumarle a y la deslizarHaciaAbajo,de esta forma si el conejo esta quieto se deslizara 
+hacia abajo.
+El metodo disparar es de tipo Rasengan y lo que hace es devolver un Rasengan con su "x" e "y"(posicion actual del conejo,a la hora de disparar).
+El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
+si su "y + altura / 2 < 600"  entonces el metodo devuelve true, caso contrario,false.
+El metodo chocasteAlgunAuto es de tipo boolean y toma por parametro un array de autos ,si el conejo coliciona con alguno de estos autos,devuelve true
+sino false;
+ 
 
 .Clase Auto
 [source,java]
@@ -135,7 +158,7 @@ Conejo.java[]
 include::src/juego/
 Auto.java[]
 ----
-La Clase Auto tine como estados:double alto,double ancho,double x,double y, double velocidad(mov horizontal),
+La Clase Auto tiene como estados:double alto,double ancho,double x,double y, double velocidad(mov horizontal),
 boolean sentido(true es derecha-izquierda y false de izquierda-derecha),double bajadaDePantalla(mov vertical),
 Image imagenAuto.
 El auto sabe dibujarse y avanzar,tambien cuenta con los getters de todos sus estados que son utiizados para crear los autos luego de que 
