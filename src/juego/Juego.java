@@ -16,7 +16,7 @@ public class Juego extends InterfaceJuego {
 	private final int altoDeLaCalle = 220;
 	private final int anchoDeAuto = 50;
 	private double velocidadDeBajadaDePantalla = 1;
-
+	
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private Conejo conejo;
@@ -29,6 +29,7 @@ public class Juego extends InterfaceJuego {
 	// booleanos
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
+	private boolean perdioPartida;
 	// otros
 	private int reloj;
 	private int puntaje;
@@ -54,6 +55,7 @@ public class Juego extends InterfaceJuego {
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
+		perdioPartida=false;
 		imagenFondo = Herramientas.cargarImagen("fondoCesped.jpg");
 		imagenPerdioJuego = Herramientas.cargarImagen("perdio.jpg");
 		// buscar simetria entre autos
@@ -149,6 +151,14 @@ public class Juego extends InterfaceJuego {
 	 * del TP para mayor detalle).
 	 */
 	public void tick() {
+		if(perdioPartida==true) {
+			partidaCorriendo=false;
+			partidaPausada=false;
+			mostrarFotoJuegoPerdidoPorPantalla();
+			if(entorno.sePresiono(entorno.TECLA_FIN)) {
+				System.exit(0);
+			}
+		}
 
 		if (partidaCorriendo == true && partidaPausada == false) {
 			reloj++;
@@ -156,14 +166,8 @@ public class Juego extends InterfaceJuego {
 
 			if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
 					|| conejo.seFueDePantalla()) {
-				int i = 5;
-				while (i <= 5) {
-					entorno.dibujarImagen(imagenPerdioJuego, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
-					entorno.cambiarFont("", 30, Color.RED);
-					entorno.escribirTexto("GAME OVER", entorno.alto() / 2, entorno.ancho() / 2);
-					i++;
-				}
-				System.exit(0);
+				perdioPartida=true;
+
 			}
 
 			callePrimaria.deslizarHaciaAbajo(entorno);
@@ -307,6 +311,15 @@ public class Juego extends InterfaceJuego {
 		}
 
 	}
+
+	private void mostrarFotoJuegoPerdidoPorPantalla() {
+
+				entorno.dibujarImagen(imagenPerdioJuego, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
+				entorno.cambiarFont("", 30, Color.RED);
+				entorno.escribirTexto("GAME OVER", entorno.alto() / 2, entorno.ancho() / 2);
+	
+		}
+	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
