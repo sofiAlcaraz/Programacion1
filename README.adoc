@@ -135,7 +135,8 @@ Conejo.java[]
 include::src/juego/
 Auto.java[]
 ----
-La Clase Auto tine como estados:double alto,double ancho,double x,double y, double velocidad,boolean sentido,double bajadaDePantalla,
+La Clase Auto tine como estados:double alto,double ancho,double x,double y, double velocidad(mov horizontal),
+boolean sentido(true es derecha-izquierda y false de izquierda-derecha),double bajadaDePantalla(mov vertical),
 Image imagenAuto.
 El auto sabe dibujarse y avanzar,tambien cuenta con los getters de todos sus estados que son utiizados para crear los autos luego de que 
 destruidos por algun rasengan.
@@ -144,6 +145,7 @@ sea el caso, tambien esta constantemente aumentando su "y" sumandole la bajadaDe
  hacia abajo el auto).Si su "y" es mayor a 600 entonces el auto reaparece en su posicion por defecto en la pantalla de arriba(la pantalla
  que no se ve) y su su x es mayor o menor a cierto extremo segun su sentido el x  se resetea a su posicion por defecto en la pantalla
  del costado(la pantalla que no se ve).[....]
+ [revisar que hay cambios]
 
 
 .Clase Calle
@@ -164,6 +166,8 @@ la calle reaparece en la posicion por defecto ,en la pantalla de arriba(la que n
 include::src/juego/
 Rasengan.java[]
 ----
+La Clase Rasengan tiene como estados:double x,double y,double velocidad,int diametro,Image imagen;
+Esta clase sabe:
 
 == Conclusiones
 

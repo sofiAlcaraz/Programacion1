@@ -14,10 +14,11 @@ public class Auto {
 	private double velocidad;
 	private boolean sentido;
 	private double bajadaDePantalla;
-	private Image imagenAuto;
+	private Image imagenAutoHaciaDerecha;
+	private Image imagenAutoHaciaIzquierda;
 
 	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido,
-			double bajadaDePantalla, String string) {
+			double bajadaDePantalla) {
 		this.alto = altura;
 		this.ancho = ancho;
 		this.x = x;
@@ -25,11 +26,16 @@ public class Auto {
 		this.velocidad = velocidad;
 		this.sentido = sentido;
 		this.bajadaDePantalla = bajadaDePantalla;
-		this.imagenAuto = Herramientas.cargarImagen(string);
+		this.imagenAutoHaciaDerecha = Herramientas.cargarImagen("autoSentidoDerecho.png");
+		this.imagenAutoHaciaIzquierda=Herramientas.cargarImagen("autoSentidoIzquierdo.png");
+		
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarImagen(imagenAuto, x, y, 0, 0.050);
+		if(sentido==true) {
+			entorno.dibujarImagen(imagenAutoHaciaIzquierda, x, y, 0, 0.050);
+		}
+		entorno.dibujarImagen(imagenAutoHaciaDerecha, x, y, 0, 0.050);
 	}
 
 	public void avanzar(Entorno entorno) {
@@ -39,7 +45,6 @@ public class Auto {
 		}
 		if (sentido) {
 			if (x + ancho < 0) {
-				
 				x += entorno.ancho() * 2;
 			} else {
 				x -= velocidad;
