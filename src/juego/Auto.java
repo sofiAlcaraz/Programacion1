@@ -39,7 +39,7 @@ public class Auto {
 		}
 		if (sentido) {
 			if (x + ancho < 0) {
-				// x = entorno.ancho();
+				
 				x += entorno.ancho() * 2;
 			} else {
 				x -= velocidad;

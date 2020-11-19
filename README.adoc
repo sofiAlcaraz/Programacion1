@@ -27,7 +27,7 @@ por el borde inferior de la pantalla (cuando esto último sucede se pierde el
 juego).
 
 == Descripción
-
+*Aspectos generales*
 Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
 Las primeras 4 clases tienen en comun los metodos Dibujar,Mover.
 -Clase Calle: Ésta cuenta con su método dibujar, deslizarHaciaAbajo,posicionVertical(get y) y un getLargo.
@@ -45,8 +45,10 @@ El juego cuanta con un menu que da la opcion de jugar o salir.Tambien en cualqui
 puede pausarse con la tecla p.
 
 Además el juego al  realizarse cierta cantidad de puntos aumenta su velocidad.
-
+*Conejo*
 Crear al conejo, darle movimiento, enselñarle a dibujarse y a saltar no fue una dificultad.
+
+*Autos y Calles*
 Crear la calle y que esta se mueva tampoco, lo mismo con los autos ,no fue 
 complicado(crear uno), los problemas comenzaron cuando unimos estos dos (autos y calles),ya que los autos 
 se iban fuera de la calle, para solucionarlo probamos diferentes valores en y ,
@@ -59,6 +61,7 @@ de auto y calle le pasamos el entorno y al "y" de calle lo restamos por
 entono.alto*2(600*2) y  a auto a su "y" lo restamos por entorno.alto*2(600*2),
 de esta forma ambos aparecen en la posicion que inicialmente se les habia asignado.
 
+*Auto*
 Otro problema que tuvimos fue en el codigo de los autos(poder crearlos en cierta posicion,a todos los autos),
 para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante,al tener dos for
 uno  de mano "izquierda" y otro de mano "derecha" se nos dificultó sincronizarlos ,por lo que lo cambiamos
@@ -67,12 +70,12 @@ Luego pudimos hacer que estos se muevan en sincronia.
 .Planificacion posicion de autos.
 
 .Imagen planificacion en de reaparicion de autos de callePrimaria
-image::este Equipo/Documentos
+image::este Equipo/Documentos/
 crearAutos.jpg[]
 
-Como el largo del conejo colicionaba con los autos por mas  que este en medio de un
-carril disminuimos su tamaño.
 
+
+*Rasengan y colision Autos*
 Para hacer los rasengans primero creamos la clase probamos su correcto funcionamiento en juego
 y luego creamos un metodo en conejo el cual devuelve un nuevo rasengan con la x e y  del Conejo
 luego en la clase Juego hicimos un if  (que pregunta la tecla presionada y si rasengan es null
@@ -85,22 +88,23 @@ si colisiono entonces se crea un nuevo auto en[....]
 Si el rasengan colisiono con algun auto este se elimina ,el rasengan tambien y el puntaje sube.
 sino..[..]
 
+*Reaparicion vertical Auto*
 Luego de hacer esto,los autos que reapareciann se seguian superponiendo y nos dimos cuenta que el metodo avanzar de la
 clase Auto estaba mal ,ya que al llegar a un extremo los regeneraba en el extremo opuesto ,no es su posion por defecto,
 Para que esto funcione correctamente cambiamos el metodo avanzar,utilizando el el ancho del entorno lo que hicimos fue 
-enseñale al Auto que al llegar al extremo tiene que reaparecer en su posicion por defecto.
+enseñale al Auto que al llegar al extremo tiene que reaparecer en su posicion por defecto en la pantalla de arriba(la que no se ve).
+
+*Reaparicion horizontal Autos y Calles*
+Para que estos  reaparezcan sin dificultades los metodos avanzar (en Clase Auto) y deslizarHaciaAbajo(En Clase Calle),que toman por 
+parametro el entorno luego de llegar que la parte de arriba es decir su "y - largo / 2" en Calle y "y - ancho / 2" en Auto
+vuelven a su posicion por defecto en la pantalla de arriba(la que no se ve).
+
 
 Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos  por parameros a todos los objetos que debian 
 deslizarse una misma Constante llamada: velocidadDeBajadaDePantalla(que se encuentra en la clase Juego)
 
-
-
-
 Para poder mostrar texto por pantalla lo que tuvimos que utilizar fue Integer.toString(algunInt) para transformar los enteros en
 string ya que el metodo:entorno.cambiarFont y entorno.escribirTexto lo requerian así.
-
-
-
 
 En esta secci�n pueden incluirse las dificultades que tuvieron, las
 soluciones encontradas, las decisiones que se fueron tomando a lo largo
@@ -119,25 +123,29 @@ código de librerías/frameworks utiizadas a no ser que sea absolutamente necesa
 .Clase Conejo
 [source,java]
 ----
-include::Conejo.java[]
+include::src/juego/
+Conejo.java[]
 ----
 
 .Clase Auto
 [source,java]
 ----
-include::Auto.java[]
+include::src/juego/
+Auto.java[]
 ----
 
 .Clase Calle
 [source,java]
 ----
-include::Calle.java[]
+include::src/juego/
+Calle.java[]
 ----
 
 .Clase Rasengan
 [source,java]
 ----
-include::Rasengan.java[]
+include::src/juego/
+Rasengan.java[]
 ----
 
 == Conclusiones
