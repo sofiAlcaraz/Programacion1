@@ -11,12 +11,10 @@ public class Juego extends InterfaceJuego {
 	// Constantes
 	private final String sonidoSalto = "jump.wav";
 	private final String sonidoRasengan = "rasengan.wav";
-
 	private final int altoDelAuto = 42;
 	private final int altoDeLaCalle = 220;
 	private final int anchoDeAuto = 50;
 	private double velocidadDeBajadaDePantalla = 1;
-
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private Conejo conejo;
@@ -34,7 +32,6 @@ public class Juego extends InterfaceJuego {
 	private int reloj;
 	private int puntaje;
 	private int saltos;
-
 	// para autos
 	private int extremoInferiorCallePrimaria;
 	private int extremoInferiorCalleSecundaria;
@@ -42,7 +39,7 @@ public class Juego extends InterfaceJuego {
 	private int posicionPrimerAutoCallePrimaria;
 	private int posicionDelSiguienteAuto;
 	private int posicionDelPrimerAutoCalleSecundaria;
-	private double posicionInicialHorizontalDeAutosSentidoDerecho; // Okay
+	private double posicionInicialHorizontalDeAutosSentidoDerecho;
 	private double posicionEnXAutosHaciaIzquierda;
 	// imagenes
 	private Image imagenFondo;
