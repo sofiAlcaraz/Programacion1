@@ -26,6 +26,7 @@ juego. Es decir, el conejo debe saltar hacia adelante para que no desaparezca
 por el borde inferior de la pantalla (cuando esto último sucede se pierde el 
 juego).
 
+
 == Descripción
 *Aspectos generales*
 Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
@@ -108,8 +109,13 @@ el del auto. Luego, al salto de conejo lo modificamos pasandole por parametro un
  y el espacioEntreAutos de esta forma el conejo salta "altoAuto / 2 + espacioEntreAutos" y a pesar de hacer mini saltos,cae 
  dentro de la calle,Es importante aclarar que solo el salto hacia adelante ´saltar´ es el que toma todos estos parametros ya que el
  ´x´ del conejo no tiene los mismos problemas que el ´y´,ya que "depende" de este.
-
-
+*Menu*
+La clase menu fue creada para que haya una instancia previa a que el juegue comience, esta consta de dos botones y un cursor que muestra
+la opción que se quiera elegir.
+Sus variables fueron declaradas con nombres muy confusos, se corrigieron para que se pueda entender mejor. 
+Otra funcionalidad del menu, fue poder ser utilizado como boton de pausa dentro del juego. La dificultad que nos presentó y 
+la cual no dimos con la solución, fue pedirle al menu que vuelva a comenzar el juego sin cerrar el entorno.
+*Otros*
 Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos  por parametros a todos los objetos que debian 
 deslizarse una misma Constante llamada: velocidadDeBajadaDePantalla(que se encuentra en la clase Juego)
 
@@ -195,7 +201,9 @@ La Clase Rasengan tiene como estados: x, y, velocidad, diametro, imagen;
 ----
 include::src/juego/Menu.java[]
 ----
-
+La clase Menu tiene como estados: double posicionDelBotonJugarX, double posicionDelBotonJugarY,
+double posicionDelBotonSalirX, double posicionDelBotonSalirY, double posicionDelCursorX, double posicionDelCursorY, y dos Image,
+que son botonJugar y botonSalir
 
 .Clase Juego
 [source,java]
@@ -237,9 +245,24 @@ En el tick
 
 == Conclusiones
 
-Aqu� van algunas reflexiones acerca del proceso de desarrollo del
-trabajo realizado, y de los resultados obtenidos.
+El trabajo nos ayudo en terminar de entender como es el manejo de objetos con javaScript,los arrays de objetos ,sus constructores,metodos,
+variables,constantes,etc.Tambien aprendimos que antes de comenzar a programar es muy importante planear que Objetos,variables,metodos
+necesitamos y como estos se relacionan entre si. Creémos que el pensar mucho el nombre de las varibles nos va a quedar para siempre y que
+hay miles de formas de escribir el codigo. Ademas aprendimos que el orden en que se ejecuta el codigo es muy importante.
+No nos termino de gustar el codigo a la hora de crear Autos en el juego y nos hubiese gustado agregarle mas cosas,pero tuvimos muy poco tiempo. 
+Aprendimos algo muy util ,que es el manejo de git,que además de todo lo que aprendimos de la materia ,nos llevamos todos estos conocimientos
+que van a ser util en el futuro y nos acercan a lo que es un verdadero proyecto en equipo.
 
-Tambi�n se puede incluir una conclusi�n final de producto terminado.
+Gracias al trabajo se puede vivenciar los primeros pasos en nuestra formación como profesionales de la informática y la programación.
+Un equipo de trabajo unido y en sintonía siempre va a funcionar mejor que un grupo de desarrolladores trabajando solos. Las ventajas de
+esto es es saber cuáles son las fortalezas y debilidades de los otros, de este modo, nuestros aportes al proyecto se van a acomodar de 
+tal forma que cada uno hará lo que más le gusta y mejor le sale, y de esta forma el resultado va a ser muchos mas enriquecedor, con menos
+stress para todos y mas gratificante para todos.
+Durante el proceso de creacion del juego el codigo sufrio muchos cambios,pero, para bien y esto se logró gracias a un buen trabajo en equipo
+entre un preceptor lleno de entusiasmo, un colectivero  que piensa codigo mientras conduce y una rara recursante que pasa mas tiempo con el codigo 
+que con su cama.
 
-Pueden incluirse lecciones aprendidas durante el desarrollo del trabajo.
+En conclusión, una simple taza de cafe, unos buenos mates, mucha practica,el seguimiento del profesor ,el espacio de consultas,
+y un buen trabajo en equipo ,logro que este trabajo funcione correctamente y
+se termine  tiempo y a pesar de los reniegos con el push y pull en el git,lo logramos.
+
