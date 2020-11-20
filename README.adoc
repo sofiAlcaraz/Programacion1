@@ -88,9 +88,14 @@ para no spamear la pantalla) para agregar el rasengan al rasengan de juego
 y de serlo el rasengan se debe dibujar y mover.
 Para analizar la colision con cada auto creamos dos for (uno por cada "calle con autos") con un if cada uno, que pregunta
 si el auto en cierta posición no es null, colisiono con rasengan y de que sentido es.
-si colisiono entonces se crea un nuevo auto e[..]
-Si el rasengan colisiono con algún auto este se elimina ,el rasengan también y el puntaje sube.
-sino..[..]
+Para analizar la colision con cada auto creamos dos for (uno por cada "calle con autos") con un if cada uno, que pregunta
+si el auto en cierta posicion no es null, colisiono con rasengan y de que sentido es.
+Si colisiono entonces se crea un nuevo auto en la posicion ´y´ de cada auto por defecto ,y a la posicion ´x´ se le resta o suma segun su sentido 
+el ancho de pantalla para que reaparezca en su posicion por defecto.
+Si el rasengan colisiono con algun auto este se elimina ,el rasengan tambien y el puntaje sube y se agrega un nuevo auto en la posicion del arreglo
+donde estaba el auto eliminado,con otra posicion en ´x´para que la calle no se quede sin autos.
+En caso de no colicionar el rasenga se dibuja y mueve ,y lo mismo con los autos.
+
 
 *Reaparicion vertical Auto*
 Luego de hacer esto, los autos que reaparecían se seguían superponiendo y nos dimos cuenta que el método ´avanzar´ de la
