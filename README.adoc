@@ -57,11 +57,11 @@ para arreglar esto, cambiamos el metodo ´saltar´,para que salte bien a su y se
 en la mitad, pero luego tuvimos que cambiar en que ´y´ creamos al conejo,para que comeinze saltando en una posicion razonable
 lo que hicimos fue, al crear el conejo pasarle como parametro en su ´y´ = ´(posicionPrimerAutoCallePrimaria + espacioEntreAutos + altoDelAuto / 2) * 3´,
 de esta forma el conejo se posicionaria al comezar la calle y saltaria el espacio entre autos mas el alto/2. 
-
+. Imagen planificacion salto de conejo.
 image::este Equipo/Documentos/SaltoConejo.png[]
 
 *Calle*
-La creamos le enseñamos a que se dibuje y deslice.
+A la creamos le enseñamos a que se dibuje y deslice.
 
 *Auto*
 Otro problema que tuvimos fue en el código de los autos(poder crearlos en cierta posición,a todos los autos),
@@ -70,7 +70,7 @@ uno  de mano "izquierda" y otro de mano "derecha" se nos dificultaba sincronizar
 por un for por cada calle y cada uno de estos con cuatro carriles y dos manos.
 Luego pudimos hacer que estos se muevan en sincronía.
 
-.Imagen planificación en de reaparición de autos de callePrimaria
+.Imagen planificación en de reaparición de autos de callePrimaria.
 
 image::este Equipo/Documentos/crearAutos.png[]
 
