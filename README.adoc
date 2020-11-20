@@ -131,24 +131,24 @@ La Clase Conejo tiene como estados: altura,ancho, x,y,velocidadDeSalto(movimient
 horizontal), deslizarHaciaAbajo(deslizamiento hacia abajo),imagenConejoEsperando,imagenConejoIzquierda,
 imagenConejoDerecha,ultimoMovimiento.
 - El conejo se sabe:dibujar,hacerSonidoDeSalto,saltar,esperar,saltarIzquierda,saltarDerecha,disparar,seFueDePantalla, chocasteAlgunAuto.
- * El metodo ´dibujar´ es peculiar ya que dibuja la imagen segun que movimiento hizo anteriormente,el ´ultimoMovimiento´ se indica en los metodos
- ´saltar´(guarda en ´ultimoMovimiento´ el char ' '),´´saltarIzquierda´(guarda en ´ultimoMovimiento´ el char 'i') y ´´saltarDerecha´(guarda en ´ultimoMovimiento´ el char 'd').
- * El metodo ´hacerSonidoDeSalto´ es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
- * El metodo ´saltar´ es de tipo void, toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
-   y la velocidadDeSalto,pero si "y - altura / 2 - velocidadDeSalto <= 0" ,es decir, que el conejo se encuentra arriba de todo ,no pueda 
-   avanzar al menos que la pantalla avanze.
- * El metodo ´saltarDerecha´ es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto 
-   hacia la derecha  sumandole a la ´x´ la ´velocidadDeSalto´, pero si "x + ancho / 2 + velocidadDeSalto >= entorno.ancho()" ,es decir,
-   el conejo esta a la derecha de todo ,para que el conejo no pueda salirse de la pantalla  el ´x´ sera "x = entorno.ancho() - ancho / 2".
- * El metodo ´saltarIzquierda´ es de tipo void ,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto
-   hacia la izquierda restandole a la ´x´ la ´velocidadDeSalto´, pero si "x - ancho / 2 - velocidadDeSalto <= 0" ,es decir , que le conejo 
-   esta a la izquierda del todo ,para que no pueda salirse de pantalla el ´x´ sera "x = ancho / 2".
- * El metodo  esperar  es de tipo void y lo que hace es sumarle a ´y´  ´deslizarHaciaAbajo´,de esta forma si el conejo esta quieto se deslizara 
-  hacia abajo.
- * El metodo ´disparar´ es de tipo Rasengan y lo que hace es devolver un Rasengan con su ´x´ e ´y´(posicion actual del conejo,a la hora de disparar).*El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
+  * El metodo ´dibujar´ es peculiar ya que dibuja la imagen segun que movimiento hizo anteriormente,el ´ultimoMovimiento´ se indica en los metodos
+  ´saltar´(guarda en ´ultimoMovimiento´ el char ' '),´´saltarIzquierda´(guarda en ´ultimoMovimiento´ el char 'i') y ´´saltarDerecha´(guarda en ´ultimoMovimiento´ el char 'd').
+  * El metodo ´hacerSonidoDeSalto´ es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
+  * El metodo ´saltar´ es de tipo void, toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
+    y la velocidadDeSalto,pero si "y - altura / 2 - velocidadDeSalto <= 0" ,es decir, que el conejo se encuentra arriba de todo ,no pueda 
+    avanzar al menos que la pantalla avanze.
+  * El metodo ´saltarDerecha´ es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto 
+    hacia la derecha  sumandole a la ´x´ la ´velocidadDeSalto´, pero si "x + ancho / 2 + velocidadDeSalto >= entorno.ancho()" ,es decir,
+    el conejo esta a la derecha de todo ,para que el conejo no pueda salirse de la pantalla  el ´x´ sera "x = entorno.ancho() - ancho / 2".
+  * El metodo ´saltarIzquierda´ es de tipo void ,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto
+    hacia la izquierda restandole a la ´x´ la ´velocidadDeSalto´, pero si "x - ancho / 2 - velocidadDeSalto <= 0" ,es decir , que le conejo 
+    esta a la izquierda del todo ,para que no pueda salirse de pantalla el ´x´ sera "x = ancho / 2".
+  * El metodo  esperar  es de tipo void y lo que hace es sumarle a ´y´  ´deslizarHaciaAbajo´,de esta forma si el conejo esta quieto se deslizara 
+   hacia abajo.
+  * El metodo ´disparar´ es de tipo Rasengan y lo que hace es devolver un Rasengan con su ´x´ e ´y´(posicion actual del conejo,a la hora de disparar).*El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
    si su "y + altura / 2 < 600"  entonces el metodo devuelve true, caso contrario,false.
- * El metodo ´chocasteAlgunAuto´ es de tipo boolean y toma por parametro un array de autos ,si el conejo colisiona con alguno de estos autos,
-   devuelve true, sino false.
+  * El metodo ´chocasteAlgunAuto´ es de tipo boolean y toma por parametro un array de autos ,si el conejo colisiona con alguno de estos autos,
+    devuelve true, sino false.
  
 
 .Clase Auto
@@ -160,11 +160,11 @@ La Clase Auto tiene como estados: alto, ancho, x, y, velocidad(movimiento horizo
  sentido(true es derecha-izquierda y false de izquierda-derecha), bajadaDePantalla(mov vertical), imagenAuto.
 - El auto sabe dibujarse y avanzar,tambien cuenta con los getters de todos sus estados que son utilizados para crear los autos luego de ser 
     destruidos por algún rasengan.
- * El metodo ´avanzar´, de tipo void, hace que el auto avance para cierto lado segun su ´sentido´,sumando a su ´x´ la velocidad o restando según cual 
-   sea el el ´sentido´, tambien esta constantemente aumentando su ´y´  sumandole la ´bajadaDePantalla´(que es la velocidad con la que se desliza
-   hacia abajo el auto).Si su ´y´ es mayor a 600 entonces el auto reaparece en su posición por defecto en la pantalla de arriba(la pantalla
-   que no se ve) y su su ´x´ es mayor o menor a cierto extremo segun su ´sentido´ el ´x´  se resetea a su posición por defecto en la pantalla
-   del costado(la pantalla que no se ve).
+  * El metodo ´avanzar´, de tipo void, hace que el auto avance para cierto lado segun su ´sentido´,sumando a su ´x´ la velocidad o restando según cual 
+    sea el el ´sentido´, tambien esta constantemente aumentando su ´y´  sumandole la ´bajadaDePantalla´(que es la velocidad con la que se desliza
+    hacia abajo el auto).Si su ´y´ es mayor a 600 entonces el auto reaparece en su posición por defecto en la pantalla de arriba(la pantalla
+    que no se ve) y su su ´x´ es mayor o menor a cierto extremo segun su ´sentido´ el ´x´  se resetea a su posición por defecto en la pantalla
+    del costado(la pantalla que no se ve).
 
 .Clase Calle
 [source,java]
@@ -173,9 +173,9 @@ include::src/juego/Calle.java[]
 ----
 La Clase Calle tiene como estados: largo, x, y, factorDeDesplazamiento y una imagen(que es "calle.png").
 - La Calle sabe dibujarse y deslizarseHaciaAbajo,tambien cuenta con dos getters: getLargo y getPosicionVertica.
- * El método ´deslizarseHaciaAbajo´ es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace 
-   es sumar al ´y´ el ´factorDeDesplazamiento´(que es la rapidez con la que se desliza la pantalla) y si su "y - largo / 2 > 600" entonces 
-   la calle reaparece en la posición por defecto , en la pantalla de arriba(la que no se ve).
+  * El método ´deslizarseHaciaAbajo´ es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace 
+    es sumar al ´y´ el ´factorDeDesplazamiento´(que es la rapidez con la que se desliza la pantalla) y si su "y - largo / 2 > 600" entonces 
+    la calle reaparece en la posición por defecto , en la pantalla de arriba(la que no se ve).
 
 .Clase Rasengan
 [source,java]
@@ -184,11 +184,11 @@ include::src/juego/Rasengan.java[]
 ----
 La Clase Rasengan tiene como estados: x, y, velocidad, diametro, imagen;
 - Esta clase se sabe:dibujar,mover,saleDePantalla y  colisionasteConAuto.
- * El método ´mover´ es de tipo void y lo que hace es restarle al ´y´ la ´velocidad´(creando el efecto de que se mueve hacia arriba).
- * El método ´saleDePantalla´ es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de 
- la pantalla.
- * El método ´colisionasteConAuto´ es de tipo boolean y revisa y el rasengan colisiono con algún lado del auto pasado por parametro,si colisiono
-entonces devuelve true,caso contrario devuelve false.
+  * El método ´mover´ es de tipo void y lo que hace es restarle al ´y´ la ´velocidad´(creando el efecto de que se mueve hacia arriba).
+  * El método ´saleDePantalla´ es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de 
+    la pantalla.
+  * El método ´colisionasteConAuto´ es de tipo boolean y revisa y el rasengan colisiono con algún lado del auto pasado por parametro,si colisiono
+    entonces devuelve true,caso contrario devuelve false.
 
 .Clase Menu
 [source,java]
