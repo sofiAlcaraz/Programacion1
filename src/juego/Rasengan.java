@@ -66,32 +66,103 @@ public class Rasengan {
 	 * EL METODO "COLISIONASTE" GESTIONA LA COLISION "RECTANGULO-CIRCULO" PARA
 	 * CONTROLAR CUANDO EL RASENGAN COLISIONO CON UN AUTO
 	 */
-	private boolean colisionaste(Auto auto) {
+//	private boolean colisionaste(Auto auto) {
+//		// el auto es un rectangulo
+//		double x1 = this.x;
+//		double y1 = this.y;
+//
+//		if (this.x < auto.getX())
+//			x1 = auto.getX(); // lado izquierdo
+//		else if (this.x > auto.getX() + auto.getAncho())
+//			x1 = auto.getX() + auto.getAncho(); // lado derecho
+//
+//		if (this.y < auto.getY())
+//			y1 = auto.getY(); // lado superior
+//		else if (this.y > auto.getY() + auto.getAltura())
+//			y1 = auto.getY() + auto.getAltura(); // lado inferior
+//
+//		double distX = this.x - x1;
+//		double distY = this.y - y1;
+//		double distancia = Math.sqrt((distX * distX) + (distY * distY));
+//
+//		if (distancia <= this.diametro)
+//			return true;
+//
+//		return false;
+//	}
+
+
+//	public boolean destruisteAuto(Auto[] autos) {
+//		for (int i = 0; i < autos.length; i++) {
+//			if (controlarColisiones(autos[i])) {
+//				autos[i]=null;
+//				return true;
+//			}
+//		}
+//
+//		return false;
+//	}
+
+	private boolean controlarColisiones(Auto auto) {
 		// el auto es un rectangulo
-		double x1 = this.x;
-		double y1 = this.y;
+		double testX = this.x;
+		double testY = this.y;
 
 		if (this.x < auto.getX())
-			x1 = auto.getX(); // lado izquierdo
+			testX = auto.getX(); // lado izquierdo
 		else if (this.x > auto.getX() + auto.getAncho())
-			x1 = auto.getX() + auto.getAncho(); // lado derecho
+			testX = auto.getX() + auto.getAncho(); // lado derecho
 
 		if (this.y < auto.getY())
-			y1 = auto.getY(); // lado superior
+			testY = auto.getY(); // lado superior
 		else if (this.y > auto.getY() + auto.getAltura())
-			y1 = auto.getY() + auto.getAltura(); // lado inferior
+			testY = auto.getY() + auto.getAltura(); // lado inferior
 
-		double distX = this.x - x1;
-		double distY = this.y - y1;
-		double distancia = Math.sqrt((distX * distX) + (distY * distY));
+		double distX = this.x - testX;
+		double distY = this.y - testY;
+		double distance = Math.sqrt((distX * distX) + (distY * distY));
 
-		if (distancia <= this.diametro)
+		if (distance <= this.diametro)
 			return true;
 
 		return false;
 	}
 
-	public double getY() {
+//	
+//	public boolean destruisteAuto(Auto[] autos) {  //FIXME
+        
+        /*
+        EL METODO "COLISIONASTE" GESTIONA LA COLISION "RECTANGULO-CIRCULO"
+        PARA CONTROLAR CUANDO EL RASENGAN COLISIONO CON UN AUTO
+        */
+        private boolean colisionaste(Auto auto)
+        {
+            // el auto es un rectangulo
+            double x1 = this.x;
+            double y1 = this.y;
+            
+            if(this.x < auto.getX())
+                x1 = auto.getX(); // lado izquierdo
+            else if(this.x > auto.getX()+auto.getAncho())
+                x1 = auto.getX()+auto.getAncho(); // lado derecho
+            
+            if(this.y < auto.getY())
+                y1 = auto.getY(); // lado superior
+            else if(this.y > auto.getY()+auto.getAltura())
+                y1 = auto.getY()+auto.getAltura(); // lado inferior
+            
+            double distX = this.x-x1;
+            double distY = this.y-y1;
+            double distance = Math.sqrt((distX*distX)+(distY*distY));
+            
+            if(distance <= this.diametro)
+                return true;
+            
+            return false;
+        }
+
+	public double getY() 
+        {
 		return y;
 	}
 

@@ -26,11 +26,14 @@ juego. Es decir, el conejo debe saltar hacia adelante para que no desaparezca
 por el borde inferior de la pantalla (cuando esto u�ltimo sucede se pierde el 
 juego).
 
-
-
 == Descripci�n
 Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
 Las primeras 4 clases tienen en comun los metodos Dibujar,Mover.
+Clase Calle: Esta cuenta con su metodo dibujar, deslizar hacia abajo y un getLargo(que es usado en juego)
+La Clase Auto cuenta con su metodo dibujar,mover y los get se x e y altura y ancho.
+La Clase Rasengan cuenta con su metodo dibujar ,mover ,sale de pantalla, destruisteAuto,controlarColisiones
+La Clase Conejo cuanta con metodo dibujar,esperar, saltar, saltarIzquierda, saltarDerecha, dispara,
+seFueDePantalla y chocasteAlgunAuto.
 
 Crear al conejo, darle movimiento, dibujarlo y salto no fue una dificultad.
 Crear la calle y que esta se mueva tampoco, lo mismo con los autos ,no fue 
