@@ -41,14 +41,14 @@ public class Auto {
 
 	public void avanzar(Entorno entorno) {
 		y += bajadaDePantalla;
-		//double resul= y - ancho / 2 > entorno.alto()? y -= entorno.alto() * 2 : x += velocidad;
+		
 		if (y - ancho / 2 > 600) {
 			y -= entorno.alto() * 2;
 		}else {
 			x += velocidad;
 		}
 		
-		if (sentido) {//x + ancho < 0?x += entorno.ancho() * 2:x -= velocidad;
+		if (sentido) {
 			if (x + ancho < 0) {
 				x += entorno.ancho() * 2;
 			} else {
