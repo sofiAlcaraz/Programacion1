@@ -16,7 +16,7 @@ public class Conejo {
 	private Image imagenConejoEsperando;
 	private Image imagenConejoIzquierda;
 	private Image imagenConejoDerecha;
-	private String ultimoMovimiento;
+	private char ultimoMovimiento;
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 		this.altura = altura;
@@ -24,7 +24,7 @@ public class Conejo {
 		this.x = x;
 		this.y = y;
 		this.velocidadDeSalto = velocidad;
-		this.ultimoMovimiento = "";
+		this.ultimoMovimiento=' ';
 		this.imagenConejoEsperando = Herramientas.cargarImagen("conejoEsperando.png");
 		this.imagenConejoIzquierda = Herramientas.cargarImagen("conejoIzquierda.png");
 		this.imagenConejoDerecha = Herramientas.cargarImagen("conejoDerecha.png");
@@ -35,10 +35,10 @@ public class Conejo {
 	public void dibujar(Entorno entorno) {
 
 		switch (ultimoMovimiento) {
-		case "a":
+		case 'i':
 			entorno.dibujarImagen(imagenConejoIzquierda, x, y, 0, 2);
 			break;
-		case "d":
+		case 'd':
 			entorno.dibujarImagen(imagenConejoDerecha, x, y, 0, 2);
 			break;
 		default:
@@ -57,7 +57,7 @@ public class Conejo {
 	}
 
 	public void saltar(Entorno entorno, double altoAuto, double espacioEntreAutos) {
-		ultimoMovimiento = "";
+		ultimoMovimiento = ' ';
 
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura;
@@ -67,7 +67,7 @@ public class Conejo {
 	}
 
 	public void saltarIzquierda(Entorno entorno) {
-		ultimoMovimiento = "a";
+		ultimoMovimiento = 'i';
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
 		} else {
@@ -77,7 +77,7 @@ public class Conejo {
 	}
 
 	public void saltarDerecha(Entorno entorno) {
-		ultimoMovimiento = "d";
+		ultimoMovimiento = 'd';
 		if (x + ancho / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho / 2;
 		} else {
