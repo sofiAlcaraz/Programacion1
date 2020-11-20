@@ -41,13 +41,13 @@ Decidimos poner las variables de las clases en el siguiente orden: anchura y alt
 cada clase,bajadaDePantalla e imagen.
 
 Tambien decidimos crear solo dos calles con 4 carriles cada una  (8 carriles en total) y un rasengan por "pantalla".
-Solo se puede jugar con las teclas :w,a,d y espacio.[..]
+Solo se puede jugar con las teclas de flechas arriba y costados,w,a,d y espacio. 
 El juego cuanta con un menu que da la opcion de jugar o salir.Tambien en cualquier momento de la partida el juego
 puede pausarse con la tecla p.
 
 Además el juego al  realizarse cierta cantidad de puntos aumenta su velocidad.
 *funcionamiento*
-El juego  comienza con un menu que tiene dosopciones jugar y salir,en culquier momento de la partida ésta se puede pausar,
+El juego  comienza con un menu que tiene dos opciones jugar y salir,en culquier momento de la partida ésta se puede pausar,
 en caso de perder se mostrara una pantalla "game over" con la opcion de salir.El juego tiene tres niveles de dificultad.
 
 *Conejo*
@@ -62,51 +62,51 @@ para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante
 uno  de mano "izquierda" y otro de mano "derecha" se nos dificultaba sincronizarlos ,por lo que lo cambiamos
 por un for por cada calle y cada uno de estos con cuatro carriles y dos manos.
 Luego pudimos hacer que estos se muevan en sincronia.
-.Planificacion posicion de autos.
+
 .Imagen planificacion en de reaparicion de autos de callePrimaria
 
 image::este Equipo/Documentos/crearAutos.jpg[]
 
 *Autos y Calles*
 Unir a los autos y las calles en el juego fue complicado,ya que los autos 
-se iban fuera de la calle, para solucionarlo probamos diferentes valores en y ,
+se iban fuera de la calle, para solucionarlo probamos diferentes valores en ´y´,
 que funcionaban pero luego notamos que los autos acumulaban un valor y subian 
 hasta salirse de la calle. Nos dimos cuenta de que la reaparicion de la calle
-estaba mal ya que lo que haciamos era al "y" restarle el "y" y sumarle la mitad
+estaba mal ya que lo que haciamos era al ´y´ restarle el ´y´ y sumarle la mitad
 de la pantalla, lo que hacia que  la calle aparezca nuevamente pero no donde
 se habia creado inicialmente, para solucionar este problema a la reaparicion 
-de auto y calle le pasamos el entorno y al "y" de calle lo restamos por
-entono.alto*2(600*2) y  a auto a su "y" lo restamos por entorno.alto*2(600*2),
+de auto y calle le pasamos el entorno y al ´y´ de calle lo restamos por
+´entono.alto*2(600*2)´ y  a auto a su ´y´ lo restamos por ´entorno.alto*2(600*2)´,
 de esta forma ambos aparecen en la posicion que inicialmente se les habia asignado.
 
 *Rasengan y colision Autos*
 Para hacer al rasengan primero creamos la clase probamos su correcto funcionamiento en juego
-y luego creamos un metodo en conejo el cual devuelve un nuevo rasengan con la x e y  del Conejo
+y luego creamos un metodo en conejo el cual devuelve un nuevo rasengan con la ´x´ e ´y´ del Conejo
 luego en la clase Juego hicimos un if  (que pregunta la tecla presionada y si rasengan es null
 para no spamear la pantalla) para agregar el rasengan al rasengan de juego
 ,un if que analiza si este se fue de la  pantalla (si es asi lo vuelve null), un if que analiza si el rasengan es distinto de null
 y de serlo el rasengan se debe dibujar y mover.
 Para analizar la colision con cada auto creamos dos for (uno por cada "calle con autos") con un if cada uno, que pregunta
- si el auto en cierta posicion no es null, colisiono con rasengan y de que sentido es.
+si el auto en cierta posicion no es null, colisiono con rasengan y de que sentido es.
 si colisiono entonces se crea un nuevo auto e[..]
 Si el rasengan colisiono con algun auto este se elimina ,el rasengan tambien y el puntaje sube.
 sino..[..]
 
 *Reaparicion vertical Auto*
-Luego de hacer esto,los autos que reaparecian se seguian superponiendo y nos dimos cuenta que el metodo avanzar de la
-Clase Auto estaba mal ,ya que al llegar a un extremo los regeneraba en el extremo opuesto ,no es su posion por defecto,
-Para que esto funcione correctamente cambiamos el metodo avanzar,utilizando  el ancho del entorno lo que hicimos fue 
+Luego de hacer esto,los autos que reaparecian se seguian superponiendo y nos dimos cuenta que el metodo ´avanzar´ de la
+Clase Auto estaba mal ,ya que al llegar a un extremo los regeneraba en el extremo opuesto ,no es su posicion por defecto,
+Para que esto funcione correctamente cambiamos el metodo avanzar, utilizando  el ancho del entorno lo que hicimos fue 
 enseñale al Auto que al llegar al extremo tiene que reaparecer en su posicion por defecto en la pantalla de arriba(la que no se ve).
 
 *Reaparicion horizontal Autos y Calles*
-Para que estos  reaparezcan sin dificultades los metodos avanzar (en Clase Auto) y deslizarHaciaAbajo(En Clase Calle),que toman por 
-parametro el entorno luego de llegar que la parte de arriba es decir su "y - largo / 2" en Calle y "y - ancho / 2" en Auto
+Para que estos  reaparezcan sin dificultades los metodos ´avanzar´ (en Clase Auto) y ´deslizarHaciaAbajo´(En Clase Calle),que toman por 
+parametro el entorno luego de llegar que la parte de arriba es decir su ´y - largo / 2´ en Calle y ´y - ancho / 2´ en Auto
 vuelven a su posicion por defecto en la pantalla de arriba(la que no se ve),esto esta explicado con mas detalle en "Autos y Calles".
 *Conejo y calle*
 Para que el conejo salte correctamente,lo que hicimos es hacer calculos con la posicion en ´y´ del primer auto de la parte inferior 
 de la primera calle su alto ,su alto ,los espacios entre autos, en cortas palabras tratamos de que el y del conejo sea casi el mismo que
 el del auto. Luego, al salto de conejo lo modificamos pasandole por parametro un entorno de tipo Entorno ,el alto entreAutos
- y el espacioEntreAutos de esta forma el conejo salta "altoAuto / 2 + espacioEntreAutos" y a pesar de hacer mini saltos,cae 
+ y el ´espacioEntreAutos´ de esta forma el conejo salta ´altoAuto / 2 + espacioEntreAutos´ y a pesar de hacer mini saltos,cáe 
  dentro de la calle,Es importante aclarar que solo el salto hacia adelante ´saltar´ es el que toma todos estos parametros ya que el
  ´x´ del conejo no tiene los mismos problemas que el ´y´,ya que "depende" de este.
 *Menu*
@@ -117,10 +117,10 @@ Otra funcionalidad del menu, fue poder ser utilizado como boton de pausa dentro 
 la cual no dimos con la solución, fue pedirle al menu que vuelva a comenzar el juego sin cerrar el entorno.
 *Otros*
 Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos  por parametros a todos los objetos que debian 
-deslizarse una misma Constante llamada: velocidadDeBajadaDePantalla(que se encuentra en la clase Juego)
+deslizarse una misma Constante llamada:´ velocidadDeBajadaDePantalla´(que se encuentra en la clase Juego)
 
 Para poder mostrar texto por pantalla lo que tuvimos que utilizar fue Integer.toString(algunInt) para transformar los enteros en
-string ya que el metodo:entorno.cambiarFont y entorno.escribirTexto lo requerian así.
+string ya que el metodo:´entorno.cambiarFont´ y ´entorno.escribirTexto´ lo requerian así.
 
 == Implementación
 En esta sección se incluye el código fuente y una breve descripcion de qué hace y los parémetros que
@@ -138,7 +138,7 @@ horizontal), deslizarHaciaAbajo(deslizamiento hacia abajo),imagenConejoEsperando
 imagenConejoDerecha,ultimoMovimiento.
 - El conejo se sabe:dibujar,hacerSonidoDeSalto,saltar,esperar,saltarIzquierda,saltarDerecha,disparar,seFueDePantalla, chocasteAlgunAuto.
   * El metodo ´dibujar´ es peculiar ya que dibuja la imagen segun que movimiento hizo anteriormente,el ´ultimoMovimiento´ se indica en los metodos
-    ´saltar´(guarda en ´ultimoMovimiento´ el char ' '),´saltarIzquierda´(guarda en ´ultimoMovimiento´ el char 'i') y ´´saltarDerecha´(guarda en ´ultimoMovimiento´ el char 'd').
+    ´saltar´(guarda en ´ultimoMovimiento´ el char ' '),´saltarIzquierda´(guarda en ´ultimoMovimiento´ el char 'i') y ´saltarDerecha´(guarda en ´ultimoMovimiento´ el char 'd').
   * El metodo ´hacerSonidoDeSalto´ es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
   * El metodo ´saltar´ es de tipo void, toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
     y la velocidadDeSalto,pero si ´y - altura / 2 - velocidadDeSalto <= 0´ ,es decir, que el conejo se encuentra arriba de todo ,no pueda 
@@ -152,7 +152,7 @@ imagenConejoDerecha,ultimoMovimiento.
   * El metodo  esperar  es de tipo void y lo que hace es sumarle a ´y´  ´deslizarHaciaAbajo´,de esta forma si el conejo esta quieto se deslizara 
    hacia abajo.
   * El metodo ´disparar´ es de tipo Rasengan y lo que hace es devolver un Rasengan con su ´x´ e ´y´(posicion actual del conejo,a la hora de disparar).*El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
-   si su "y + altura / 2 < 600"  entonces el metodo devuelve true, caso contrario,false.
+   si su ´y + altura / 2 < 600´  entonces el metodo devuelve true, caso contrario,false.
   * El metodo ´chocasteAlgunAuto´ es de tipo boolean y toma por parametro un array de autos ,si el conejo colisiona con alguno de estos autos,
     devuelve true, sino false.
  
@@ -238,20 +238,16 @@ Variables de creacion de autos.
  * En ´extremoInferiorCallePrimaria´ el "/10" es para obtener el ´y´ de la calle,lo mismo ocurre con ´extremoInferiorCalleSecundaria´.
  * En ´espacioEntreAutos´  el "4" es por la cantidad de carriles y el "/5" es por la cantidad de espacios necesarios.
  Adjuntamos una foto en  descripcion.
-
  
 *En el tick*
 El tick comienza con un if que pregunta si se perdió la partida ,de ser asi muestra una pantalla  con una imagen y la opcion de cerrar el juego,
 Luego hay un if que engloba el codigo del juego corriendo,este if pregunta si la partida esta corriendo o pausada ,en caso de pausada muestra
 un menu con la opcion de salir o seguir jugando,caso contrario, (si esta corriendo) entonces se dibuja,mueve y desliza hacia abajo  
-todo lo necesario, se chequean las coliciones, en caso de ser necesario se eliminan, agregan cosas o suman cosas,se chequean las teclas,
+todo lo necesario, se chequean las colisiones, en caso de ser necesario se eliminan, agregan cosas o suman cosas,se chequean las teclas,
 se muestra el tiempo,puntaje y saltos y se sube la velocidad de la "partida" si es que se lograron ciertos puntos,tambien se analiza si se apreta la
 letra p y de hacerlo la partida cambia a pausada.Luego fuera del if hay un else if que  dibuja el menu en caso de que la partida este en pausa y 
 ´partidaCorriendo´ este en falso,en caso de que se cumpla la condicion se dibuja el menu y se muestran las opciones de salir o seguir jugando/jugar.
 y se cambian los booleanos del estado de la partida.
-
- 
-
 
 == Conclusiones
 
