@@ -56,13 +56,13 @@ public class Conejo {
 		y += deslizarHaciaAbajo;
 	}
 
-	public void saltar(Entorno entorno) {
+	public void saltar(Entorno entorno,double altoAuto,double espacioEntreAutos) {
 		ultimoMovimiento = "";
 
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura;
 		} else {
-			y -= 21+10;
+			y -=altoAuto/2+espacioEntreAutos;
 		}
 	}
 

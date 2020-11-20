@@ -168,7 +168,7 @@ public class Juego extends InterfaceJuego {
 			conejo.esperar();
 
 			if (entorno.sePresiono('w')) {
-				conejo.saltar(entorno);
+				conejo.saltar(entorno,altoDelAuto,espacioEntreAutos);
 				saltos++;
 				Herramientas.cargarSonido(sonidoSalto).start();
 			} else if (entorno.sePresiono('a')) {
