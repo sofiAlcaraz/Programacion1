@@ -52,6 +52,13 @@ en caso de perder se mostrara una pantalla "game over" con la opción de salir. 
 
 *Conejo*
 Crear al conejo, darle movimiento, enseñarle a dibujarse y a saltar no fue una dificultad.
+Luego nos dimos cuenta de que el conejo no saltaba en medio de la calle ,sino en cualquier lado,
+para arreglar esto, cambiamos el metodo ´saltar´,para que salte bien a su y se le resta ´altoAuto / 2 + espacioEntreAutos´,de esta forma saltaria 
+en la mitad, pero luego tuvimos que cambiar en que ´y´ creamos al conejo,para que comeinze saltando en una posicion razonable
+lo que hicimos fue, al crear el conejo pasarle como parametro en su ´y´ = ´(posicionPrimerAutoCallePrimaria + espacioEntreAutos + altoDelAuto / 2) * 3´,
+de esta forma el conejo se posicionaria al comezar la calle y saltaria el espacio entre autos mas el alto/2. 
+
+image::este Equipo/Documentos/SaltoConejo.png[]
 
 *Calle*
 La creamos le enseñamos a que se dibuje y deslice.
@@ -65,7 +72,7 @@ Luego pudimos hacer que estos se muevan en sincronía.
 
 .Imagen planificación en de reaparición de autos de callePrimaria
 
-image::este Equipo/Documentos/crearAutos.jpg[]
+image::este Equipo/Documentos/crearAutos.png[]
 
 *Autos y Calles*
 Unir a los autos y las calles en el juego fue complicado, ya que los autos 
@@ -120,6 +127,7 @@ la opción que se quiera elegir.
 Sus variables fueron declaradas con nombres muy confusos, se corrigieron para que se pueda entender mejor. 
 Otra funcionalidad del menu, fue poder ser utilizado como botón de pausa dentro del juego. La dificultad que nos presentó y 
 la cual no dimos con la solución, fue pedirle al menu que vuelva a comenzar el juego sin cerrar el entorno.
+
 *Otros*
 Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos por parámetros a todos los objetos que debían 
 deslizarse una misma Constante llamada: ´velocidadDeBajadaDePantalla´(que se encuentra en la clase Juego).
