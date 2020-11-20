@@ -142,7 +142,8 @@ public class Juego extends InterfaceJuego {
 		if (perdioPartida == true) {
 			partidaCorriendo = false;
 			partidaPausada = false;
-			mostrarFotoJuegoPerdidoPorPantalla();
+			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0, 1);
+			
 			if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 				System.exit(0);
 			}
@@ -299,10 +300,6 @@ public class Juego extends InterfaceJuego {
 
 	}
 
-	private void mostrarFotoJuegoPerdidoPorPantalla() {
-		entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0, 1);
-
-	}
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
