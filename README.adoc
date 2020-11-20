@@ -1,53 +1,122 @@
-= Introducción a la Programación: Trabajo Práctico 1
-Cristina Fernández_de_Kirchner <cfk@gmail.com>; Nestor Kirchner <nestor@gmail.com>
-v1, {docdate}. Docentes Eva Perón y Juan Perón (COM-08)
+= Introducciï¿½n a la Programaciï¿½n: Trabajo Prï¿½ctico 1
+Pablo Pagano<cfk@gmail.com>; Jose_Luis Villacorta <nestor@gmail.com>;Alcaraz Sofia <sofiialcaraz16@gmail.com>
+v1, {docdate}. Docentes Hernan Rondelli ; Veronica Moyano (COM-01)
 :title-page:
 :numbered:
 :source-highlighter: coderay
 :tabsize: 4
 
-El texto debe ser breve, conciso, simple, y directo. Se debe incluir
-sólo lo relevante que ayude a entender el trabajo práctico.
+== Introducciï¿½n
+El Consejo Organico Normativo y Etico para la Juventud Organizada (CONEJO),
+ en el marco de su campanï¿½a de seguridad vial, nos solicito el desarrollo de 
+ un video juego para ayudar a que ninï¿½os y ninï¿½as tomen conciencia acerca de la 
+ seguridad vial y del respeto a las normas de transito. Para ello, nos
+ encargaron un video juego similar al clasico Frogger, pero con algunas
+ diferencias que mencionaremos a continuacioï¿½n.
 
-Se recomiendan oraciones y párrafos cortos.
+El conejo Boss Rabbit vivia en la luna y bajï¿½ al planeta tierra, por
+este motivo no sabe cï¿½ales son las normas de transito, y por ende, no 
+sabe cruzar la calle.
+El objetivo del juego es hacer que el conejito pueda cruzar las calles
+sin que lo atropelle ningun vehiculo. Si un vehiculo 
+atropella al conejito, perdemos el juego.
+Cabe aclarar, que en nuestro juego los vehiculos y las calles se desplazan 
+constantemente hacia abajo de la pantalla, creando la ilusiï¿½n de ï¿½avanceï¿½ del 
+juego. Es decir, el conejo debe saltar hacia adelante para que no desaparezca 
+por el borde inferior de la pantalla (cuando esto uï¿½ltimo sucede se pierde el 
+juego).
 
-Por último, no olvidar utilizar signos de puntuación y checkear la
-ortografía.
 
-== Introducción
 
-Descripción del trabajo práctico. Aquí se puede copiar textual el [ó
-parte del] enunciado del trabajo práctico de considerarse necesario.
+== Descripciï¿½n
+Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
+Las primeras 4 clases tienen en comun los metodos Dibujar,Mover.
 
-== Descripción
+Crear al conejo, darle movimiento, dibujarlo y salto no fue una dificultad.
+Crear la calle y que esta se mueva tampoco, lo mismo con los autos ,no fue 
+complicado, los problemas comenzaron cuando unimos estos dos (autos y calles),ya que los autos 
+se iban fuera de la calle, para solucionarlo probamos diferentes valores en y ,
+que funcionaban pero luego  notamos que los autos acumulaban un valor y subian 
+hasta salirse de la calle. Nos dimos cuenta de que la reaparicion de la calle
+estaba mal ya que lo que haciamos era al "y" restarle el "y" y sumarle la mitad
+de la pantalla, lo que hacia que  la calle aparezca nuevamente pero no donde
+se habia creado inicialmente, para solucionar este problema a la reaparicion 
+de auto y calle le pasamos el entorno y al "y" de calle lo restamos por
+entono.alto*2(600*2) y  a auto a su "y" lo restamos por entorno.alto*2(600*2),
+de esta forma ambos aparecen en la posicion que inicialmente se les habia asignado.
 
-En esta sección pueden incluirse las dificultades que tuvieron, las
+Tambien agregamos la variable vidas en conejo lo cual estaba mal ya que el conejo
+no sabe de sus vidas por ende en juego agregamos la variable intentos y eliminamos la 
+idea anterior.[..]
+
+Como el largo del conejo colicionaba con los autos por mas  que este en medio de un
+carril disminuimos su tamaï¿½o.
+
+Para hacer los rasengans primero los creamos en juego como prueba y como no seguia a 
+conejo  se lo pasamos al conejo  en el constructor (gran error!!). 
+Luego probamos creando  un metodo en conejo y le pasamos su x e y al rasengan,creamos el rasengan
+e hicimos que se mueva dentro de este metodo lo cual no sirvio,
+ya que cada vez que se apretaba espacio se mostraba una vez( por mas que se usï¿½ "esta precionada"),
+esto era por el tick, por lo que decidimos dejar el metodo, pero hacer que este devuelva un
+rasengan(con las pociones x e y del conejo).
+Y luego en la clase Juego los fuimos agregando a una lista y en un for le dijimos que se dibujen y se muevan,pero 
+a listas lo cambiamos por arrays, para manejarlos mejor.
+
+Tuvimos problemas con la colision de los rasengans y autos, estos se destruian pero de a muchos,luego de revisar el
+codigo nos dimos cuenta de que las condiciones de la colicion en su respectivo metodo estaban mal,las arreglamos y 
+funciono perfectamente. En cuanto al if de juego no funcionaba bien 
+por lo tanto luego de cambiar de lugares las condiciones y lo que debia hacer cuando pase cierta cosa
+el juego funcionï¿½ bien, el rasengan se elimino,se movio y dibujo bien
+tambien eliminamos un if de colision(rasengan y autos) de frente y atras del auto ya que nos parecia de mas.
+
+Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos 
+por parameros a todos los objetos que debian 
+deslizarse una mismo variable llamada:velocidadDeBajadaDePantalla(que se encuentra en la clase Juego)
+
+Otro problema que tuvimos fue en el codigo de los autos(poder crearlos en cierta posicion),
+para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante
+(los cuales hicmos para una sola calle), uno de los problemas que tuvimos fue hacer 
+dos for uno de mano "izquierda" y otro de mano "derecha" ,pero estos tenian carriles de la primera 
+y segunda calle lo cual nos dificulto mucho sincronizarlos, por lo que decidimos cambiar
+estos for por un for por calle y cada uno de estos con cuatro carriles y dos manos cada uno.
+Luego pudimos hacer que estos se muevan en sincronia,unque habian algunos "camiones".
+
+Otro problema bastante facil de resolver fue hacer que reaparezcan los autos por los costados,
+estos desaparecian antes de llegar al borde ,lo cual ocurria por un +20 de mas.
+
+Decidimos poner las variables de las clases en el siguiente orden:anchura y altura, x e y, variables propias de 
+cada clase,bajadaDePantalla y color.
+Tambien decidimos crear solo dos calles y 4 carriles (8 carriles en total).
+
+
+En esta secciï¿½n pueden incluirse las dificultades que tuvieron, las
 soluciones encontradas, las decisiones que se fueron tomando a lo largo
-del trabajo práctico, y las cuestiones de diseño que consideren
+del trabajo prï¿½ctico, y las cuestiones de diseï¿½o que consideren
 importantes.
 
-También, se puede incluir una descripción general del programa—cómo
+
+Tambiï¿½n, se puede incluir una descripciï¿½n general del programaï¿½cï¿½mo
 funciona.
 
-== Implementación
+== Implementaciï¿½n
 
-En esta sección se incluye el código fuente correctamente formateado—y
+En esta secciï¿½n se incluye el cï¿½digo fuente correctamente formateadoï¿½y
 comentado, si corresponde.
 
-Además, por cada fragmento de código
-relevante—i.e. función, método, procedimiento—se debe dar una
-breve descripción, decir qué hace, y especificar los parámetros que
-toma la función/método/procedimiento, junto con los valores que devuelve
-ó modifica.
+Ademï¿½s, por cada fragmento de cï¿½digo
+relevanteï¿½i.e. funciï¿½n, mï¿½todo, procedimientoï¿½se debe dar una
+breve descripciï¿½n, decir quï¿½ hace, y especificar los parï¿½metros que
+toma la funciï¿½n/mï¿½todo/procedimiento, junto con los valores que devuelve
+ï¿½ modifica.
 
-_No debería incluirse el código de librerías/frameworks que se
-utilicen—a no ser que sea absolutamente necesario._
+_No deberï¿½a incluirse el cï¿½digo de librerï¿½as/frameworks que se
+utilicenï¿½a no ser que sea absolutamente necesario._
 
 == Conclusiones
 
-Aquí van algunas reflexiones acerca del proceso de desarrollo del
+Aquï¿½ van algunas reflexiones acerca del proceso de desarrollo del
 trabajo realizado, y de los resultados obtenidos.
 
-También se puede incluir una conclusión final de producto terminado.
+Tambiï¿½n se puede incluir una conclusiï¿½n final de producto terminado.
 
 Pueden incluirse lecciones aprendidas durante el desarrollo del trabajo.

@@ -134,21 +134,7 @@ public class Juego extends InterfaceJuego
 	public void tick() {
 		// Procesamiento de un instante de tiempo
 		reloj++;
-                
-                /*
-                EL ERROR DE LOS RASENGAS QUE SE ELIMINABAN AL SER CREADOR
-                ERA QUE ESTABAN ELIMINANDO TODOS LOS ELEMENTOS DE LA LISTA
-                DE RASENGANS, COSA QUE NO DEBEN HACER EN EL BUCLE DEL JUEGO
-                DE LO CONTROARIO, NO HABRIA NADA QUE DIBUJAR.
-                EVITEN EL USO DE "CLEAR" AL INICIO DE UNA NUEVA ITERACION O 
-                AL FINAL O ICLUSO EN MEDIO DEL BUCLE, DE LO CONTRARIO NO ESTARIAN
-                UTILIZANDO ESOS OBJETOS Y ESTARIAN CARGANDO Y DESPEJANDO MEMORIA
-                DE MANERA TORPE.
             
-                [NO USAR A MENOS QUE SEA NECESARIAMENTE REQUERIDO]
-		< rasengans.clear(); >
-                */
-                
                 
 		// if (estaIniciado && !estáPausado) {
 
@@ -246,9 +232,9 @@ public class Juego extends InterfaceJuego
                     {
                         // destruye un ransengan y el auto con el que ha colisionado (calle primaria)
                         
-                        // EL CONTROLADOR SIRVE PARA COMPROBAR SI HA OCURRIDO UNA COLISION
-                        // SI EL VALOR DEL CONTROLADOR ES "-1" ES PORQUE NO HA OCURRIDO ALGUNA COLISION
-                        // SI EL VALOR ES DISTINTO DE -1, SIGNIFICA QUE HA OCURRIDO UNA COLISION
+                        // EL CONTROLADOR SIRVE PARA COMPROBAR SI HUBO UNA COLISION
+                        // SI EL VALOR DEL CONTROLADOR ES "-1" ES PORQUE NO HUBO COLISION
+                        // SI EL VALOR ES DISTINTO DE -1, SIGNIFICA QUE HUBO UNA COLISION
                         int controladorCallePrimaria = rasengans[i].destruisteAuto(autosCallePrimaria);
                         if(controladorCallePrimaria != -1)
                         {
@@ -269,7 +255,7 @@ public class Juego extends InterfaceJuego
                                 rasengans = r; // ASGINA LA NUEVA LISTA DE RASENGANS A LA ANTIGUA LISTA
                             }
                             
-                            // ELIMINA EL AUTO CON EL QUE SE HA COLISIONADO
+                            // ELIMINA EL AUTO CON EL QUE COLISIONO
                             Auto[] a = new Auto[autosCallePrimaria.length-1];
                             int controladorAutos = 0; // CONTROLADOR QUE AYUDA A EVITAR EL ERROR "INDEX OUT"
                             if(a != null) // CONTROLA SI EL ARRAY "A" ES NULO O NO
@@ -287,7 +273,7 @@ public class Juego extends InterfaceJuego
                             }
                             
                             puntaje += 5; // AUMENTA EL PUNTAJE CADA VEZ QUE EL RASENGAN COLISIONA CON UN AUTO
-                            return; // SE USA LA PALABRA CLAVE "RETURN" PARA EVITAR QUE EL BUCLE CONTINUE, DE NO PONERLO, INTENTARA TRABAJAR CON UN OBJETO QUE YA NO EXISTE, DANDO COMO RESULTADO UN "INDEX OUT ERROR"
+                            return; // SE USA LA PALABRA CLAVE "RETURN" PARA EVITAR QUE EL BUCLE CONTINUE, DE NO PONERLO, INTENTA TRABAJAR CON UN OBJETO QUE YA NO EXISTE, DANDO COMO RESULTADO UN "INDEX OUT ERROR"
                         }
                         
                         // LO DE ARRIBA X2 XD
@@ -335,7 +321,7 @@ public class Juego extends InterfaceJuego
                         
                         // CONTROLA SI EL RASENGAN ESTÁ FUERA DE LA PANTALLA DE JUEGO
                         // DE SER ASI, ELIMINA EL RASENGAN
-                        // AQUI NO ES NECESARIO EL USO DE LA PALABRA CLAVE "RETURN"
+                        // ACA NO ES NECESARIO EL USO DE LA PALABRA CLAVE "RETURN"
                         // YA QUE ES LA ULTIMA COMPROBACION QUE SE HACE
                         if(rasengans[i].saleDePantalla())
                         {
@@ -360,7 +346,7 @@ public class Juego extends InterfaceJuego
                 
                 // actualzar y dibujar rasengans
                 // CONTROLA SI LA LISTA DE RASENGAN ES NULA O NO
-                // SI NO SE PONE EL CONDICIONAL, JAVA INTENTARA DIBUJAR UN OBJETO NULO
+                // SI NO SE PONE EL CONDICIONAL, JAVA VA A INTENTAR DIBUJAR UN OBJETO NULO
                 // DANDO UN ERROR "NULL-POINTER"
                 if(rasengans != null)
                 {
@@ -373,7 +359,7 @@ public class Juego extends InterfaceJuego
                 }
                 
                 // IMPRIME EN CONSOLA LA CANTIDAD DE RASENGANS ACTUALES
-                // TAMBIEN ES NECESARIO PONER EL CONDICIONAL, SI NO SE DESEA ERRORES
+                // TAMBIEN ES NECESARIO PONER EL CONDICIONAL, PARA QUE NO DE ERROR
                 if(rasengans != null)
                     System.out.println(rasengans.length);
                 
