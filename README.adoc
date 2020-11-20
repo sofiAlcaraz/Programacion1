@@ -32,7 +32,7 @@ juego).
 Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
 Las primeras 4 clases tienen en común los métodos Dibujar, Mover(en en caso de Auto es avanzar).
 -Clase Calle: Ésta cuenta con su método dibujar, deslizarHaciaAbajo,posicionVertical(get y) y un getLargo.
--Clase Auto: Cuenta con su método dibujar,avanzar(mover) y los get de x , y ,altura , ancho y velocidad[..].
+-Clase Auto: Cuenta con su método dibujar,avanzar(mover) y los get de x , y ,altura , ancho y velocidad.
 -Clase Rasengan: Cuenta con su método dibujar, mover, saleDepantalla, colisionasteConAuto.
 -Clase Conejo: Cuenta con los métodos dibujar,esperar, saltar, saltarIzquierda, saltarDerecha, disparar,
 seFueDePantalla y chocasteAlgunAuto,hacerSonidoDeSalto.
