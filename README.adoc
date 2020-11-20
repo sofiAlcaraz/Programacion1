@@ -35,7 +35,7 @@ Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
  * Clase Auto: Cuenta con su método dibujar,avanzar(mover) y los get de x , y ,altura , ancho y velocidad.
  * Clase Rasengan: Cuenta con su método dibujar, mover, saleDepantalla, colisionasteConAuto.
  * Clase Conejo: Cuenta con los métodos dibujar,esperar, saltar, saltarIzquierda, saltarDerecha, disparar,
-  seFueDePantalla y chocasteAlgunAuto,hacerSonidoDeSalto.
+    seFueDePantalla y chocasteAlgunAuto,hacerSonidoDeSalto.
 
 Decidimos poner las variables de las clases en el siguiente orden: anchura y altura, x e y, variables propias de 
 cada clase,bajadaDePantalla e imagen.
@@ -164,9 +164,9 @@ imagenConejoDerecha,ultimoMovimiento.
     hacia la izquierda restandole a la ´x´ la ´velocidadDeSalto´, pero si ´x - ancho / 2 - velocidadDeSalto <= 0´ ,es decir , que le conejo 
     esta a la izquierda del todo ,para que no pueda salirse de pantalla el ´x´ sera ´x = ancho / 2´.
  * El método  esperar  es de tipo void y lo que hace es sumarle a ´y´  ´deslizarHaciaAbajo´,de esta forma si el conejo esta quieto se deslizara 
-   hacia abajo.
+    hacia abajo.
  * El método ´disparar´ es de tipo Rasengan y lo que hace es devolver un Rasengan con su ´x´ e ´y´(posición actual del conejo,a la hora de disparar).*El método seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
-   si su ´y + altura / 2 < 600´  entonces el método devuelve true, caso contrario,false.
+    si su ´y + altura / 2 < 600´  entonces el método devuelve true, caso contrario,false.
  * El método ´chocasteAlgunAuto´ es de tipo boolean y toma por parámetro un array de autos ,si el conejo colisiona con alguno de estos autos,
     devuelve true, sino false.
  
@@ -179,7 +179,7 @@ include::src/juego/Auto.java[]
 La Clase Auto tiene como estados: alto, ancho, x, y, velocidad(movimiento horizontal),
  sentido(true es derecha-izquierda y false de izquierda-derecha), bajadaDePantalla(mov vertical), imagenAuto.
 -El auto sabe dibujarse y avanzar, también cuenta con los getters de todos sus estados que son utilizados para crear los autos luego de ser 
-    destruidos por algún rasengan.
+  destruidos por algún rasengan.
  * El método ´avanzar´, de tipo void, hace que el auto avance para cierto lado según su ´sentido´,sumando a su ´x´ la velocidad o restando según cual 
     sea el el ´sentido´, tambien esta constantemente aumentando su ´y´  sumandole la ´bajadaDePantalla´(que es la velocidad con la que se desliza
     hacia abajo el auto).Si su ´y´ es mayor a 600 entonces el auto reaparece en su posición por defecto en la pantalla de arriba(la pantalla
@@ -255,7 +255,7 @@ Variables de creacion de autos.
 -En esta parte del código se realizan calculos para la creacion de autos.
  * En ´extremoInferiorCallePrimaria´ el "/10" es para obtener el ´y´ de la calle,lo mismo ocurre con ´extremoInferiorCalleSecundaria´.
  * En ´espacioEntreAutos´  el "4" es por la cantidad de carriles y el "/5" es por la cantidad de espacios necesarios.
- Adjuntamos una foto en Descripción.
+Adjuntamos una foto en Descripción.
  
 *tick*
 El tick comienza con un if que pregunta si se perdió la partida ,de ser asi muestra una pantalla  con una imagen y la opción de cerrar el juego,
