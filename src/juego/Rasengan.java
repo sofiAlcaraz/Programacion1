@@ -29,6 +29,7 @@ public class Rasengan {
 	}
 
 	public boolean saleDePantalla() {
+		//return y + diametro < 0?tru;
 		if (y + diametro < 0)
 			return true;
 

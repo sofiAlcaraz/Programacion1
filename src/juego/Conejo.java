@@ -58,8 +58,8 @@ public class Conejo {
 
 	public void saltar(Entorno entorno, double altoAuto, double espacioEntreAutos) {
 		ultimoMovimiento = ' ';
-
-		if (y - altura / 2 - velocidadDeSalto <= 0) {
+		// y - altura / 2 - velocidadDeSalto <= 0?y = altura :y -= altoAuto / 2 + espacioEntreAutos;
+		if (y - altura / 2 - velocidadDeSalto <= 0) {//
 			y = altura;
 		} else {
 			y -= altoAuto / 2 + espacioEntreAutos;
@@ -68,6 +68,7 @@ public class Conejo {
 
 	public void saltarIzquierda(Entorno entorno) {
 		ultimoMovimiento = 'i';
+		//x - ancho / 2 - velocidadDeSalto <= 0?x = ancho / 2 :x -= velocidadDeSalto;
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
 		} else {

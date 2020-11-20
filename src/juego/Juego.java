@@ -213,7 +213,7 @@ public class Juego extends InterfaceJuego {
 						&& autosCallePrimaria[k].getSentido() == true) {
 
 					Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto,
-							autosCallePrimaria[k].getX() - entorno.ancho(), autosCallePrimaria[k].getY(),
+							autosCallePrimaria[k].getX(), autosCallePrimaria[k].getY(),
 							autosCallePrimaria[k].getVelocidad(), autosCallePrimaria[k].getSentido(),
 							autosCalleSecundaria[k].getVelocidadBajada());
 
@@ -225,7 +225,7 @@ public class Juego extends InterfaceJuego {
 						&& autosCallePrimaria[k].getSentido() == false) {
 
 					Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto,
-							autosCallePrimaria[k].getX() + entorno.ancho(), autosCallePrimaria[k].getY(),
+							autosCallePrimaria[k].getX() , autosCallePrimaria[k].getY(),
 							autosCallePrimaria[k].getVelocidad(), autosCallePrimaria[k].getSentido(),
 							autosCalleSecundaria[k].getVelocidadBajada());
 					autosCallePrimaria[k] = autoRegenerado;
