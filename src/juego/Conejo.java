@@ -62,7 +62,7 @@ public class Conejo {
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura;
 		} else {
-			y -= 21+77.6;
+			y -= 21+10;
 		}
 	}
 
@@ -100,12 +100,12 @@ public class Conejo {
 	public boolean chocasteAlgunAuto(Auto[] autos) {
 		for (int i = 0; i < autos.length; i++) {
 			if (autos[i] != null) {
-				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho/2 >= autos[i].getX()
-						&& y < autos[i].getY() + autos[i].getAltura() && y + altura/2 > autos[i].getY()) {
+				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
+						&& y < autos[i].getY() + autos[i].getAltura()/2 && y + altura/2 > autos[i].getY()) {
 					return true;
 				}
-				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho/2 >= autos[i].getX()
-						&& y < autos[i].getY() + autos[i].getAltura() && y + altura/2 > autos[i].getY()) {
+				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
+						&& y < autos[i].getY() + autos[i].getAltura()/2 && y + altura/2 > autos[i].getY()) {
 					return true;
 				}
 			}

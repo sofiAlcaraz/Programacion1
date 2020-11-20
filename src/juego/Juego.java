@@ -128,7 +128,7 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
-		conejo = new Conejo(30, 30, entorno.ancho() / 2, posicionPrimerAutoCallePrimaria + 300, 40,
+		conejo = new Conejo(30, 30, entorno.ancho() / 2, (posicionPrimerAutoCallePrimaria-espacioEntreAutos-altoDelAuto/2)*3, 40,
 				velocidadDeBajadaDePantalla);
 
 		callePrimaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, entorno.alto() / 10,
@@ -153,7 +153,7 @@ public class Juego extends InterfaceJuego {
 		if (partidaCorriendo == true && partidaPausada == false) {
 			reloj++;
 			entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
-
+			
 			if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
 					|| conejo.seFueDePantalla()) {
 				perdioPartida = true;
