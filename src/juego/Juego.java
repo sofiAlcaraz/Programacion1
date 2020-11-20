@@ -129,9 +129,9 @@ public class Juego extends InterfaceJuego {
 				(posicionPrimerAutoCallePrimaria - espacioEntreAutos - altoDelAuto / 2) * 3, 40,
 				velocidadDeBajadaDePantalla);
 
-		callePrimaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, entorno.alto() / 10,
+		callePrimaria = new Calle(altoDeLaCalle, entorno.ancho(), entorno.ancho() / 2, entorno.alto() / 10,
 				velocidadDeBajadaDePantalla);
-		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
+		calleSecundaria = new Calle(altoDeLaCalle, entorno.ancho(), entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
 
 		entorno.iniciar();
