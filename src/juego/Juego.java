@@ -165,14 +165,14 @@ public class Juego extends InterfaceJuego {
 			// Conejo
 			conejo.esperar();
 
-			if (entorno.sePresiono('w')) {
+			if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
 				conejo.saltar(entorno, altoDelAuto, espacioEntreAutos);
 				saltos++;
 				Herramientas.cargarSonido(sonidoSalto).start();
-			} else if (entorno.sePresiono('a')) {
+			} else if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
 				conejo.saltarIzquierda(entorno);
 				Herramientas.cargarSonido(sonidoSalto).start();
-			} else if (entorno.sePresiono('d')) {
+			} else if (entorno.sePresiono('d')|| entorno.sePresiono(entorno.TECLA_DERECHA)) {
 				conejo.saltarDerecha(entorno);
 				Herramientas.cargarSonido(sonidoSalto).start();
 			}
