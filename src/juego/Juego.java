@@ -8,8 +8,8 @@ import entorno.Entorno;
 import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
-public class Juego extends InterfaceJuego {
-
+public class Juego extends InterfaceJuego 
+{
 	private int reloj; // tiempo, reloj
 
 	// El objeto Entorno que controla el tiempo y otros
@@ -133,11 +133,23 @@ public class Juego extends InterfaceJuego {
 	 */
 	public void tick() {
 		// Procesamiento de un instante de tiempo
-		reloj++; // fijense esto
-		if (reloj / 100 != (reloj + 1) / 100) {
-			System.out.println(reloj / 100);
-		}
-		//rasengans.clear();
+		reloj++;
+                
+                /*
+                EL ERROR DE LOS RASENGAS QUE SE ELIMINABAN AL SER CREADOR
+                ERA QUE ESTABAN ELIMINANDO TODOS LOS ELEMENTOS DE LA LISTA
+                DE RASENGANS, COSA QUE NO DEBEN HACER EN EL BUCLE DEL JUEGO
+                DE LO CONTROARIO, NO HABRIA NADA QUE DIBUJAR.
+                EVITEN EL USO DE "CLEAR" AL INICIO DE UNA NUEVA ITERACION O 
+                AL FINAL O ICLUSO EN MEDIO DEL BUCLE, DE LO CONTRARIO NO ESTARIAN
+                UTILIZANDO ESOS OBJETOS Y ESTARIAN CARGANDO Y DESPEJANDO MEMORIA
+                DE MANERA TORPE.
+            
+                [NO USAR A MENOS QUE SEA NECESARIAMENTE REQUERIDO]
+		< rasengans.clear(); >
+                */
+                
+                
 		// if (estaIniciado && !estáPausado) {
 
 		// if (running && !pausado) {
@@ -225,39 +237,146 @@ public class Juego extends InterfaceJuego {
 			}
 		}
                 
-                // control de rasengans
+                // CONTROLA LA COLISION DE LOS RASENGANS
+                // EL CONDICIONAL ES NECESARIO PARA EVITAR EL ERROR "NULL-POINTER"
                 if(rasengans != null)
                 {
+                    // ITERA POR CADA RASENGAN EN LA LISTA "RASENGANS"
                     for(int i=0; i < rasengans.length; i++)
                     {
-                        if(rasengans[i].destruisteAuto(autosCallePrimaria) || rasengans[i].destruisteAuto(autosCalleSecundaria) || rasengans[i].saleDePantalla())
+                        // destruye un ransengan y el auto con el que ha colisionado (calle primaria)
+                        
+                        // EL CONTROLADOR SIRVE PARA COMPROBAR SI HA OCURRIDO UNA COLISION
+                        // SI EL VALOR DEL CONTROLADOR ES "-1" ES PORQUE NO HA OCURRIDO ALGUNA COLISION
+                        // SI EL VALOR ES DISTINTO DE -1, SIGNIFICA QUE HA OCURRIDO UNA COLISION
+                        int controladorCallePrimaria = rasengans[i].destruisteAuto(autosCallePrimaria);
+                        if(controladorCallePrimaria != -1)
                         {
-                            // para rasengan
+                            Rasengan[] r = new Rasengan[rasengans.length-1]; // CREA UN NUEVO ARRAY PARA EL NUEVO TAMAÑO DEL ARRAY DE LOS RASENGANS
+                            int controladorRasengans = 0; // UN CONTROLADOR PARA COPIAR LOS OBJETOS EN LA NUEVA LISTA, SIRVE PARA EVIAR EL "INDEX OUT ERROR"
+                            if(r != null) // COMPRUEBA SI LA LISTA "R" ES NULA O NO
+                            {
+                                // RECORRE LA LISTA DE RASENGANS
+                                for(int j=0; j<rasengans.length; j++)
+                                {
+                                    // SI EL VALOR DEL INDICE "J" EN LA LISTA DE RASENGANS ES DIFERENTE AL VALOR DE RASENGAS EN EL INDICE I, EJECUTA EL BLOQUE DE CODIGO
+                                    if(j != i)
+                                    {
+                                        r[controladorRasengans] = rasengans[j]; // ASIGNA EL VALOR DE RASENGANS[I] EN R[I] -> ESTO ES LA COPIA DE LOS DATOS QUE QUEREMOS CONSERVAR
+                                        controladorRasengans++; // AUMENTA EL VALOR DEL CONTROLADOR PARA SEGUIR AREGREGANDO ELEMENTOS REQUERIDOS EN "R"
+                                    }
+                                }
+                                rasengans = r; // ASGINA LA NUEVA LISTA DE RASENGANS A LA ANTIGUA LISTA
+                            }
+                            
+                            // ELIMINA EL AUTO CON EL QUE SE HA COLISIONADO
+                            Auto[] a = new Auto[autosCallePrimaria.length-1];
+                            int controladorAutos = 0; // CONTROLADOR QUE AYUDA A EVITAR EL ERROR "INDEX OUT"
+                            if(a != null) // CONTROLA SI EL ARRAY "A" ES NULO O NO
+                            {
+                                // ITERA EN LA LISTA DE AUTOS DE LA CALLE PRIMARIA
+                                for(int n=0; n<autosCallePrimaria.length; n++)
+                                {
+                                    if(n != controladorCallePrimaria) // SI EL OBJETO "N" EN LA LISTA DE AUTOS DE LA CALLE PRIMARIA ES DISTINTA AL CONTROLADOR DE AUTOS, EJECUTA EL BLOQUE DE CODIGO
+                                    {
+                                        a[controladorAutos] = autosCallePrimaria[n]; // ASIGNA EL ELEMENTO "N" DE LA LISTA DE AUTOS DE LA CALLE PRIMARIA A LA NUEVA LISTA
+                                        controladorAutos++; // AUMENTA EL CONTROLADOR
+                                    }
+                                }
+                                autosCallePrimaria = a; // ASGINA LA NUEVA LISTA A LA ANTIGUA LISTA DE AUTOS
+                            }
+                            
+                            puntaje += 5; // AUMENTA EL PUNTAJE CADA VEZ QUE EL RASENGAN COLISIONA CON UN AUTO
+                            return; // SE USA LA PALABRA CLAVE "RETURN" PARA EVITAR QUE EL BUCLE CONTINUE, DE NO PONERLO, INTENTARA TRABAJAR CON UN OBJETO QUE YA NO EXISTE, DANDO COMO RESULTADO UN "INDEX OUT ERROR"
+                        }
+                        
+                        // LO DE ARRIBA X2 XD
+                        int controladorCalleSecundaria = rasengans[i].destruisteAuto(autosCalleSecundaria);
+                        if(controladorCalleSecundaria != -1)
+                        {
                             Rasengan[] r = new Rasengan[rasengans.length-1];
-                            int controlador = 0;
+                            int controladorRasengans = 0;
                             if(r != null)
                             {
                                 for(int j=0; j<rasengans.length; j++)
                                 {
                                     if(j != i)
                                     {
-                                        r[controlador] = rasengans[j];
-                                        controlador++;
+                                        r[controladorRasengans] = rasengans[j];
+                                        controladorRasengans++;
                                     }
                                 }
                                 rasengans = r;
                             }
                             
-                            // para destruir y generar un auto
+                            if(controladorCalleSecundaria != -1)
+                            {
+                                Auto[] a = new Auto[autosCalleSecundaria.length-1];
+                                int controladorAutos = 0;
+                                if(a != null)
+                                {
+                                    for(int n=0; n<autosCalleSecundaria.length; n++)
+                                    {
+                                        if(n != controladorCalleSecundaria)
+                                        {
+                                            a[controladorAutos] = autosCalleSecundaria[n];
+                                            controladorAutos++;
+                                        }
+                                    }
+                                    autosCalleSecundaria = a;
+                                }
+                            }
                             
-                        }else
+                            // agregar un nuevo auto
+                            
+                            puntaje += 5;
+                            return;
+                        }
+                        
+                        // CONTROLA SI EL RASENGAN ESTÁ FUERA DE LA PANTALLA DE JUEGO
+                        // DE SER ASI, ELIMINA EL RASENGAN
+                        // AQUI NO ES NECESARIO EL USO DE LA PALABRA CLAVE "RETURN"
+                        // YA QUE ES LA ULTIMA COMPROBACION QUE SE HACE
+                        if(rasengans[i].saleDePantalla())
                         {
-                            rasengans[i].mover();
-                            rasengans[i].dibujar(entorno);
+                            Rasengan[] r = new Rasengan[rasengans.length-1];
+                            int controladorRasengans = 0;
+                            if(r != null)
+                            {
+                                for(int j=0; j<rasengans.length; j++)
+                                {
+                                    if(j != i)
+                                    {
+                                        r[controladorRasengans] = rasengans[j];
+                                        controladorRasengans++;
+                                    }
+                                }
+                                rasengans = r;
+                            }
                         }
                     }
+                    
+                    
+                
+                // actualzar y dibujar rasengans
+                // CONTROLA SI LA LISTA DE RASENGAN ES NULA O NO
+                // SI NO SE PONE EL CONDICIONAL, JAVA INTENTARA DIBUJAR UN OBJETO NULO
+                // DANDO UN ERROR "NULL-POINTER"
+                if(rasengans != null)
+                {
+                    // ITERA EN CADA RASENGAN, LO ACTUALIZA Y LO DIBUJA
+                    for(Rasengan r : rasengans)
+                    {
+                        r.mover();
+                        r.dibujar(entorno);
+                    }
                 }
-
+                
+                // IMPRIME EN CONSOLA LA CANTIDAD DE RASENGANS ACTUALES
+                // TAMBIEN ES NECESARIO PONER EL CONDICIONAL, SI NO SE DESEA ERRORES
+                if(rasengans != null)
+                    System.out.println(rasengans.length);
+                
 		
 		entorno.cambiarFont(Integer.toString(reloj), 30, Color.MAGENTA);
 		entorno.escribirTexto("Tiempo: "+Integer.toString(reloj / 100), 30, 30);
@@ -289,6 +408,7 @@ public class Juego extends InterfaceJuego {
 //	public void setPausado(boolean value) {
 //		this.pausado = value;
 //	}
+        }
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

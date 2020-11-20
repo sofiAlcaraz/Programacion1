@@ -37,20 +37,29 @@ public class Rasengan {
             return false;
         }
 
-	public boolean destruisteAuto(Auto[] autos) 
+        /*
+        EL METODO DEVUELVE UN ENTERO PARA CONTROLAR LA DESTRUCCION DE UN
+        AUTO. USA EL METODO INTERNO "COLISIONASTE", PARA COMPROBAR CON
+        QUE AUTO A COLISIONADO
+        */
+	public int destruisteAuto(Auto[] autos) 
         {
             for(int i=0; i<autos.length; i++)
             {
-                if(controlarColisiones(autos[i]))
+                if(colisionaste(autos[i]))
                 {
-                    return true;
+                    return i;
                 }
             }
             
-            return false;
+            return -1;
 	}
         
-        private boolean controlarColisiones(Auto auto)
+        /*
+        EL METODO "COLISIONASTE" GESTIONA LA COLISION "RECTANGULO-CIRCULO"
+        PARA CONTROLAR CUANDO EL RASENGAN HA COLISIONADO CON UN AUTO
+        */
+        private boolean colisionaste(Auto auto)
         {
             // el auto es un rectangulo
             double testX = this.x;
