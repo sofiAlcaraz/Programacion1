@@ -134,7 +134,7 @@ public class Juego extends InterfaceJuego {
 		}
 
 		conejo = new Conejo(30, 30, entorno.ancho() / 2,
-				(posicionPrimerAutoCallePrimaria - espacioEntreAutos - altoDelAuto / 2) * 3,
+				(posicionPrimerAutoCallePrimaria + espacioEntreAutos + altoDelAuto / 2) * 3,
 				velocidadDeBajadaDePantalla);
 
 		callePrimaria = new Calle(altoDeLaCalle, entorno.ancho(), entorno.ancho() / 2, entorno.alto() / 10,
