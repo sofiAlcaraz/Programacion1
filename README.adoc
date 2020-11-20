@@ -138,17 +138,17 @@ horizontal), deslizarHaciaAbajo(deslizamiento hacia abajo),imagenConejoEsperando
 imagenConejoDerecha,ultimoMovimiento.
 - El conejo se sabe:dibujar,hacerSonidoDeSalto,saltar,esperar,saltarIzquierda,saltarDerecha,disparar,seFueDePantalla, chocasteAlgunAuto.
   * El metodo ´dibujar´ es peculiar ya que dibuja la imagen segun que movimiento hizo anteriormente,el ´ultimoMovimiento´ se indica en los metodos
-  ´saltar´(guarda en ´ultimoMovimiento´ el char ' '),´´saltarIzquierda´(guarda en ´ultimoMovimiento´ el char 'i') y ´´saltarDerecha´(guarda en ´ultimoMovimiento´ el char 'd').
+    ´saltar´(guarda en ´ultimoMovimiento´ el char ' '),´saltarIzquierda´(guarda en ´ultimoMovimiento´ el char 'i') y ´´saltarDerecha´(guarda en ´ultimoMovimiento´ el char 'd').
   * El metodo ´hacerSonidoDeSalto´ es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
   * El metodo ´saltar´ es de tipo void, toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
-    y la velocidadDeSalto,pero si "y - altura / 2 - velocidadDeSalto <= 0" ,es decir, que el conejo se encuentra arriba de todo ,no pueda 
+    y la velocidadDeSalto,pero si ´y - altura / 2 - velocidadDeSalto <= 0´ ,es decir, que el conejo se encuentra arriba de todo ,no pueda 
     avanzar al menos que la pantalla avanze.
   * El metodo ´saltarDerecha´ es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto 
-    hacia la derecha  sumandole a la ´x´ la ´velocidadDeSalto´, pero si "x + ancho / 2 + velocidadDeSalto >= entorno.ancho()" ,es decir,
-    el conejo esta a la derecha de todo ,para que el conejo no pueda salirse de la pantalla  el ´x´ sera "x = entorno.ancho() - ancho / 2".
+    hacia la derecha  sumandole a la ´x´ la ´velocidadDeSalto´, pero si ´x + ancho / 2 + velocidadDeSalto >= entorno.ancho()´ ,es decir,
+    el conejo esta a la derecha de todo ,para que el conejo no pueda salirse de la pantalla  el ´x´ sera ´x = entorno.ancho() - ancho / 2´.
   * El metodo ´saltarIzquierda´ es de tipo void ,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto
-    hacia la izquierda restandole a la ´x´ la ´velocidadDeSalto´, pero si "x - ancho / 2 - velocidadDeSalto <= 0" ,es decir , que le conejo 
-    esta a la izquierda del todo ,para que no pueda salirse de pantalla el ´x´ sera "x = ancho / 2".
+    hacia la izquierda restandole a la ´x´ la ´velocidadDeSalto´, pero si ´x - ancho / 2 - velocidadDeSalto <= 0´ ,es decir , que le conejo 
+    esta a la izquierda del todo ,para que no pueda salirse de pantalla el ´x´ sera ´x = ancho / 2´.
   * El metodo  esperar  es de tipo void y lo que hace es sumarle a ´y´  ´deslizarHaciaAbajo´,de esta forma si el conejo esta quieto se deslizara 
    hacia abajo.
   * El metodo ´disparar´ es de tipo Rasengan y lo que hace es devolver un Rasengan con su ´x´ e ´y´(posicion actual del conejo,a la hora de disparar).*El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
@@ -180,7 +180,7 @@ include::src/juego/Calle.java[]
 La Clase Calle tiene como estados: largo, x, y, factorDeDesplazamiento y una imagen(que es "calle.png").
 - La Calle sabe dibujarse y deslizarseHaciaAbajo,tambien cuenta con dos getters: getLargo y getPosicionVertica.
   * El método ´deslizarseHaciaAbajo´ es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace 
-    es sumar al ´y´ el ´factorDeDesplazamiento´(que es la rapidez con la que se desliza la pantalla) y si su "y - largo / 2 > 600" entonces 
+    es sumar al ´y´ el ´factorDeDesplazamiento´(que es la rapidez con la que se desliza la pantalla) y si su ´y - largo / 2 > 600´ entonces 
     la calle reaparece en la posición por defecto , en la pantalla de arriba(la que no se ve).
 
 .Clase Rasengan
@@ -201,8 +201,8 @@ La Clase Rasengan tiene como estados: x, y, velocidad, diametro, imagen;
 ----
 include::src/juego/Menu.java[]
 ----
-La clase Menu tiene como estados: double posicionDelBotonJugarX, double posicionDelBotonJugarY,
-double posicionDelBotonSalirX, double posicionDelBotonSalirY, double posicionDelCursorX, double posicionDelCursorY, y dos Image,
+La clase Menu tiene como estados: posicionDelBotonJugarX, posicionDelBotonJugarY, 
+posicionDelBotonSalirX,posicionDelBotonSalirY, posicionDelCursorX,posicionDelCursorY, y dos imagenes
 que son botonJugar y botonSalir
 
 .Clase Juego
@@ -210,37 +210,47 @@ que son botonJugar y botonSalir
 ----
 include::src/juego/Juego.java[]
 ---- 
-La Clase Juego tiene como parametros agregados:
-*Constantes: 
-*Sonidos: 
-sonidoSalto = "jump.wav", String sonidoRasengan = "rasengan.wav";
-*Para creacion de autos:
-final int altoDelAuto = 42,final int altoDeLaCalle = 220,int anchoDeAuto = 50,double velocidadDeBajadaDePantalla = 1;
-*Objetos:
-Conejo conejo;Calle callePrimaria,Calle calleSecundaria,Auto[] autosCalleSecundaria,Auto[] autosCallePrimaria;rasengan, Menu menu;
-*booleanos
-boolean partidaCorriendo, boolean partidaPausada.
- *otros
-int reloj,int puntaje,int saltos.
-*para  creacion de autos
-int extremoInferiorCallePrimaria,int extremoInferiorCalleSecundaria,int espacioEntreAutos,int posicionPrimerAutoCallePrimaria,
-int posicionDelSiguienteAuto,int posicionDelPrimerAutoCalleSecundaria,double posicionInicialHorizontalDeAutosSentidoDerecho,
-double posicionEnXAutosHaciaIzquierda.
-*imagenes
-Image imagenFondo,Image imagenPerdioJuego.
 
+*Juego*
 En el el constructor inicializamos los objetos,para los autos de cada calle hicimos dos for diferentes.
 Cada array de calle con autos(callePrimaria o calleSecundaria) tiene un length ==16, en el for se recorre el array y agrega autos en cada posicion,
 este for cuenta con tres if y un else. El primer if agrega 4 autos en el carril inferior  que van de izquierda-derecha ,el segundo agrega 
 cuatro autos que van de derecha-izquierda ,el tercer if agrega cuatro autos que van de izquierda-derecha y el else agrega ,y el else 
 agrega cuatro autos que van de  derecha-izquierda.
 El segundo for es parecido,aunque decidimos que las manos empiecen de forma diferente.
-Para la las posicion en x  segun su mano ,empiezan en cierta posicion ,ya sea 0 o el entorno.ancho().
+Para la las posicion en ´x´  segun su mano ,empiezan en cierta posicion ,ya sea 0 o el ´entorno.ancho()´.
 Para la posicion en y hicimos varias cuentas matematicas teniendo en cuenta la calle y la posicion del primer auto(adjuntamos un dibujo en 
 descripcion).
 
-En el tick
+Variables de creacion de autos.
+​[source, java]
+​----
+​public class Juego() {
+    extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
+		extremoInferiorCalleSecundaria = entorno.alto() / 10 * -9 + altoDeLaCalle / 2;
+		espacioEntreAutos = (altoDeLaCalle - (altoDelAuto * 4)) / 5;
+		posicionPrimerAutoCallePrimaria = extremoInferiorCallePrimaria - espacioEntreAutos - altoDelAuto / 2;
+		posicionDelSiguienteAuto = espacioEntreAutos + altoDelAuto;
+		posicionDelPrimerAutoCalleSecundaria = extremoInferiorCalleSecundaria - espacioEntreAutos - altoDelAuto / 2;
+​}
+----
+-En esta pare del codigo se realizan calculos para la creacion de autos.
+ * En ´extremoInferiorCallePrimaria´ el "/10" es para obtener el ´y´ de la calle,lo mismo ocurre con ´extremoInferiorCalleSecundaria´.
+ * En ´espacioEntreAutos´  el "4" es por la cantidad de carriles y el "/5" es por la cantidad de espacios necesarios.
+ Adjuntamos una foto en  descripcion.
 
+ 
+*En el tick*
+El tick comienza con un if que pregunta si se perdió la partida ,de ser asi muestra una pantalla  con una imagen y la opcion de cerrar el juego,
+Luego hay un if que engloba el codigo del juego corriendo,este if pregunta si la partida esta corriendo o pausada ,en caso de pausada muestra
+un menu con la opcion de salir o seguir jugando,caso contrario, (si esta corriendo) entonces se dibuja,mueve y desliza hacia abajo  
+todo lo necesario, se chequean las coliciones, en caso de ser necesario se eliminan, agregan cosas o suman cosas,se chequean las teclas,
+se muestra el tiempo,puntaje y saltos y se sube la velocidad de la "partida" si es que se lograron ciertos puntos,tambien se analiza si se apreta la
+letra p y de hacerlo la partida cambia a pausada.Luego fuera del if hay un else if que  dibuja el menu en caso de que la partida este en pausa y 
+´partidaCorriendo´ este en falso,en caso de que se cumpla la condicion se dibuja el menu y se muestran las opciones de salir o seguir jugando/jugar.
+y se cambian los booleanos del estado de la partida.
+
+ 
 
 
 == Conclusiones
