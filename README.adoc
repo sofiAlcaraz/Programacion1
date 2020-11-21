@@ -1,6 +1,6 @@
 = Programación 1: Trabajo Práctico 
-Pablo Pagano <coso@algo.com>; Jose_Luis Villacorta <coso@algo.com>; Alcaraz Sofia <sofiialcaraz16@gmail.com>
-v1, {docdate}. Docentes Hernán Rondelli; Verónica Moyano (COM-01)
+Sofia Alcaraz <sofiialcaraz16@gmail.com>; Pablo Pagano <pablopagano1996@gmail.com>; Jose_Luis Villacorta <jossevillacorta@gmail.com>; 
+v1, {docdate}. Docentes Hernán Rondelli y Verónica Moyano (COM-01)
 :title-page:
 :numbered:
 :toc:
@@ -9,8 +9,7 @@ v1, {docdate}. Docentes Hernán Rondelli; Verónica Moyano (COM-01)
 
 == Introducción
 
-El Consejo Órganico Normativo y Ético para la Juventud Organizada (CONEJO),
-en el marco de su campaña de seguridad vial, nos solicitó el desarrollo de un video juego para ayudar a que niños y niñas tomen conciencia acerca de la seguridad vial y del respeto a las normas de transito. Para ello, nos encargaron un video juego similar al clásico Frogger, pero con algunas diferencias que mencionaremos a continuación.
+El Consejo Órganico Normativo y Ético para la Juventud Organizada (CONEJO), en el marco de su campaña de seguridad vial, nos solicitó el desarrollo de un video juego para ayudar a que niños y niñas tomen conciencia acerca de la seguridad vial y del respeto a las normas de transito. Para ello, nos encargaron un video juego similar al clásico Frogger, pero con algunas diferencias que mencionaremos a continuación.
 
 El conejo ninja vivía en la luna y bajó al planeta tierra para conocerlo, por este motivo no sabe cuales son las normas de tránsito, y por ende, no sabe cruzar la calle.
 El objetivo del juego es hacer que el conejito pueda cruzar las calles sin que lo atropelle ningún vehículo. Si un vehículo 
@@ -39,7 +38,7 @@ Para realizar el juego, creamos las clases: `Conejo`, `Auto`, `Rasengan`, `Calle
 
 Decidimos crear sólo dos calles, cada una de estas con cuatro carriles y un rasengan por pantalla.
 
-Sólo se puede jugar con las teclas de flecha arriba ó `w`, y flechas laterales ó `a`, `d`, y tecla `espaciadora` para los disparos. 
+Sólo se puede jugar con las teclas de flecha `arriba` ó `w`, y flechas `laterales` ó `a`, `d`, y tecla `espaciadora` para los disparos. 
 
 El juego cuanta con un menú que da la opción de jugar o salir. También en cualquier momento de la partida el juego
 puede pausarse con la tecla `p`.
@@ -78,7 +77,7 @@ Luego pudimos hacer que estos se muevan en sincronía.
 
 image::crearAutos.png[]
 
-=== Rasengan y colision Autos
+=== Rasengan y colisión Autos
 
 Para hacer al rasengan creamos un método `disparar()` en la clase `Conejo` el cual devuelve un nuevo rasengan con la `x` e `y` del conejo.
 
@@ -88,7 +87,7 @@ Uno de ellos pregunta la tecla presionada. Si rasengan es null agrega el rasenga
 Luego otro condicinal analiza si este se fue de la  pantalla (si es asi lo vuelve null).
 
 Y otro que analiza si el rasengan es distinto de null
-y de serlo el rasengan se debe dibujar y mover.
+y de serlo el rasengan se debe `dibujar()` y ` mover()`.
 
 Para analizar la colisión con cada auto creamos dos for (uno por cada "calle con autos") con un if cada uno, que pregunta: si un auto en cierta posición es null, si colisionó con rasengan y de que sentido es.
 
@@ -198,7 +197,7 @@ La clase `Auto` tiene:
 destruidos por algún rasengan.
 
  * El método `avanzar()` es de tipo void, hace que el auto avance para cierto lado según su `sentido`, sumando o restando a su `x` la velocidad.
- Tambien esta constantemente aumentando su `y`  sumandole la `bajadaDePantalla` ( que es la velocidad con la que se desliza
+ Tambien esta constantemente aumentando su `y` sumandole la `bajadaDePantalla` ( que es la velocidad con la que se desliza
  hacia abajo el auto). Y en caso de llegar al extremo contrario se encarga de hacerlo reaparecer en su posición por defecto ( en la pantalla que no se ve).
    
 
@@ -217,7 +216,7 @@ La clase `Calle` tiene:
  * El método `deslizarseHaciaAbajo()` es de tipo void, toma     
   por parámetro a un entorno de tipo `Entorno` y lo que hace 
   es sumar al `y` el `factorDeDesplazamiento` (que es la rapidez con la que se desliza la pantalla).
-  Tambien hace que reaparezca la calle cuando pasa el borde inferior.
+  También hace que reaparezca la calle cuando pasa el borde inferior.
 
 .Clase Rasengan
 [source,java]
@@ -227,7 +226,7 @@ include::src/juego/Rasengan.java[]
 
 La clase `Rasengan` tiene:
 
-- Como estados propio: `x`, `y`, `velocidad`, `diametro` y la imagen.
+- Como estado propio: `x`, `y`, `velocidad`, `diametro` y la imagen.
 
 - Como comportamiento propio: se sabe `dibujar()`, `mover()`,    `salisteDePantalla()` y  `colisionasteConAuto()`.
 
@@ -235,7 +234,7 @@ La clase `Rasengan` tiene:
 
  * El método `saleDePantalla()` es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de la pantalla.
 
- * El método `colisionasteConAuto()` es de tipo boolean y revisa si el rasengan colisiono con algún lado del auto pasado por parámetro, si colisiono entonces devuelve true, caso contrario devuelve false.
+ * El método `colisionasteConAuto()` es de tipo boolean y revisa si el rasengan colisionó con algún lado del auto pasado por parámetro, si colisionó entonces devuelve true, caso contrario devuelve false.
 
 .Clase Menu
 [source,java]
@@ -304,7 +303,7 @@ un menu con la opción de salir o seguir jugando, caso contrario, (si esta corri
 todo lo necesario, se chequean las colisiones, en caso de ser necesario se eliminan, agregan cosas o suman cosas, se chequean las teclas,
 se muestra el tiempo, puntaje y saltos y se sube la velocidad de la "partida" si es que se lograron ciertos puntos, también se analiza si se presiona la
 letra p y de hacerlo la partida cambia a pausada. Luego fuera del if hay un else if que  dibuja el menú en caso de que la partida este en pausa y 
-`partidaCorriendo` este en falso,en caso de que se cumpla la condición se dibuja el menu y se muestran las opciones de salir o seguir jugando/jugar,
+`partidaCorriendo` este en falso, en caso de que se cumpla la condición se dibuja el menu y se muestran las opciones de salir o seguir jugando/jugar,
 y se cambian los booleanos del estado de la partida.
 
 == Conclusiones
