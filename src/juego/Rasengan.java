@@ -36,7 +36,6 @@ public class Rasengan {
 		if (auto != null) {
 			double x1 = x;
 			double y1 = y;
-
 			if (this.x < auto.getX()) {
 				x1 = auto.getX(); // lado izquierdo
 			} else if (x > auto.getX() + auto.getAncho()) {
@@ -50,7 +49,6 @@ public class Rasengan {
 			double distX = x - x1;
 			double distY = y - y1;
 			double distancia = Math.sqrt((distX * distX) + (distY * distY));
-
 			if (distancia <= diametro) {
 				return true;
 			}
