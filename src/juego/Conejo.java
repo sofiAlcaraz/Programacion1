@@ -1,16 +1,14 @@
 package juego;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Conejo {
 	// por el momento está bien, pero hay que corregirlo
-	private double altura;
-	private double ancho;
-	private double x;
-	private double y;
+	private Rectangle tamaño;
 	private double velocidadDeSalto;
 	private double deslizarHaciaAbajo;
 	private Image imagenConejoEsperando;
@@ -18,11 +16,8 @@ public class Conejo {
 	private Image imagenConejoDerecha;
 	private char ultimoMovimiento;
 
-	public Conejo(double altura, double ancho, double x, double y, double movAbajo) {
-		this.altura = altura;
-		this.ancho = ancho;
-		this.x = x;
-		this.y = y;
+	public Conejo(int alto, int ancho, int x, int y, double movAbajo) {
+		this.tamaño=new Rectangle(x,y,ancho,alto);
 		this.velocidadDeSalto = 40;
 		this.ultimoMovimiento = ' ';
 		this.imagenConejoEsperando = Herramientas.cargarImagen("conejoEsperando.png");
@@ -36,13 +31,13 @@ public class Conejo {
 
 		switch (ultimoMovimiento) {
 		case 'i':
-			entorno.dibujarImagen(imagenConejoIzquierda, x, y, 0, 2);
+			entorno.dibujarImagen(imagenConejoIzquierda, tamaño.x, tamaño.y, 0, 2);
 			break;
 		case 'd':
-			entorno.dibujarImagen(imagenConejoDerecha, x, y, 0, 2);
+			entorno.dibujarImagen(imagenConejoDerecha, tamaño.x, tamaño.y, 0, 2);
 			break;
 		default:
-			entorno.dibujarImagen(imagenConejoEsperando, x, y, 0, 2);
+			entorno.dibujarImagen(imagenConejoEsperando, tamaño.x, tamaño.y, 0, 2);
 			break;
 
 		}
@@ -54,46 +49,46 @@ public class Conejo {
 	}
 
 	public void esperar() {
-		y += deslizarHaciaAbajo;
+		tamaño.y += deslizarHaciaAbajo;
 	}
 
 	public void saltar(Entorno entorno, double altoAuto, double espacioEntreAutos) {
 		ultimoMovimiento = ' ';
 		
-		if (y - altura / 2 - velocidadDeSalto <= 0) {//
-			y = altura;
+		if (tamaño.y - tamaño.height / 2 - velocidadDeSalto <= 0) {//
+			tamaño.y = tamaño.height;
 		} else {
-			y -= altoAuto / 2 + espacioEntreAutos;
+			tamaño.y -= altoAuto / 2 + espacioEntreAutos;
 		}
 	}
 
 	public void saltarIzquierda(Entorno entorno) {
 		ultimoMovimiento = 'i';
 		
-		if (x - ancho / 2 - velocidadDeSalto <= 0) {
-			x = ancho / 2;
+		if (tamaño.x - tamaño.width / 2 - velocidadDeSalto <= 0) {
+			tamaño.x = tamaño.width / 2;
 		} else {
-			x -= velocidadDeSalto;
+			tamaño.x -= velocidadDeSalto;
 		}
 
 	}
 
 	public void saltarDerecha(Entorno entorno) {
 		ultimoMovimiento = 'd';
-		if (x + ancho / 2 + velocidadDeSalto >= entorno.ancho()) {
-			x = entorno.ancho() - ancho / 2;
+		if (tamaño.x + tamaño.width / 2 + velocidadDeSalto >= entorno.ancho()) {
+			tamaño.x = entorno.ancho() - tamaño.width / 2;
 		} else {
-			x += velocidadDeSalto;
+			tamaño.x += velocidadDeSalto;
 
 		}
 	}
 
 	public Rasengan disparar() {
-		return new Rasengan(x, y);
+		return new Rasengan(tamaño.x, tamaño.y);
 	}
 
 	public boolean seFueDePantalla() {
-		if (y + (altura / 2) > 600) {
+		if (tamaño.y + (tamaño.height / 2) > 600) {
 			return true;
 		}
 		return false;
@@ -102,12 +97,12 @@ public class Conejo {
 	public boolean chocasteAlgunAuto(Auto[] autos) {
 		for (int i = 0; i < autos.length; i++) {
 			if (autos[i] != null) {
-				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
-						&& y < autos[i].getY() + autos[i].getAltura() / 2 && y + altura > autos[i].getY()) {
+				if (tamaño.x <= autos[i].getX() + autos[i].getAncho() / 2 && tamaño.x + tamaño.width >= autos[i].getX()
+						&& tamaño.y < autos[i].getY() + autos[i].getAltura() / 2 && tamaño.y + tamaño.height > autos[i].getY()) {
 					return true;
 				}
-				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
-						&& y < autos[i].getY() + autos[i].getAltura() / 2 && y + altura > autos[i].getY()) {
+				if (tamaño.x <= autos[i].getX() + autos[i].getAncho() / 2 && tamaño.x + tamaño.width >= autos[i].getX()
+						&& tamaño.y < autos[i].getY() + autos[i].getAltura() / 2 && tamaño.y + tamaño.height > autos[i].getY()) {
 					return true;
 				}
 			}
