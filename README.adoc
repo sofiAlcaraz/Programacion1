@@ -72,12 +72,11 @@ Para crear los autos en cierta posición realizamos un dibujo en base a la calle
 Tuvimos problemas con cómo estaba implementado el código de los for en los que se creaban los autos, ya que mezclabamos calles, sentidos y posiciones.
 
 Para solucionarlo cambiamos los for anteriores a un for por calle con dos sentidos y cuatro carriles.
-
 Luego pudimos hacer que estos se muevan en sincronía.
 
 .Imagen planificación en de reaparición de autos de callePrimaria
 
-image::este Equipo/Documentos/crearAutos.png[]
+image::crearAutos.png[]
 
 === Rasengan y colision Autos
 
