@@ -229,7 +229,7 @@ public class Juego extends InterfaceJuego {
 		entorno.cambiarFont(Integer.toString(puntaje), 20, Color.PINK);
 		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
 
-		reaparecerAutosEliminados(autosCallePrimaria);
+		reaparecerAutosEliminados(autosCallePrimaria, callePrimaria);
 
 		if (entorno.sePresiono('p')) {
 			partidaPausada = true;
@@ -243,7 +243,7 @@ public class Juego extends InterfaceJuego {
 
 	}
 
-	private void reaparecerAutosEliminados(Auto[] autos) {
+	private void reaparecerAutosEliminados(Auto[] autos, Calle calle) {
 
 		for (int l = 0; l < autos.length; l++) { // FIXME
 			if (autos[l] == null && l < 4) {
@@ -252,28 +252,27 @@ public class Juego extends InterfaceJuego {
 //					reloj = 0; // piensenlon
 //				}
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
-						posicionPrimerAutoCallePrimaria + callePrimaria.posicionVertical() - espacioEntreAutos
-								- anchoDeAuto,
+						posicionPrimerAutoCallePrimaria + (calle.posicionVertical() - posicionDelSiguienteAuto - espacioEntreAutos),
 						2, false, velocidadDeBajadaDePantalla, Color.CYAN);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
 			}
 			if (autos[l] == null && l >= 4 && l < 8) {
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
-						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto + callePrimaria.posicionVertical()
-								- espacioEntreAutos - anchoDeAuto,
+						posicionPrimerAutoCallePrimaria + (callePrimaria.posicionVertical() - posicionDelSiguienteAuto - 
+								 espacioEntreAutos - anchoDeAuto),
 						1, true, velocidadDeBajadaDePantalla, Color.MAGENTA);
 				posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
 			}
 			if (autos[l] == null && l >= 8 && l < 12) {
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
-						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 2
-								+ callePrimaria.posicionVertical() - espacioEntreAutos - anchoDeAuto,
+						posicionPrimerAutoCallePrimaria + (callePrimaria.posicionVertical() - posicionDelSiguienteAuto * 2
+								  - espacioEntreAutos - anchoDeAuto),
 						2, false, velocidadDeBajadaDePantalla, Color.GREEN);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
 			} else if (autos[l] == null && l >= 12 && l < 16) {
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
-						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 3
-								+ callePrimaria.posicionVertical() - espacioEntreAutos - anchoDeAuto,
+						posicionPrimerAutoCallePrimaria +(callePrimaria.posicionVertical() - posicionDelSiguienteAuto * 3
+								  - espacioEntreAutos - anchoDeAuto),
 						1, true, velocidadDeBajadaDePantalla, Color.YELLOW);
 				posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
 			}
