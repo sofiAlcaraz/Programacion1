@@ -32,6 +32,10 @@ public class Conejo {
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarRectangulo(x, y, altura, ancho, -Math.PI / 2, pelaje);
 	}
+	
+	public void hacerSonidoDeSalto() {
+		Herramientas.cargarSonido("jump.wav").start();
+	}
 
 	public void esperar() {
 		y += deslizarHaciaAbajo;

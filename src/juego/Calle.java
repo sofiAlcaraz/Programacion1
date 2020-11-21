@@ -36,4 +36,8 @@ public class Calle {
 		return largo;
 	}
 
+	public double posicionVertical() {
+		return y;
+	}
+
 }

@@ -6,13 +6,14 @@ v1, {docdate}. Docentes Hernan Rondelli ; Veronica Moyano (COM-01)
 :source-highlighter: coderay
 :tabsize: 4
 
-== Introducci�n
+== Introducción
+
 El Consejo Organico Normativo y Etico para la Juventud Organizada (CONEJO),
- en el marco de su campan�a de seguridad vial, nos solicito el desarrollo de 
- un video juego para ayudar a que nin�os y nin�as tomen conciencia acerca de la 
- seguridad vial y del respeto a las normas de transito. Para ello, nos
- encargaron un video juego similar al clasico Frogger, pero con algunas
- diferencias que mencionaremos a continuacio�n.
+en el marco de su campaña de seguridad vial, nos solicito el desarrollo de 
+un video juego para ayudar a que niños y niñas tomen conciencia acerca de la 
+seguridad vial y del respeto a las normas de transito. Para ello, nos
+encargaron un video juego similar al clasico Frogger, pero con algunas
+diferencias que mencionaremos a continuacio�n.
 
 El conejo Boss Rabbit vivia en la luna y baj� al planeta tierra, por
 este motivo no sabe c�ales son las normas de transito, y por ende, no 
@@ -27,6 +28,7 @@ por el borde inferior de la pantalla (cuando esto u�ltimo sucede se pierde el
 juego).
 
 == Descripci�n
+
 Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
 Las primeras 4 clases tienen en comun los metodos Dibujar,Mover.
 Clase Calle: Esta cuenta con su metodo dibujar, deslizar hacia abajo y un getLargo(que es usado en juego)

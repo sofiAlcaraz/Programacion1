@@ -5,6 +5,7 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Auto {
+
 	private double alto;
 	private double ancho;
 	private double x;
@@ -23,33 +24,42 @@ public class Auto {
 		this.velocidad = velocidad;
 		this.sentido = sentido;
 		this.bajadaDePantalla = bajadaDePantalla;
-		this.color = color.RED;
+		this.color = Color.RED;
+	}
+	
+	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido,
+			double bajadaDePantalla, Color color) {
+		this.alto = altura;
+		this.ancho = ancho;
+		this.x = x;
+		this.y = y;
+		this.velocidad = velocidad;
+		this.sentido = sentido;
+		this.bajadaDePantalla = bajadaDePantalla;
+		this.color = color;
 	}
 
 	public void dibujar(Entorno entorno) {
 		entorno.dibujarRectangulo(x, y, ancho, alto, 0, color);// cambie direccion por cero ya que no lo vamos a usar
 	}
 
-        
 	public void mover(Entorno entorno) {
-            y += this.bajadaDePantalla;
-            if (y - ancho / 2 > 600) {
-                    y -= entorno.alto() * 2;
-            }
-            if (sentido) { // •
-                    if (x+ancho < 0) {
-                            x = entorno.ancho();
-                    } else {
-                            x -= velocidad;
-                    }
-            } else if (x  > entorno.ancho()+ancho) { // ♥
-                    x = 0;
-            } else {
-                    x += velocidad;
-            }
+		y += bajadaDePantalla;
+		if (y - ancho / 2 > 600) {
+			y -= entorno.alto() * 2;
+		}
+		if (sentido) { // •
+			if (x + ancho < 0) {
+				x = entorno.ancho();
+			} else {
+				x -= velocidad;
+			}
+		} else if (x > entorno.ancho() + ancho) { // ♥
+			x = 0;
+		} else {
+			x += velocidad;
+		}
 	}
-	
-	
 
 	public double getAltura() {
 		return alto;
