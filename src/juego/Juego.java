@@ -228,8 +228,8 @@ public class Juego extends InterfaceJuego {
 		}
 		// Rasengans
 		if (entorno.sePresiono(entorno.TECLA_ESPACIO) && rasengan == null) {
-			rasengan = conejo.disparar();
 			Herramientas.cargarSonido(sonidoRasengan).start();
+			rasengan = conejo.disparar();
 		}
 
 		if (rasengan != null && rasengan.salisteDePantalla()) {
@@ -247,7 +247,7 @@ public class Juego extends InterfaceJuego {
 
 				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX(),
 						autosCallePrimaria[k].getY(), autosCallePrimaria[k].getVelocidad(),
-						autosCallePrimaria[k].getSentido(), autosCalleSecundaria[k].getVelocidadBajada());
+						autosCallePrimaria[k].getSentido(), autosCallePrimaria[k].getVelocidadBajada());
 
 				autosCallePrimaria[k] = autoRegenerado;
 				rasengan = null;
@@ -258,7 +258,7 @@ public class Juego extends InterfaceJuego {
 
 				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX(),
 						autosCallePrimaria[k].getY(), autosCallePrimaria[k].getVelocidad(),
-						autosCallePrimaria[k].getSentido(), autosCalleSecundaria[k].getVelocidadBajada());
+						autosCallePrimaria[k].getSentido(), autosCallePrimaria[k].getVelocidadBajada());
 				autosCallePrimaria[k] = autoRegenerado;
 				rasengan = null;
 				puntaje += 5;
