@@ -299,7 +299,7 @@ Adjuntamos una foto en la sección descripción.
 
 El esta parte al principio creamos un if que pregunta si la partida esta corriendo, en caso ser falso entonces se pregunta si la partida esta perdida, ganada o en pausa y según que condición se cumple realiza cierta opción.
 
-En caso de que la partida este corriendo  se dibuja todo, se llama a los métodos  necesarios, se revisan las colisiones. 
+En caso de que la partida este corriendo  se dibuja todo, se llama a los métodos  necesarios y  se revisan las colisiones. 
 
 
 == Conclusiones
