@@ -229,7 +229,7 @@ public class Juego extends InterfaceJuego {
 		entorno.cambiarFont(Integer.toString(puntaje), 20, Color.PINK);
 		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
 
-		reaparecerAutosEliminados(autosCallePrimaria, callePrimaria);
+		reaparecerAutosEliminados(autosCallePrimaria);
 
 		if (entorno.sePresiono('p')) {
 			partidaPausada = true;
@@ -243,7 +243,7 @@ public class Juego extends InterfaceJuego {
 
 	}
 
-	private void reaparecerAutosEliminados(Auto[] autos, Calle calle) {
+	private void reaparecerAutosEliminados(Auto[] autos) {
 
 		for (int l = 0; l < autos.length; l++) { // FIXME
 			if (autos[l] == null && l < 4) {
@@ -252,7 +252,7 @@ public class Juego extends InterfaceJuego {
 //					reloj = 0; // piensenlon
 //				}
 				autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionInicialHorizontalDeAutosSentidoDerecho,
-						posicionPrimerAutoCallePrimaria + (calle.posicionVertical() - posicionDelSiguienteAuto - espacioEntreAutos),
+						posicionPrimerAutoCallePrimaria + (callePrimaria.posicionVertical() - posicionDelSiguienteAuto - espacioEntreAutos),
 						2, false, velocidadDeBajadaDePantalla, Color.CYAN);
 				posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
 			}
