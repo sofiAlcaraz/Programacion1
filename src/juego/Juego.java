@@ -225,7 +225,7 @@ public class Juego extends InterfaceJuego {
 				Herramientas.cargarSonido(sonidoRasengan).start();
 			}
 
-			if (rasengan != null && rasengan.saleDePantalla()) {
+			if (rasengan != null && rasengan.salisteDePantalla()) {
 				rasengan = null;
 			}
 			if (rasengan != null) {

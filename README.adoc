@@ -30,7 +30,7 @@ Para realizar el juego, creamos las clases: `Conejo`, `Auto`, `Rasengan`, `Calle
 
  * Clase `Auto`: Cuenta con su método `dibujar()`, `avanzar` y los getters de `getX()`, `getY()`, `getAltura()`, `getAncho()` y `getVelocidad()`.
 
- * Clase `Rasengan`: Cuenta con su método `dibujar()`, `mover()`, `saleDepantalla()`, `colisionasteConAuto()`.
+ * Clase `Rasengan`: Cuenta con su método `dibujar()`, `mover()`, `salisteDepantalla()`, `colisionasteConAuto()`.
 
  * Clase `Conejo`: Cuenta con los métodos `dibujar()`, `esperar()`, `saltar()`, `saltarIzquierda()`, `saltarDerecha()`, `disparar()`, `seFueDePantalla()` y `chocasteAlgunAuto()`.
 
@@ -231,7 +231,7 @@ La clase `Rasengan` tiene:
 
  * El método `mover()` es de tipo void y lo que hace es restarle al `y` la `velocidad` (creando el efecto de que se mueve hacia arriba).
 
- * El método `saleDePantalla()` es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de la pantalla.
+ * El método `salisteDePantalla()` es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de la pantalla.
 
  * El método `colisionasteConAuto()` es de tipo boolean y revisa si el rasengan colisionó con algún lado del auto pasado por parámetro, si colisionó entonces devuelve true, caso contrario devuelve false.
 

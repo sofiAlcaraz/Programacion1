@@ -28,7 +28,7 @@ public class Rasengan {
 		y -= velocidad;
 	}
 
-	public boolean saleDePantalla() {
+	public boolean salisteDePantalla() {
 		return y + diametro < 0;
 	}
 
