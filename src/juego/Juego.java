@@ -146,43 +146,27 @@ public class Juego extends InterfaceJuego {
 
 	}
 
+	
 	public void tick() {
-
-//			
-//			if (perdioPartida == true && partidaPausada == false && ganoPartida == false) {// partida perdida
-//				
-//			}
-//			if (ganoPartida == true && perdioPartida == false && partidaPausada == false) {
-//				
-//			}
-//		}
-
-		/*
-		 * if ("si no esto jugando") { return; }
-		 */
-
-		// les quedó todo el código dentro de un if, deberían sacarlo de acá
-		// if (partidaCorriendo == true && partidaPausada == false) {
-		// si partidacorriendo es true
 		if (partidaCorriendo == false) {
 			if (partidaPausada == true) {
 				menu.dibujarMenu(entorno);
-				while(!entorno.sePresiono(entorno.TECLA_ENTER)) {
-				if (entorno.sePresiono(entorno.TECLA_ABAJO)) { // esto no va acá
+				
+				if (entorno.sePresiono(entorno.TECLA_ABAJO)) { 
 					menu.actualizarCursorYconFechas(true);
 				}
-				else if (entorno.sePresiono(entorno.TECLA_ARRIBA)) { // esto no va acá
+				if (entorno.sePresiono(entorno.TECLA_ARRIBA)) { 
 					menu.actualizarCursorYconFechas(false);
 				}
 				
-				else if (entorno.sePresiono(entorno.TECLA_ENTER) && menu.confirmarSeleccionado() == "jugar") {
+				if (entorno.sePresiono(entorno.TECLA_ENTER) && menu.confirmarSeleccionado() == "jugar") {
 					partidaCorriendo = true;
 					partidaPausada = false;
 				}
 				else if (entorno.sePresiono(entorno.TECLA_ENTER) && menu.confirmarSeleccionado() == "salir") {
 					System.exit(0);
 				}
-				}
+				
 			} else if (ganoPartida == true) {
 				partidaCorriendo = false;
 				partidaPausada = false;
@@ -199,7 +183,8 @@ public class Juego extends InterfaceJuego {
 				}
 
 			}
-		} else {
+		} 
+		else {
 
 			reloj++;
 			entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);

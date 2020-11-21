@@ -45,6 +45,8 @@ public class Menu {
 	public void actualizarCursorYconFechas(boolean cursor) {
 		if (cursor==true) {
 			posicionDelCursorY=posicionDelBotonSalirY;
+		}else {
+		posicionDelCursorY = posicionDelBotonJugarY;
 		}
 	}
 	
