@@ -40,9 +40,9 @@ public class Auto {
 	}
 
 	public void avanzar(Entorno entorno) {
-		y += bajadaDePantalla;	
-		
-		if (y - ancho / 2 >entorno.alto()) {
+		y += bajadaDePantalla;
+
+		if (y - ancho / 2 > entorno.alto()) {
 			y -= entorno.alto() * 2;
 		}
 		if (sentido) {
@@ -56,7 +56,7 @@ public class Auto {
 		} else {
 			x += velocidad;
 		}
-	
+
 	}
 
 	public boolean getSentido() {

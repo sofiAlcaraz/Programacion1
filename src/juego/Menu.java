@@ -39,22 +39,23 @@ public class Menu {
 		botonSalir(entorno);
 		mostrarSeleccionado(entorno);
 		entorno.cambiarFont("Comic Sans MS", 30, Color.BLUE);
-		entorno.escribirTexto("Para ganar, el puntaje debe llegar a 100 puntos", 85, 600/2 -100 );
+		entorno.escribirTexto("Para ganar, el puntaje debe llegar a 100 puntos", 85, 600 / 2 - 100);
 
 	}
+
 	public void actualizarCursorYconFechas(boolean cursor) {
-		if (cursor==true) {
-			posicionDelCursorY=posicionDelBotonSalirY;
-		}else {
-		posicionDelCursorY = posicionDelBotonJugarY;
+		if (cursor == true) {
+			posicionDelCursorY = posicionDelBotonSalirY;
+		} else {
+			posicionDelCursorY = posicionDelBotonJugarY;
 		}
 	}
-	
+
 	public String confirmarSeleccionado() {
-		if (posicionDelCursorY == posicionDelBotonSalirY) { 
+		if (posicionDelCursorY == posicionDelBotonSalirY) {
 			return "salir";
 		}
-		if (posicionDelCursorY == posicionDelBotonJugarY) { 
+		if (posicionDelCursorY == posicionDelBotonJugarY) {
 			return "jugar";
 		}
 		return "";

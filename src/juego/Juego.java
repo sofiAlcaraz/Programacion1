@@ -146,27 +146,25 @@ public class Juego extends InterfaceJuego {
 
 	}
 
-	
 	public void tick() {
 		if (partidaCorriendo == false) {
 			if (partidaPausada == true) {
 				menu.dibujarMenu(entorno);
-				
-				if (entorno.sePresiono(entorno.TECLA_ABAJO)) { 
+
+				if (entorno.sePresiono(entorno.TECLA_ABAJO)) {
 					menu.actualizarCursorYconFechas(true);
 				}
-				if (entorno.sePresiono(entorno.TECLA_ARRIBA)) { 
+				if (entorno.sePresiono(entorno.TECLA_ARRIBA)) {
 					menu.actualizarCursorYconFechas(false);
 				}
-				
+
 				if (entorno.sePresiono(entorno.TECLA_ENTER) && menu.confirmarSeleccionado() == "jugar") {
 					partidaCorriendo = true;
 					partidaPausada = false;
-				}
-				else if (entorno.sePresiono(entorno.TECLA_ENTER) && menu.confirmarSeleccionado() == "salir") {
+				} else if (entorno.sePresiono(entorno.TECLA_ENTER) && menu.confirmarSeleccionado() == "salir") {
 					System.exit(0);
 				}
-				
+
 			} else if (ganoPartida == true) {
 				partidaCorriendo = false;
 				partidaPausada = false;
@@ -183,8 +181,7 @@ public class Juego extends InterfaceJuego {
 				}
 
 			}
-		} 
-		else {
+		} else {
 
 			reloj++;
 			entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);

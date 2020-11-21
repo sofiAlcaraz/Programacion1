@@ -247,12 +247,13 @@ La clase `Menu` tiene:
 `posicionDelBotonSalirX`, `posicionDelBotonSalirY`, `posicionDelCursorX`, `posicionDelCursorY`, y dos imagenes
 que son botonJugar y botonSalir.
 
-- Como comportamiento propio: sabe `dibujarse()` y tiene dos métodos importantes para su funcionamiento.
+- Como comportamiento propio: sabe `dibujarse()` y tiene dos    métodos importantes para su funcionamiento: 
+`actualizarCursorYconFechas()`, `confirmarSeleccionado()`.
 
- /*
- * El método actualizarCursor es de tipo void, lo que hace es dependiendo de lo que el usuario desee ejecutar en el menu, va a actualizar la posición del cursor que se dibuja en el entorno por medio del teclado.
- * El método confirmarSeleccionado es de tipo String, y lo que hace es devolver las palabras "jugar" o "salir" para que luego en el tick sean comparadas con un condicional para saber que es lo que el usuario desea ejecutar, y se confirma presionando la tecla Enter.
-*/
+ * El método `actualizarCursorYconFechas()`,es de tipo void y lo que hace es actualizar el `posicionDelCursorY` tomando un boolean que depende de que tecla se presione en juego.
+
+ * El método `confirmarSeleccionado()` es de tipo String y según 
+ la posición del `posicionDelCursorY` devuelve un String con la acción que se quiere realizar y si no es ninguna de las opciones disponibles devuelve un String vacío.
 
 .Clase Juego
 [source,java]
@@ -296,14 +297,10 @@ Adjuntamos una foto en la sección descripción.
  
 ===== tick
 
-El tick comienza con un if que pregunta si se perdió la partida ,de ser asi muestra una pantalla  con una imagen y la opción de cerrar el juego,
-Luego hay un if que engloba el código del juego corriendo,este if pregunta si la partida esta corriendo o pausada ,en caso de pausada muestra
-un menu con la opción de salir o seguir jugando, caso contrario, (si esta corriendo) entonces se dibuja, mueve y desliza hacia abajo  
-todo lo necesario, se chequean las colisiones, en caso de ser necesario se eliminan, agregan cosas o suman cosas, se chequean las teclas,
-se muestra el tiempo, puntaje y saltos y se sube la velocidad de la "partida" si es que se lograron ciertos puntos, también se analiza si se presiona la
-letra p y de hacerlo la partida cambia a pausada. Luego fuera del if hay un else if que  dibuja el menú en caso de que la partida este en pausa y 
-`partidaCorriendo` este en falso, en caso de que se cumpla la condición se dibuja el menu y se muestran las opciones de salir o seguir jugando/jugar,
-y se cambian los booleanos del estado de la partida.
+El esta parte al principio creamos un if que pregunta si la partida esta corriendo, en caso ser falso entonces se pregunta si la partida esta perdida, ganada o en pausa y según que condición se cumple realiza cierta opción.
+
+En caso de que la partida este corriendo  se dibuja todo, se llama a los métodos  necesarios, se revisan las colisiones. 
+
 
 == Conclusiones
 

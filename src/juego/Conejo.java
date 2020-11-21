@@ -40,7 +40,6 @@ public class Conejo {
 		default:
 			entorno.dibujarImagen(imagenConejoEsperando, x, y, 0, 2);
 			break;
-			
 		}
 	}
 
@@ -50,7 +49,7 @@ public class Conejo {
 
 	public void saltar(Entorno entorno, double altoAuto, double espacioEntreAutos) {
 		ultimoMovimiento = ' ';
-		if (y - alto/ 2 - velocidadDeSalto <= 0) {
+		if (y - alto / 2 - velocidadDeSalto <= 0) {
 			y = alto;
 		} else {
 			y -= altoAuto / 2 + espacioEntreAutos;
@@ -68,7 +67,7 @@ public class Conejo {
 
 	public void saltarDerecha(Entorno entorno) {
 		ultimoMovimiento = 'd';
-		if (x +tamaño / 2 + velocidadDeSalto >= entorno.ancho()) {
+		if (x + tamaño / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - tamaño / 2;
 		} else {
 			x += velocidadDeSalto;
@@ -86,14 +85,12 @@ public class Conejo {
 	public boolean chocasteAlgunAuto(Auto[] autos) {
 		for (int i = 0; i < autos.length; i++) {
 			if (autos[i] != null) {
-				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x +tamaño>= autos[i].getX()
-						&& y < autos[i].getY() + autos[i].getAltura() / 2
-						&& y + alto > autos[i].getY()) {
+				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + tamaño >= autos[i].getX()
+						&& y < autos[i].getY() + autos[i].getAltura() / 2 && y + alto > autos[i].getY()) {
 					return true;
 				}
-				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + tamaño>= autos[i].getX()
-						&& y < autos[i].getY() + autos[i].getAltura() / 2
-						&& y + alto > autos[i].getY()) {
+				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + tamaño >= autos[i].getX()
+						&& y < autos[i].getY() + autos[i].getAltura() / 2 && y + alto > autos[i].getY()) {
 					return true;
 				}
 			}
