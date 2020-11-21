@@ -245,18 +245,19 @@ public class Juego extends InterfaceJuego {
 			if (rasengan != null && rasengan.colisionasteConAuto(autosCallePrimaria[k])
 					&& autosCallePrimaria[k].getSentido() == true) {
 
-				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX(),
+				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX() - entorno.ancho(),
 						autosCallePrimaria[k].getY(), autosCallePrimaria[k].getVelocidad(),
 						autosCallePrimaria[k].getSentido(), autosCallePrimaria[k].getVelocidadBajada());
 
 				autosCallePrimaria[k] = autoRegenerado;
+
 				rasengan = null;
 				puntaje += 5;
 
 			} else if (rasengan != null && rasengan.colisionasteConAuto(autosCallePrimaria[k])
 					&& autosCallePrimaria[k].getSentido() == false) {
 
-				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX(),
+				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX()  + entorno.ancho(),
 						autosCallePrimaria[k].getY(), autosCallePrimaria[k].getVelocidad(),
 						autosCallePrimaria[k].getSentido(), autosCallePrimaria[k].getVelocidadBajada());
 				autosCallePrimaria[k] = autoRegenerado;
@@ -312,8 +313,6 @@ public class Juego extends InterfaceJuego {
 		entorno.cambiarFont(Integer.toString(puntaje), 20, Color.PINK);
 		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
 	}
-
-
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
