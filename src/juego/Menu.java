@@ -38,29 +38,21 @@ public class Menu {
 		botonJugar(entorno);
 		botonSalir(entorno);
 		mostrarSeleccionado(entorno);
-		actualizarCursor(entorno);
 		entorno.cambiarFont("Comic Sans MS", 30, Color.BLUE);
 		entorno.escribirTexto("Para ganar, el puntaje debe llegar a 100 puntos", 85, 600/2 -100 );
 
 	}
-
-	// acá no debería haber interacción con le usuarie
-	public void actualizarCursor(Entorno entorno) {
-		if (entorno.sePresiono(entorno.TECLA_ABAJO)) { // esto no va acá
-			posicionDelCursorY = posicionDelBotonSalirY;
-
-		}
-		if (entorno.sePresiono(entorno.TECLA_ARRIBA)) { // esto no va acá
-			posicionDelCursorY = posicionDelBotonJugarY;
-
+	public void actualizarCursorYconFechas(boolean cursor) {
+		if (cursor==true) {
+			posicionDelCursorY=posicionDelBotonSalirY;
 		}
 	}
-
-	public String confirmarSeleccionado(Entorno entorno) {
-		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonSalirY) { // esto no va acá
+	
+	public String confirmarSeleccionado() {
+		if (posicionDelCursorY == posicionDelBotonSalirY) { 
 			return "salir";
 		}
-		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonJugarY) { // esto no va acá
+		if (posicionDelCursorY == posicionDelBotonJugarY) { 
 			return "jugar";
 		}
 		return "";
