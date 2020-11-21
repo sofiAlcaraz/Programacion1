@@ -44,7 +44,8 @@ public class Conejo {
 	}
 
 	public void saltar(Entorno entorno, double altoAuto, double espacioEntreAutos) {
-		if (tamaño.y - tamaño.height / 2 - velocidadDeSalto <= 0) {//
+		ultimoMovimiento = ' ';
+		if (tamaño.y - tamaño.height / 2 - velocidadDeSalto <= 0) {
 			tamaño.y = tamaño.height;
 		} else {
 			tamaño.y -= altoAuto / 2 + espacioEntreAutos;
