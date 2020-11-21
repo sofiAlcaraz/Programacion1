@@ -7,7 +7,6 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Conejo {
-	// por el momento está bien, pero hay que corregirlo
 	private Rectangle tamaño;
 	private double velocidadDeSalto;
 	private double deslizarHaciaAbajo;

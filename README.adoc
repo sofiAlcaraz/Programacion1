@@ -53,7 +53,7 @@ en caso de perder se mostrara una pantalla "game over" con la opción de salir y
 Crear al conejo, darle movimiento, enseñarle a dibujarse y a saltar no fue una dificultad.
 
 Para lograr que el conejo salte a la mitad de la calle cambiamos el método `saltar()`.
-Lo que hicimos fue restarle a su `y` el  `altoAuto / 2 + espacioEntreAutos`.
+Lo que hicimos fue restarle a su `tamaño.y` el  `altoAuto / 2 + espacioEntreAutos`.
 
 Además debiamos crear al conejo en una posición coherente para que el método saltar funcione correctamente.
 Para esto al crear el conejo le pasamos por parámetro en su `y` la `(posicionPrimerAutoCallePrimaria + espacioEntreAutos + altoDelAuto / 2) * 3`, de esta forma el conejo se posicionaría al comenzar la calle y saltaría el espacio entre autos más la mitad del alto del auto, la multiplicación por tres es para que el conejo se cree con una determinada distancia respecto de la primera calle. 
@@ -160,27 +160,26 @@ include::src/juego/Conejo.java[]
 
 La clase `Conejo` tiene:
 
-- Como estado propio: `altura`, `ancho`, `x`, `y`, `velocidadDeSalto`( movimiento vertical y
-horizontal), `deslizarHaciaAbajo` ( deslizamiento hacia abajo) y las imagénes.
+- Como estado propio: tamaño, `velocidadDeSalto`( movimiento vertical y horizontal), `deslizarHaciaAbajo` ( deslizamiento hacia abajo) y las imagénes.
 
 - Como comportamiento: el conejo se sabe, `dibujar()`, `saltar()`, `esperar()`, `saltarIzquierda()`, `saltarDerecha()`, `disparar()`, `seFueDePantalla()`, `chocasteAlgunAuto()`.
 
  * El método `dibujar()` es particular, ya que dibuja la imagen según que movimiento hizo anteriormente, lo cúal se indica en los métodos de salto.
 
- * El método `saltar()` es de tipo void, toma por parámetro a un entorno de tipo `Entorno` y lo que hace realiza es el efecto de salto hacia adelante restandole al `y` la `velocidadDeSalto`.
+ * El método `saltar()` es de tipo void, toma por parámetro a un entorno de tipo `Entorno` y lo que hace realiza es el efecto de salto hacia adelante restandole al `tamaño.y` la `velocidadDeSalto`.
  También impide que el conejo de vaya de la pantalla por la parte superior.
 
- * El  método `saltarDerecha()` es de tipo void, toma por parámetro a un entorno de tipo `Entorno` y realiza el efecto de salto hacia la derecha sumandole a la `x` la `velocidadDeSalto`.
+ * El  método `saltarDerecha()` es de tipo void, toma por parámetro a un entorno de tipo `Entorno` y realiza el efecto de salto hacia la derecha sumandole a la `tamaño.x` la `velocidadDeSalto`.
  También impide que el conejo se vaya de la pantalla por el lateral derecho.
 
- * El método `saltarIzquierda()` es de tipo void, toma por parámetro a un entorno de tipo `Entorno` y lo que hace realizar el efecto de salto hacia la izquierda restandole a la `x` la `velocidadDeSalto`.
+ * El método `saltarIzquierda()` es de tipo void, toma por parámetro a un entorno de tipo `Entorno` y lo que hace realizar el efecto de salto hacia la izquierda restandole a la `tamaño.x` la `velocidadDeSalto`.
  También impide que el conejo se vaya de la pantalla por el lateral izquierdo.
 
- * El método `esperar()` es de tipo void y lo que hace es sumarle a `y` el `deslizarHaciaAbajo`, de esta forma, si el conejo esta quieto se deslizará hacia abajo.
+ * El método `esperar()` es de tipo void y lo que hace es sumarle a `tamaño.y` el `deslizarHaciaAbajo`, de esta forma, si el conejo esta quieto se deslizará hacia abajo.
 
- * El método `disparar()` devuelve un `Rasengan` con su `x` e `y` correspondientes (la posición actual del conejo a la hora de disparar).
+ * El método `disparar()` devuelve un `Rasengan` con su `tamaño.x` e `tamaño.y` correspondientes (la posición actual del conejo a la hora de disparar).
  
- * El método `seFueDePantalla()` es de tipo boolean y lo que hace es revisar si el conejo se fue de la pantalla por la parte inferior, es decir, si su `y + altura / 2 < entorno.alto()`  entonces el método devuelve true, caso contrario, false.
+ * El método `seFueDePantalla()` es de tipo boolean y lo que hace es revisar si el conejo se fue de la pantalla por la parte inferior, es decir, si su `tamaño.y + tamaño.altura / 2 < entorno.alto()`  entonces el método devuelve true, caso contrario, false.
 
  * El método `chocasteAlgunAuto()` es de tipo boolean y toma por parámetro un array de autos, si el conejo colisiona con alguno de estos autos, devuelve true, sino false.
  
@@ -271,9 +270,9 @@ Cada array de calle con autos (callePrimaria o calleSecundaria) tiene un length(
 Cada for cuenta con tres if y un else. El primer if agrega cuatro autos en el carril inferior  que van de izquierda-derecha, el segúndo agrega cuatro autos que van de derecha-izquierda, el tercer if agrega cuatro autos que van de izquierda-derecha y el else agrega cuatro autos que van de  derecha-izquierda.
 
 El segúndo for es parecido, aunque decidimos que el `sentido` de los autos empiece de forma diferente.
-Segun su sentido los autos se crean en determinado x (cero o el `entorno.ancho()`).
+Segun su sentido los autos se crean en determinado `x` (cero o el `entorno.ancho()`).
 
-Para la posición en y hicimos varias cuentas matemáticas teniendo en cuenta la calle y la posición del primer auto(adjuntamos un dibujo en descripción).
+Para la posición en `y` hicimos varias cuentas matemáticas teniendo en cuenta la calle y la posición del primer auto(adjuntamos un dibujo en descripción).
 
 .Variables de creacion de autos.
 [source, java]
