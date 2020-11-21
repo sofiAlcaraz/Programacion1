@@ -147,32 +147,13 @@ public class Juego extends InterfaceJuego {
 	}
 
 	public void tick() {
-//		if (partidaCorriendo == false) {
-//			if (partidaPausada = true && perdioPartida == false) {
-//				menu.dibujarMenu(entorno);
-//				if (menu.confirmarSeleccionado(entorno) == "jugar") {
-//					partidaCorriendo = true;
-//					partidaPausada = false;
-//				}
-//				if (menu.confirmarSeleccionado(entorno) == "salir") {
-//					System.exit(0);
-//				}
-//			}
+
+//			
 //			if (perdioPartida == true && partidaPausada == false && ganoPartida == false) {// partida perdida
-//				partidaCorriendo = false;
-//				partidaPausada = false;
-//				entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0, 1);
-//				if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
-//					System.exit(0);
-//				}
+//				
 //			}
 //			if (ganoPartida == true && perdioPartida == false && partidaPausada == false) {
-//				partidaCorriendo = false;
-//				partidaPausada = false;
-//				entorno.dibujarImagen(victoria, entorno.ancho() / 2, entorno.alto() / 2, 0, 1);
-//				if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
-//					System.exit(0);
-//				}
+//				
 //			}
 //		}
 
@@ -183,6 +164,37 @@ public class Juego extends InterfaceJuego {
 		// les quedó todo el código dentro de un if, deberían sacarlo de acá
 		// if (partidaCorriendo == true && partidaPausada == false) {
 		// si partidacorriendo es true
+		if(partidaCorriendo==false) {
+			if(partidaPausada==true) {
+					menu.dibujarMenu(entorno);
+					if (menu.confirmarSeleccionado(entorno) == "jugar") {
+						partidaCorriendo = true;
+						partidaPausada = false;
+					}
+					if (menu.confirmarSeleccionado(entorno) == "salir") {
+						System.exit(0);
+					}
+			}
+			else if (ganoPartida==true) {
+				partidaCorriendo = false;
+				partidaPausada = false;
+				entorno.dibujarImagen(victoria, entorno.ancho() / 2, entorno.alto() / 2, 0, 1);
+				if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
+					System.exit(0);
+				}
+			}
+			else if(perdioPartida==true ) {
+				partidaCorriendo = false;
+				partidaPausada = false;
+				entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0, 1);
+				if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
+					System.exit(0);
+				}
+				
+			}
+		}else {
+		
+		
 		reloj++;
 		entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
 
@@ -190,6 +202,7 @@ public class Juego extends InterfaceJuego {
 				|| conejo.seFueDePantalla(entorno)) {
 			perdioPartida = true;
 			partidaPausada = false;
+			partidaCorriendo=false;
 		}
 
 		callePrimaria.deslizarHaciaAbajo(entorno);
@@ -312,6 +325,7 @@ public class Juego extends InterfaceJuego {
 		entorno.escribirTexto("Puntos:", 550, 30);
 		entorno.cambiarFont(Integer.toString(puntaje), 20, Color.PINK);
 		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
+		}
 	}
 
 	@SuppressWarnings("unused")

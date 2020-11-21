@@ -40,6 +40,7 @@ public class Conejo {
 		default:
 			entorno.dibujarImagen(imagenConejoEsperando, x, y, 0, 2);
 			break;
+			
 		}
 	}
 
@@ -70,7 +71,7 @@ public class Conejo {
 		if (x +tamaño / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - tamaño / 2;
 		} else {
-			tamaño += velocidadDeSalto;
+			x += velocidadDeSalto;
 		}
 	}
 
