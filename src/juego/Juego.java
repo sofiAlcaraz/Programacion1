@@ -180,7 +180,7 @@ public class Juego extends InterfaceJuego {
 			entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
 
 			if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
-					|| conejo.seFueDePantalla()) {
+					|| conejo.seFueDePantalla(entorno)) {
 				perdioPartida = true;
 				partidaPausada = false;
 			}

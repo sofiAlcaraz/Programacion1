@@ -16,18 +16,16 @@ public class Conejo {
 	private char ultimoMovimiento;
 
 	public Conejo(int alto, int ancho, int x, int y, double movAbajo) {
-		this.tamaño=new Rectangle(x,y,ancho,alto);
+		this.tamaño = new Rectangle(x, y, ancho, alto);
 		this.velocidadDeSalto = 40;
 		this.ultimoMovimiento = ' ';
 		this.imagenConejoEsperando = Herramientas.cargarImagen("conejoEsperando.png");
 		this.imagenConejoIzquierda = Herramientas.cargarImagen("conejoIzquierda.png");
 		this.imagenConejoDerecha = Herramientas.cargarImagen("conejoDerecha.png");
 		this.deslizarHaciaAbajo = movAbajo;
-
 	}
 
 	public void dibujar(Entorno entorno) {
-
 		switch (ultimoMovimiento) {
 		case 'i':
 			entorno.dibujarImagen(imagenConejoIzquierda, tamaño.x, tamaño.y, 0, 2);
@@ -38,7 +36,6 @@ public class Conejo {
 		default:
 			entorno.dibujarImagen(imagenConejoEsperando, tamaño.x, tamaño.y, 0, 2);
 			break;
-
 		}
 	}
 
@@ -47,8 +44,6 @@ public class Conejo {
 	}
 
 	public void saltar(Entorno entorno, double altoAuto, double espacioEntreAutos) {
-		ultimoMovimiento = ' ';
-		
 		if (tamaño.y - tamaño.height / 2 - velocidadDeSalto <= 0) {//
 			tamaño.y = tamaño.height;
 		} else {
@@ -58,13 +53,11 @@ public class Conejo {
 
 	public void saltarIzquierda(Entorno entorno) {
 		ultimoMovimiento = 'i';
-		
 		if (tamaño.x - tamaño.width / 2 - velocidadDeSalto <= 0) {
 			tamaño.x = tamaño.width / 2;
 		} else {
 			tamaño.x -= velocidadDeSalto;
 		}
-
 	}
 
 	public void saltarDerecha(Entorno entorno) {
@@ -73,7 +66,6 @@ public class Conejo {
 			tamaño.x = entorno.ancho() - tamaño.width / 2;
 		} else {
 			tamaño.x += velocidadDeSalto;
-
 		}
 	}
 
@@ -81,22 +73,21 @@ public class Conejo {
 		return new Rasengan(tamaño.x, tamaño.y);
 	}
 
-	public boolean seFueDePantalla() {
-		if (tamaño.y + (tamaño.height / 2) > 600) {
-			return true;
-		}
-		return false;
+	public boolean seFueDePantalla(Entorno entorno) {
+		return tamaño.y + (tamaño.height / 2) > entorno.alto();
 	}
 
 	public boolean chocasteAlgunAuto(Auto[] autos) {
 		for (int i = 0; i < autos.length; i++) {
 			if (autos[i] != null) {
 				if (tamaño.x <= autos[i].getX() + autos[i].getAncho() / 2 && tamaño.x + tamaño.width >= autos[i].getX()
-						&& tamaño.y < autos[i].getY() + autos[i].getAltura() / 2 && tamaño.y + tamaño.height > autos[i].getY()) {
+						&& tamaño.y < autos[i].getY() + autos[i].getAltura() / 2
+						&& tamaño.y + tamaño.height > autos[i].getY()) {
 					return true;
 				}
 				if (tamaño.x <= autos[i].getX() + autos[i].getAncho() / 2 && tamaño.x + tamaño.width >= autos[i].getX()
-						&& tamaño.y < autos[i].getY() + autos[i].getAltura() / 2 && tamaño.y + tamaño.height > autos[i].getY()) {
+						&& tamaño.y < autos[i].getY() + autos[i].getAltura() / 2
+						&& tamaño.y + tamaño.height > autos[i].getY()) {
 					return true;
 				}
 			}
