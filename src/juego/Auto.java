@@ -50,15 +50,36 @@ public class Auto {
 		}
 		if (sentido) { 
 			if (x + ancho < 0) {
-				x += entorno.ancho()*2;
+				x = entorno.ancho();
 			} else {
 				x -= velocidad;
 			}
 		} else if (x > entorno.ancho() + ancho) {
-			x -= x*2;
+			x = 0;
 		} else {
 			x += velocidad;
 		}
+	}
+
+	public boolean getSentido() {
+		return sentido;
+	}
+
+
+	public double getAlto() {
+		return alto;
+	}
+
+	public double getVelocidad() {
+		return velocidad;
+	}
+
+	public double getBajadaDePantalla() {
+		return bajadaDePantalla;
+	}
+
+	public Color getColor() {
+		return color;
 	}
 
 	public double getAltura() {

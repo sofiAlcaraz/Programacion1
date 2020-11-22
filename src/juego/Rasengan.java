@@ -34,16 +34,24 @@ public class Rasengan {
 		return false;
 	}
 
-	public boolean destruirAuto(Auto[] autos) {
-		for (int i = 0; i < autos.length; i++) {
-
-			if (autos[i] != null && this.colisionaste(autos[i])) {
-				autos[i] = null;
+	public boolean destruirAuto(Auto autos) {
+		 if (autos != null && this.colisionaste(autos)) {
 				return true;
-			}
+			
 		}
 		return false;
 	}
+	
+//	public boolean destruirAuto(Auto[] autos) {
+//		for (int i = 0; i < autos.length; i++) {
+//
+//			if (autos[i] != null && this.colisionaste(autos[i])) {
+//				autos[i] = null;
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
 	/*
 	 * El metodo "colicionaste" gestiona la colision "RECTANGULO-CIRCULO" para
