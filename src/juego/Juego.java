@@ -28,6 +28,7 @@ public class Juego extends InterfaceJuego {
 //	Menu menu = new Menu();
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
+	private int temporizadorAutos;
 	private int reloj;
 	// private int intentos;
 	private int puntaje;
@@ -143,6 +144,7 @@ public class Juego extends InterfaceJuego {
 	 */
 	public void tick() {
 		// Procesamiento de un instante de tiempo
+		temporizadorAutos++;
 		reloj++;
 
 		// if (estaIniciado && !estáPausado) {
@@ -212,7 +214,7 @@ public class Juego extends InterfaceJuego {
 		}
 
 		// texto en pantallam ,tamaño de letra=20
-		entorno.cambiarFont(Integer.toString(reloj), 20, Color.MAGENTA);
+		entorno.cambiarFont(Integer.toString(reloj), 20, Color.PINK);
 		entorno.escribirTexto("Tiempo: " + Integer.toString(reloj / 100), 30, 30);
 		entorno.cambiarFont("", 30, Color.PINK);
 		entorno.escribirTexto("saltos:", entorno.ancho() / 2 - 100, 30);
@@ -223,11 +225,11 @@ public class Juego extends InterfaceJuego {
 		entorno.cambiarFont(Integer.toString(puntaje), 20, Color.PINK);
 		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
 
-		reaparecerAutosEliminados(autosCallePrimaria);
+		reaparecerAutosEliminados(autosCallePrimaria);}
 
-		if (entorno.sePresiono('p')) {
-			partidaPausada = true;
-		}
+//		if (entorno.sePresiono('p')) {
+//			partidaPausada = true;
+	//	}
 		// if (!partidaCorriendo || partidaPausada) {
 //		menu.dibujarMenu(entorno, this);
 //	}
@@ -235,7 +237,7 @@ public class Juego extends InterfaceJuego {
 // imprime la accion actual
 // System.out.println(menu.getAccion());
 
-	}
+//	}
 
 //	private void reaparecerAutosEliminados(Auto[] autos) {
 //
@@ -270,7 +272,7 @@ public class Juego extends InterfaceJuego {
 //		}
 //	}
 	private void reaparecerAutosEliminados(Auto[] autos) {
-		if (reloj >= 200) {
+		if (temporizadorAutos >= 200) {
 			for (int l = 0; l < autos.length; l++) {
 				if (autos[l] == null && l < 4) {
 					autos[l] = new Auto(altoDelAuto, anchoDeAuto,
@@ -278,7 +280,7 @@ public class Juego extends InterfaceJuego {
 									+ callePrimaria.posicionVertical() - espacioEntreAutos - anchoDeAuto,
 							3, false, velocidadDeBajadaDePantalla, Color.CYAN);
 					posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
-					reloj = 0;
+					temporizadorAutos = 0;
 				}
 				if (autos[l] == null && l >= 4 && l < 8) {
 					autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda+800,
@@ -286,7 +288,7 @@ public class Juego extends InterfaceJuego {
 									+ callePrimaria.posicionVertical() - espacioEntreAutos - anchoDeAuto,
 							2, true, velocidadDeBajadaDePantalla, Color.MAGENTA);
 					posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
-					reloj = 0;
+					temporizadorAutos = 0;
 				}
 				if (autos[l] == null && l >= 8 && l < 12) {
 					autos[l] = new Auto(altoDelAuto, anchoDeAuto,
@@ -295,14 +297,14 @@ public class Juego extends InterfaceJuego {
 									+ callePrimaria.posicionVertical() - espacioEntreAutos - anchoDeAuto,
 							3, false, velocidadDeBajadaDePantalla, Color.GREEN);
 					posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
-					reloj = 0;
+					temporizadorAutos = 0;
 				} else if (autos[l] == null && l >= 12 && l < 16) {
 					autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda +800,
 							posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 3
 									+ callePrimaria.posicionVertical() - espacioEntreAutos - anchoDeAuto,
 							2, true, velocidadDeBajadaDePantalla, Color.YELLOW);
 					posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
-					reloj = 0;
+					temporizadorAutos = 0;
 				}
 			}
 		}
