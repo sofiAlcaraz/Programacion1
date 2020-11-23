@@ -34,6 +34,7 @@ public class Juego extends InterfaceJuego {
 	private int intentos;
 	private int puntaje;
 	private int saltos;
+	
 	// para autos
 	private int extremoInferiorCallePrimaria;
 	private int extremoInferiorCalleSecundaria;
@@ -132,9 +133,12 @@ public class Juego extends InterfaceJuego {
 				velocidadDeBajadaDePantalla);
 		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
+		
+		
 
 		// intentos = 1;
 		// Inicia el juego!
+
 		entorno.iniciar();
 
 	}
@@ -155,7 +159,6 @@ public class Juego extends InterfaceJuego {
 		// if (running && !pausado) {
 		// if(intentos!=0) {
 		entorno.dibujarImagen(imagenFondo, entorno.alto()/2, entorno.ancho()/2, 0, 1);
-		
 
 		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
 				|| conejo.seFueDePantalla()) {
@@ -167,29 +170,28 @@ public class Juego extends InterfaceJuego {
 		calleSecundaria.deslizarHaciaAbajo(entorno);
 		calleSecundaria.dibujar(entorno);
 		// Conejo
-		conejo.esperar();
-//		conejo.dibujar(entorno);
+		conejo.esperar();	
+		
 		// Autos
-		if (!entorno.sePresiono('w') || !entorno.sePresiono('a') || !entorno.sePresiono('d')) {
-			conejo.dibujar(entorno);
-
-			if (entorno.sePresiono('w')) {
-				conejo.saltar(entorno);
-				saltos++;
-				Herramientas.cargarSonido(sonidoSalto).start();
-			}
-			if (entorno.sePresiono('a')) {
-				conejo.saltarIzquierda(entorno);
-				// conejo.hacerSonidoDeSalto();
-				Herramientas.cargarSonido(sonidoSalto).start();
-			}
-
-			if (entorno.sePresiono('d')) {
-				conejo.saltarDerecha(entorno);
-				Herramientas.cargarSonido(sonidoSalto).start();
-			}
+//		if (!entorno.sePresiono('w') || !entorno.sePresiono('a') || !entorno.sePresiono('d')) {
+//			conejo.dibujar(entorno);
+		
+		if (entorno.sePresiono('w')) {
+			conejo.saltar(entorno);
+			saltos++;
+			Herramientas.cargarSonido(sonidoSalto).start();
+		} else if (entorno.sePresiono('a')) {
+			conejo.saltarIzquierda(entorno);
+			// conejo.hacerSonidoDeSalto();
+			Herramientas.cargarSonido(sonidoSalto).start();
+		} else if (entorno.sePresiono('d')) {
+			conejo.saltarDerecha(entorno);
+			Herramientas.cargarSonido(sonidoSalto).start();
 		}
 		
+		conejo.dibujar(entorno);
+				
+
 		for (Auto a : autosCallePrimaria) {
 			if (a != null) {
 				a.avanzar(entorno);

@@ -1,6 +1,5 @@
 package juego;
 
-import java.awt.Color;
 import java.awt.Image;
 
 import entorno.Entorno;
@@ -8,7 +7,6 @@ import entorno.Herramientas;
 
 public class Calle {
 	private double largo;
-	private double ancho;
 	private double x;
 	private double y;
 	private double factorDeDesplazamiento;
@@ -16,7 +14,6 @@ public class Calle {
 
 	public Calle(double largo, double ancho, double x, double y, double factorDeDesplazamiento) {
 		this.largo = largo;
-		this.ancho = ancho;
 		this.x = x;
 		this.y = y;
 		this.factorDeDesplazamiento = factorDeDesplazamiento;
