@@ -1,8 +1,10 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 
 public class Rasengan {
 	private double x;
@@ -10,6 +12,7 @@ public class Rasengan {
 	private double velocidad;
 	private Color color;
 	private int diametro;
+	private Image imagen;
 
 	public Rasengan(double x, double y) {
 		this.x = x;
@@ -17,10 +20,12 @@ public class Rasengan {
 		this.velocidad = 5;
 		this.color = Color.YELLOW;
 		this.diametro = 20;
+		imagen = Herramientas.cargarImagen("rasengan.png");
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarCirculo(x, y, diametro, color);
+//		entorno.dibujarCirculo(x, y, diametro, color);
+		entorno.dibujarImagen(imagen, x, y, 5, 5);
 	}
 
 	public void mover() {
@@ -57,9 +62,9 @@ public class Rasengan {
 			}
 			double distX = this.x - x1;
 			double distY = this.y - y1;
-			double distance = Math.sqrt((distX * distX) + (distY * distY));
+			double distancia = Math.sqrt((distX * distX) + (distY * distY));
 
-			if (distance <= this.diametro) {
+			if (distancia <= this.diametro) {
 				return true;
 			}
 		}
