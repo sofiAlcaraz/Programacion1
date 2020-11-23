@@ -20,6 +20,8 @@ public class Conejo {
 	private double deslizarHaciaAbajo;
 	private Image imagenConejoSaltando;
 	private Image imagenConejoEsperando;
+	private Image imagenConejoIzquierda;
+	private Image imagenConejoDerecha;
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 		this.altura = altura;
@@ -28,12 +30,14 @@ public class Conejo {
 		this.y = y;
 		this.velocidadDeSalto = velocidad;
 		imagenConejoSaltando = Herramientas.cargarImagen("conejoSaltando.png");
-		imagenConejoEsperando = Herramientas.cargarImagen("rasengan.png");
+		imagenConejoEsperando = Herramientas.cargarImagen("conejoEsperando.png");
+		imagenConejoIzquierda = Herramientas.cargarImagen("conejoIzquierda.png");
+		imagenConejoDerecha = Herramientas.cargarImagen("conejoDerecha.png");
 		deslizarHaciaAbajo = movAbajo;
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarImagen(imagenConejoSaltando, x, y,  0, 1); // -Math.PI / 2
+		entorno.dibujarImagen(imagenConejoEsperando, x, y, 0, 1); // -Math.PI / 2
 	}
 
 	public void hacerSonidoDeSalto() {
@@ -45,16 +49,20 @@ public class Conejo {
 	}
 
 	public void saltar(Entorno entorno) {
-		entorno.dibujarImagen(imagenConejoEsperando, x, y,  0, 0.050);
+		entorno.dibujarImagen(imagenConejoSaltando, x, y, 0, 1);
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura;
 		} else {
 			y -= velocidadDeSalto;
 		}
 	}
+	
+	public void dibujarIzquierda (Entorno entorno) {
+		entorno.dibujarImagen(imagenConejoIzquierda, x, y, 0, 1);
+	}
 
 	public void saltarIzquierda(Entorno entorno) {
-		entorno.dibujarImagen(imagenConejoEsperando, x, y,  0, 0.050);
+		
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
 		} else {
@@ -64,11 +72,12 @@ public class Conejo {
 	}
 
 	public void saltarDerecha(Entorno entorno) {
-		entorno.dibujarImagen(imagenConejoEsperando, x, y,  0, 0.050);
+		entorno.dibujarImagen(imagenConejoDerecha, x, y, 0, 1);
 		if (x + ancho / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho / 2;
 		} else {
 			x += velocidadDeSalto;
+
 		}
 	}
 

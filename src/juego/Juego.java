@@ -7,7 +7,8 @@ import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
 	// Constantes
-	private final String SONIDO_SALTO = "jump.wav";
+	private final String sonidoSalto = "jump.wav";
+	private final String sonidoRasengan = "rasengan.wav";
 
 	private final int altoDelAuto = 42;
 	private final int altoDeLaCalle = 220;
@@ -171,17 +172,18 @@ public class Juego extends InterfaceJuego {
 			if (entorno.sePresiono('w')) {
 				conejo.saltar(entorno);
 				saltos++;
-				Herramientas.cargarSonido(SONIDO_SALTO).start();
+				Herramientas.cargarSonido(sonidoSalto).start();
 			}
 			if (entorno.sePresiono('a')) {
 				conejo.saltarIzquierda(entorno);
+				conejo.dibujarIzquierda(entorno);
 				// conejo.hacerSonidoDeSalto();
-				Herramientas.cargarSonido(SONIDO_SALTO).start();
+				Herramientas.cargarSonido(sonidoSalto).start();
 			}
 
 			if (entorno.sePresiono('d')) {
 				conejo.saltarDerecha(entorno);
-				Herramientas.cargarSonido(SONIDO_SALTO).start();
+				Herramientas.cargarSonido(sonidoSalto).start();
 			}
 		}
 		
@@ -201,6 +203,7 @@ public class Juego extends InterfaceJuego {
 		// Rasengans
 		if (entorno.sePresiono(entorno.TECLA_ESPACIO) && rasengan == null) {// && rasengans[0] == null
 			rasengan = conejo.disparar();
+			Herramientas.cargarSonido(sonidoRasengan).start();
 		}
 
 		if (rasengan != null && rasengan.saleDePantalla()) {
