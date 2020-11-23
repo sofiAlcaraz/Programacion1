@@ -59,10 +59,11 @@ public class Conejo {
 	
 	public void dibujarIzquierda (Entorno entorno) {
 		entorno.dibujarImagen(imagenConejoIzquierda, x, y, 0, 1);
+		
 	}
 
 	public void saltarIzquierda(Entorno entorno) {
-		
+		entorno.dibujarImagen(imagenConejoDerecha, x, y, 0, 1);
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
 		} else {

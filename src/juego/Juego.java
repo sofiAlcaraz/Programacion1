@@ -1,6 +1,8 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
+
 import entorno.Entorno;
 import entorno.Herramientas;
 import entorno.InterfaceJuego;
@@ -41,6 +43,7 @@ public class Juego extends InterfaceJuego {
 	private int posicionDelPrimerAutoCalleSecundaria;
 	private double posicionInicialHorizontalDeAutosSentidoDerecho; // Okay
 	private double posicionEnXAutosHaciaIzquierda;
+	private Image imagenFondo;
 
 	public Juego() {
 		// Inicializa el objeto entorno
@@ -48,6 +51,7 @@ public class Juego extends InterfaceJuego {
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
+		imagenFondo = Herramientas.cargarImagen("fondoCesped.jpg");
 
 		// buscar simetria entre autos
 		extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
@@ -150,7 +154,7 @@ public class Juego extends InterfaceJuego {
 
 		// if (running && !pausado) {
 		// if(intentos!=0) {
-
+		entorno.dibujarImagen(imagenFondo, entorno.alto()/2, entorno.ancho()/2, 0, 1);
 		
 
 		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
@@ -176,7 +180,6 @@ public class Juego extends InterfaceJuego {
 			}
 			if (entorno.sePresiono('a')) {
 				conejo.saltarIzquierda(entorno);
-				conejo.dibujarIzquierda(entorno);
 				// conejo.hacerSonidoDeSalto();
 				Herramientas.cargarSonido(sonidoSalto).start();
 			}
