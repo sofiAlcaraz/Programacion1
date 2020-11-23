@@ -10,7 +10,6 @@ public class Rasengan {
 	private double x;
 	private double y;
 	private double velocidad;
-	private Color color;
 	private int diametro;
 	private Image imagen;
 
@@ -18,14 +17,14 @@ public class Rasengan {
 		this.x = x;
 		this.y = y;
 		this.velocidad = 5;
-		this.color = Color.YELLOW;
 		this.diametro = 20;
 		imagen = Herramientas.cargarImagen("rasengan.png");
 	}
 
 	public void dibujar(Entorno entorno) {
 //		entorno.dibujarCirculo(x, y, diametro, color);
-		entorno.dibujarImagen(imagen, x, y, 5, 5);
+//		entorno.dibujarImagen(imagen, x, y, 0 );
+		entorno.dibujarImagen(imagen, x, y, 0, 0.050);
 	}
 
 	public void mover() {

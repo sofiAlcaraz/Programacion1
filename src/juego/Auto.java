@@ -1,8 +1,9 @@
 package juego;
 
-import java.awt.Color;
+import java.awt.Image;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 
 public class Auto {
 
@@ -13,10 +14,10 @@ public class Auto {
 	private double velocidad;
 	private boolean sentido;
 	private double bajadaDePantalla;
-	private Color color;
+	private Image imagenAuto;
 
 	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido,
-			double bajadaDePantalla) {
+			double bajadaDePantalla, String string) {
 		this.alto = altura;
 		this.ancho = ancho;
 		this.x = x;
@@ -24,23 +25,11 @@ public class Auto {
 		this.velocidad = velocidad;
 		this.sentido = sentido;
 		this.bajadaDePantalla = bajadaDePantalla;
-		this.color = Color.RED;
-	}
-
-	public Auto(double altura, double ancho, double x, double y, double velocidad, boolean sentido,
-			double bajadaDePantalla, Color color) {
-		this.alto = altura;
-		this.ancho = ancho;
-		this.x = x;
-		this.y = y;
-		this.velocidad = velocidad;
-		this.sentido = sentido;
-		this.bajadaDePantalla = bajadaDePantalla;
-		this.color = color;
+		this.imagenAuto= Herramientas.cargarImagen(string);
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarRectangulo(x, y, ancho, alto, 0, color);
+		entorno.dibujarImagen(imagenAuto, x, y, 0, 0.050);
 	}
 
 	public void avanzar(Entorno entorno) {
@@ -66,6 +55,8 @@ public class Auto {
 	public boolean getSentido() {
 		return sentido;
 	}
+	
+	
 
 
 	public double getAlto() {
@@ -80,9 +71,6 @@ public class Auto {
 		return bajadaDePantalla;
 	}
 
-	public Color getColor() {
-		return color;
-	}
 
 	public double getAltura() {
 		return alto;
@@ -99,5 +87,8 @@ public class Auto {
 	public double getY() {
 		return y;
 	}
+	
+	
+	}
 
-}
+

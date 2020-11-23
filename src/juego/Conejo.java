@@ -1,6 +1,7 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.io.File;
 
 import javax.sound.sampled.AudioSystem;
@@ -17,7 +18,7 @@ public class Conejo {
 	private double y;
 	private double velocidadDeSalto;
 	private double deslizarHaciaAbajo;
-	private Color pelaje;
+	private Image imagenConejo;
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 		this.altura = altura;
@@ -25,12 +26,12 @@ public class Conejo {
 		this.x = x;
 		this.y = y;
 		this.velocidadDeSalto = velocidad;
-		this.pelaje = Color.WHITE;
+		imagenConejo = Herramientas.cargarImagen("auto.png");
 		deslizarHaciaAbajo = movAbajo;
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarRectangulo(x, y, altura, ancho, 0, pelaje);// -Math.PI / 2
+		entorno.dibujarImagen(imagenConejo, x, y,  0, 0.050);// -Math.PI / 2
 	}
 
 	public void hacerSonidoDeSalto() {
