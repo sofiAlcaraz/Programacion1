@@ -93,8 +93,8 @@ public class Conejo {
 	}
 
 	public boolean seFueDePantalla() {
-		if (y + altura / 2 > 600) {
-			return true;
+		if (y + altura / 2 < 600) {
+			return false;
 		}
 		return true;
 	}

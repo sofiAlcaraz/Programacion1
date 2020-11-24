@@ -15,7 +15,7 @@ public class Juego extends InterfaceJuego {
 	private final int altoDelAuto = 42;
 	private final int altoDeLaCalle = 220;
 	private final int anchoDeAuto = 50;
-	private final double velocidadDeBajadaDePantalla = 1;
+	private double velocidadDeBajadaDePantalla = 1;
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
@@ -125,14 +125,14 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
-		conejo = new Conejo(30, 30, entorno.ancho() / 2, posicionPrimerAutoCallePrimaria + 420, 40,
+		conejo = new Conejo(30, 30, entorno.ancho() / 2, posicionPrimerAutoCallePrimaria + 300, 40,
 				velocidadDeBajadaDePantalla);
 
 		callePrimaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, entorno.alto() / 10,
 				velocidadDeBajadaDePantalla);
 		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
-		// intentos = 1;
+		
 		// Inicia el juego!
 
 		entorno.iniciar();
@@ -154,7 +154,7 @@ public class Juego extends InterfaceJuego {
 
 			if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
 					|| conejo.seFueDePantalla()) {
-				// intentos--;
+				partidaPausada=true;
 			}
 
 			callePrimaria.deslizarHaciaAbajo(entorno);
@@ -217,7 +217,7 @@ public class Juego extends InterfaceJuego {
 					Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto,
 							autosCallePrimaria[k].getX() - entorno.ancho(), autosCallePrimaria[k].getY(),
 							autosCallePrimaria[k].getVelocidad(), autosCallePrimaria[k].getSentido(),
-							velocidadDeBajadaDePantalla, "auto.png");
+							autosCalleSecundaria[k].getVelocidadBajada(), "auto.png");
 
 					autosCallePrimaria[k] = autoRegenerado;
 					rasengan = null;
@@ -229,7 +229,7 @@ public class Juego extends InterfaceJuego {
 					Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto,
 							autosCallePrimaria[k].getX() + entorno.ancho(), autosCallePrimaria[k].getY(),
 							autosCallePrimaria[k].getVelocidad(), autosCallePrimaria[k].getSentido(),
-							velocidadDeBajadaDePantalla, "auto.png");
+							autosCalleSecundaria[k].getVelocidadBajada(), "auto.png");
 					autosCallePrimaria[k] = autoRegenerado;
 					rasengan = null;
 					puntaje += 5;
@@ -245,7 +245,7 @@ public class Juego extends InterfaceJuego {
 					Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
 							autosCalleSecundaria[m].getX() - entorno.ancho(), autosCalleSecundaria[m].getY(),
 							autosCalleSecundaria[m].getVelocidad(), autosCalleSecundaria[m].getSentido(),
-							velocidadDeBajadaDePantalla, "auto.png");
+							autosCalleSecundaria[m].getVelocidadBajada(), "auto.png");
 					autosCalleSecundaria[m] = autosRegeneradosCalleSecundaria;
 					rasengan = null;
 					puntaje += 5;
@@ -256,7 +256,7 @@ public class Juego extends InterfaceJuego {
 					Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
 							autosCalleSecundaria[m].getX() + entorno.ancho(), autosCalleSecundaria[m].getY(),
 							autosCalleSecundaria[m].getVelocidad(), autosCalleSecundaria[m].getSentido(),
-							velocidadDeBajadaDePantalla, "auto.png");
+							autosCalleSecundaria[m].getVelocidadBajada(), "auto.png");
 					autosCalleSecundaria[m] = autosRegeneradosCalleSecundaria;
 					rasengan = null;
 					puntaje += 5;
@@ -264,6 +264,10 @@ public class Juego extends InterfaceJuego {
 				}
 
 			}
+			
+			
+			if (puntaje == 50) {velocidadDeBajadaDePantalla = 1.5;}
+			if (puntaje == 100) {velocidadDeBajadaDePantalla = 2;}
 
 			// texto en pantallam ,tamaño de letra=20
 			entorno.cambiarFont(Integer.toString(reloj), 20, Color.PINK);

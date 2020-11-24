@@ -60,6 +60,10 @@ public class Auto {
 		return velocidad;
 	}
 
+	public double getVelocidadBajada() {
+		return bajadaDePantalla;
+	}
+
 	public double getAltura() {
 		return alto;
 	}
