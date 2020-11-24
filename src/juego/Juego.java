@@ -6,8 +6,7 @@ import java.awt.Image;
 import entorno.Entorno;
 import entorno.Herramientas;
 import entorno.InterfaceJuego;
-import java.awt.Image;
-import java.awt.Image;
+
 public class Juego extends InterfaceJuego {
 	// Constantes
 	private final String sonidoSalto = "jump.wav";
@@ -29,7 +28,6 @@ public class Juego extends InterfaceJuego {
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
 	// otros
-
 	private Menu menu;
 	private int reloj;
 	private int puntaje;
@@ -44,7 +42,6 @@ public class Juego extends InterfaceJuego {
 	private int posicionDelPrimerAutoCalleSecundaria;
 	private double posicionInicialHorizontalDeAutosSentidoDerecho; // Okay
 	private double posicionEnXAutosHaciaIzquierda;
-
 	private Image imagenFondo;
 
 	public Juego() {
@@ -135,7 +132,7 @@ public class Juego extends InterfaceJuego {
 				velocidadDeBajadaDePantalla);
 		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
-
+		
 		// Inicia el juego!
 
 		entorno.iniciar();
@@ -149,15 +146,15 @@ public class Juego extends InterfaceJuego {
 	 * del TP para mayor detalle).
 	 */
 	public void tick() {
-
-		if (partidaCorriendo == true && partidaPausada == false) {
+		
+		if (partidaCorriendo==true && partidaPausada==false) {
 			reloj++;
-//		 if(intentos!=0) {
+			// if(intentos!=0) {
 			entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
 
 			if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
 					|| conejo.seFueDePantalla()) {
-				partidaPausada = true;
+				partidaPausada=true;
 			}
 
 			callePrimaria.deslizarHaciaAbajo(entorno);
@@ -241,66 +238,6 @@ public class Juego extends InterfaceJuego {
 
 			}
 
-//<<<<<<< HEAD
-//		// texto en pantallam ,tamaño de letra=20
-//		entorno.cambiarFont(Integer.toString(reloj), 20, Color.PINK);
-//		entorno.escribirTexto("Tiempo: " + Integer.toString(reloj / 100), 30, 30);
-//		entorno.cambiarFont("", 30, Color.PINK);
-//		entorno.escribirTexto("saltos:", entorno.ancho() / 2 - 100, 30);
-//		entorno.cambiarFont(Integer.toString(saltos), 20, Color.PINK);
-//		entorno.escribirTexto(Integer.toString(saltos), entorno.ancho() / 2, 30);
-//		entorno.cambiarFont("", 30, Color.PINK);
-//		entorno.escribirTexto("Puntos:", 550, 30);
-//		entorno.cambiarFont(Integer.toString(puntaje), 20, Color.PINK);
-//		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
-//
-//		reaparecerAutosEliminados(autosCallePrimaria,
-//				posicionPrimerAutoCallePrimaria + callePrimaria.posicionVertical() - espacioEntreAutos - anchoDeAuto,
-//				posicionDelSiguienteAuto);
-//		reaparecerAutosEliminados(autosCalleSecundaria, posicionDelPrimerAutoCalleSecundaria, posicionDelSiguienteAuto);
-//
-//	}
-//
-////		if (entorno.sePresiono('p')) {
-////			partidaPausada = true;
-//	// }
-//	// if (!partidaCorriendo || partidaPausada) {
-////		menu.dibujarMenu(entorno, this);
-////	}
-//
-//// imprime la accion actual
-//// System.out.println(menu.getAccion());
-//
-////	}
-//
-//	private void reaparecerAutosEliminados(Auto[] autos, double y, int sig) {
-//		if (temporizadorAutos >= 200) {
-//			for (int l = 0; l < autos.length; l++) {
-//				if (autos[l] == null && l < 4) {
-//					autos[l] = new Auto(altoDelAuto, anchoDeAuto,
-//							posicionInicialHorizontalDeAutosSentidoDerecho - 800 - 800 / 2, y, 3, false,
-//							velocidadDeBajadaDePantalla, Color.CYAN);
-//					posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
-//					temporizadorAutos = 0;
-//				}
-//				if (autos[l] == null && l >= 4 && l < 8) {
-//					autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda + 800 + 800 / 2,
-//							y - sig, 2, true, velocidadDeBajadaDePantalla, Color.MAGENTA);
-//					posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
-//					temporizadorAutos = 0;
-//				}
-//				if (autos[l] == null && l >= 8 && l < 12) {
-//					autos[l] = new Auto(altoDelAuto, anchoDeAuto,
-//							posicionInicialHorizontalDeAutosSentidoDerecho - 800 - 800 / 2, y - sig * 2, 3, false,
-//							velocidadDeBajadaDePantalla, Color.GREEN);
-//					posicionInicialHorizontalDeAutosSentidoDerecho += autos[l].getAncho() * 3;
-//					temporizadorAutos = 0;
-//				} else if (autos[l] == null && l >= 12 && l < 16) {
-//					autos[l] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda + 800 + 800 / 2,
-//							y - sig * 3, 2, true, velocidadDeBajadaDePantalla, Color.YELLOW);
-//					posicionEnXAutosHaciaIzquierda += autos[l].getAncho() * 3;
-//					temporizadorAutos = 0;
-//=======
 			for (int m = 0; m < autosCalleSecundaria.length; m++) {
 				if (rasengan != null && rasengan.colisionasteConAuto(autosCalleSecundaria[m])
 						&& autosCalleSecundaria[m].getSentido() == true) {
@@ -327,13 +264,10 @@ public class Juego extends InterfaceJuego {
 				}
 
 			}
-
-			if (puntaje == 50) {
-				velocidadDeBajadaDePantalla = 1.5;
-			}
-			if (puntaje == 100) {
-				velocidadDeBajadaDePantalla = 2;
-			}
+			
+			
+			if (puntaje == 50) {velocidadDeBajadaDePantalla = 1.5;}
+			if (puntaje == 100) {velocidadDeBajadaDePantalla = 2;}
 
 			// texto en pantallam ,tamaño de letra=20
 			entorno.cambiarFont(Integer.toString(reloj), 20, Color.PINK);
@@ -349,26 +283,29 @@ public class Juego extends InterfaceJuego {
 
 			if (entorno.sePresiono('p')) {
 				partidaPausada = true;
-			}
-		} else if (partidaPausada = true) {
-			menu.dibujarMenu(entorno);
-			System.out.println(menu.confirmarSeleccionado(entorno));
-			if (menu.confirmarSeleccionado(entorno) == "jugar") {
-				System.out.println("juegar");
-				partidaCorriendo = true;
-				partidaPausada = false;
-			}
-			if (menu.confirmarSeleccionado(entorno) == "salir") {
-				System.out.println("salir");
-				System.exit(0);
-			}
-		}
+			}}else if(partidaPausada=true){
+				menu.dibujarMenu(entorno);
+				System.out.println(menu.confirmarSeleccionado(entorno));
+				if (menu.confirmarSeleccionado(entorno) == "jugar") {
+					System.out.println("juegar");
+					partidaCorriendo=true;
+					partidaPausada=false;
+				}
+				if (menu.confirmarSeleccionado(entorno) == "salir") {
+					System.out.println("salir");
+					System.exit(0);
+				}}
+			
+			
+			
 //			if (partidaCorriendo==false && partidaPausada==true) {
 //				menu.dibujarMenu(entorno, partidaCorriendo, partidaPausada);
-//
+			
 //		}
+	
+}
 
-	}
+	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

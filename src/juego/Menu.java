@@ -53,8 +53,7 @@ public class Menu {
 		}
 		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonJugarY) {
 			return "jugar";
-		}
-		return "";
+		} return "";
 	}
 
 //	private void ejecutarAccion(Entorno entorno, boolean corriendo, boolean pausado) {
