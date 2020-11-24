@@ -70,13 +70,13 @@ public class Juego extends InterfaceJuego {
 			if (i < 4) {
 				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto,
 						posicionInicialHorizontalDeAutosSentidoDerecho, posicionPrimerAutoCallePrimaria, 3, false,
-						velocidadDeBajadaDePantalla, "auto.png");
+						velocidadDeBajadaDePantalla, "autoSentidoDerecho.png");
 				posicionInicialHorizontalDeAutosSentidoDerecho += autosCallePrimaria[i].getAncho() * 3;
 
 			} else if (i < 8) {
 				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto, 2, true,
-						velocidadDeBajadaDePantalla, "auto.png");
+						velocidadDeBajadaDePantalla, "autoSentidoIzquierdo.png");
 				posicionEnXAutosHaciaIzquierda += autosCallePrimaria[i].getAncho() * 3;
 			}
 
@@ -84,12 +84,12 @@ public class Juego extends InterfaceJuego {
 				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto,
 						posicionInicialHorizontalDeAutosSentidoDerecho,
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 2, 3, false,
-						velocidadDeBajadaDePantalla, "auto.png");
+						velocidadDeBajadaDePantalla, "autoSentidoDerecho.png");
 				posicionInicialHorizontalDeAutosSentidoDerecho += autosCallePrimaria[i].getAncho() * 3;
 			} else {
 				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 3, 2, true,
-						velocidadDeBajadaDePantalla, "auto.png");
+						velocidadDeBajadaDePantalla, "autoSentidoIzquierdo.png");
 				posicionEnXAutosHaciaIzquierda += autosCallePrimaria[i].getAncho() * 3;
 			}
 
@@ -103,24 +103,24 @@ public class Juego extends InterfaceJuego {
 		for (int i = 0; i < autosCalleSecundaria.length; i++) {
 			if (i < 4) {
 				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
-						posicionDelPrimerAutoCalleSecundaria, 2, true, velocidadDeBajadaDePantalla, "auto.png");
+						posicionDelPrimerAutoCalleSecundaria, 2, true, velocidadDeBajadaDePantalla, "autoSentidoIzquierdo.png");
 				posicionEnXAutosHaciaIzquierda += autosCalleSecundaria[i].getAncho() * 3;
 			} else if (i < 8) {
 				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto,
 						posicionInicialHorizontalDeAutosSentidoDerecho,
 						posicionDelPrimerAutoCalleSecundaria - posicionDelSiguienteAuto, 3, false,
-						velocidadDeBajadaDePantalla, "auto.png");
+						velocidadDeBajadaDePantalla, "autoSentidoDerecho.png");
 				posicionInicialHorizontalDeAutosSentidoDerecho += autosCalleSecundaria[i].getAncho() * 3;
 			} else if (i < 12) {
 				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto, posicionEnXAutosHaciaIzquierda,
 						posicionDelPrimerAutoCalleSecundaria - posicionDelSiguienteAuto * 2, 2, true,
-						velocidadDeBajadaDePantalla, "auto.png");
+						velocidadDeBajadaDePantalla, "autoSentidoIzquierdo.png");
 				posicionEnXAutosHaciaIzquierda += autosCalleSecundaria[i].getAncho() * 3;
 			} else {
 				autosCalleSecundaria[i] = new Auto(altoDelAuto, anchoDeAuto,
 						posicionInicialHorizontalDeAutosSentidoDerecho,
 						posicionDelPrimerAutoCalleSecundaria - posicionDelSiguienteAuto * 3, 3, false,
-						velocidadDeBajadaDePantalla, "auto.png");
+						velocidadDeBajadaDePantalla, "autoSentidoDerecho.png");
 				posicionInicialHorizontalDeAutosSentidoDerecho += autosCalleSecundaria[i].getAncho() * 3;
 			}
 		}
@@ -217,7 +217,7 @@ public class Juego extends InterfaceJuego {
 					Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto,
 							autosCallePrimaria[k].getX() - entorno.ancho(), autosCallePrimaria[k].getY(),
 							autosCallePrimaria[k].getVelocidad(), autosCallePrimaria[k].getSentido(),
-							autosCalleSecundaria[k].getVelocidadBajada(), "auto.png");
+							autosCalleSecundaria[k].getVelocidadBajada(), "autoSentidoIzquierdo.png");
 
 					autosCallePrimaria[k] = autoRegenerado;
 					rasengan = null;
@@ -229,7 +229,7 @@ public class Juego extends InterfaceJuego {
 					Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto,
 							autosCallePrimaria[k].getX() + entorno.ancho(), autosCallePrimaria[k].getY(),
 							autosCallePrimaria[k].getVelocidad(), autosCallePrimaria[k].getSentido(),
-							autosCalleSecundaria[k].getVelocidadBajada(), "auto.png");
+							autosCalleSecundaria[k].getVelocidadBajada(), "autoSentidoDerecho.png");
 					autosCallePrimaria[k] = autoRegenerado;
 					rasengan = null;
 					puntaje += 5;
@@ -245,7 +245,7 @@ public class Juego extends InterfaceJuego {
 					Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
 							autosCalleSecundaria[m].getX() - entorno.ancho(), autosCalleSecundaria[m].getY(),
 							autosCalleSecundaria[m].getVelocidad(), autosCalleSecundaria[m].getSentido(),
-							autosCalleSecundaria[m].getVelocidadBajada(), "auto.png");
+							autosCalleSecundaria[m].getVelocidadBajada(), "autoSentidoIzquierdo.png");
 					autosCalleSecundaria[m] = autosRegeneradosCalleSecundaria;
 					rasengan = null;
 					puntaje += 5;
@@ -256,7 +256,7 @@ public class Juego extends InterfaceJuego {
 					Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
 							autosCalleSecundaria[m].getX() + entorno.ancho(), autosCalleSecundaria[m].getY(),
 							autosCalleSecundaria[m].getVelocidad(), autosCalleSecundaria[m].getSentido(),
-							autosCalleSecundaria[m].getVelocidadBajada(), "auto.png");
+							autosCalleSecundaria[m].getVelocidadBajada(), "autoSentidoDerecho.png");
 					autosCalleSecundaria[m] = autosRegeneradosCalleSecundaria;
 					rasengan = null;
 					puntaje += 5;
@@ -285,14 +285,14 @@ public class Juego extends InterfaceJuego {
 				partidaPausada = true;
 			}}else if(partidaPausada=true){
 				menu.dibujarMenu(entorno);
-				System.out.println(menu.confirmarSeleccionado(entorno));
+//				System.out.println(menu.confirmarSeleccionado(entorno));
 				if (menu.confirmarSeleccionado(entorno) == "jugar") {
-					System.out.println("juegar");
+//					System.out.println("juegar");
 					partidaCorriendo=true;
 					partidaPausada=false;
 				}
 				if (menu.confirmarSeleccionado(entorno) == "salir") {
-					System.out.println("salir");
+//					System.out.println("salir");
 					System.exit(0);
 				}}
 			
