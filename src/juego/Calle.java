@@ -1,28 +1,27 @@
 package juego;
 
-import java.awt.Color;
+import java.awt.Image;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 
 public class Calle {
 	private double largo;
-	private double ancho;
 	private double x;
 	private double y;
 	private double factorDeDesplazamiento;
-	private Color color;
+	private Image imagenCalle;
 
 	public Calle(double largo, double ancho, double x, double y, double factorDeDesplazamiento) {
 		this.largo = largo;
-		this.ancho = ancho;
 		this.x = x;
 		this.y = y;
 		this.factorDeDesplazamiento = factorDeDesplazamiento;
-		this.color = Color.GRAY;
+		this.imagenCalle = Herramientas.cargarImagen("calle.png");
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarRectangulo(x, y, ancho, largo, 0, color);
+		entorno.dibujarImagen(imagenCalle, x,  y,  0, 1);
 	}
 
 	public void deslizarHaciaAbajo(Entorno entorno) {

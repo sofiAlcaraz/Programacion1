@@ -1,10 +1,6 @@
 package juego;
 
-import java.awt.Color;
-import java.io.File;
-
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import java.awt.Image;
 
 import entorno.Entorno;
 import entorno.Herramientas;
@@ -17,7 +13,10 @@ public class Conejo {
 	private double y;
 	private double velocidadDeSalto;
 	private double deslizarHaciaAbajo;
-	private Color pelaje;
+	private Image imagenConejoEsperando;
+	private Image imagenConejoIzquierda;
+	private Image imagenConejoDerecha;
+	private String ultimoMovimiento;
 
 	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
 		this.altura = altura;
@@ -25,12 +24,28 @@ public class Conejo {
 		this.x = x;
 		this.y = y;
 		this.velocidadDeSalto = velocidad;
-		this.pelaje = Color.WHITE;
+		this.ultimoMovimiento = "";
+		imagenConejoEsperando = Herramientas.cargarImagen("conejoEsperando.png");
+		imagenConejoIzquierda = Herramientas.cargarImagen("conejoIzquierda.png");
+		imagenConejoDerecha = Herramientas.cargarImagen("conejoDerecha.png");
 		deslizarHaciaAbajo = movAbajo;
+
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarRectangulo(x, y, altura, ancho, 0, pelaje);// -Math.PI / 2
+
+		switch (ultimoMovimiento) {
+		case "a":
+			entorno.dibujarImagen(imagenConejoIzquierda, x, y, 0, 2);
+			break;
+		case "d":
+			entorno.dibujarImagen(imagenConejoDerecha, x, y, 0, 2);
+			break;
+		default:
+			entorno.dibujarImagen(imagenConejoEsperando, x, y, 0, 2);
+			break;
+
+		}
 	}
 
 	public void hacerSonidoDeSalto() {
@@ -41,7 +56,8 @@ public class Conejo {
 		y += deslizarHaciaAbajo;
 	}
 
-	public void saltar() {
+	public void saltar(Entorno entorno) {
+		ultimoMovimiento = "";
 
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura;
@@ -50,8 +66,8 @@ public class Conejo {
 		}
 	}
 
-	public void saltarIzquierda() {
-
+	public void saltarIzquierda(Entorno entorno) {
+		ultimoMovimiento = "a";
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
 		} else {
@@ -61,11 +77,12 @@ public class Conejo {
 	}
 
 	public void saltarDerecha(Entorno entorno) {
-
+		ultimoMovimiento = "d";
 		if (x + ancho / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho / 2;
 		} else {
 			x += velocidadDeSalto;
+
 		}
 	}
 
@@ -74,8 +91,8 @@ public class Conejo {
 	}
 
 	public boolean seFueDePantalla() {
-		if (y + altura / 2 > 600) {
-			return true;
+		if (y + altura / 2 < 600) {
+			return false;
 		}
 		return true;
 	}
