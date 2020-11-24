@@ -15,8 +15,6 @@ public class Menu {
 	private double posicionDelCursorX;
 	private double posicionDelCursorY;
 
-	private String accion;
-
 	public Menu() {
 		posicionDelBotonJugarX = 800 / 2;
 		posicionDelBotonJugarY = 600 / 2 - 50;
@@ -26,34 +24,37 @@ public class Menu {
 		// marcador de seleccion
 		posicionDelCursorX = 800 / 2 - 150 / 2 - 30;
 		posicionDelCursorY = posicionDelBotonJugarY;
-		this.accion = "Jugar";
 
 	}
 
 	public void dibujarMenu(Entorno entorno) {
 
-		this.accion = "jugar";
-
 		botonJugar(entorno);
 		botonSalir(entorno);
 		mostrarSeleccionado(entorno);
-		actualizarSeleccion(entorno);
-		
-	}
-	
-	
-	
+		actualizarCursor(entorno);
 
-	public String actualizarSeleccion(Entorno entorno) {
+	}
+
+	public void actualizarCursor(Entorno entorno) {
 		if (entorno.sePresiono(entorno.TECLA_ABAJO)) {
-			posicionDelCursorX = posicionDelBotonSalirY;
-			return "salir";
+			posicionDelCursorY = posicionDelBotonSalirY;
+
 		}
 		if (entorno.sePresiono(entorno.TECLA_ARRIBA)) {
 			posicionDelCursorY = posicionDelBotonJugarY;
-			return "jugar";
+
 		}
-	 return "nada";
+	}
+
+	public String confirmarSeleccionado(Entorno entorno) {
+		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonSalirY) {
+			return "salir";
+		}
+		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonJugarY) {
+			return "jugar";
+		} return "";
+	}
 
 //	private void ejecutarAccion(Entorno entorno, boolean corriendo, boolean pausado) {
 //		if (entorno.sePresiono('x')) {
@@ -65,7 +66,7 @@ public class Menu {
 //				System.exit(0);
 //			}
 //		}
-	}
+//	}
 
 	private void mostrarSeleccionado(Entorno entorno) {
 		entorno.dibujarTriangulo(posicionDelCursorX, posicionDelCursorY, 20, 50, 0, Color.BLUE);
@@ -78,6 +79,5 @@ public class Menu {
 	private void botonSalir(Entorno entorno) {
 		entorno.dibujarRectangulo(posicionDelBotonSalirX, posicionDelBotonSalirY, 150, 50, 0, Color.RED);
 	}
-
 
 }

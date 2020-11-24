@@ -46,11 +46,11 @@ public class Juego extends InterfaceJuego {
 
 	public Juego() {
 		// Inicializa el objeto entorno
-		Menu menu = new Menu();
 		this.entorno = new Entorno(this, "Conejo Ninja", 800, 600);
+		menu = new Menu();
 		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
-		partidaPausada = true;
+		partidaPausada = false;
 		imagenFondo = Herramientas.cargarImagen("fondoCesped.jpg");
 
 		// buscar simetria entre autos
@@ -279,23 +279,26 @@ public class Juego extends InterfaceJuego {
 
 			if (entorno.sePresiono('p')) {
 				partidaPausada = true;
-			}
-			
-			if (entorno.sePresiono('x')) {
-				if (menu.actualizarSeleccion(entorno) == "jugar") {
+			}}else if(partidaPausada=true){
+				menu.dibujarMenu(entorno);
+				System.out.println(menu.confirmarSeleccionado(entorno));
+				if (menu.confirmarSeleccionado(entorno) == "jugar") {
+					System.out.println("juegar");
 					partidaCorriendo=true;
 					partidaPausada=false;
 				}
-				if (menu.actualizarSeleccion(entorno) == "salir") {
+				if (menu.confirmarSeleccionado(entorno) == "salir") {
+					System.out.println("salir");
 					System.exit(0);
-				}
-			}
+				}}
+			
+			
+			
 //			if (partidaCorriendo==false && partidaPausada==true) {
 //				menu.dibujarMenu(entorno, partidaCorriendo, partidaPausada);
-			}
+			
 //		}
-	menu.dibujarMenu(entorno);
-		
+	
 }
 
 	
