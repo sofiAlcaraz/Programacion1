@@ -56,13 +56,13 @@ public class Conejo {
 		y += deslizarHaciaAbajo;
 	}
 
-	public void saltar(Entorno entorno,double altoAuto,double espacioEntreAutos) {
+	public void saltar(Entorno entorno, double altoAuto, double espacioEntreAutos) {
 		ultimoMovimiento = "";
 
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura;
 		} else {
-			y -=altoAuto/2+espacioEntreAutos;
+			y -= altoAuto / 2 + espacioEntreAutos;
 		}
 	}
 
@@ -101,11 +101,11 @@ public class Conejo {
 		for (int i = 0; i < autos.length; i++) {
 			if (autos[i] != null) {
 				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
-						&& y < autos[i].getY() + autos[i].getAltura()/2 && y + altura > autos[i].getY()) {
+						&& y < autos[i].getY() + autos[i].getAltura() / 2 && y + altura > autos[i].getY()) {
 					return true;
 				}
 				if (x <= autos[i].getX() + autos[i].getAncho() / 2 && x + ancho >= autos[i].getX()
-						&& y < autos[i].getY() + autos[i].getAltura()/2 && y + altura > autos[i].getY()) {
+						&& y < autos[i].getY() + autos[i].getAltura() / 2 && y + altura > autos[i].getY()) {
 					return true;
 				}
 			}
