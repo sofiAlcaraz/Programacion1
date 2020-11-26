@@ -8,7 +8,6 @@ import java.awt.Image;
 
 public class Menu {
 	// para boton jugar
-	// si son constantes
 	private double posicionDelBotonJugarX;
 	private double posicionDelBotonJugarY;
 	// para boton salir
@@ -17,23 +16,25 @@ public class Menu {
 	// marcador de seleccion
 	private double posicionDelCursorX;
 	private double posicionDelCursorY;
-	Image fondo;
+	private Image botonJugar;
+	private Image botonSalir;
 
 	public Menu() {
-		posicionDelBotonJugarX = 800 / 2;
-		posicionDelBotonJugarY = 600 / 2 - 50;
+		this.posicionDelBotonJugarX = 800 / 2;
+		this.posicionDelBotonJugarY = 600 / 2 - 50;
 		// para boton salir
-		posicionDelBotonSalirX = 800 / 2;
-		posicionDelBotonSalirY = 600 / 2 + 50;
+		this.posicionDelBotonSalirX = 800 / 2;
+		this.posicionDelBotonSalirY = 600 / 2 + 50;
 		// marcador de seleccion
-		posicionDelCursorX = 800 / 2 - 150 / 2 - 30;
-		posicionDelCursorY = posicionDelBotonJugarY;
-		fondo=Herramientas.cargarImagen("fondo.jpg");
+		this.posicionDelCursorX = 800 / 2 - 150 / 2 - 30;
+		this.posicionDelCursorY = posicionDelBotonJugarY;
+
+		this.botonJugar = Herramientas.cargarImagen("botonJugar.png");
+		this.botonSalir = Herramientas.cargarImagen("botonSalir.png");
 
 	}
 
 	public void dibujarMenu(Entorno entorno) {
-		entorno.dibujarImagen(fondo, entorno.ancho()/2, entorno.alto()/2,0, 1);
 		botonJugar(entorno);
 		botonSalir(entorno);
 		mostrarSeleccionado(entorno);
@@ -67,11 +68,11 @@ public class Menu {
 	}
 
 	private void botonJugar(Entorno entorno) {
-		entorno.dibujarRectangulo(posicionDelBotonJugarX, posicionDelBotonJugarY, 150, 50, 0, Color.GREEN);
+		entorno.dibujarImagen(botonJugar, posicionDelBotonJugarX, posicionDelBotonJugarY, 0, 1);
 	}
 
 	private void botonSalir(Entorno entorno) {
-		entorno.dibujarRectangulo(posicionDelBotonSalirX, posicionDelBotonSalirY, 150, 50, 0, Color.RED);
+		entorno.dibujarImagen(botonSalir, posicionDelBotonSalirX, posicionDelBotonSalirY, 0, 1);
 	}
 
 }

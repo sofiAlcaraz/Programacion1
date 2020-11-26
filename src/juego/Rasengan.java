@@ -17,7 +17,7 @@ public class Rasengan {
 		this.y = y;
 		this.velocidad = 5;
 		this.diametro = 20;
-		imagen = Herramientas.cargarImagen("rasengan.png");
+		this.imagen = Herramientas.cargarImagen("rasengan.png");
 	}
 
 	public void dibujar(Entorno entorno) {
@@ -38,25 +38,24 @@ public class Rasengan {
 	public boolean colisionasteConAuto(Auto auto) {
 
 		if (auto != null) {
-			// el auto es un rectangulo
 			double x1 = x;
 			double y1 = y;
 
 			if (this.x < auto.getX()) {
 				x1 = auto.getX(); // lado izquierdo
-			} else if (this.x > auto.getX() + auto.getAncho()) {
+			} else if (x > auto.getX() + auto.getAncho()) {
 				x1 = auto.getX() + auto.getAncho(); // lado derecho
 			}
 			if (this.y < auto.getY()) {
 				y1 = auto.getY(); // lado superior
-			} else if (this.y > auto.getY() + auto.getAltura()) {
+			} else if (y > auto.getY() + auto.getAltura()) {
 				y1 = auto.getY() + auto.getAltura(); // lado inferior
 			}
-			double distX = this.x - x1;
-			double distY = this.y - y1;
+			double distX = x - x1;
+			double distY = y - y1;
 			double distancia = Math.sqrt((distX * distX) + (distY * distY));
 
-			if (distancia <= this.diametro) {
+			if (distancia <= diametro) {
 				return true;
 			}
 		}

@@ -16,7 +16,7 @@ public class Juego extends InterfaceJuego {
 	private final int altoDeLaCalle = 220;
 	private final int anchoDeAuto = 50;
 	private double velocidadDeBajadaDePantalla = 1;
-	
+
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private Conejo conejo;
@@ -46,18 +46,16 @@ public class Juego extends InterfaceJuego {
 	private double posicionEnXAutosHaciaIzquierda;
 	// imagenes
 	private Image imagenFondo;
-	private Image imagenPerdioJuego;
+	private Image gameOver;
 
 	public Juego() {
-		// Inicializa el objeto entorno
-		this.entorno = new Entorno(this, "Conejo Ninja", 800, 600);
+		entorno = new Entorno(this, "Conejo Ninja", 800, 600);
 		menu = new Menu();
-		// Inicializar lo necesario para el juego
 		partidaCorriendo = false;
 		partidaPausada = false;
-		perdioPartida=false;
+		perdioPartida = false;
 		imagenFondo = Herramientas.cargarImagen("fondoCesped.jpg");
-		imagenPerdioJuego = Herramientas.cargarImagen("perdio.jpg");
+		gameOver = Herramientas.cargarImagen("gameover.png");
 		// buscar simetria entre autos
 		extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
 		extremoInferiorCalleSecundaria = entorno.alto() / 10 * -9 + altoDeLaCalle / 2;
@@ -138,24 +136,16 @@ public class Juego extends InterfaceJuego {
 		calleSecundaria = new Calle(altoDeLaCalle, 810, entorno.ancho() / 2, (entorno.alto() / 10) * -9,
 				velocidadDeBajadaDePantalla);
 
-		// Inicia el juego!
-
 		entorno.iniciar();
 
 	}
 
-	/**
-	 * Durante el juego, el método tick() será ejecutado en cada instante y por lo
-	 * tanto es el método más importante de esta clase. Aquí se debe actualizar el
-	 * estado interno del juego para simular el paso del tiempo (ver el enunciado
-	 * del TP para mayor detalle).
-	 */
 	public void tick() {
-		if(perdioPartida==true) {
-			partidaCorriendo=false;
-			partidaPausada=false;
+		if (perdioPartida == true) {
+			partidaCorriendo = false;
+			partidaPausada = false;
 			mostrarFotoJuegoPerdidoPorPantalla();
-			if(entorno.sePresiono(entorno.TECLA_FIN)) {
+			if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 				System.exit(0);
 			}
 		}
@@ -166,8 +156,8 @@ public class Juego extends InterfaceJuego {
 
 			if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
 					|| conejo.seFueDePantalla()) {
-				perdioPartida=true;
-
+				perdioPartida = true;
+				partidaPausada = false;
 			}
 
 			callePrimaria.deslizarHaciaAbajo(entorno);
@@ -282,7 +272,6 @@ public class Juego extends InterfaceJuego {
 				velocidadDeBajadaDePantalla = 2;
 			}
 
-			// texto en pantallam ,tamaño de letra=20
 			entorno.cambiarFont(Integer.toString(reloj), 20, Color.PINK);
 			entorno.escribirTexto("Tiempo: " + Integer.toString(reloj / 100), 30, 30);
 			entorno.cambiarFont("", 30, Color.PINK);
@@ -297,7 +286,7 @@ public class Juego extends InterfaceJuego {
 			if (entorno.sePresiono('p')) {
 				partidaPausada = true;
 			}
-		} else if (partidaPausada = true) {
+		} else if (partidaPausada = true && perdioPartida == false) {
 			menu.dibujarMenu(entorno);
 			if (menu.confirmarSeleccionado(entorno) == "jugar") {
 
@@ -313,13 +302,9 @@ public class Juego extends InterfaceJuego {
 	}
 
 	private void mostrarFotoJuegoPerdidoPorPantalla() {
+		entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0, 1);
 
-				entorno.dibujarImagen(imagenPerdioJuego, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
-				entorno.cambiarFont("", 30, Color.RED);
-				entorno.escribirTexto("GAME OVER", entorno.alto() / 2, entorno.ancho() / 2);
-	
-		}
-	
+	}
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

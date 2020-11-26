@@ -21,7 +21,7 @@ public class Calle {
 	}
 
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarImagen(imagenCalle, x,  y,  0, 1);
+		entorno.dibujarImagen(imagenCalle, x, y, 0, 1);
 	}
 
 	public void deslizarHaciaAbajo(Entorno entorno) {

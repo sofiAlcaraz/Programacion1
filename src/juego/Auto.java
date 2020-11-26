@@ -27,15 +27,16 @@ public class Auto {
 		this.sentido = sentido;
 		this.bajadaDePantalla = bajadaDePantalla;
 		this.imagenAutoHaciaDerecha = Herramientas.cargarImagen("autoSentidoDerecho.png");
-		this.imagenAutoHaciaIzquierda=Herramientas.cargarImagen("autoSentidoIzquierdo.png");
-		
+		this.imagenAutoHaciaIzquierda = Herramientas.cargarImagen("autoSentidoIzquierdo.png");
+
 	}
 
 	public void dibujar(Entorno entorno) {
-		if(sentido==true) {
+		if (sentido == true) {
 			entorno.dibujarImagen(imagenAutoHaciaIzquierda, x, y, 0, 0.050);
+		} else {
+			entorno.dibujarImagen(imagenAutoHaciaDerecha, x, y, 0, 0.050);
 		}
-		entorno.dibujarImagen(imagenAutoHaciaDerecha, x, y, 0, 0.050);
 	}
 
 	public void avanzar(Entorno entorno) {

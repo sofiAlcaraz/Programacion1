@@ -1,6 +1,5 @@
 package juego;
 
-
 import java.awt.Image;
 
 import entorno.Entorno;
@@ -26,29 +25,29 @@ public class Conejo {
 		this.y = y;
 		this.velocidadDeSalto = velocidad;
 		this.ultimoMovimiento = "";
-		imagenConejoEsperando = Herramientas.cargarImagen("conejoEsperando.png");
-		imagenConejoIzquierda = Herramientas.cargarImagen("conejoIzquierda.png");
-		imagenConejoDerecha = Herramientas.cargarImagen("conejoDerecha.png");
-		deslizarHaciaAbajo = movAbajo;
-		
+		this.imagenConejoEsperando = Herramientas.cargarImagen("conejoEsperando.png");
+		this.imagenConejoIzquierda = Herramientas.cargarImagen("conejoIzquierda.png");
+		this.imagenConejoDerecha = Herramientas.cargarImagen("conejoDerecha.png");
+		this.deslizarHaciaAbajo = movAbajo;
+
 	}
 
 	public void dibujar(Entorno entorno) {
-		
-		switch(ultimoMovimiento) {
-			case "a":
-				entorno.dibujarImagen(imagenConejoIzquierda, x, y, 0, 2);
-				break;
-			case "d":
-				entorno.dibujarImagen(imagenConejoDerecha, x, y, 0, 2);
-				break;
-			default:
-				entorno.dibujarImagen(imagenConejoEsperando, x, y, 0, 2);
-				break;	
-				
-		}		
+
+		switch (ultimoMovimiento) {
+		case "a":
+			entorno.dibujarImagen(imagenConejoIzquierda, x, y, 0, 2);
+			break;
+		case "d":
+			entorno.dibujarImagen(imagenConejoDerecha, x, y, 0, 2);
+			break;
+		default:
+			entorno.dibujarImagen(imagenConejoEsperando, x, y, 0, 2);
+			break;
+
+		}
 	}
-	
+
 	public void hacerSonidoDeSalto() {
 		Herramientas.cargarSonido("jump.wav").start();
 	}
@@ -58,18 +57,17 @@ public class Conejo {
 	}
 
 	public void saltar(Entorno entorno) {
-		ultimoMovimiento="";
-		
+		ultimoMovimiento = "";
+
 		if (y - altura / 2 - velocidadDeSalto <= 0) {
 			y = altura;
 		} else {
 			y -= velocidadDeSalto;
 		}
 	}
-	
 
 	public void saltarIzquierda(Entorno entorno) {
-		ultimoMovimiento="a";
+		ultimoMovimiento = "a";
 		if (x - ancho / 2 - velocidadDeSalto <= 0) {
 			x = ancho / 2;
 		} else {
@@ -79,7 +77,7 @@ public class Conejo {
 	}
 
 	public void saltarDerecha(Entorno entorno) {
-		ultimoMovimiento="d";
+		ultimoMovimiento = "d";
 		if (x + ancho / 2 + velocidadDeSalto >= entorno.ancho()) {
 			x = entorno.ancho() - ancho / 2;
 		} else {
