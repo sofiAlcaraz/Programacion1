@@ -7,20 +7,20 @@ v1, {docdate}. Docentes Hernan Rondelli ; Veronica Moyano (COM-01)
 :tabsize: 4
 
 == Introducción
-El Consejo Organico Normativo y Etico para la Juventud Organizada (CONEJO),
+El Consejo Órganico Normativo y Ético para la Juventud Organizada (CONEJO),
 en el marco de su campaña de seguridad vial, nos solicito el desarrollo de 
 un video juego para ayudar a que niños y niñas tomen conciencia acerca de la 
 seguridad vial y del respeto a las normas de transito. Para ello, nos
-encargaron un video juego similar al clasico Frogger, pero con algunas
+encargaron un video juego similar al clásico Frogger, pero con algunas
 diferencias que mencionaremos a continuación.
 
 El conejo ninja vivía en la luna y bajó al planeta tierra para conocerlo, por
-este motivo no sabe cúales son las normas de transito, y por ende, no 
+este motivo no sabe cuales son las normas de tránsito, y por ende, no 
 sabe cruzar la calle.
 El objetivo del juego es hacer que el conejito pueda cruzar las calles
-sin que lo atropelle ningun vehiculo. Si un vehiculo 
+sin que lo atropelle ningún vehículo. Si un vehiculo 
 atropella al conejito, perdemos el juego.
-Cabe aclarar, que en nuestro juego los vehiculos y las calles se desplazan 
+Cabe aclarar, que en nuestro juego los vehículos y las calles se desplazan 
 constantemente hacia abajo de la pantalla, creando la ilusión de "avance" del 
 juego. Es decir, el conejo debe saltar hacia adelante para que no desaparezca 
 por el borde inferior de la pantalla (cuando esto último sucede se pierde el 
@@ -30,7 +30,7 @@ juego).
 == Descripción
 *Aspectos generales*
 Para realizar el juego, creamos las clases:Conejo, Auto, Rasengan, Calle y Menu.
-Las primeras 4 clases tienen en comun los metodos Dibujar, Mover(en en caso de Auto es avanzar).
+Las primeras 4 clases tienen en común los métodos Dibujar, Mover(en en caso de Auto es avanzar).
 -Clase Calle: Ésta cuenta con su método dibujar, deslizarHaciaAbajo,posicionVertical(get y) y un getLargo.
 -Clase Auto: Cuenta con su método dibujar,avanzar(mover) y los get de x , y ,altura , ancho y velocidad[..].
 -Clase Rasengan: Cuenta con su método dibujar, mover, saleDepantalla, colisionasteConAuto.
@@ -40,70 +40,70 @@ seFueDePantalla y chocasteAlgunAuto,hacerSonidoDeSalto.
 Decidimos poner las variables de las clases en el siguiente orden: anchura y altura, x e y, variables propias de 
 cada clase,bajadaDePantalla e imagen.
 
-Tambien decidimos crear solo dos calles con 4 carriles cada una  (8 carriles en total) y un rasengan por "pantalla".
+También decidimos crear solo dos calles con 4 carriles cada una  (8 carriles en total) y un rasengan por "pantalla".
 Solo se puede jugar con las teclas de flechas arriba y costados,w,a,d y espacio. 
-El juego cuanta con un menu que da la opcion de jugar o salir.Tambien en cualquier momento de la partida el juego
+El juego cuanta con un menú que da la opción de jugar o salir.También en cualquier momento de la partida el juego
 puede pausarse con la tecla p.
 
-Además el juego al  realizarse cierta cantidad de puntos aumenta su velocidad.
+Además el juego al realizarse cierta cantidad de puntos aumenta su velocidad.
 *funcionamiento*
-El juego  comienza con un menu que tiene dos opciones jugar y salir,en culquier momento de la partida ésta se puede pausar,
-en caso de perder se mostrara una pantalla "game over" con la opcion de salir.El juego tiene tres niveles de dificultad.
+El juego  comienza con un menú que tiene dos opciones jugar y salir, en cualquier momento de la partida ésta se puede pausar,
+en caso de perder se mostrara una pantalla "game over" con la opción de salir. El juego tiene tres niveles de dificultad.
 
 *Conejo*
 Crear al conejo, darle movimiento, enseñarle a dibujarse y a saltar no fue una dificultad.
 
 *Calle*
-la cremos le enseñamos a que se dibuje y deslice.
+La creamos le enseñamos a que se dibuje y deslice.
 
 *Auto*
-Otro problema que tuvimos fue en el codigo de los autos(poder crearlos en cierta posicion,a todos los autos),
-para el cual fue necesario realizar algunos dibujos,los cuales ayudaron bastante, ya que al tener dos for
+Otro problema que tuvimos fue en el código de los autos(poder crearlos en cierta posicion,a todos los autos),
+para el cual fue necesario realizar algunos dibujos, los cuales ayudaron bastante, ya que al tener dos for
 uno  de mano "izquierda" y otro de mano "derecha" se nos dificultaba sincronizarlos ,por lo que lo cambiamos
 por un for por cada calle y cada uno de estos con cuatro carriles y dos manos.
-Luego pudimos hacer que estos se muevan en sincronia.
+Luego pudimos hacer que estos se muevan en sincronía.
 
-.Imagen planificacion en de reaparicion de autos de callePrimaria
+.Imagen planificación en de reaparición de autos de callePrimaria
 
 image::este Equipo/Documentos/crearAutos.jpg[]
 
 *Autos y Calles*
-Unir a los autos y las calles en el juego fue complicado,ya que los autos 
+Unir a los autos y las calles en el juego fue complicado, ya que los autos 
 se iban fuera de la calle, para solucionarlo probamos diferentes valores en ´y´,
-que funcionaban pero luego notamos que los autos acumulaban un valor y subian 
-hasta salirse de la calle. Nos dimos cuenta de que la reaparicion de la calle
-estaba mal ya que lo que haciamos era al ´y´ restarle el ´y´ y sumarle la mitad
+que funcionaban pero luego notamos que los autos acumulaban un valor y subían 
+hasta salirse de la calle. Nos dimos cuenta de que la reaparición de la calle
+estaba mal ya que lo que hacíamos era al ´y´ restarle el ´y´ y sumarle la mitad
 de la pantalla, lo que hacia que  la calle aparezca nuevamente pero no donde
-se habia creado inicialmente, para solucionar este problema a la reaparicion 
+se había creado inicialmente, para solucionar este problema a la reaparición 
 de auto y calle le pasamos el entorno y al ´y´ de calle lo restamos por
 ´entono.alto*2(600*2)´ y  a auto a su ´y´ lo restamos por ´entorno.alto*2(600*2)´,
-de esta forma ambos aparecen en la posicion que inicialmente se les habia asignado.
+de esta forma ambos aparecen en la posición que inicialmente se les había asignado.
 
 *Rasengan y colision Autos*
 Para hacer al rasengan primero creamos la clase probamos su correcto funcionamiento en juego
-y luego creamos un metodo en conejo el cual devuelve un nuevo rasengan con la ´x´ e ´y´ del Conejo
+y luego creamos un método en conejo el cual devuelve un nuevo rasengan con la ´x´ e ´y´ del Conejo
 luego en la clase Juego hicimos un if  (que pregunta la tecla presionada y si rasengan es null
 para no spamear la pantalla) para agregar el rasengan al rasengan de juego
 ,un if que analiza si este se fue de la  pantalla (si es asi lo vuelve null), un if que analiza si el rasengan es distinto de null
 y de serlo el rasengan se debe dibujar y mover.
 Para analizar la colision con cada auto creamos dos for (uno por cada "calle con autos") con un if cada uno, que pregunta
-si el auto en cierta posicion no es null, colisiono con rasengan y de que sentido es.
+si el auto en cierta posición no es null, colisiono con rasengan y de que sentido es.
 si colisiono entonces se crea un nuevo auto e[..]
-Si el rasengan colisiono con algun auto este se elimina ,el rasengan tambien y el puntaje sube.
+Si el rasengan colisiono con algún auto este se elimina ,el rasengan también y el puntaje sube.
 sino..[..]
 
 *Reaparicion vertical Auto*
-Luego de hacer esto,los autos que reaparecian se seguian superponiendo y nos dimos cuenta que el metodo ´avanzar´ de la
-Clase Auto estaba mal ,ya que al llegar a un extremo los regeneraba en el extremo opuesto ,no es su posicion por defecto,
-Para que esto funcione correctamente cambiamos el metodo avanzar, utilizando  el ancho del entorno lo que hicimos fue 
-enseñale al Auto que al llegar al extremo tiene que reaparecer en su posicion por defecto en la pantalla de arriba(la que no se ve).
+Luego de hacer esto, los autos que reaparecían se seguían superponiendo y nos dimos cuenta que el método ´avanzar´ de la
+Clase Auto estaba mal, ya que al llegar a un extremo los regeneraba en el extremo opuesto, no es su posición por defecto,
+Para que esto funcione correctamente cambiamos el método avanzar, utilizando el ancho del entorno lo que hicimos fue 
+enseñarle al Auto que al llegar al extremo tiene que reaparecer en su posición por defecto en la pantalla de arriba(la que no se ve).
 
-*Reaparicion horizontal Autos y Calles*
-Para que estos  reaparezcan sin dificultades los metodos ´avanzar´ (en Clase Auto) y ´deslizarHaciaAbajo´(En Clase Calle),que toman por 
-parametro el entorno luego de llegar que la parte de arriba es decir su ´y - largo / 2´ en Calle y ´y - ancho / 2´ en Auto
-vuelven a su posicion por defecto en la pantalla de arriba(la que no se ve),esto esta explicado con mas detalle en "Autos y Calles".
+*Reaparición horizontal Autos y Calles*
+Para que estos  reaparezcan sin dificultades los métodos ´avanzar´ (en Clase Auto) y ´deslizarHaciaAbajo´(En Clase Calle),que toman por 
+parámetro el entorno luego de llegar que la parte de arriba es decir su ´y - largo / 2´ en Calle y ´y - ancho / 2´ en Auto
+vuelven a su posición por defecto en la pantalla de arriba (la que no se ve), esto está explicado con más detalle en "Autos y Calles".
 *Conejo y calle*
-Para que el conejo salte correctamente,lo que hicimos es hacer calculos con la posicion en ´y´ del primer auto de la parte inferior 
+Para que el conejo salte correctamente, lo que hicimos es hacer cálculos con la posición en ´y´ del primer auto de la parte inferior 
 de la primera calle su alto ,su alto ,los espacios entre autos, en cortas palabras tratamos de que el y del conejo sea casi el mismo que
 el del auto. Luego, al salto de conejo lo modificamos pasandole por parametro un entorno de tipo Entorno ,el alto entreAutos
  y el ´espacioEntreAutos´ de esta forma el conejo salta ´altoAuto / 2 + espacioEntreAutos´ y a pesar de hacer mini saltos,cáe 
