@@ -203,7 +203,11 @@ include::src/juego/Menu.java[]
 ----
 La clase Menu tiene como estados: posicionDelBotonJugarX, posicionDelBotonJugarY, 
 posicionDelBotonSalirX,posicionDelBotonSalirY, posicionDelCursorX,posicionDelCursorY, y dos imagenes
-que son botonJugar y botonSalir
+que son botonJugar y botonSalir;
+- La clase Menu sabe dibujarse y tiene dos metodos importantes para su funcionamiento. 
+  * El metodo actualizarCursor es de tipo void, lo que hace es dependiendo de lo que el usuario desee ejecutar en el menu, va a actualizar la posicion del cursor que se dibuja en el entorno por medio del teclado.
+  * El método confirmarSeleccionado es de tipo String, y lo que hace es devolver las palabras "jugar" o "salir" para que luego en el tick sean comparadas con un condicional para saber que es lo que el usuario desea ejecutar, y se confirma presionando la tecla Enter.
+
 
 .Clase Juego
 [source,java]
