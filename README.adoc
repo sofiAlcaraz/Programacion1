@@ -40,9 +40,9 @@ seFueDePantalla y chocasteAlgunAuto,hacerSonidoDeSalto.
 Decidimos poner las variables de las clases en el siguiente orden: anchura y altura, x e y, variables propias de 
 cada clase,bajadaDePantalla e imagen.
 
-También decidimos crear solo dos calles con 4 carriles cada una  (8 carriles en total) y un rasengan por "pantalla".
+también decidimos crear solo dos calles con 4 carriles cada una  (8 carriles en total) y un rasengan por "pantalla".
 Solo se puede jugar con las teclas de flechas arriba y costados,w,a,d y espacio. 
-El juego cuanta con un menú que da la opción de jugar o salir.También en cualquier momento de la partida el juego
+El juego cuanta con un menú que da la opción de jugar o salir.también en cualquier momento de la partida el juego
 puede pausarse con la tecla p.
 
 Además el juego al realizarse cierta cantidad de puntos aumenta su velocidad.
@@ -57,7 +57,7 @@ Crear al conejo, darle movimiento, enseñarle a dibujarse y a saltar no fue una 
 La creamos le enseñamos a que se dibuje y deslice.
 
 *Auto*
-Otro problema que tuvimos fue en el código de los autos(poder crearlos en cierta posicion,a todos los autos),
+Otro problema que tuvimos fue en el código de los autos(poder crearlos en cierta posición,a todos los autos),
 para el cual fue necesario realizar algunos dibujos, los cuales ayudaron bastante, ya que al tener dos for
 uno  de mano "izquierda" y otro de mano "derecha" se nos dificultaba sincronizarlos ,por lo que lo cambiamos
 por un for por cada calle y cada uno de estos con cuatro carriles y dos manos.
@@ -104,29 +104,29 @@ parámetro el entorno luego de llegar que la parte de arriba es decir su ´y - l
 vuelven a su posición por defecto en la pantalla de arriba (la que no se ve), esto está explicado con más detalle en "Autos y Calles".
 *Conejo y calle*
 Para que el conejo salte correctamente, lo que hicimos es hacer cálculos con la posición en ´y´ del primer auto de la parte inferior 
-de la primera calle su alto ,su alto ,los espacios entre autos, en cortas palabras tratamos de que el y del conejo sea casi el mismo que
-el del auto. Luego, al salto de conejo lo modificamos pasandole por parametro un entorno de tipo Entorno ,el alto entreAutos
- y el ´espacioEntreAutos´ de esta forma el conejo salta ´altoAuto / 2 + espacioEntreAutos´ y a pesar de hacer mini saltos,cáe 
- dentro de la calle,Es importante aclarar que solo el salto hacia adelante ´saltar´ es el que toma todos estos parametros ya que el
- ´x´ del conejo no tiene los mismos problemas que el ´y´,ya que "depende" de este.
+de la primera calle su alto, su alto, los espacios entre autos, en cortas palabras tratamos de que él y del conejo sea casi el mismo que
+el del auto. Luego, al salto de conejo lo modificamos pasándole por parámetro un entorno de tipo Entorno, el alto entreAutos
+ y el ´espacioEntreAutos´ de esta forma el conejo salta ´altoAuto / 2 + espacioEntreAutos´ y a pesar de hacer mini saltos, cae 
+ dentro de la calle. Es importante aclarar que solo el salto hacia adelante ´saltar´ es el que toma todos estos parámetros ya que el
+ ´x´ del conejo no tiene los mismos problemas que el ´y´, ya que "depende" de este.
 *Menu*
 La clase menu fue creada para que haya una instancia previa a que el juegue comience, esta consta de dos botones y un cursor que muestra
 la opción que se quiera elegir.
 Sus variables fueron declaradas con nombres muy confusos, se corrigieron para que se pueda entender mejor. 
-Otra funcionalidad del menu, fue poder ser utilizado como boton de pausa dentro del juego. La dificultad que nos presentó y 
+Otra funcionalidad del menu, fue poder ser utilizado como botón de pausa dentro del juego. La dificultad que nos presentó y 
 la cual no dimos con la solución, fue pedirle al menu que vuelva a comenzar el juego sin cerrar el entorno.
 *Otros*
-Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos  por parametros a todos los objetos que debian 
-deslizarse una misma Constante llamada:´ velocidadDeBajadaDePantalla´(que se encuentra en la clase Juego)
+Para hacer que todo se deslice hacia abajo al mismo tiempo le pasamos por parámetros a todos los objetos que debían 
+deslizarse una misma Constante llamada: ´velocidadDeBajadaDePantalla´(que se encuentra en la clase Juego).
 
 Para poder mostrar texto por pantalla lo que tuvimos que utilizar fue Integer.toString(algunInt) para transformar los enteros en
-string ya que el metodo:´entorno.cambiarFont´ y ´entorno.escribirTexto´ lo requerian así.
+string ya que el método:´entorno.cambiarFont´ y ´entorno.escribirTexto´ lo requerían así.
 
 == Implementación
-En esta sección se incluye el código fuente y una breve descripcion de qué hace y los parémetros que
+En esta sección se incluye el código fuente y una breve Descripción de qué hace y los parémetros que
 toma cada funcién/método/procedimiento, junto con los valores que devuelve o modifica
-En general el metodo dibujarse toma por parametro a un entorno de tipo Entorno,es void y 
-solo dibuja la imagen que se indique en el constructor(a excepción del caso del conejo).
+En general el método dibujarse toma por parámetro a un entorno de tipo Entorno, es void y 
+solo dibuja la imagen que se indique en el constructor (a excepción del caso del conejo).
 
 .Clase Conejo
 [source,java]
@@ -136,24 +136,24 @@ include::src/juego/Conejo.java[]
 La Clase Conejo tiene como estados: altura,ancho, x,y,velocidadDeSalto(movimiento vertical y
 horizontal), deslizarHaciaAbajo(deslizamiento hacia abajo),imagenConejoEsperando,imagenConejoIzquierda,
 imagenConejoDerecha,ultimoMovimiento.
-- El conejo se sabe:dibujar,hacerSonidoDeSalto,saltar,esperar,saltarIzquierda,saltarDerecha,disparar,seFueDePantalla, chocasteAlgunAuto.
-  * El metodo ´dibujar´ es peculiar ya que dibuja la imagen segun que movimiento hizo anteriormente,el ´ultimoMovimiento´ se indica en los metodos
+- El conejo se sabe: dibujar,hacerSonidoDeSalto,saltar,esperar,saltarIzquierda,saltarDerecha,disparar,seFueDePantalla, chocasteAlgunAuto.
+  * El método ´dibujar´ es peculiar ya que dibuja la imagen según que movimiento hizo anteriormente,el ´ultimoMovimiento´ se indica en los métodos
     ´saltar´(guarda en ´ultimoMovimiento´ el char ' '),´saltarIzquierda´(guarda en ´ultimoMovimiento´ el char 'i') y ´saltarDerecha´(guarda en ´ultimoMovimiento´ el char 'd').
-  * El metodo ´hacerSonidoDeSalto´ es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
-  * El metodo ´saltar´ es de tipo void, toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
+  * El método ´hacerSonidoDeSalto´ es de tipo void,lo que hace e reproducir el sonido de salto del conejo.
+  * El método ´saltar´ es de tipo void, toma por parámetro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto restandoleal 
     y la velocidadDeSalto,pero si ´y - altura / 2 - velocidadDeSalto <= 0´ ,es decir, que el conejo se encuentra arriba de todo ,no pueda 
     avanzar al menos que la pantalla avanze.
-  * El metodo ´saltarDerecha´ es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto 
+  * El  método todo ´saltarDerecha´ es de tipo void,toma por parámetro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto 
     hacia la derecha  sumandole a la ´x´ la ´velocidadDeSalto´, pero si ´x + ancho / 2 + velocidadDeSalto >= entorno.ancho()´ ,es decir,
     el conejo esta a la derecha de todo ,para que el conejo no pueda salirse de la pantalla  el ´x´ sera ´x = entorno.ancho() - ancho / 2´.
-  * El metodo ´saltarIzquierda´ es de tipo void ,toma por parametro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto
+  * El método ´saltarIzquierda´ es de tipo void ,toma por parámetro a un entorno de tipo Entorno y lo que hace es hacer el efecto de salto
     hacia la izquierda restandole a la ´x´ la ´velocidadDeSalto´, pero si ´x - ancho / 2 - velocidadDeSalto <= 0´ ,es decir , que le conejo 
     esta a la izquierda del todo ,para que no pueda salirse de pantalla el ´x´ sera ´x = ancho / 2´.
-  * El metodo  esperar  es de tipo void y lo que hace es sumarle a ´y´  ´deslizarHaciaAbajo´,de esta forma si el conejo esta quieto se deslizara 
+  * El método  esperar  es de tipo void y lo que hace es sumarle a ´y´  ´deslizarHaciaAbajo´,de esta forma si el conejo esta quieto se deslizara 
    hacia abajo.
-  * El metodo ´disparar´ es de tipo Rasengan y lo que hace es devolver un Rasengan con su ´x´ e ´y´(posicion actual del conejo,a la hora de disparar).*El metodo seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
-   si su ´y + altura / 2 < 600´  entonces el metodo devuelve true, caso contrario,false.
-  * El metodo ´chocasteAlgunAuto´ es de tipo boolean y toma por parametro un array de autos ,si el conejo colisiona con alguno de estos autos,
+  * El método ´disparar´ es de tipo Rasengan y lo que hace es devolver un Rasengan con su ´x´ e ´y´(posición actual del conejo,a la hora de disparar).*El método seFueDePantalla es de tipo boolean y lo que hace es verificar si el conejo se fue de la pantalla por la parte inferior ,es decir,
+   si su ´y + altura / 2 < 600´  entonces el método devuelve true, caso contrario,false.
+  * El método ´chocasteAlgunAuto´ es de tipo boolean y toma por parámetro un array de autos ,si el conejo colisiona con alguno de estos autos,
     devuelve true, sino false.
  
 
@@ -164,12 +164,12 @@ include::src/juego/Auto.java[]
 ----
 La Clase Auto tiene como estados: alto, ancho, x, y, velocidad(movimiento horizontal),
  sentido(true es derecha-izquierda y false de izquierda-derecha), bajadaDePantalla(mov vertical), imagenAuto.
-- El auto sabe dibujarse y avanzar,tambien cuenta con los getters de todos sus estados que son utilizados para crear los autos luego de ser 
+- El auto sabe dibujarse y avanzar, también cuenta con los getters de todos sus estados que son utilizados para crear los autos luego de ser 
     destruidos por algún rasengan.
-  * El metodo ´avanzar´, de tipo void, hace que el auto avance para cierto lado segun su ´sentido´,sumando a su ´x´ la velocidad o restando según cual 
+  * El método ´avanzar´, de tipo void, hace que el auto avance para cierto lado según su ´sentido´,sumando a su ´x´ la velocidad o restando según cual 
     sea el el ´sentido´, tambien esta constantemente aumentando su ´y´  sumandole la ´bajadaDePantalla´(que es la velocidad con la que se desliza
     hacia abajo el auto).Si su ´y´ es mayor a 600 entonces el auto reaparece en su posición por defecto en la pantalla de arriba(la pantalla
-    que no se ve) y su su ´x´ es mayor o menor a cierto extremo segun su ´sentido´ el ´x´  se resetea a su posición por defecto en la pantalla
+    que no se ve) y su su ´x´ es mayor o menor a cierto extremo según su ´sentido´ el ´x´  se resetea a su posición por defecto en la pantalla
     del costado(la pantalla que no se ve).
 
 .Clase Calle
@@ -179,7 +179,7 @@ include::src/juego/Calle.java[]
 ----
 La Clase Calle tiene como estados: largo, x, y, factorDeDesplazamiento y una imagen(que es "calle.png").
 - La Calle sabe dibujarse y deslizarseHaciaAbajo,tambien cuenta con dos getters: getLargo y getPosicionVertica.
-  * El método ´deslizarseHaciaAbajo´ es de tipo void,toma por parametro a un entorno de tipo Entorno y lo que hace 
+  * El método ´deslizarseHaciaAbajo´ es de tipo void,toma por parámetro a un entorno de tipo Entorno y lo que hace 
     es sumar al ´y´ el ´factorDeDesplazamiento´(que es la rapidez con la que se desliza la pantalla) y si su ´y - largo / 2 > 600´ entonces 
     la calle reaparece en la posición por defecto , en la pantalla de arriba(la que no se ve).
 
@@ -193,7 +193,7 @@ La Clase Rasengan tiene como estados: x, y, velocidad, diametro, imagen;
   * El método ´mover´ es de tipo void y lo que hace es restarle al ´y´ la ´velocidad´(creando el efecto de que se mueve hacia arriba).
   * El método ´saleDePantalla´ es de tipo boolean y revisa si  "y + diametro" es menor a 0 entonces el rasengan se salio del lado superior de 
     la pantalla.
-  * El método ´colisionasteConAuto´ es de tipo boolean y revisa y el rasengan colisiono con algún lado del auto pasado por parametro,si colisiono
+  * El método ´colisionasteConAuto´ es de tipo boolean y revisa y el rasengan colisiono con algún lado del auto pasado por parámetro,si colisiono
     entonces devuelve true,caso contrario devuelve false.
 
 .Clase Menu
@@ -204,8 +204,8 @@ include::src/juego/Menu.java[]
 La clase Menu tiene como estados: posicionDelBotonJugarX, posicionDelBotonJugarY, 
 posicionDelBotonSalirX,posicionDelBotonSalirY, posicionDelCursorX,posicionDelCursorY, y dos imagenes
 que son botonJugar y botonSalir;
-- La clase Menu sabe dibujarse y tiene dos metodos importantes para su funcionamiento. 
-  * El metodo actualizarCursor es de tipo void, lo que hace es dependiendo de lo que el usuario desee ejecutar en el menu, va a actualizar la posicion del cursor que se dibuja en el entorno por medio del teclado.
+- La clase Menu sabe dibujarse y tiene dos métodos importantes para su funcionamiento. 
+  * El método actualizarCursor es de tipo void, lo que hace es dependiendo de lo que el usuario desee ejecutar en el menu, va a actualizar la posición del cursor que se dibuja en el entorno por medio del teclado.
   * El método confirmarSeleccionado es de tipo String, y lo que hace es devolver las palabras "jugar" o "salir" para que luego en el tick sean comparadas con un condicional para saber que es lo que el usuario desea ejecutar, y se confirma presionando la tecla Enter.
 
 
@@ -216,15 +216,15 @@ include::src/juego/Juego.java[]
 ---- 
 
 *Juego*
-En el el constructor inicializamos los objetos,para los autos de cada calle hicimos dos for diferentes.
-Cada array de calle con autos(callePrimaria o calleSecundaria) tiene un length ==16, en el for se recorre el array y agrega autos en cada posicion,
-este for cuenta con tres if y un else. El primer if agrega 4 autos en el carril inferior  que van de izquierda-derecha ,el segundo agrega 
+En él, el constructor inicializamos los objetos, para los autos de cada calle hicimos dos for diferentes.
+Cada array de calle con autos(callePrimaria o calleSecundaria) tiene un length ==16, en el for se recorre el array y agrega autos en cada posición,
+este for cuenta con tres if y un else. El primer if agrega 4 autos en el carril inferior  que van de izquierda-derecha ,el segúndo agrega 
 cuatro autos que van de derecha-izquierda ,el tercer if agrega cuatro autos que van de izquierda-derecha y el else agrega ,y el else 
 agrega cuatro autos que van de  derecha-izquierda.
-El segundo for es parecido,aunque decidimos que las manos empiecen de forma diferente.
-Para la las posicion en ´x´  segun su mano ,empiezan en cierta posicion ,ya sea 0 o el ´entorno.ancho()´.
-Para la posicion en y hicimos varias cuentas matematicas teniendo en cuenta la calle y la posicion del primer auto(adjuntamos un dibujo en 
-descripcion).
+El segúndo for es parecido,aunque decidimos que las manos empiecen de forma diferente.
+Para la las posición en ´x´  según su mano ,empiezan en cierta posición, ya sea 0 o el ´entorno.ancho()´.
+Para la posición en y hicimos varias cuentas matemáticas teniendo en cuenta la calle y la posición del primer auto(adjuntamos un dibujo en 
+Descripción).
 
 Variables de creacion de autos.
 ​[source, java]
@@ -238,28 +238,28 @@ Variables de creacion de autos.
 		posicionDelPrimerAutoCalleSecundaria = extremoInferiorCalleSecundaria - espacioEntreAutos - altoDelAuto / 2;
 ​}
 ----
--En esta pare del codigo se realizan calculos para la creacion de autos.
+-En esta pare del código se realizan calculos para la creacion de autos.
  * En ´extremoInferiorCallePrimaria´ el "/10" es para obtener el ´y´ de la calle,lo mismo ocurre con ´extremoInferiorCalleSecundaria´.
  * En ´espacioEntreAutos´  el "4" es por la cantidad de carriles y el "/5" es por la cantidad de espacios necesarios.
- Adjuntamos una foto en  descripcion.
+ Adjuntamos una foto en Descripción.
  
 *En el tick*
-El tick comienza con un if que pregunta si se perdió la partida ,de ser asi muestra una pantalla  con una imagen y la opcion de cerrar el juego,
-Luego hay un if que engloba el codigo del juego corriendo,este if pregunta si la partida esta corriendo o pausada ,en caso de pausada muestra
-un menu con la opcion de salir o seguir jugando,caso contrario, (si esta corriendo) entonces se dibuja,mueve y desliza hacia abajo  
-todo lo necesario, se chequean las colisiones, en caso de ser necesario se eliminan, agregan cosas o suman cosas,se chequean las teclas,
-se muestra el tiempo,puntaje y saltos y se sube la velocidad de la "partida" si es que se lograron ciertos puntos,tambien se analiza si se apreta la
-letra p y de hacerlo la partida cambia a pausada.Luego fuera del if hay un else if que  dibuja el menu en caso de que la partida este en pausa y 
-´partidaCorriendo´ este en falso,en caso de que se cumpla la condicion se dibuja el menu y se muestran las opciones de salir o seguir jugando/jugar.
+El tick comienza con un if que pregunta si se perdió la partida ,de ser asi muestra una pantalla  con una imagen y la opción de cerrar el juego,
+Luego hay un if que engloba el código del juego corriendo,este if pregunta si la partida esta corriendo o pausada ,en caso de pausada muestra
+un menu con la opción de salir o seguir jugando, caso contrario, (si esta corriendo) entonces se dibuja, mueve y desliza hacia abajo  
+todo lo necesario, se chequean las colisiones, en caso de ser necesario se eliminan, agregan cosas o suman cosas, se chequean las teclas,
+se muestra el tiempo, puntaje y saltos y se sube la velocidad de la "partida" si es que se lograron ciertos puntos, también se analiza si se presiona la
+letra p y de hacerlo la partida cambia a pausada. Luego fuera del if hay un else if que  dibuja el menú en caso de que la partida este en pausa y 
+´partidaCorriendo´ este en falso,en caso de que se cumpla la condición se dibuja el menu y se muestran las opciones de salir o seguir jugando/jugar,
 y se cambian los booleanos del estado de la partida.
 
 == Conclusiones
 
-El trabajo nos ayudo en terminar de entender como es el manejo de objetos con javaScript,los arrays de objetos ,sus constructores,metodos,
-variables,constantes,etc.Tambien aprendimos que antes de comenzar a programar es muy importante planear que Objetos,variables,metodos
-necesitamos y como estos se relacionan entre si. Creémos que el pensar mucho el nombre de las varibles nos va a quedar para siempre y que
-hay miles de formas de escribir el codigo. Ademas aprendimos que el orden en que se ejecuta el codigo es muy importante.
-No nos termino de gustar el codigo a la hora de crear Autos en el juego y nos hubiese gustado agregarle mas cosas,pero tuvimos muy poco tiempo. 
+El trabajo nos ayudo en terminar de entender como es el manejo de objetos con java, los arrays de objetos, sus constructores, métodos,
+variables, constantes, etc. Tambien aprendimos que antes de comenzar a programar es muy importante planear cuales Objetos, variables y métodos
+necesitamos y como estos se relacionan entre si. Creemos que el pensar mucho el nombre de las varables nos va a quedar para siempre y que
+hay miles de formas de escribir el código. Ademas aprendimos que el orden en que se ejecuta el código es muy importante.
+No nos termino de gustar el código a la hora de crear Autos en el juego y nos hubiese gustado agregarle mas cosas,pero tuvimos muy poco tiempo. 
 Aprendimos algo muy util ,que es el manejo de git,que además de todo lo que aprendimos de la materia ,nos llevamos todos estos conocimientos
 que van a ser util en el futuro y nos acercan a lo que es un verdadero proyecto en equipo.
 
@@ -268,8 +268,8 @@ Un equipo de trabajo unido y en sintonía siempre va a funcionar mejor que un gr
 esto es es saber cuáles son las fortalezas y debilidades de los otros, de este modo, nuestros aportes al proyecto se van a acomodar de 
 tal forma que cada uno hará lo que más le gusta y mejor le sale, y de esta forma el resultado va a ser muchos mas enriquecedor, con menos
 stress para todos y mas gratificante para todos.
-Durante el proceso de creacion del juego el codigo sufrio muchos cambios,pero, para bien y esto se logró gracias a un buen trabajo en equipo
-entre un preceptor lleno de entusiasmo, un colectivero  que piensa codigo mientras conduce y una rara recursante que pasa mas tiempo con el codigo 
+Durante el proceso de creacion del juego el código sufrio muchos cambios,pero, para bien y esto se logró gracias a un buen trabajo en equipo
+entre un preceptor lleno de entusiasmo, un colectivero  que piensa código mientras conduce y una rara recursante que pasa mas tiempo con el código 
 que con su cama.
 
 En conclusión, una simple taza de cafe, unos buenos mates, mucha practica,el seguimiento del profesor ,el espacio de consultas,
