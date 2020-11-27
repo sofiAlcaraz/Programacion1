@@ -257,22 +257,22 @@ y se cambian los booleanos del estado de la partida.
 
 El trabajo nos ayudo en terminar de entender como es el manejo de objetos con java, los arrays de objetos, sus constructores, métodos,
 variables, constantes, etc. Tambien aprendimos que antes de comenzar a programar es muy importante planear cuales Objetos, variables y métodos
-necesitamos y como estos se relacionan entre si. Creemos que el pensar mucho el nombre de las varables nos va a quedar para siempre y que
-hay miles de formas de escribir el código. Ademas aprendimos que el orden en que se ejecuta el código es muy importante.
-No nos termino de gustar el código a la hora de crear Autos en el juego y nos hubiese gustado agregarle mas cosas,pero tuvimos muy poco tiempo. 
-Aprendimos algo muy util ,que es el manejo de git,que además de todo lo que aprendimos de la materia ,nos llevamos todos estos conocimientos
-que van a ser util en el futuro y nos acercan a lo que es un verdadero proyecto en equipo.
+necesitamos y como estos se relacionan entre si. Creemos que el pensar mucho el nombre de las variables nos va a quedar para siempre y que
+hay miles de formas de escribir el código. Además aprendimos que el orden en que se ejecuta el código es muy importante.
+No nos terminó de gustar el código a la hora de crear Autos en el juego y nos hubiese gustado agregarle mas cosas, pero tuvimos muy poco tiempo. 
+Aprendimos algo muy útil, que es el manejo de git, que además de todo lo que aprendimos de la materia, nos llevamos todos estos conocimientos
+que van a ser útiles en el futuro y nos acercan a lo que es un verdadero proyecto en equipo.
 
 Gracias al trabajo se puede vivenciar los primeros pasos en nuestra formación como profesionales de la informática y la programación.
 Un equipo de trabajo unido y en sintonía siempre va a funcionar mejor que un grupo de desarrolladores trabajando solos. Las ventajas de
-esto es es saber cuáles son las fortalezas y debilidades de los otros, de este modo, nuestros aportes al proyecto se van a acomodar de 
+esto es saber cuáles son las fortalezas y debilidades de los otros, de este modo, nuestros aportes al proyecto se van a acomodar de 
 tal forma que cada uno hará lo que más le gusta y mejor le sale, y de esta forma el resultado va a ser muchos mas enriquecedor, con menos
 stress para todos y mas gratificante para todos.
-Durante el proceso de creacion del juego el código sufrio muchos cambios,pero, para bien y esto se logró gracias a un buen trabajo en equipo
+Durante el proceso de creación del juego el código sufrió muchos cambios, pero, para bien y esto se logró gracias a un buen trabajo en equipo
 entre un preceptor lleno de entusiasmo, un colectivero  que piensa código mientras conduce y una rara recursante que pasa mas tiempo con el código 
 que con su cama.
 
-En conclusión, una simple taza de cafe, unos buenos mates, mucha practica,el seguimiento del profesor ,el espacio de consultas,
-y un buen trabajo en equipo ,logro que este trabajo funcione correctamente y
-se termine  tiempo y a pesar de los reniegos con el push y pull en el git,lo logramos.
+En conclusión, una simple taza de cafe, unos buenos mates, mucha practica, el seguimiento del profesor, el espacio de consultas,
+y un buen trabajo en equipo, logró que este trabajo funcione correctamente y
+se termine a tiempo y a pesar de los reniegos con el push y pull en el git, lo logramos.
 
