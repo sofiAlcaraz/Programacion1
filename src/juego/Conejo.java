@@ -18,13 +18,13 @@ public class Conejo {
 	private Image imagenConejoDerecha;
 	private char ultimoMovimiento;
 
-	public Conejo(double altura, double ancho, double x, double y, double velocidad, double movAbajo) {
+	public Conejo(double altura, double ancho, double x, double y, double movAbajo) {
 		this.altura = altura;
 		this.ancho = ancho;
 		this.x = x;
 		this.y = y;
-		this.velocidadDeSalto = velocidad;
-		this.ultimoMovimiento=' ';
+		this.velocidadDeSalto = 40;
+		this.ultimoMovimiento = ' ';
 		this.imagenConejoEsperando = Herramientas.cargarImagen("conejoEsperando.png");
 		this.imagenConejoIzquierda = Herramientas.cargarImagen("conejoIzquierda.png");
 		this.imagenConejoDerecha = Herramientas.cargarImagen("conejoDerecha.png");
