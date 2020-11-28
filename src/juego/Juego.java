@@ -28,6 +28,7 @@ public class Juego extends InterfaceJuego {
 	private boolean partidaCorriendo;
 	private boolean partidaPausada;
 	private boolean perdioPartida;
+	private boolean ganoPartida;
 	// otros
 	private int reloj;
 	private int puntaje;
@@ -44,6 +45,7 @@ public class Juego extends InterfaceJuego {
 	// imagenes
 	private Image imagenFondo;
 	private Image gameOver;
+	private Image victoria;
 
 	public Juego() {
 		entorno = new Entorno(this, "Conejo Ninja", 800, 600);
@@ -51,8 +53,10 @@ public class Juego extends InterfaceJuego {
 		partidaCorriendo = false;
 		partidaPausada = false;
 		perdioPartida = false;
+		ganoPartida = false;
 		imagenFondo = Herramientas.cargarImagen("fondoCesped.jpg");
 		gameOver = Herramientas.cargarImagen("gameover.png");
+		victoria = Herramientas.cargarImagen("victoria.png");
 		// buscar simetria entre autos
 		extremoInferiorCallePrimaria = entorno.alto() / 10 + altoDeLaCalle / 2;
 		extremoInferiorCalleSecundaria = entorno.alto() / 10 * -9 + altoDeLaCalle / 2;
@@ -143,6 +147,17 @@ public class Juego extends InterfaceJuego {
 			partidaCorriendo = false;
 			partidaPausada = false;
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0, 1);
+
+			if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
+				System.exit(0);
+			}
+
+		}
+
+		if (ganoPartida == true) {
+			partidaCorriendo = false;
+			partidaPausada = false;
+			entorno.dibujarImagen(victoria, entorno.ancho() / 2, entorno.alto() / 2, 0, 1);
 			
 			if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 				System.exit(0);
@@ -173,7 +188,7 @@ public class Juego extends InterfaceJuego {
 			} else if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
 				conejo.saltarIzquierda(entorno);
 				Herramientas.cargarSonido(sonidoSalto).start();
-			} else if (entorno.sePresiono('d')|| entorno.sePresiono(entorno.TECLA_DERECHA)) {
+			} else if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
 				conejo.saltarDerecha(entorno);
 				Herramientas.cargarSonido(sonidoSalto).start();
 			}
@@ -263,12 +278,8 @@ public class Juego extends InterfaceJuego {
 
 			}
 
-			// nivel 2 y 3
-			if (puntaje == 50) {
-				velocidadDeBajadaDePantalla = 1.5;
-			}
 			if (puntaje == 100) {
-				velocidadDeBajadaDePantalla = 2;
+				ganoPartida = true;
 			}
 
 			entorno.cambiarFont(Integer.toString(reloj), 20, Color.PINK);
@@ -285,7 +296,7 @@ public class Juego extends InterfaceJuego {
 			if (entorno.sePresiono('p')) {
 				partidaPausada = true;
 			}
-		} else if (partidaPausada = true && perdioPartida == false) {
+		} else if (partidaPausada = true && perdioPartida == false && ganoPartida == false) {
 			menu.dibujarMenu(entorno);
 			if (menu.confirmarSeleccionado(entorno) == "jugar") {
 
@@ -296,10 +307,10 @@ public class Juego extends InterfaceJuego {
 
 				System.exit(0);
 			}
+
 		}
 
 	}
-
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

@@ -57,6 +57,7 @@ public class Auto {
 		}
 	}
 
+
 	public boolean getSentido() {
 		return sentido;
 	}

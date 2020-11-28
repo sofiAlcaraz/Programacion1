@@ -39,6 +39,8 @@ public class Menu {
 		botonSalir(entorno);
 		mostrarSeleccionado(entorno);
 		actualizarCursor(entorno);
+		entorno.cambiarFont("Comic Sans MS", 30, Color.BLUE);
+		entorno.escribirTexto("Para ganar, el puntaje debe llegar a 100 puntos", 85, 600/2 -100 );
 
 	}
 
