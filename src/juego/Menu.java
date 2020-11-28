@@ -44,22 +44,23 @@ public class Menu {
 
 	}
 
+	// acá no debería haber interacción con le usuarie
 	public void actualizarCursor(Entorno entorno) {
-		if (entorno.sePresiono(entorno.TECLA_ABAJO)) {
+		if (entorno.sePresiono(entorno.TECLA_ABAJO)) { // esto no va acá
 			posicionDelCursorY = posicionDelBotonSalirY;
 
 		}
-		if (entorno.sePresiono(entorno.TECLA_ARRIBA)) {
+		if (entorno.sePresiono(entorno.TECLA_ARRIBA)) { // esto no va acá
 			posicionDelCursorY = posicionDelBotonJugarY;
 
 		}
 	}
 
 	public String confirmarSeleccionado(Entorno entorno) {
-		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonSalirY) {
+		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonSalirY) { // esto no va acá
 			return "salir";
 		}
-		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonJugarY) {
+		if (entorno.sePresiono(entorno.TECLA_ENTER) && posicionDelCursorY == posicionDelBotonJugarY) { // esto no va acá
 			return "jugar";
 		}
 		return "";

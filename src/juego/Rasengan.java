@@ -29,15 +29,10 @@ public class Rasengan {
 	}
 
 	public boolean saleDePantalla() {
-		
-		if (y + diametro < 0)
-			return true;
-
-		return false;
+		return y + diametro < 0;
 	}
 
 	public boolean colisionasteConAuto(Auto auto) {
-
 		if (auto != null) {
 			double x1 = x;
 			double y1 = y;

@@ -168,6 +168,13 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
+		/*
+		if ("si no esto jugando") {
+			return;
+		}
+		*/
+
+		// les quedó todo el código dentro de un if, deberían sacarlo de acá
 		if (partidaCorriendo == true && partidaPausada == false) {
 			reloj++;
 			entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);

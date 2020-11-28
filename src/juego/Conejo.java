@@ -48,6 +48,7 @@ public class Conejo {
 		}
 	}
 
+	// esto no va acá
 	public void hacerSonidoDeSalto() {
 		Herramientas.cargarSonido("jump.wav").start();
 	}
