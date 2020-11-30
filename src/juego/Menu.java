@@ -31,16 +31,14 @@ public class Menu {
 
 		this.botonJugar = Herramientas.cargarImagen("botonJugar.png");
 		this.botonSalir = Herramientas.cargarImagen("botonSalir.png");
-
 	}
 
-	public void dibujarMenu(Entorno entorno) {
+	public void dibujar(Entorno entorno) {
 		botonJugar(entorno);
 		botonSalir(entorno);
 		mostrarSeleccionado(entorno);
 		entorno.cambiarFont("Comic Sans MS", 30, Color.BLUE);
 		entorno.escribirTexto("Para ganar, el puntaje debe llegar a 100 puntos", 85, 600 / 2 - 100);
-
 	}
 
 	public void actualizarCursorYconFechas(boolean cursor) {

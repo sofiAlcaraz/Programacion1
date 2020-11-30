@@ -83,9 +83,7 @@ public class Juego extends InterfaceJuego {
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto, 2, true,
 						velocidadDeBajadaDePantalla);
 				posicionInicialHorizontalDeAutosSentidoIzquierda += autosCallePrimaria[i].getAncho() * 3;
-			}
-
-			else if (i < 12) {
+			} else if (i < 12) {
 				autosCallePrimaria[i] = new Auto(altoDelAuto, anchoDeAuto,
 						posicionInicialHorizontalDeAutosSentidoDerecho,
 						posicionPrimerAutoCallePrimaria - posicionDelSiguienteAuto * 2, 3, false,
@@ -98,7 +96,6 @@ public class Juego extends InterfaceJuego {
 						velocidadDeBajadaDePantalla);
 				posicionInicialHorizontalDeAutosSentidoIzquierda += autosCallePrimaria[i].getAncho() * 3;
 			}
-
 		}
 
 		// crea autos en la calle secundaria
@@ -143,13 +140,12 @@ public class Juego extends InterfaceJuego {
 				velocidadDeBajadaDePantalla);
 
 		entorno.iniciar();
-
 	}
 
 	public void tick() {
 		if (partidaCorriendo == false) {
 			if (partidaPausada == true) {
-				menu.dibujarMenu(entorno);
+				menu.dibujar(entorno);
 
 				if (entorno.sePresiono(entorno.TECLA_ABAJO)) {
 					menu.actualizarCursorYconFechas(true);
@@ -181,141 +177,140 @@ public class Juego extends InterfaceJuego {
 				}
 
 			}
-		} else {
-
-			reloj++;
-			entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
-
-			if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
-					|| conejo.seFueDePantalla(entorno)) {
-				perdioPartida = true;
-				partidaPausada = false;
-				partidaCorriendo = false;
-			}
-
-			callePrimaria.deslizarHaciaAbajo(entorno);
-			callePrimaria.dibujar(entorno);
-			calleSecundaria.deslizarHaciaAbajo(entorno);
-			calleSecundaria.dibujar(entorno);
-			// Conejo
-			conejo.esperar();
-
-			if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
-				conejo.saltar(entorno, altoDelAuto, espacioEntreAutos);
-				saltos++;
-				Herramientas.cargarSonido(sonidoSalto).start();
-			} else if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
-				conejo.saltarIzquierda(entorno);
-				Herramientas.cargarSonido(sonidoSalto).start();
-			} else if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
-				conejo.saltarDerecha(entorno);
-				Herramientas.cargarSonido(sonidoSalto).start();
-			}
-
-			conejo.dibujar(entorno);
-
-			for (Auto a : autosCallePrimaria) {
-				if (a != null) {
-					a.avanzar(entorno);
-					a.dibujar(entorno);
-				}
-			}
-
-			for (Auto a : autosCalleSecundaria) {
-				if (a != null) {
-					a.avanzar(entorno);
-					a.dibujar(entorno);
-				}
-			}
-			// Rasengans
-			if (entorno.sePresiono(entorno.TECLA_ESPACIO) && rasengan == null) {
-				Herramientas.cargarSonido(sonidoRasengan).start();
-				rasengan = conejo.disparar();
-			}
-
-			if (rasengan != null && rasengan.salisteDePantalla()) {
-				rasengan = null;
-			}
-			if (rasengan != null) {
-				rasengan.dibujar(entorno);
-				rasengan.mover();
-			}
-
-			// autos
-			for (int k = 0; k < autosCallePrimaria.length; k++) {
-				if (rasengan != null && rasengan.colisionasteConAuto(autosCallePrimaria[k])
-						&& autosCallePrimaria[k].getSentido() == true) {
-
-					Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto,
-							autosCallePrimaria[k].getX() - entorno.ancho(), autosCallePrimaria[k].getY(),
-							autosCallePrimaria[k].getVelocidad(), autosCallePrimaria[k].getSentido(),
-							autosCallePrimaria[k].getVelocidadBajada());
-
-					autosCallePrimaria[k] = autoRegenerado;
-
-					rasengan = null;
-					puntaje += 5;
-
-				} else if (rasengan != null && rasengan.colisionasteConAuto(autosCallePrimaria[k])
-						&& autosCallePrimaria[k].getSentido() == false) {
-
-					Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto,
-							autosCallePrimaria[k].getX() + entorno.ancho(), autosCallePrimaria[k].getY(),
-							autosCallePrimaria[k].getVelocidad(), autosCallePrimaria[k].getSentido(),
-							autosCallePrimaria[k].getVelocidadBajada());
-					autosCallePrimaria[k] = autoRegenerado;
-					rasengan = null;
-					puntaje += 5;
-
-				}
-
-			}
-
-			for (int m = 0; m < autosCalleSecundaria.length; m++) {
-				if (rasengan != null && rasengan.colisionasteConAuto(autosCalleSecundaria[m])
-						&& autosCalleSecundaria[m].getSentido() == true) {
-
-					Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
-							autosCalleSecundaria[m].getX() - entorno.ancho(), autosCalleSecundaria[m].getY(),
-							autosCalleSecundaria[m].getVelocidad(), autosCalleSecundaria[m].getSentido(),
-							autosCalleSecundaria[m].getVelocidadBajada());
-					autosCalleSecundaria[m] = autosRegeneradosCalleSecundaria;
-					rasengan = null;
-					puntaje += 5;
-
-				} else if (rasengan != null && rasengan.colisionasteConAuto(autosCalleSecundaria[m])
-						&& autosCalleSecundaria[m].getSentido() == false) {
-
-					Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
-							autosCalleSecundaria[m].getX() + entorno.ancho(), autosCalleSecundaria[m].getY(),
-							autosCalleSecundaria[m].getVelocidad(), autosCalleSecundaria[m].getSentido(),
-							autosCalleSecundaria[m].getVelocidadBajada());
-					autosCalleSecundaria[m] = autosRegeneradosCalleSecundaria;
-					rasengan = null;
-					puntaje += 5;
-
-				}
-
-			}
-
-			if (puntaje == 10) {
-				ganoPartida = true;
-			}
-			if (entorno.sePresiono('p')) {
-				partidaPausada = true;
-				partidaCorriendo = false;
-			}
-			entorno.cambiarFont(Integer.toString(reloj), 20, Color.PINK);
-			entorno.escribirTexto("Tiempo: " + Integer.toString(reloj / 100), 30, 30);
-			entorno.cambiarFont("", 30, Color.PINK);
-			entorno.escribirTexto("saltos:", entorno.ancho() / 2 - 100, 30);
-			entorno.cambiarFont(Integer.toString(saltos), 20, Color.PINK);
-			entorno.escribirTexto(Integer.toString(saltos), entorno.ancho() / 2, 30);
-			entorno.cambiarFont("", 30, Color.PINK);
-			entorno.escribirTexto("Puntos:", 550, 30);
-			entorno.cambiarFont(Integer.toString(puntaje), 20, Color.PINK);
-			entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
+			return;
 		}
+
+		reloj++;
+		entorno.dibujarImagen(imagenFondo, entorno.alto() / 2, entorno.ancho() / 2, 0, 1);
+
+		if (conejo.chocasteAlgunAuto(autosCalleSecundaria) || conejo.chocasteAlgunAuto(autosCallePrimaria)
+				|| conejo.seFueDePantalla(entorno)) {
+			perdioPartida = true;
+			partidaPausada = false;
+			partidaCorriendo = false;
+		}
+
+		callePrimaria.deslizarHaciaAbajo(entorno);
+		callePrimaria.dibujar(entorno);
+		calleSecundaria.deslizarHaciaAbajo(entorno);
+		calleSecundaria.dibujar(entorno);
+		// Conejo
+		conejo.esperar();
+
+		if (entorno.sePresiono('w') || entorno.sePresiono(entorno.TECLA_ARRIBA)) {
+			conejo.saltar(entorno, altoDelAuto, espacioEntreAutos);
+			saltos++;
+			Herramientas.cargarSonido(sonidoSalto).start();
+		} else if (entorno.sePresiono('a') || entorno.sePresiono(entorno.TECLA_IZQUIERDA)) {
+			conejo.saltarIzquierda(entorno);
+			Herramientas.cargarSonido(sonidoSalto).start();
+		} else if (entorno.sePresiono('d') || entorno.sePresiono(entorno.TECLA_DERECHA)) {
+			conejo.saltarDerecha(entorno);
+			Herramientas.cargarSonido(sonidoSalto).start();
+		}
+
+		conejo.dibujar(entorno);
+
+		for (Auto a : autosCallePrimaria) {
+			if (a != null) {
+				a.avanzar(entorno);
+				a.dibujar(entorno);
+			}
+		}
+
+		for (Auto a : autosCalleSecundaria) {
+			if (a != null) {
+				a.avanzar(entorno);
+				a.dibujar(entorno);
+			}
+		}
+		// Rasengans
+		if (entorno.sePresiono(entorno.TECLA_ESPACIO) && rasengan == null) {
+			Herramientas.cargarSonido(sonidoRasengan).start();
+			rasengan = conejo.disparar();
+		}
+
+		if (rasengan != null && rasengan.salisteDePantalla()) {
+			rasengan = null;
+		}
+		if (rasengan != null) {
+			rasengan.dibujar(entorno);
+			rasengan.mover();
+		}
+
+		// autos
+		for (int k = 0; k < autosCallePrimaria.length; k++) {
+			if (rasengan != null && rasengan.colisionasteConAuto(autosCallePrimaria[k])
+					&& autosCallePrimaria[k].getSentido() == true) {
+
+				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX() - entorno.ancho(),
+						autosCallePrimaria[k].getY(), autosCallePrimaria[k].getVelocidad(),
+						autosCallePrimaria[k].getSentido(), autosCallePrimaria[k].getVelocidadBajada());
+
+				autosCallePrimaria[k] = autoRegenerado;
+
+				rasengan = null;
+				puntaje += 5;
+
+			} else if (rasengan != null && rasengan.colisionasteConAuto(autosCallePrimaria[k]) &&
+					autosCallePrimaria[k].getSentido() == false) {
+
+				Auto autoRegenerado = new Auto(altoDelAuto, anchoDeAuto, autosCallePrimaria[k].getX() + entorno.ancho(),
+						autosCallePrimaria[k].getY(), autosCallePrimaria[k].getVelocidad(),
+						autosCallePrimaria[k].getSentido(), autosCallePrimaria[k].getVelocidadBajada());
+				autosCallePrimaria[k] = autoRegenerado;
+				rasengan = null;
+				puntaje += 5;
+			}
+
+		}
+
+		for (int m = 0; m < autosCalleSecundaria.length; m++) {
+			if (rasengan != null && rasengan.colisionasteConAuto(autosCalleSecundaria[m])
+					&& autosCalleSecundaria[m].getSentido() == true) {
+
+				Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
+						autosCalleSecundaria[m].getX() - entorno.ancho(), autosCalleSecundaria[m].getY(),
+						autosCalleSecundaria[m].getVelocidad(), autosCalleSecundaria[m].getSentido(),
+						autosCalleSecundaria[m].getVelocidadBajada());
+				autosCalleSecundaria[m] = autosRegeneradosCalleSecundaria;
+				rasengan = null;
+				puntaje += 5;
+
+			} else if (rasengan != null && rasengan.colisionasteConAuto(autosCalleSecundaria[m])
+					&& autosCalleSecundaria[m].getSentido() == false) {
+
+				Auto autosRegeneradosCalleSecundaria = new Auto(altoDelAuto, anchoDeAuto,
+						autosCalleSecundaria[m].getX() + entorno.ancho(), autosCalleSecundaria[m].getY(),
+						autosCalleSecundaria[m].getVelocidad(), autosCalleSecundaria[m].getSentido(),
+						autosCalleSecundaria[m].getVelocidadBajada());
+				autosCalleSecundaria[m] = autosRegeneradosCalleSecundaria;
+				rasengan = null;
+				puntaje += 5;
+
+			}
+
+		}
+
+		if (puntaje == 100) {
+			ganoPartida = true;
+			partidaCorriendo = false;
+		}
+		if (entorno.sePresiono('p')) {
+			partidaPausada = true;
+			partidaCorriendo = false;
+		}
+		entorno.cambiarFont(Integer.toString(reloj), 20, Color.PINK);
+		entorno.escribirTexto("Tiempo: " + Integer.toString(reloj / 100), 30, 30);
+		entorno.cambiarFont("", 30, Color.PINK);
+		entorno.escribirTexto("saltos:", entorno.ancho() / 2 - 100, 30);
+		entorno.cambiarFont(Integer.toString(saltos), 20, Color.PINK);
+		entorno.escribirTexto(Integer.toString(saltos), entorno.ancho() / 2, 30);
+		entorno.cambiarFont("", 30, Color.PINK);
+		entorno.escribirTexto("Puntos:", 550, 30);
+		entorno.cambiarFont(Integer.toString(puntaje), 20, Color.PINK);
+		entorno.escribirTexto(Integer.toString(puntaje), 700, 30);
+
 	}
 
 	@SuppressWarnings("unused")

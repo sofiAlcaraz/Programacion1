@@ -31,12 +31,12 @@ public class Calle {
 		}
 	}
 
-	public double getLargo() {
-		return largo;
-	}
+//	public double getLargo() {
+//		return largo;
+//	}
 
-	public double posicionVertical() {
-		return y;
-	}
+//	public double posicionVertical() {
+//		return y;
+//	}
 
 }

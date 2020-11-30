@@ -45,7 +45,7 @@ puede pausarse con la tecla `p`.
 
 === Funcionamiento general del juego
 
-El juego comienza con un menú que tiene dos opciones: jugar y salir; En cualquier momento de la partida ésta se puede pausar,
+El juego comienza con un menú que tiene dos opciones: jugar y salir. En cualquier momento de la partida ésta se puede pausar,
 en caso de perder se mostrara una pantalla "game over" con la opción de salir y en caso de ganar se mostrara una pantalla "fin del juego".
 
 === Conejo
@@ -55,7 +55,7 @@ Crear al conejo, darle movimiento, enseñarle a dibujarse y a saltar no fue una 
 Para lograr que el conejo salte a la mitad de la calle cambiamos el método `saltar()`.
 Lo que hicimos fue restarle a su `tamaño.y` el  `altoAuto / 2 + espacioEntreAutos`.
 
-Además debiamos crear al conejo en una posición coherente para que el método saltar funcione correctamente.
+Además, debíamos crear al conejo en una posición coherente para que el método saltar funcione correctamente.
 Para esto al crear el conejo le pasamos por parámetro en su `y` la `(posicionPrimerAutoCallePrimaria + espacioEntreAutos + altoDelAuto / 2) * 3`, de esta forma el conejo se posicionaría al comenzar la calle y saltaría el espacio entre autos más la mitad del alto del auto, la multiplicación por tres es para que el conejo se cree con una determinada distancia respecto de la primera calle. 
 
 .Imagen planificacion salto de conejo
@@ -63,7 +63,7 @@ image::SaltoConejo.png[]
 
 === Calle
 
-La creamos le enseñamos a que se dibuje y deslice.
+La creamos, le enseñamos a que se dibuje y deslice en pantalla.
 
 === Auto
 
@@ -149,7 +149,7 @@ Para poder mostrar texto por pantalla lo que tuvimos que utilizar fue `Integer.t
 
 En esta sección se incluye el código fuente y una breve descripción de cada clase y los métodos utilizados.
 
-En general el método `dibujarse()` toma por parámetro a un entorno de tipo `Entorno`, es void y solo dibuja la imagen que se indique en el constructor ( a excepción del método `dibujarse()` en la clase `Conejo` que se explicara más adelante).
+En general el método `dibujar()` toma por parámetro a un entorno de tipo `Entorno`, es void y solo dibuja la imagen que se indique en el constructor (a excepción del método `dibujar()` en la clase `Conejo` que se explicara más adelante).
 
 
 .Clase Conejo
@@ -160,7 +160,7 @@ include::src/juego/Conejo.java[]
 
 La clase `Conejo` tiene:
 
-- Como estado propio: tamaño, `velocidadDeSalto`( movimiento vertical y horizontal), `deslizarHaciaAbajo` ( deslizamiento hacia abajo) y las imagénes.
+- Como estado propio: tamaño, `velocidadDeSalto`(movimiento vertical y horizontal), `deslizarHaciaAbajo` ( deslizamiento hacia abajo) y las imagénes.
 
 - Como comportamiento: el conejo se sabe, `dibujar()`, `saltar()`, `esperar()`, `saltarIzquierda()`, `saltarDerecha()`, `disparar()`, `seFueDePantalla()`, `chocasteAlgunAuto()`.
 
@@ -192,12 +192,12 @@ La clase `Auto` tiene:
 
 - Como estado propio: `alto`, `ancho`, `x`, `y`, `velocidad`( movimiento horizontal),`sentido` ( true es derecha-izquierda y false de izquierda-derecha), `bajadaDePantalla` ( mov vertical) y la imagen.
 
--Como comportamiento propio: el auto sabe `dibujarse()` y `avanzar()`, también cuenta con los getters de todos sus estados que son utilizados para crear los autos luego de ser 
+- Como comportamiento propio: el auto sabe `dibujarse()` y `avanzar()`, también cuenta con los getters de todos sus estados que son utilizados para crear los autos luego de ser 
 destruidos por algún rasengan.
 
  * El método `avanzar()` es de tipo void, hace que el auto avance para cierto lado según su `sentido`, sumando o restando a su `x` la velocidad.
- Tambien esta constantemente aumentando su `y` sumandole la `bajadaDePantalla` ( que es la velocidad con la que se desliza
- hacia abajo el auto). Y en caso de llegar al extremo contrario se encarga de hacerlo reaparecer en su posición por defecto ( en la pantalla que no se ve).
+ También está constantemente aumentando su `y` sumándole la `bajadaDePantalla` (que es la velocidad con la que se desliza
+ hacia abajo el auto). Y en caso de llegar al extremo contrario se encarga de hacerlo reaparecer en su posición por defecto (en la pantalla que no se ve).
    
 
 .Clase Calle
@@ -208,7 +208,7 @@ include::src/juego/Calle.java[]
 
 La clase `Calle` tiene:
 
-- Como estado propio: `largo`, `x`, `y`, `factorDeDesplazamiento` y su imagen.
+- Como estado propio: `largo`, `x`, `y`, `factorDeDesplazamiento` y su imágen.
 
 - Como comportamientos propios: sabe `dibujarse()` y `deslizarseHaciaAbajo()`, tambien cuenta con dos getters: `getLargo()` y `getPosicionVertical()`.
 
@@ -270,10 +270,10 @@ Cada array de calle con autos (callePrimaria o calleSecundaria) tiene un length(
 
 Cada for cuenta con tres if y un else. El primer if agrega cuatro autos en el carril inferior  que van de izquierda-derecha, el segúndo agrega cuatro autos que van de derecha-izquierda, el tercer if agrega cuatro autos que van de izquierda-derecha y el else agrega cuatro autos que van de  derecha-izquierda.
 
-El segúndo for es parecido, aunque decidimos que el `sentido` de los autos empiece de forma diferente.
-Segun su sentido los autos se crean en determinado `x` (cero o el `entorno.ancho()`).
+El segundo for es parecido, aunque decidimos que el `sentido` de los autos empiece de forma diferente.
+Según su sentido los autos se crean en determinado `x` (cero o el `entorno.ancho()`).
 
-Para la posición en `y` hicimos varias cuentas matemáticas teniendo en cuenta la calle y la posición del primer auto(adjuntamos un dibujo en descripción).
+Para la posición en `y` hicimos varias cuentas matemáticas teniendo en cuenta la calle y la posición del primer auto (adjuntamos un dibujo en descripción).
 
 .Variables de creacion de autos.
 [source, java]
@@ -288,32 +288,34 @@ public class Juego() {
 }
 ----
 
-- En esta parte del código se realizan calculos para la creacion de autos.
+- En esta parte del código se realizan cálculos para la creación de autos.
 
  * En `extremoInferiorCallePrimaria` el "/10" es para obtener el `y` de la calle, lo mismo ocurre con `extremoInferiorCalleSecundaria`.
 
  * En `espacioEntreAutos` el "4" es por la cantidad de carriles y el "/5" es por la cantidad de espacios necesarios.
 Adjuntamos una foto en la sección descripción.
  
-===== tick
+===== El método `tick()`
 
-El esta parte al principio creamos un if que pregunta si la partida esta corriendo, en caso ser falso entonces se pregunta si la partida esta perdida, ganada o en pausa y según que condición se cumple realiza cierta opción.
+En esta parte, al principio creamos un if que pregunta si la partida esta corriendo, en caso ser falso entonces se pregunta si la partida esta perdida, ganada o en pausa y según que condición se cumple realiza cierta opción.
 
 En caso de que la partida este corriendo  se dibuja todo, se llama a los métodos  necesarios y  se revisan las colisiones. 
 
 
 == Conclusiones
 
-El trabajo nos ayudo a terminar de entender como es el manejo de objetos con Java, los arrays de objetos, sus constructores, métodos, variables, constantes, etc.
+El trabajo nos ayudó a terminar de entender como es el manejo de objetos con Java, los arrays de objetos, sus constructores, métodos, variables, constantes, etc.
 
-Tambien aprendimos que antes de comenzar a programar es muy importante planear cuales Objetos, variables y métodos
+También aprendimos que antes de comenzar a programar es muy importante planear cuales objetos, variables y métodos
 necesitamos y como estos se relacionan entre si.
 
 Creemos que el pensar mucho el nombre de las variables nos va a quedar para siempre y que hay miles de formas de escribir el código. 
+
 Además aprendimos que el orden en que se ejecuta el código es muy importante.
-No nos terminó de gustar el código a la hora de crear Autos en el juego y nos hubiese gustado agregarle mas cosas, pero tuvimos muy poco tiempo. 
+No nos terminó de gustar el código a la hora de crear Autos en el juego y nos hubiese gustado agregarle más cosas, pero tuvimos muy poco tiempo. 
+
 Aprendimos algo muy útil, que es el manejo de git, que además de todo lo que aprendimos de la materia, nos llevamos todos estos conocimientos que van a ser útiles en el futuro y nos acercan a lo que es un "verdadero" proyecto en equipo.
 
 Gracias al trabajo se puede vivenciar los primeros pasos en nuestra formación como profesionales de la informática y la programación.
 
-Un equipo de trabajo unido y en sintonía siempre va a funcionar mejor que un grupo de desarrolladores trabajando solos. Las ventajas de esto es saber cuáles son las fortalezas y debilidades de los otros, de este modo, nuestros aportes al proyecto se van a acomodar de tal forma que cada uno hará lo que más le gusta y mejor le sale, y de esta forma el resultado va a ser muchos mas enriquecedor, con menos stress para todos y mas gratificante para todos.
+Un equipo de trabajo unido y en sintonía siempre va a funcionar mejor que un grupo de desarrolladores trabajando solos. Las ventajas de esto es saber cuáles son las fortalezas y debilidades de los otros, de este modo, nuestros aportes al proyecto se van a acomodar de tal forma que cada uno hará lo que más le gusta y mejor le sale, y de esta forma el resultado va a ser mucho mas enriquecedor, con menos stress para todos y mas gratificante para todos.

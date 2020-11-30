@@ -28,7 +28,6 @@ public class Auto {
 		this.bajadaDePantalla = bajadaDePantalla;
 		this.imagenAutoHaciaDerecha = Herramientas.cargarImagen("autoSentidoDerecho.png");
 		this.imagenAutoHaciaIzquierda = Herramientas.cargarImagen("autoSentidoIzquierdo.png");
-
 	}
 
 	public void dibujar(Entorno entorno) {
@@ -56,7 +55,6 @@ public class Auto {
 		} else {
 			x += velocidad;
 		}
-
 	}
 
 	public boolean getSentido() {
